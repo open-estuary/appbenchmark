@@ -1,0 +1,35 @@
+{
+  "application": "mysql",
+
+  "server_setup": [ {
+      "name": "package_1",
+      "download_url": "http://download/server/pakcage1.tar.gz",
+      "local_filename" : "localpackage.tar.gz",
+      "pre_install_script": "pre_install.sh",
+      "build_script": "build.sh",
+      "install_script": "install.sh"
+    }, {
+      "name": "package 2",
+      "download_url": "http://download/server/package2.tar.gz",
+      "local_filename" : "localpcakge2.tar.gz",
+      "pre_install_cmd": "pre_install.py",
+      "build_cmd": "build.py",
+      "install_cmd": "install.py"
+    }], 
+
+  "client_setup": [ {
+      "name": "package 1",
+      "download_url": "http://download/client/package1.tar.gz",
+      "local_filename" : "",
+      "pre_install_cmd": "pre_install.sh",
+      "build_cmd": "build.sh",
+      "install_cmd": "install.sh"
+    }, {
+      "name": "package 2",
+      "download_url": "http://download/client/package2.tar.gz",
+      "local_filename" : ""
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "install.py"
+    }]
+}
