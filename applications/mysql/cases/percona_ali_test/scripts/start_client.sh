@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# -lt 3 ]; then
-    echo "Usage: client_start.sh <ip_address> <username> <userpassword>"
-    echo "As a default, it will connect 3306 port"
+if [ $# -lt 4 ]; then
+    echo "Usage: client_start.sh <ip_address> <username> <userpassword> <action>"
+    echo "By default, it will connect 3306 port"
     exit 0
 fi
 
@@ -13,7 +13,7 @@ BASE_DIR=$(cd ~; pwd)
 #  Usage: client_start.sh <mysql_server_ip> <username> <passwd> {inital}
 #####################################################################################
 
-if [ "$4" ] ; then
+if [ "$4" == "init" ] ; then
     #Step 1: Prepare data
     sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
         --oltp-test-mode=complex  \
@@ -35,11 +35,14 @@ if [ "$4" ] ; then
         --mysql-table-engine=innodb --oltp-table-size=1000000 \
         --oltp-tables-count=100 --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 run
-fi
-
+elif [ "$4" == "loaddata" ] ; then
 #Step 3: Run test case
 ${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/readall.sh $1 $2 $3  47 3306
+elif [ "$4" == "test" ] ; then
 ${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 47 1000000 select6 20
+else 
+    echo "argument should be {init | loaddata | test} "
+fi
 
 echo "**********************************************************************************"
 echo "start tcprstat completed"

@@ -15,6 +15,11 @@ ip="192.168.1.187"
 userid="root"
 password="123456"
 
+if [ $# -lt 1 ] ; then 
+    echo "Usage: ./run_test.sh {init | loaddata | test}"
+    exit 0
+fi
+
 #Include common setup utility functions
-${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/client_start.sh ${ip} \
+${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/start_client.sh ${ip} \
     ${userid} ${password} ${1}

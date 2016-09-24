@@ -15,7 +15,7 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ $(tool_check_exists "${BUILD_DIR}/${TARGET_DIR}/src/tcprstat") == 0 ] ; then
+if [ $(tool_check_exists "${BUILD_DIR}/${TARGET_DIR}/src/tcprstat-static") == 0 ] ; then
     echo "tcprstat has been built, so do nothing"
     echo "Build tcprstat successfully"
     exit 0 
@@ -53,6 +53,10 @@ cd ${TARGET_DIR}/
 CONFIGURE_OPTIONS=""
 if [ $(uname -m) == "aarch64" ] ; then
     CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" -build=arm "
+
+    #Add bug fix for arm platform
+    sudo cp ${APP_ROOT}/applications/mysql/cases/percona_ali_test/bugfix/tcprstat/src/tcprstat.c \
+            ./src/tcprstat.c 
 fi
 
 chmod 755 bootstrap
@@ -63,12 +67,14 @@ make
 if [ $(tool_check_exists /usr/bin/tcprstat-static) == 0 ]; then
     echo "tcpstat-static has been installed "
 else 
+    sudo cp ./src/tcprstat /usr/bin/tcprstat
     sudo cp ./src/tcprstat-static /usr/bin/tcprstat-static
     sudo cp ./src/tcprstat /usr/bin/tcprstat
 fi
 
 sudo chmod u+s /usr/bin/tcprstat
 sudo chmod u+s /usr/bin/tcprstat-static
+sudo chmod u+s /usr/bin/tcprstat
 
 popd > /dev/null
 
