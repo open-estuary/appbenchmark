@@ -52,7 +52,7 @@ cd ${TARGET_DIR}/
 
 CONFIGURE_OPTIONS=""
 if [ $(uname -m) == "aarch64" ] ; then
-    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" -buildtype=arm "
+    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" -build=arm "
 fi
 
 chmod 755 bootstrap
@@ -64,10 +64,11 @@ if [ $(tool_check_exists /usr/bin/tcprstat-static) == 0 ]; then
     echo "tcpstat-static has been installed "
 else 
     sudo cp ./src/tcprstat-static /usr/bin/tcprstat-static
+    sudo cp ./src/tcprstat /usr/bin/tcprstat
 fi
 
+sudo chmod u+s /usr/bin/tcprstat
 sudo chmod u+s /usr/bin/tcprstat-static
-
 
 popd > /dev/null
 

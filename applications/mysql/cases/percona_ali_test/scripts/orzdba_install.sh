@@ -14,11 +14,11 @@ INSTALL_DIR="/usr/local/bin"
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ "$(tool_check_exists ${INSTALL_DIR}/orzdba)" == 0 ] ; then
-    echo "orzdba has been installed"
-    echo "Install orzdba successfully"
-    exit 0 
-fi
+#if [ "$(tool_check_exists ${INSTALL_DIR}/orzdba)" == 0 ] ; then
+#    echo "orzdba has been installed"
+#    echo "Install orzdba successfully"
+#    exit 0 
+#fi
 
 if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/orzdba_rt_depend_perl_module.tar.gz)" == 0 ]; then
     echo "Orzdba source codes have been downloaded, so not necessary to download them again"
@@ -69,12 +69,16 @@ perl_submodule_build1 "version-0.99"
 tar -xzvf Class-Data-Inheritable-0.08.tar.gz
 perl_submodule_build1 "Class-Data-Inheritable-0.08"
 
+tar -xzvf Module-Build-0.31.tar.gz
+perl_submodule_build2 "Module-Build-0.31"
+
 tar -zxvf File-Lockfile-v1.0.5.tar.gz
 perl_submodule_build2 "File-Lockfile-v1.0.5" 
 popd > /dev/null
 
 # Step 2: Install orzdba
-sudo cp ./orzdba ${INSTALL_DIR}/orzdba
+# Use local orzdba version which has minor modification
+sudo cp ${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/orzdba.pl ${INSTALL_DIR}/orzdba
 sudo chmod 755 ${INSTALL_DIR}/orzdba
 
 popd > /dev/null

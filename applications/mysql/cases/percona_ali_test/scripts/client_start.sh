@@ -6,15 +6,16 @@ if [ $# -lt 3 ]; then
     exit 0
 fi
 
+BASE_DIR=$(cd ~; pwd)
 ######################################################################################
 # Notes:
 #  To start client tests
 #  Usage: client_start.sh <mysql_server_ip> <username> <passwd> {inital}
 #####################################################################################
 
-if [ $4 ] ; then
+if [ "$4" ] ; then
     #Step 1: Prepare data
-    sysbench --test=~/apptests/sysbench/sysbench/tests/db/parallel_prepare.lua \
+    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
         --oltp-test-mode=complex  \
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \
@@ -22,9 +23,11 @@ if [ $4 ] ; then
         --mysql-table-engine=innodb --oltp-table-size=1000000 \
         --oltp-tables-count=100 --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 prepare
-        
+    
+    exit 1
+
     #Step 2: Initialize tables
-    sysbench --test=~/apptests/sysbench/sysbench/tests/db/parallel_prepare.lua \
+    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
         --oltp-test-mode=complex  \
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \
@@ -35,8 +38,8 @@ if [ $4 ] ; then
 fi
 
 #Step 3: Run test case
-${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/readall.sh $1 $2 $3 100 3306
-${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 20000
+${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/readall.sh $1 $2 $3  47 3306
+${APP_ROOT}/applications/mysql/cases/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 47 1000000 select6 20
 
 echo "**********************************************************************************"
 echo "start tcprstat completed"

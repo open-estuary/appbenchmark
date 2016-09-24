@@ -13,10 +13,12 @@ scripts=${11}
 
 declare -i i=1
 
+BASE_DIR=$(cd ~; pwd)
+
 while ((i<=${active}))
 do 
     echo ${i}
-    sysbench --test=~/apptests/sysbench/sysbench/tests/db/${scripts}.lua \
+    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
              --tx-rate=100 --oltp-test-mode=complex --oltp-read-only=${read_only} \
              --mysql-host=${ip} --mysql-db=sysbench --mysql-password=${password} \
              --max-requests=0 --mysql-user=${user} \
@@ -25,19 +27,19 @@ do
              --oltp-tables-count=${tables} \
              --num-threads=10 --mysql-port=3306 run &
     let ++i
-    usleep ${12}
+    sleep ${12}
 done
 
 i=1
 while ((i<=${unactive}))
 do 
     echo ${i}
-    sysbench --test=~/apptests/sysbench/sysbench/tests/db/${scripts}.lua \
+    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
              --tx-rate=100 --oltp-test-mode=complex --oltp-read-only=${read_only} \
              --mysql-host=${ip} --mysql-db=sysbench --mysql-password=${password}  \
              --max-requests=0 --mysql-user=root --mysql-table-engine=innodb --oltp-table-size=${size}  \
              --oltp-tables-count=${tables}  --num-threads=10 --mysql-port=3306 run &
     let ++i
-    usleep  ${12}
+    sleep  ${12}
 done
 

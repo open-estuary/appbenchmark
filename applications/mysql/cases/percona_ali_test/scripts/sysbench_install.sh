@@ -17,11 +17,11 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ "$(which sysbench)" ] ; then
-    echo "sysbench has been built, so do nothing"
-    echo "Build sysbench successfully"
-    exit 0 
-fi
+#if [ "$(which sysbench)" ] ; then
+#    echo "sysbench has been built, so do nothing"
+#    echo "Build sysbench successfully"
+#    exit 0 
+#fi
 
 sudo rm -fr ${BUILD_DIR}/${TARGET_DIR}*
 mkdir -p ${BUILD_DIR}
@@ -48,11 +48,12 @@ fi
 make
 sudo make install
 
-echo "copy sysbench datas to ~/apptests/sysbench/tests/db"
-mkdir -p ~/apptests/sysbench/tests/db
-cp ./sysbench/tests/db/* ~/apptests/sysbench/tests/db/
-cp ${APP_ROOT}/applications/mysql/cases/percona_ali_test/config/*.lua ~/apptests/sysbench/tests/db/
+SYSBENCH_DB_DIR="~/apptests/sysbench/tests/db"
+mkdir -p ${SYSBENCH_DB_DIR}
+cp ./sysbench/tests/db/* ${SYSBENCH_DB_DIR}
+cp ${APP_ROOT}/applications/mysql/cases/percona_ali_test/config/*.lua ${SYSBENCH_DB_DIR}
 
+echo "copy sysbench data to ${SYSBENCH_DB_DIR}"
 popd > /dev/null
 
 echo "**********************************************************************************"

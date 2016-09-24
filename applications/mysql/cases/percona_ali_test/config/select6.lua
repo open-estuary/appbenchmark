@@ -9,5 +9,5 @@ end
 function event(thread_id)
     local table_name
     table_name = "sbtest".. sb_rand_uniform(1, oltp_tables_count)
-    rs = db_query("SELECT * FROM ".. table_name .." WHERE id <" .. sb_rand(1, oltp_tables_size) .. "limit 3" )
+    rs = db_query("SELECT * FROM ".. table_name .." WHERE id < " .. sb_rand(1, oltp_tables_count) .. " limit 3" )
 end

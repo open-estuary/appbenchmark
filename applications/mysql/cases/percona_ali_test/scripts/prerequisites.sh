@@ -7,14 +7,14 @@ INSTALL_OPTIONS="-yq"
 BUILD_ESSENTIAL="build-essential automake cmake"
 COMMON_TOOLS="curl wget unzip"
 #However it will use yum on other platforms such as CentOS
-if [ $(which yum) ] ; then 
+if [ "$(which yum)" ] ; then 
     INSTALL_CMD="sudo yum install"
     BUILD_ESSENTIAL="automake"
 fi
 
 
 #Add build and common tools
-if [ $(which yum) ] ; then
+if [ "$(which yum)" ] ; then
     sudo yum -yq install "Devlopment Tools"
 fi
 
@@ -29,3 +29,10 @@ if [ $(which yum) ] ; then
 fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS}  ${CURSES_LIB}
+
+if [ "$(which yum)" ] ; then
+    sudo yum install perl-ExtUtils-MakeMaker \ 
+                     glibc-static
+fi
+
+
