@@ -25,21 +25,26 @@ do
              --mysql-table-engine=innodb \
              --oltp-table-size=${size} \
              --oltp-tables-count=${tables} \
+             --max-time=720000 \
              --num-threads=10 --mysql-port=3306 run &
     let ++i
-    sleep ${12}
+    usleep ${12}
 done
 
 i=1
 while ((i<=${unactive}))
 do 
-    echo ${i}
+    echo "start unactive test${i}"
     sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
-             --tx-rate=100 --oltp-test-mode=complex --oltp-read-only=${read_only} \
+             --tx-rate=10 --oltp-test-mode=complex --oltp-read-only=${read_only} \
              --mysql-host=${ip} --mysql-db=sysbench --mysql-password=${password}  \
-             --max-requests=0 --mysql-user=root --mysql-table-engine=innodb --oltp-table-size=${size}  \
-             --oltp-tables-count=${tables}  --num-threads=10 --mysql-port=3306 run &
+             --max-requests=0 --mysql-user=root \
+             --mysql-table-engine=innodb \
+             --oltp-table-size=${size}  \
+             --max-time=720000 \
+             --oltp-tables-count=${tables} \
+             --num-threads=10 --mysql-port=3306 run &
     let ++i
-    sleep  ${12}
+    usleep  ${12}
 done
 
