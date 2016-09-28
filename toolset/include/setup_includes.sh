@@ -7,4 +7,3 @@
 
 . ${APP_ROOT}/toolset/include/global.sh
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
-. ${APP_ROOT}/toolset/setup/setup.sh

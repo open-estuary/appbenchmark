@@ -69,6 +69,8 @@ def main():
         return -1
 
     try :
+        print("");
+        print("************************************************************************")
         
         for index in range(len(json_data[install_elem])):
             package_name = json_data[install_elem][index]["name"]
@@ -80,7 +82,8 @@ def main():
 
             target_filename=local_filename
             if download_url != "" :
-                print("Begin to download %s ......"%(download_url))
+                print("************************************************************************")
+                print("%s::step1:begin to download %s ......"%(package_name, download_url))
                 if target_filename == "":
                     target_filename=download_url.strip().split('/')[-1]
 
@@ -93,22 +96,37 @@ def main():
 
             pre_install_cmd = json_data[install_elem][index]["pre_install_cmd"]
             if pre_install_cmd != "":
-                print("Begin to execute %s"%pre_install_cmd)
+                print("************************************************************************")
+                print("%s::step2:begin to execute %s"%(package_name, pre_install_cmd))
                 subprocess.check_call([get_execute_cmd(pre_install_cmd), target_filename])
+            else :
+                print("************************************************************************")
+                print("%s::step2:passed"%package_name)
 
             build_cmd = json_data[install_elem][index]["build_cmd"]
             if build_cmd != "":
-                print("Begin to execute %s"%build_cmd)
+                print("************************************************************************")
+                print("%s::step3:begin to execute %s"%(package_name, build_cmd))
                 subprocess.check_call([get_execute_cmd(build_cmd), target_filename])
+            else :
+                print("************************************************************************")
+                print("%s::step3:passed"%package_name)
 
             install_cmd = json_data[install_elem][index]["install_cmd"]
             if install_cmd != "":
-                print("Begin to execute %s"%install_cmd)
+                print("************************************************************************")
+                print("%s::step4:begin to execute %s"%(package_name, install_cmd))
                 subprocess.check_call([get_execute_cmd(install_cmd), target_filename])
+            else :
+                print("************************************************************************")
+                print("%s::step4:passed"%package_name)
 
     except Exception as ex:
         print("Fail to install package due to %s"%ex)
 
+    print("************************************************************************")
+    print("***************** Setup scripts have been completed ********************")
+    print("************************************************************************")
 
 if __name__ == "__main__":
     main()
