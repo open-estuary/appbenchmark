@@ -15,11 +15,10 @@ ip="192.168.1.187"
 userid="root"
 password="123456"
 
-if [ $# -lt 1 ] ; then 
-    echo "Usage: ./run_test.sh {init | loaddata | test}"
+if [ $# -lt 2 ] ; then 
+    echo "Usage: ./run_test.sh {redis-inst-num} {init | test}"
     exit 0
 fi
 
 #Include common setup utility functions
-${APP_ROOT}/applications/redis/cases/baidu_redis_test/scripts/start_client.sh ${ip} \
-    ${userid} ${password} ${1}
+${APP_ROOT}/applications/redis/cases/baidu_redis_test/scripts/start_client.sh ${ip} ${1} ${2}

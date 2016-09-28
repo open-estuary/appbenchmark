@@ -4,7 +4,7 @@
 """
     E-mail    :    huangjinhua3@huawei.com
     Data      :    2016-10-08 11:34
-    Purpose   :    This tool is to generate dump data for redis test
+    Purpose   :    This tool is to analysis redis-benchmark results
 
 """
 
