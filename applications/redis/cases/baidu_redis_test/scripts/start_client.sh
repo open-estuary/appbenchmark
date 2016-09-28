@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 3 ]; then
-    echo "Usage: client_start.sh <ip_address> <redis_inst_number> {init | test} {pipe_num}"
+    echo "Usage: client_start.sh {init | test}  <ip_address> <redis_inst_number> <keep_alive> <pipe_num>"
     exit 0
 fi
 
@@ -9,17 +9,19 @@ BASE_DIR=$(cd ~; pwd)
 
 REDIS_TEST_DIR=${BASE_DIR}/apptests/redis/
 REDIS_CMD_DIR=/usr/local/redis/bin
-######################################################################################
+#######################################################################################
 # Notes:
 #  To start client tests
-#  Usage: client_start.sh <redis_ip> <redis_inst_number> {init | test} {pipe_num}
-#####################################################################################
+#  Usage: client_start.sh {init | test} <ip_addr> <redis_inst> <keep-alive> <pipe_num>
+#######################################################################################
 
-ip_addr=${1}
+ip_addr=${2}
 base_port_num=7000
-redis_inst_num=${2}
+redis_inst_num=${3}
+keep_alive=${4}
+pipeline=${5}
 
-if [ "$3" == "init" ] ; then
+if [ "$1" == "init" ] ; then
     #Step 1: Prepare data
     mkdir -p ${REDIS_TEST_DIR}
     pushd ${REDIS_TEST_DIR} > /dev/null
@@ -39,20 +41,16 @@ if [ "$3" == "init" ] ; then
 
     popd > /dev/null
 
-elif [ "$3" == "test" ] ; then
+elif [ "$1" == "test" ] ; then
     pushd ${REDIS_TEST_DIR} > /dev/null
-
-    pipeline=100
-    if [ "$4" ] ; then
-        pipeline=${4}
-    fi
+    rm redis_benchmark_log*
 
     let "redis_inst_num--"
     for index in $(seq 0 ${redis_inst_num})
     do
         port=`expr ${base_port_num} + ${index}`
         echo "call redis-benchmark to test redis-${index}"
-        taskset -c ${index} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n 1000000 -d 10 -k 0 -r 10000 -P ${pipeline} -t get > redis_pipeline_$2_${port} &
+        taskset -c ${index} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n 1000000 -d 10 -k ${keep_alive} -r 10000 -P ${pipeline} -t get > redis_benchmark_log_${port} &
     done
 
     echo "Please check results under ${REDIS_TEST_DIR} directory"

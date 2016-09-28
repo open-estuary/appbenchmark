@@ -31,13 +31,26 @@ cd src
 sudo make PREFIX=${REDIS_INSTALL_DIR} install
 
 
-echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
-echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
-echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
-echo 262144 > /proc/sys/net/core/somaxconn
-echo 262144 > /proc/sys/net/core/netdev_max_backlog
-echo 262144 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+sudo echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+sudo echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
+sudo echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
+sudo echo 262144 > /proc/sys/net/core/somaxconn
+sudo echo 262144 > /proc/sys/net/core/netdev_max_backlog
+sudo echo 262144 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+
+if [ "$(tool_check_exists /writeable-proc)" == 0 ]; then
+    echo "Provision configurations on docker iamge"
+
+    sudo echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_reuse
+    sudo echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_recycle
+    sudo echo 2048 65000 > /writeable-proc/proc/sys/net/ipv4/ip_local_port_range
+    sudo echo 262144 > /writeable-proc/proc/sys/net/core/somaxconn
+    sudo echo 262144 > /writeable-proc/proc/sys/net/core/netdev_max_backlog
+    sudo echo 262144 > /writeable-proc/proc/sys/net/ipv4/tcp_max_syn_backlog
+
+fi
 
 echo "Redis-benchmark has been installed successfully"
+
 popd > /dev/null
 

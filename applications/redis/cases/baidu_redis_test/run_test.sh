@@ -12,13 +12,11 @@ export APP_ROOT=${APP_ROOT}
 
 
 ip="192.168.1.187"
-userid="root"
-password="123456"
 
 if [ $# -lt 2 ] ; then 
-    echo "Usage: ./run_test.sh {redis-inst-num} {init | test}"
+    echo "Usage: ./run_test.sh {init | test} {redis-inst:1 ~ 32} {keep-alive:0 or 1} {pipeline:0 ~ 100}"
     exit 0
 fi
 
 #Include common setup utility functions
-${APP_ROOT}/applications/redis/cases/baidu_redis_test/scripts/start_client.sh ${ip} ${1} ${2}
+${APP_ROOT}/applications/redis/cases/baidu_redis_test/scripts/start_client.sh ${1} ${ip} ${2} ${3}
