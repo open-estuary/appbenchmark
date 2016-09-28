@@ -76,7 +76,7 @@ def analysis_redisbenchmark_qps_lat():
         total_qps += float(qps_list[index])
         total_lat += float(lat_list[index])
 
-    print("Avg qps:%0.2f, Avg lat:%0.2f"%(total_qps/len(qps_list), total_lat/len(lat_list)))
+    print("Total qps:%0.2f, Avg lat:%0.2f"%(total_qps, total_lat/len(lat_list)))
 
 if __name__ == "__main__":
     analysis_redisbenchmark_qps_lat()
