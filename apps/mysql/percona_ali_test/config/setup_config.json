@@ -1,0 +1,44 @@
+{
+  "application": "Percona MySQL Performance Test",
+
+  "server_setup": [ {
+      "name": "PerconaServer",
+      "download_url": "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
+      "local_filename" : "PerconaServer-5.6.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "percona_build.sh",
+      "install_cmd": "percona_install_server.sh"
+    },  
+    {
+      "name": "Tcprstat",
+      "download_url": "https://github.com/Lowertcprstat/archive/master.tar.gz",
+      "local_filename" : "tcprstat.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "tcprstat_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+      "name": "Orzdba",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "orzdba_install.sh"
+    }], 
+
+  "client_setup": [ {
+      "name": "Percona_client_libs",
+      "download_url": "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
+      "local_filename" : "PerconaServer-5.6.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "percona_build.sh",
+      "install_cmd": "percona_install_client.sh"
+    }, {
+      "name": "sysbench",
+      "download_url": "https://github.com/akopytov/sysbench/archive/0.5.tar.gz",
+      "local_filename" : "sysbench-0.5.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "sysbench_install.sh"
+    }]
+}
