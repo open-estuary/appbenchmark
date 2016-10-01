@@ -37,7 +37,7 @@ $(tool_add_sudo) make PREFIX=${REDIS_INSTALL_DIR} install
 
 #Install step 2: Prepare redis config
 $(tool_add_sudo) mkdir ${REDIS_INSTALL_DIR}/config
-$(tool_add_sudo) cp ${APP_ROOT}/apps/redis/baidu_redis_test/config/redis*.conf ${REDIS_INSTALL_DIR}/config/
+$(tool_add_sudo) cp ${APP_ROOT}/apps/redis/redis_test1/config/redis*.conf ${REDIS_INSTALL_DIR}/config/
 
 echo 1 > /proc/sys/net/ipv4/tcp_timestamps
 

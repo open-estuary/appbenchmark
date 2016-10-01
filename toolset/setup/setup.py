@@ -28,7 +28,8 @@ def get_execute_cmd(inputcmd):
 
 def main():
     #Add current directory to shell path 
-    os.environ['PATH'] = os.environ['PATH'] + os.getcwd()
+    os.environ['PATH'] += os.getcwd()
+    os.environ['PATH'] += ":/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:"  
 
     if len(sys.argv) < 3:
         print("Usage: setup.py <cfg.json file> {client|server}")
@@ -79,11 +80,20 @@ def main():
 
             download_url = json_data[install_elem][index]["download_url"]
             local_filename = json_data[install_elem][index]["local_filename"]
-
             target_filename=local_filename
+
+            pre_install_cmd = json_data[install_elem][index]["pre_install_cmd"]
+            if pre_install_cmd != "":
+                print("************************************************************************")
+                print("%s::step1:begin to execute %s"%(package_name, pre_install_cmd))
+                subprocess.check_call([get_execute_cmd(pre_install_cmd), target_filename])
+            else :
+                print("************************************************************************")
+                print("%s::step1:passed"%package_name)
+
             if download_url != "" :
                 print("************************************************************************")
-                print("%s::step1:begin to download %s ......"%(package_name, download_url))
+                print("%s::step2:begin to download %s ......"%(package_name, download_url))
                 if target_filename == "":
                     target_filename=download_url.strip().split('/')[-1]
 
@@ -94,14 +104,6 @@ def main():
                 else:
                     subprocess.check_call(["curl", "-sL", "-o", target_filename, download_url])
 
-            pre_install_cmd = json_data[install_elem][index]["pre_install_cmd"]
-            if pre_install_cmd != "":
-                print("************************************************************************")
-                print("%s::step2:begin to execute %s"%(package_name, pre_install_cmd))
-                subprocess.check_call([get_execute_cmd(pre_install_cmd), target_filename])
-            else :
-                print("************************************************************************")
-                print("%s::step2:passed"%package_name)
 
             build_cmd = json_data[install_elem][index]["build_cmd"]
             if build_cmd != "":

@@ -3,7 +3,7 @@
 #Define global APP_ROOT directory
 if [ -z "${APP_ROOT}" ]; then
     # Default value
-    APP_ROOT=$(cd `dirname $0` ; cd ../../../../; pwd)
+    APP_ROOT=$(cd `dirname $0` ; cd ../../../; pwd)
 else
     # Re-declare so it can be used in this script
     APP_ROOT=$(echo $APP_ROOT)
@@ -16,5 +16,5 @@ if [ $# -lt 1 ]; then
 fi
 
 #call setup utility to setup mysql 
-${APP_ROOT}/toolset/setup/setup.sh "redis" "baidu_redis_test" "setup_config.json" ${1}
+${APP_ROOT}/toolset/setup/setup.sh "redis" "redis_test1" "setup_config.json" ${1}
 

@@ -4,7 +4,6 @@
 
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
-
 INSTALL_OPTIONS="-yq"
 
 BUILD_ESSENTIAL="build-essential automake cmake"
@@ -15,6 +14,9 @@ if [ "$(which yum)" ] ; then
     BUILD_ESSENTIAL="automake"
 fi
 
+if [ "$(which apt-get)" ] ; then 
+    ${INSTALL_CMD} ${INSTALL_OPTIONS} apt-utils
+fi
 
 #Add build and common tools
 if [ "$(which yum)" ] ; then
@@ -23,7 +25,6 @@ fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS} ${BUILD_ESSENTIAL} 
 ${INSTALL_CMD} ${INSTALL_OPTIONS} ${COMMON_TOOLS}
-
 
 #Add special package for percona-server build
 CURSES_LIB="libncurses5-dev"

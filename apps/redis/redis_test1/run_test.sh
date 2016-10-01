@@ -3,7 +3,7 @@
 #Define global APP_ROOT directory
 if [ -z "${APP_ROOT}" ]; then
     # Default value
-    APP_ROOT=$(cd `dirname $0` ; cd ../../../../; pwd)
+    APP_ROOT=$(cd `dirname $0` ; cd ../../../; pwd)
 else
     # Re-declare so it can be used in this script
     APP_ROOT=$(echo $APP_ROOT)
@@ -19,4 +19,4 @@ if [ $# -lt 2 ] ; then
 fi
 
 #Include common setup utility functions
-${APP_ROOT}/apps/redis/baidu_redis_test/scripts/start_client.sh ${1} ${ip} ${2} ${3}
+${APP_ROOT}/apps/redis/redis_test1/scripts/start_client.sh ${1} ${ip} ${2} ${3}

@@ -135,8 +135,6 @@ tool_get_build_dir() {
     echo ${rand_dirname}
 }
 
-
-
 ################################################################################
 # Purpose:
 #     To add "sudo" prefix for non-root users 
@@ -144,8 +142,8 @@ tool_get_build_dir() {
 # Usage: 
 #     tool_add_sudo
 ################################################################################
-tool_add_sudo() {
-    if [ $(whoami) == "root" ] ; then
+tool_add_sudo() {  
+if [ $(whoami) == "root" ] ; then
         echo ""
     else 
         echo "sudo"

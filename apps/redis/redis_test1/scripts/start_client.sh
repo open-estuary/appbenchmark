@@ -29,7 +29,7 @@ if [ "$1" == "init" ] ; then
     data_num=10000
     data_size=10
 
-    python ${APP_ROOT}/apps/redis/baidu_redis_test/scripts/generate_inputdata.py ./input_data ${data_num} ${data_size}
+    python ${APP_ROOT}/apps/redis/redis_test1/scripts/generate_inputdata.py ./input_data ${data_num} ${data_size}
    
     let "redis_inst_num--"
     for index in $(seq 0 ${redis_inst_num})

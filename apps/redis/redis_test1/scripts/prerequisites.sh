@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ${APP_ROOT}/toolset/setup/basic_cmd.sh
+
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-yq"
@@ -12,6 +14,9 @@ if [ "$(which yum)" ] ; then
     BUILD_ESSENTIAL="automake"
 fi
 
+if [ "$(which apt-get)" ] ; then
+    ${INSTALL_CMD} ${INSTALL_OPTIONS} apt-utils
+fi
 
 #Add build and common tools
 if [ "$(which yum)" ] ; then
