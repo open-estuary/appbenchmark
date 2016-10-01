@@ -19,7 +19,7 @@ app_jsoncfg_name=${3}
 #Include common setup utility functions
 . ${APP_ROOT}/toolset/include/setup_includes.sh
 
-PACKAGE_BUILD_DIR="${APP_ROOT}/buildir/${app_name}/${app_test_name}/"
+PACKAGE_BUILD_DIR="${APP_ROOT}/builddir/${app_name}/${app_test_name}/"
 
 if [ "$(tool_check_exists ${PACKAGE_BUILD_DIR})" != 0 ] ; then
     mkdir -p ${PACKAGE_BUILD_DIR}
