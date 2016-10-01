@@ -136,3 +136,19 @@ tool_get_build_dir() {
 }
 
 
+
+################################################################################
+# Purpose:
+#     To add "sudo" prefix for non-root users 
+# 
+# Usage: 
+#     tool_add_sudo
+################################################################################
+tool_add_sudo() {
+    if [ $(whoami) == "root" ] ; then
+        echo ""
+    else 
+        echo "sudo"
+    fi
+}
+
