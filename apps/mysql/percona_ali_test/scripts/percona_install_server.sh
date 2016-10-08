@@ -59,7 +59,7 @@ $(tool_add_sudo) mkdir -p /u01/my3306/log
 $(tool_add_sudo) mkdir -p /u01/my3306/run
 
 cur_user=`whoami`
-$(tool_add_sudo) chown -R mysql.${cur_user} /u01
+$(tool_add_sudo) chown -L -R mysql.${cur_user} /u01
 
 #Install step 4: Initialize database
 $(tool_add_sudo) /u01/my3306/scripts/mysql_install_db --basedir=/u01/my3306 \

@@ -11,8 +11,8 @@
     },  
     {
       "name": "Tcprstat",
-      "download_url": "https://github.com/Lowertcprstat/archive/master.tar.gz",
-      "local_filename" : "tcprstat.tar.gz",
+      "download_url": "",
+      "local_filename" : "",
       "pre_install_cmd": "",
       "build_cmd": "tcprstat_build.sh",
       "install_cmd": ""

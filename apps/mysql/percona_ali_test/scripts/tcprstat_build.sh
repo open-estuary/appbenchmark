@@ -8,9 +8,8 @@
 #
 #####################################################################################
 
-BUILD_DIR="./"$(tool_get_build_dir $1)
-SERVER_FILENAME=$1
-TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
+BUILD_DIR="./builddir_tcprstat"
+TARGET_DIR="master"
 
 ####################################################################################
 # Prepare for build
@@ -23,13 +22,8 @@ fi
 
 $(tool_add_sudo) rm -fr ${BUILD_DIR}/${TARGET_DIR}*
 mkdir -p ${BUILD_DIR}
-tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
-TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
-if [ -z "${TARGET_DIR}" ] ; then
-    echo "Fail to get any directory under ${BUILD_DIR}"
-    exit 1
-fi
+git clone https://github.com/Lowercases/tcprstat.git ${BUILD_DIR}/${TARGET_DIR}
 
 #Replace libpcap1.1 with libpcap1.6 in order to support ARM64 platform
 #if [ $(uname -m) == "aarch64" ] ; then

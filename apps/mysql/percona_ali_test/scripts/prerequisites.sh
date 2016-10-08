@@ -6,8 +6,8 @@
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-yq"
 
-BUILD_ESSENTIAL="build-essential automake cmake"
-COMMON_TOOLS="python curl wget unzip"
+BUILD_ESSENTIAL="build-essential automake cmake git"
+COMMON_TOOLS="python curl wget unzip bison flex"
 #However it will use yum on other platforms such as CentOS
 if [ "$(which yum)" ] ; then 
     INSTALL_CMD="$(tool_add_sudo) yum install"
