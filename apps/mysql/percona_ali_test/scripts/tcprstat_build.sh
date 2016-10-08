@@ -14,7 +14,7 @@ TARGET_DIR="master"
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ $(tool_check_exists "${BUILD_DIR}/${TARGET_DIR}/src/tcprstat-static") == 0 ] ; then
+if [ $(tool_check_exists "/usr/sbin/tcprstat") == 0 ] ; then
     echo "tcprstat has been built, so do nothing"
     echo "Build tcprstat successfully"
     exit 0 
@@ -41,7 +41,7 @@ echo "Finish build preparation......"
 # Build TcpRstat
 #####################################################################################
 #Build Step 1: auto generation
-pushd ${BUILD_DIR} > /dev/null
+pushd ${BUILD_DIR} > /dev/nulli
 cd ${TARGET_DIR}/
 
 CONFIGURE_OPTIONS=""
@@ -61,14 +61,14 @@ make
 if [ $(tool_check_exists /usr/bin/tcprstat-static) == 0 ]; then
     echo "tcpstat-static has been installed "
 else 
-    $(tool_add_sudo) cp ./src/tcprstat /usr/bin/tcprstat
-    $(tool_add_sudo) cp ./src/tcprstat-static /usr/bin/tcprstat-static
-    $(tool_add_sudo) cp ./src/tcprstat /usr/bin/tcprstat
+    $(tool_add_sudo) cp ./src/tcprstat /usr/sbin/tcprstat
+    $(tool_add_sudo) cp ./src/tcprstat-static /usr/sbin/tcprstat-static
+    $(tool_add_sudo) cp ./src/tcprstat /usr/sbin/tcprstat
 fi
 
-$(tool_add_sudo) chmod u+s /usr/bin/tcprstat
-$(tool_add_sudo) chmod u+s /usr/bin/tcprstat-static
-$(tool_add_sudo) chmod u+s /usr/bin/tcprstat
+$(tool_add_sudo) chmod u+s /usr/sbin/tcprstat
+$(tool_add_sudo) chmod u+s /usr/sbin/tcprstat-static
+$(tool_add_sudo) chmod u+s /usr/sbin/tcprstat
 
 popd > /dev/null
 
