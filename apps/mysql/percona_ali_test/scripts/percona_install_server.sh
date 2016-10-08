@@ -94,6 +94,18 @@ if [ ${has_started} -eq 0 ]; then
     echo "Hmm...Please check alert.log manually to see why the server has not started yet"
 fi
 
+
+#Install Step 7:set root rights and create initial database
+/u01/my3306/bin/mysql -uroot << EOF
+SET PASSWORD=PASSWORD('123456');
+UPDATE mysql.user SET password=PASSWORD('123456') WHERE user='mysql';
+GRANT ALL PRIVILEGES ON *.* TO mysql@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO mysql@"%" IDENTIFIED BY '123456' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY '123456' WITH GRANT OPTION;
+create database sysbench;
+EOF
+
 echo "Pecora server build and install complete"
 popd > /dev/null
 
