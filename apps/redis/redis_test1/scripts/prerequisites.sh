@@ -4,7 +4,7 @@
 
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
-INSTALL_OPTIONS="-yq"
+INSTALL_OPTIONS="-y -q"
 
 BUILD_ESSENTIAL="build-essential automake cmake"
 COMMON_TOOLS="tcl"
@@ -20,7 +20,7 @@ fi
 
 #Add build and common tools
 if [ "$(which yum)" ] ; then
-    $(tool_add_sudo) yum -yq install "Devlopment Tools"
+    $(tool_add_sudo) yum -y -q install "Devlopment Tools"
 fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS} ${BUILD_ESSENTIAL} 

@@ -4,7 +4,7 @@
 
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
-INSTALL_OPTIONS="-yq"
+INSTALL_OPTIONS="-y -q"
 
 BUILD_ESSENTIAL="build-essential automake cmake git"
 COMMON_TOOLS="python curl wget unzip bison flex"
@@ -20,7 +20,7 @@ fi
 
 #Add build and common tools
 if [ "$(which yum)" ] ; then
-    $(tool_add_sudo) yum -yq install "Devlopment Tools"
+    $(tool_add_sudo) yum install -y -q  "Devlopment Tools"
 fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS} ${BUILD_ESSENTIAL} 
@@ -35,8 +35,7 @@ fi
 ${INSTALL_CMD} ${INSTALL_OPTIONS}  ${CURSES_LIB}
 
 if [ "$(which yum)" ] ; then
-    $(tool_add_sudo) yum install perl-ExtUtils-MakeMaker \ 
-                     glibc-static
+    $(tool_add_sudo) yum install -y -q perl-ExtUtils-MakeMaker glibc-static
 fi
 
 

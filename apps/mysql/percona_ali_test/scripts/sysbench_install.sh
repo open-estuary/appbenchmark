@@ -39,9 +39,8 @@ cd ${TARGET_DIR}/
 
 CONFIGURE_OPTIONS=""
 if [ $(uname -m) == "aarch64" ] ; then
-    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" -buildtype=arm "
+    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" --build=arm "
 fi
-
 
 ./autogen.sh
 ./configure ${CONFIGURE_OPTIONS}
