@@ -7,6 +7,7 @@ if [ $# -lt 4 ]; then
 fi
 
 BASE_DIR=$(cd ~; pwd)
+
 ######################################################################################
 # Notes:
 #  To start client tests
@@ -41,10 +42,10 @@ ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/readall.sh $1 $2 $3  47 3306
 elif [ "$4" == "test" ] ; then
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 40 200  $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 200 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
+${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
 else 
     echo "argument should be {init | loaddata | test} "
 fi

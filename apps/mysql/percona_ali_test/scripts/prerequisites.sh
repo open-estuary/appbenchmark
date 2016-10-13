@@ -4,17 +4,17 @@
 
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
-INSTALL_OPTIONS="-y -q"
+INSTALL_OPTIONS="-y"
 
-BUILD_ESSENTIAL="build-essential automake cmake git"
+BUILD_ESSENTIAL="build-essential automake cmake git libtool"
 COMMON_TOOLS="python curl wget unzip bison flex"
 #However it will use yum on other platforms such as CentOS
-if [ "$(which yum)" ] ; then 
+if [ "$(which yum 2> /dev/null)" ] ; then 
     INSTALL_CMD="$(tool_add_sudo) yum install"
-    BUILD_ESSENTIAL="automake"
+    BUILD_ESSENTIAL="automake cmake git libtool"
 fi
 
-if [ "$(which apt-get)" ] ; then 
+if [ "$(which apt-get 2> /dev/null)" ] ; then 
     ${INSTALL_CMD} ${INSTALL_OPTIONS} apt-utils
 fi
 

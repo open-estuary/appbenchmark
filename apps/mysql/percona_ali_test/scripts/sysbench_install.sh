@@ -2,7 +2,8 @@
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
-source ~/.bashrc
+BASE_DIR="$(cd ~; pwd)"
+source ${BASE_DIR}/.bashrc
 
 ######################################################################################
 # Notes:
@@ -47,7 +48,7 @@ fi
 make
 $(tool_add_sudo) make install
 
-SYSBENCH_DB_DIR="~/apptests/sysbench/tests/db"
+SYSBENCH_DB_DIR="${BASE_DIR}/apptests/sysbench/tests/db"
 mkdir -p ${SYSBENCH_DB_DIR}
 cp ./sysbench/tests/db/* ${SYSBENCH_DB_DIR}
 cp ${APP_ROOT}/apps/mysql/percona_ali_test/config/*.lua ${SYSBENCH_DB_DIR}
