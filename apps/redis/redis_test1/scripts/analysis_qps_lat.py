@@ -70,6 +70,10 @@ def analysis_redisbenchmark_qps_lat():
 
             print("qps:%0.2f, lat:%0.2f"%(cur_qps, cur_lat))
 
+    if len(qps_list) == 0:
+        print("Operation is still in progress ......")
+        return
+
     total_qps = 0.0
     total_lat = 0.0
     for index in range(len(qps_list)):

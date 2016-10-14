@@ -27,7 +27,7 @@ if [ "$1" == "init" ] ; then
     pushd ${REDIS_TEST_DIR} > /dev/null
 
     data_num=10000
-    data_size=10
+    data_size=128
 
     python ${APP_ROOT}/apps/redis/redis_test1/scripts/generate_inputdata.py ./input_data ${data_num} ${data_size}
    
@@ -54,6 +54,7 @@ elif [ "$1" == "test" ] ; then
     done
 
     echo "Please check results under ${REDIS_TEST_DIR} directory"
+    echo "You could use scripts/analysis_qps_lat.py to get qps and latency from logs"
 
     popd > /dev/null
 else 
