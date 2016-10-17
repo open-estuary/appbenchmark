@@ -10,8 +10,9 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
+ip="192.168.1.178"
 
-ip="192.168.1.187"
+echo "Try to connect server-${ip}......"
 
 if [ $# -lt 2 ] ; then 
     echo "Usage: ./run_test.sh {init | test} {redis-inst:1 ~ 32} {keep-alive:0 or 1} {pipeline:0 ~ 100}"

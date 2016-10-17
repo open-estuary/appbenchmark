@@ -49,8 +49,9 @@ elif [ "$1" == "test" ] ; then
     for index in $(seq 0 ${redis_inst_num})
     do
         port=`expr ${base_port_num} + ${index}`
+        taskindex=`expr 31 - ${index}`
         echo "call redis-benchmark to test redis-${index}"
-        taskset -c ${index} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n 1000000 -d 10 -k ${keep_alive} -r 10000 -P ${pipeline} -t get > redis_benchmark_log_${port} &
+        taskset -c ${taskindex} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n 1000000 -d 10 -k ${keep_alive} -r 10000 -P ${pipeline} -t get > redis_benchmark_log_${port} &
     done
 
     echo "Please check results under ${REDIS_TEST_DIR} directory"
