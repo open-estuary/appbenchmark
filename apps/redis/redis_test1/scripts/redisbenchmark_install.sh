@@ -46,12 +46,12 @@ $(tool_add_sudo) ulimit -n 102400
 if [ "$(tool_check_exists /writeable-proc)" == 0 ]; then
     echo "Provision configurations on docker iamge"
 
-    $(tool_add_sudo) echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_reuse
-    $(tool_add_sudo) echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_recycle
-    $(tool_add_sudo) echo 2048 65000 > /writeable-proc/proc/sys/net/ipv4/ip_local_port_range
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/core/somaxconn
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/core/netdev_max_backlog
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/ipv4/tcp_max_syn_backlog
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/ipv4/tcp_tw_reuse
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/ipv4/tcp_tw_recycle
+    $(tool_add_sudo) echo 2048 65000 > /writeable-proc/sys/net/ipv4/ip_local_port_range
+    $(tool_add_sudo) echo 262144 > /writeable-proc/sys/net/core/somaxconn
+    $(tool_add_sudo) echo 262144 > /writeable-proc/sys/net/core/netdev_max_backlog
+    $(tool_add_sudo) echo 262144 > /writeable-proc/sys/net/ipv4/tcp_max_syn_backlog
 
 fi
 

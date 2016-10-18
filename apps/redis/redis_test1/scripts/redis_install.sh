@@ -43,11 +43,11 @@ $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_timestamps
 $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
 $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
 $(tool_add_sudo) echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
-$(tool_add_sudo) echo 262144 > /proc/sys/net/core/somaxconn
-$(tool_add_sudo) echo 262144 > /proc/sys/net/core/netdev_max_backlog
-$(tool_add_sudo) echo 262144 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+$(tool_add_sudo) echo 2621440 > /proc/sys/net/core/somaxconn
+$(tool_add_sudo) echo 2621440 > /proc/sys/net/core/netdev_max_backlog
+$(tool_add_sudo) echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
 $(tool_add_sudo) echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
-$(tool_add_sudo) echo 262144 > /proc/sys/net/netfilter/nf_conntrack_max
+$(tool_add_sudo) echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
 
 #support maxinum number of files open
 $(tool_add_sudo) ulimit -n 102400
@@ -55,13 +55,19 @@ $(tool_add_sudo) ulimit -n 102400
 if [ "$(tool_check_exists /writeable-proc)" == 0 ]; then
     echo "Provision configurations on docker iamge"
 
-    $(tool_add_sudo) echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_reuse
-    $(tool_add_sudo) echo 1 > /writeable-proc/proc/sys/net/ipv4/tcp_tw_recycle
-    $(tool_add_sudo) echo 2048 65000 > /writeable-proc/proc/sys/net/ipv4/ip_local_port_range
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/core/somaxconn
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/core/netdev_max_backlog
-    $(tool_add_sudo) echo 262144 > /writeable-proc/proc/sys/net/ipv4/tcp_max_syn_backlog
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/ipv4/tcp_tw_reuse
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/ipv4/tcp_tw_recycle
+    $(tool_add_sudo) echo 2048 65000 > /writeable-proc/sys/net/ipv4/ip_local_port_range
+    $(tool_add_sudo) echo 2621440 > /writeable-proc/sys/net/core/somaxconn
+    $(tool_add_sudo) echo 2621440 > /writeable-proc/sys/net/core/netdev_max_backlog
+    $(tool_add_sudo) echo 2621440 > /writeable-proc/sys/net/ipv4/tcp_max_syn_backlog
 
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+    $(tool_add_sudo) echo 150 > /writeable-proc/sys/net/netfilter/nf_conntrack_tcp_timeout_established
+    $(tool_add_sudo) echo 60 > /writeable-proc/sys/net/netfilter/nf_conntrack_tcp_timeout_close_wait
+    $(tool_add_sudo) echo 120 > /writeable-proc/sys/net/netfilter/nf_conntrack_tcp_timeout_fin_wait
+    $(tool_add_sudo) echo 1 > /writeable-proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+    $(tool_add_sudo) echo 2621440 > /writeable-proc/sys/net/netfilter/nf_conntrack_max
 fi
 
 if [ "$(tool_check_exists ${REDIS_INSTALL_DIR}/config/redis_cpu0_port7000.conf)" == 0 ] ; then
