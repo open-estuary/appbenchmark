@@ -37,6 +37,11 @@ $(tool_add_sudo) echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
 $(tool_add_sudo) echo 262144 > /proc/sys/net/core/somaxconn
 $(tool_add_sudo) echo 262144 > /proc/sys/net/core/netdev_max_backlog
 $(tool_add_sudo) echo 262144 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+$(tool_add_sudo) echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+$(tool_add_sudo) echo 262144 > /proc/sys/net/netfilter/nf_conntrack_max
+
+#support maxinum number of files open
+$(tool_add_sudo) ulimit -n 102400
 
 if [ "$(tool_check_exists /writeable-proc)" == 0 ]; then
     echo "Provision configurations on docker iamge"
