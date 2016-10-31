@@ -1,8 +1,17 @@
 {
   "application": "Percona MySQL Performance Test",
 
-  "server_setup": [ {
-      "name": "PerconaServer",
+  "server_setup": [ 
+    {
+      "name": "Boost_1_59_0",
+      "download_url": "https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz",
+      "local_filename" : "boost_1_59_0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "boost_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+    "name": "PerconaServer",
       # "download_url": "https://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
       "download_url": "https://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-5.7.14-8/source/tarball/percona-server-5.7.14-8.tar.gz",
       "local_filename" : "PerconaServer-5.7.tar.gz",
