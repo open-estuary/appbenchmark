@@ -10,16 +10,7 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
-
-ip="192.168.1.187"
-userid="root"
-password="123456"
-
-if [ $# -lt 1 ] ; then 
-    echo "Usage: ./run_test.sh {init | loaddata | test}"
-    exit 0
-fi
+echo "Begin to start AliSQL Server ......"
 
 #Include common setup utility functions
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
-    ${userid} ${password} ${1}
+${APP_ROOT}/apps/mysql/alisql/scripts/alisql_start_server.sh 
