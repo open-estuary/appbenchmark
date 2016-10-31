@@ -37,6 +37,7 @@ pushd ${BUILD_DIR} > /dev/null
 cd ${TARGET_DIR}/tools/build
 ./bootstrap.sh
 b2 install --prefix=/usr/local/boost
+b2 --build-dir=../../build-boost toolset=gcc stage
 
 if [ -z "$(grep "/usr/local/boost" ~/.bashrc)" ] ; then
     echo "PATH=/usr/local/boost/bin/:$PATH" >> ~/.bashrc
