@@ -3,8 +3,9 @@
 
   "server_setup": [ {
       "name": "PerconaServer",
-      "download_url": "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
-      "local_filename" : "PerconaServer-5.6.tar.gz",
+      # "download_url": "https://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
+      "download_url": "https://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-5.7.14-8/source/tarball/percona-server-5.7.14-8.tar.gz",
+      "local_filename" : "PerconaServer-5.7.tar.gz",
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "percona_build.sh",
       "install_cmd": "percona_install_server.sh"
@@ -28,8 +29,8 @@
 
   "client_setup": [ {
       "name": "Percona_client_libs",
-      "download_url": "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
-      "local_filename" : "PerconaServer-5.6.tar.gz",
+      "download_url": "https://www.percona.com/downloads/Percona-Server-5.7/Percona-Server-5.7.14-8/source/tarball/percona-server-5.7.14-8.tar.gz",
+      "local_filename" : "PerconaServer-5.7.tar.gz",
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "percona_build.sh",
       "install_cmd": "percona_install_client.sh"

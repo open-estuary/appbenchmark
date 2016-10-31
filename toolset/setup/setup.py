@@ -46,12 +46,18 @@ def main():
     try :
         json_file = open(sys.argv[1])
         for line in json_file:
-            json_str += line.strip()
+            line = line.strip()
+             
+            #Ignore comments
+            if line[0:1] == '#' :
+                continue
 
+            json_str += line
+                 
         json_data = json.loads(json_str)
 
     except Exception as ex:
-        print("Fail to process % due to error:%s"%(sys.argv[1], ex))
+        print("Fail to process %s due to error:%s"%(sys.argv[1], ex))
         return -1
 
     install_elem = ""
