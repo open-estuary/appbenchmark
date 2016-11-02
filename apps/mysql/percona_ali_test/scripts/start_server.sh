@@ -168,7 +168,7 @@ EOF
 if [ $# -lt 1 ] ; then
     initialize_mysql_inst "00" "my.conf" 
 else 
-    cur_inst=23
+    cur_inst=0
     max_inst=${1}
     while [[ ${cur_inst} -lt ${max_inst} ]] 
     do
