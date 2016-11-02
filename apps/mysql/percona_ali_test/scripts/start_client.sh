@@ -8,7 +8,7 @@ fi
 
 BASE_DIR=$(cd ~; pwd)
 PORT_ID=3306
-if [ $# -gt 5 ] ; then
+if [ $# -ge 5 ] ; then
     PORT_ID=${5}
 fi
 

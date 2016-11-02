@@ -11,15 +11,34 @@ fi
 export APP_ROOT=${APP_ROOT}
 
 
-ip="192.168.1.187"
+#ip="192.168.1.187"
+
+ip="127.0.0.1"
 userid="root"
 password="123456"
 
 if [ $# -lt 1 ] ; then 
-    echo "Usage: ./run_test.sh {init | loaddata | test}"
+    echo "Usage: ./run_test.sh {init | loaddata | test} [inst_num]"
     exit 0
 fi
 
-#Include common setup utility functions
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
-    ${userid} ${password} ${1}
+
+if [ $# -ge 2 ] ; then
+   echo "Try to test multi mysql instances[$2]......"
+   inst_num=${2}
+   port_num=3306
+   cur_inst=0
+   while [[ ${cur_inst} -lt ${inst_num} ]]
+   do
+       ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
+               ${userid} ${password} ${1} ${port_num}
+       let "port_num++"
+       let "cur_inst++"
+   done
+
+else 
+    #Include common setup utility functions
+    ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
+            ${userid} ${password} ${1} 
+fi
+
