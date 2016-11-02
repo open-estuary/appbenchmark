@@ -13,4 +13,5 @@ export APP_ROOT=${APP_ROOT}
 echo "Start Percona Server ......"
 
 #Include common setup utility functions
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_server.sh
+${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_server.sh $@
+

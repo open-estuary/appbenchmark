@@ -45,8 +45,9 @@
       "install_cmd": "percona_install_client.sh"
     }, {
       "name": "sysbench",
-      "download_url": "https://github.com/akopytov/sysbench/archive/0.5.tar.gz",
-      "local_filename" : "sysbench-0.5.tar.gz",
+      "download_url": "https://github.com/akopytov/sysbench/archive/1.0.tar.gz",
+      #"download_url": "https://github.com/akopytov/sysbench/archive/0.5.tar.gz",
+      "local_filename" : "sysbench-1.0.tar.gz",
       "pre_install_cmd": "",
       "build_cmd": "",
       "install_cmd": "sysbench_install.sh"

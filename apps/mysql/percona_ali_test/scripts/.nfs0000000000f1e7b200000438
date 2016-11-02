@@ -91,17 +91,15 @@ initialize_mysql_inst() {
         INSTALL_DB_CMD="/u01/my3306/bin/mysqld  --defaults-file=/etc/my_${inst_num}.conf --initialize"
     fi
 
-    echo "Start to initialize database-${inst_num} ......"
+    echo "Start to initialize database ......"
     $(tool_add_sudo) ${INSTALL_DB_CMD}   --basedir=/u${inst_num}/my3306 \
                                      --datadir=/u${inst_num}/my3306/data \
                                      --user=mysql
 
     #Start mysql server
-    echo "Start to run mysql server-${inst_num} ......"
+    echo "Start to run mysql server ......"
     if [ ${new_start_flag} -eq 1 ] ; then 
-
-    #######################################################################################
-    ############ Start Server by using new ways for 5.7+ versions #########################
+    ############ Start Server by using new ways for 5.7+ versions ######################
     $(tool_add_sudo) /u01/my3306/bin/mysqld_safe  --defaults-file=/etc/my_${inst_num}.conf \
                                               --user=mysql \
                                               --skip-grant-tables \
@@ -116,7 +114,7 @@ initialize_mysql_inst() {
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='root';
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='mysql';
 flush privileges;
-exit
+exit;
 EOF
 
     #Restart server again 
@@ -127,8 +125,7 @@ EOF
 
     check_startup_str ${inst_num} "Starting mysqld daemon with databases"
     
-else
-    #################################################################################### 
+else 
     ########### Start server by using old ways for pre 5.7 versions ####################
     $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
                             --basedir=/u${inst_num}/my3306 \
@@ -161,7 +158,7 @@ GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY '123456' WITH GRANT 
 GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY '123456' WITH GRANT OPTION;
 flush privileges;
 create database sysbench;
-exit
+exit ;
 EOF
 }
 
