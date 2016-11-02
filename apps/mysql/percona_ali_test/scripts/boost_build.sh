@@ -37,8 +37,8 @@ cd ${TARGET_DIR}/tools/build
 ./bootstrap.sh
 ./b2 install --prefix=/usr/local/boost
 cd ../..
-b2 --build-dir=../build-boost toolset=gcc stage
-$(tool_add_sudo) b2 install --prefix=/usr/local
+/usr/local/boost/bin/b2 --build-dir=../build-boost toolset=gcc stage
+$(tool_add_sudo) /usr/local/boost/bin/b2 install --prefix=/usr/local
 
 if [ -z "$(grep "/usr/local/boost" ~/.bashrc)" ] ; then
     echo "PATH=/usr/local/boost/bin/:$PATH" >> ~/.bashrc
