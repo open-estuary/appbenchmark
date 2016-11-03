@@ -18,10 +18,10 @@ do
     let "inst_index++"
 done
 
-echo "mysql:${mysql_ports}"
+#echo "mysql:${mysql_ports}"
 
 sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
-                 --oltp-table-size=10000 \
+                 --oltp-table-size=100000 \
 		 --oltp-tables-count=8 \
 		 --mysql-db=sysbench \
 		 --report-interval=1 \
@@ -32,5 +32,4 @@ sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
                  --mysql-password='123456' \
 		 --mysql-user=root \
 		 --mysql-table-engine=innodb \
-		 --max-time=720000 \
-		 --num-threads=200 run &
+                 --num-threads=200 run 

@@ -18,10 +18,9 @@ fi
 #  Usage: client_start.sh <mysql_server_ip> <username> <passwd> {inital}
 #####################################################################################
 
+default_table_count=8
 if [ "$4" == "init" ] ; then
     #default_table_count=100
- 
-    default_table_count=8
 
     #Step 1: Prepare data
     sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
@@ -48,7 +47,10 @@ if [ "$4" == "init" ] ; then
         --mysql-port=${PORT_ID} run
 elif [ "$4" == "loaddata" ] ; then
 #Step 3: Run test case
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/readall.sh $1 $2 $3  47 3306
+
+#${APP_ROOT}/apps/mysql/percona_ali_test/scripts/readall.sh $1 $2 $3  47 3306
+${APP_ROOT}/apps/mysql/percona_ali_test/scripts/readall.sh $1 $2 $3  ${default_table_count}
+
 elif [ "$4" == "test" ] ; then
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000

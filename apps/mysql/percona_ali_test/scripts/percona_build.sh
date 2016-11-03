@@ -59,7 +59,8 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/u01/my3306 \
          -DENABLED_LOCAL_INFILE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 \
          -DEXTRA_CHARSETS=all \
          -DDEFAULT_CHARSET=utf8 \
-         -DDEFAULT_COLLATION=utf8_general_ci
+         -DDEFAULT_COLLATION=utf8_general_ci \
+         -DBUILD_CONFIG=mysql_release
 
 $(tool_add_sudo) make -j 32
 

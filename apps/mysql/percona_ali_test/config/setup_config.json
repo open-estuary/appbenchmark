@@ -3,6 +3,14 @@
 
   "server_setup": [ 
     {
+      "name": "libaio_0_3_110",
+      "download_url": "http://libaio.sourcearchive.com/downloads/0.3.110-2/libaio_0.3.110.orig.tar.gz",
+      "local_filename" : "libaio_0.3.110.orig.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "libaio_build.sh",
+      "install_cmd": ""
+    }, 
+    {
       "name": "Boost_1_59_0",
       "download_url": "https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz",
       "local_filename" : "boost_1_59_0.tar.gz",
