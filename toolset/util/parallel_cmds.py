@@ -31,10 +31,10 @@ if __name__ == "__main__":
     cmd_str_list = []
     for index in range(len(sys.argv) - 1):
         if os.path.isfile(sys.argv[index +1]):
-            cmd_file = open(sys.argv[index + 1];
+            cmd_file = open(sys.argv[index + 1])
             for line in cmd_file:
                 line = line.strip()
-                if line[0:1] == "#":
+                if line == "" or line[0:1] == "#":
                     continue
                 cmd_str_list.append(line)
         else :

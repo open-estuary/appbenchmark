@@ -8,12 +8,13 @@
 #
 #####################################################################################
 
-BUILD_DIR="./"$(tool_get_build_dir $1)
-SERVER_FILENAME=$1
-TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
-SUBBUILD_DIR="armbuild"
+if [ $#  -lt 1 ] ; then
+    inst_dir=""
+else 
+    inst_dir=u${1}
+fi
 
-if [ "$(ps -aux | grep "/u01/my3306/bin/mysqld_safe" | grep -v "grep")" != "" ]; then
+if [ "$(ps -aux | grep "/u01/${inst_dir}/my3306/bin/mysqld_safe" | grep -v "grep")" != "" ]; then
     echo "Percona server is running"
     exit 0
 fi
@@ -53,21 +54,20 @@ check_startup_str() {
 $(tool_add_sudo) groupadd mysql
 $(tool_add_sudo) useradd -g mysql mysql
 
-#Run step 2: Prepare for configuration for mysql
-#Backup existing conf if necessary
-if [ $(tool_check_exists "/etc/my_${inst_num}.conf") == 0 ]; then
-    cur_day_str=`date +%Y-%m-%d`
-    echo "Backup existing /etc/my_${inst_num}.conf ......."
-    if [ $(tool_check_exists "/etc/my_${inst_num}.conf_${cur_day_str}") != 0 ]; then
-        $(tool_add_sudo) cp /etc/my_${inst_num}.conf /etc/my_${inst_num}.conf_${cur_day_str}
-    fi
-fi
-
 #########################################################################################
 initialize_mysql_inst() {
-    inst_num=${1}  
+    local inst_num=${1}  
     config_file=${2}
     
+    #Backup existing conf if necessary
+    if [ $(tool_check_exists "/etc/my_${inst_num}.conf") == 0 ]; then
+        cur_day_str=`date +%Y-%m-%d`
+        echo "Backup existing /etc/my_${inst_num}.conf ......"
+        if [ $(tool_check_exists "/etc/my_${inst_num}.conf_${cur_day_str}") != 0 ]; then
+            $(tool_add_sudo) cp /etc/my_${inst_num}.conf /etc/my_${inst_num}.conf_${cur_day_str}
+        fi
+    fi
+
     $(tool_add_sudo) cp -f ${APP_ROOT}/apps/mysql/percona_ali_test/config/${config_file} /etc/my_${inst_num}.conf
     sed -i "s/u01/u01\/u${inst_num}/g" /etc/my_${inst_num}.conf
     new_port=3306
@@ -82,7 +82,8 @@ initialize_mysql_inst() {
 
     cur_user=`whoami`
     $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01/u${inst_num}
-
+    $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01
+    
     #Initialize database
     INSTALL_DB_CMD="/u01/my3306/scripts/mysql_install_db --defaults-file=/etc/my_${inst_num}.conf "
     new_start_flag=0
@@ -168,20 +169,13 @@ EOF
 if [ $# -lt 1 ] ; then
     initialize_mysql_inst "00" "my.conf" 
 else 
-    cur_inst=0
-    max_inst=${1}
-    while [[ ${cur_inst} -lt ${max_inst} ]] 
-    do
-        initialize_mysql_inst ${cur_inst} "my_lot_inst.conf"
-        let "cur_inst++"
-    done
-
-    cur_inst=0
-    while [[ ${cur_inst} -lt ${max_inst} ]] 
-    do
-        init_root_rights ${cur_inst}
-        let "cur_inst++"
-    done
+    cur_inst=${1}
+ 
+    initialize_mysql_inst ${cur_inst} my_lot_inst.conf
+    
+    sleep 10
+    init_root_rights ${cur_inst}
 fi
 
-echo "Percona server build and install complete"
+echo "========================================================================================="
+echo "Percona server-${1} has been started successfully"

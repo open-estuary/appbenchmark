@@ -12,6 +12,26 @@ export APP_ROOT=${APP_ROOT}
 
 echo "Start Percona Server ......"
 
-#Include common setup utility functions
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_server.sh $@
+if [ $# -lt 1 ] ; then 
+    echo "Start single server ......"
+    ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh
+else 
+    echo "Start multi servers ......"
+    tmp_mysql_init_file="/tmp/mysql_init_cmd_"${RANDOM}
+    rm ${tmp_mysql_init_file}
+    touch ${tmp_mysql_init_file}
+    echo > ${tmp_mysql_init_file}
+  
+    cur_inst=0
+    max_inst=${1}
+    while [[ ${cur_inst} -lt ${max_inst} ]] 
+    do
+        echo "${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst}" >> ${tmp_mysql_init_file}
+        let "cur_inst++"
+    done
+
+    ${APP_ROOT}/toolset/util/parallel_cmds.py ${tmp_mysql_init_file}
+    # rm ${tmp_mysql_init_file}
+    echo "Start ${1} servers successfully"
+fi
 
