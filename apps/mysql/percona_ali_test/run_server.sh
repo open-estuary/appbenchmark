@@ -31,7 +31,8 @@ else
     done
 
     ${APP_ROOT}/toolset/util/parallel_cmds.py ${tmp_mysql_init_file}
-    # rm ${tmp_mysql_init_file}
+    rm ${tmp_mysql_init_file}
+    
     echo "Start ${1} servers successfully"
 fi
 

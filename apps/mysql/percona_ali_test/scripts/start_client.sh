@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 4 ]; then
-    echo "Usage: client_start.sh <ip_address> <username> <userpassword> <action> [port]"
+    echo "Usage: client_start.sh <ip_address> <username> <userpassword> <action> [port/inst_num]"
     echo "By default, it will connect 3306 port"
     exit 0
 fi
@@ -57,7 +57,8 @@ elif [ "$4" == "test" ] ; then
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
 #${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
 
-${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench_lots_instances.sh
+inst_num=${5}
+${APP_ROOT}/apps/mysql/percona_ali_test/scripts/sysbench_lots_instances.sh ${inst_num}
 
 else 
     echo "argument should be {init | loaddata | test} "

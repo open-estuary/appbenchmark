@@ -25,17 +25,23 @@ fi
 
 if [ $# -ge 2 ] ; then
    echo "Try to test multi mysql instances[$2]......"
-   inst_num=${2}
-   port_num=3306
-   cur_inst=0
-   while [[ ${cur_inst} -lt ${inst_num} ]]
-   do
-       ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
-               ${userid} ${password} ${1} ${port_num}
-       let "port_num++"
-       let "cur_inst++"
-   done
 
+   inst_num=${2}
+   if [ "x${1}" == "xtest" ] ; then
+      ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
+               ${userid} ${password} ${1} ${inst_num}
+   else    
+
+       port_num=3306
+       cur_inst=0
+       while [[ ${cur_inst} -lt ${inst_num} ]]
+       do
+           ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
+               ${userid} ${password} ${1} ${port_num}
+           let "port_num++"
+           let "cur_inst++"
+       done
+   fi
 else 
     #Include common setup utility functions
     ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/start_client.sh ${ip} \
