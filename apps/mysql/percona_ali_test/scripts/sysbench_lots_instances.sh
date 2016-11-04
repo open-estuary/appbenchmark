@@ -32,4 +32,5 @@ sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
                  --mysql-password='123456' \
 		 --mysql-user=root \
 		 --mysql-table-engine=innodb \
-                 --num-threads=200 run 
+                 --num-threads=1 run 
+

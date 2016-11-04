@@ -28,7 +28,7 @@ if [ "$4" == "init" ] ; then
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \
         --max-time=7200 --max-requests=0 --mysql-user=$2 \
-        --mysql-table-engine=innodb --oltp-table-size=1000000 \
+        --mysql-table-engine=innodb --oltp-table-size=100000 \
         --oltp-tables-count=${default_table_count} --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 \
         --mysql-port=${PORT_ID} prepare
@@ -41,7 +41,7 @@ if [ "$4" == "init" ] ; then
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \
         --max-time=7200 --max-requests=0 --mysql-user=$2 \
-        --mysql-table-engine=innodb --oltp-table-size=1000000 \
+        --mysql-table-engine=innodb --oltp-table-size=100000 \
         --oltp-tables-count=${default_table_count} --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 \
         --mysql-port=${PORT_ID} run

@@ -111,20 +111,42 @@ initialize_mysql_inst() {
                                               --datadir=/u01/u${inst_num}/my3306/data &
 
     check_startup_str ${inst_num} "Starting mysqld daemon with databases"
-    rm -f /u01/u${inst_num}/my3306/log/alert.log
     sleep 10
-    /u01/my3306/bin/mysql -uroot  --socket=/u01/u${inst_num}/my3306/run/mysql.sock << EOF
+    retry=0
+    while [[ ${retry} -lt 10 ]] 
+    do
+        /u01/my3306/bin/mysql -uroot  --socket=/u01/u${inst_num}/my3306/run/mysql.sock << EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='root';
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='mysql';
 flush privileges;
+shutdown;
 exit
 EOF
+        if [ $? -eq 0 ] ; then
+            break
+        fi
+        let "retry++"
+        sleep 10
+    done
 
+    echo "Restart server-${inst_num}......"
+    rm -f /u01/u${inst_num}/my3306/log/alert.log
     #Restart server again 
-    ps -aux | grep "u01/u${inst_num}/my3306" | grep -v grep | grep -v start | awk '{print $2}' | xargs kill -9
-    $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
+    #ps -aux | grep "u01/u${inst_num}/my3306" | grep -v grep | grep -v start | awk '{print $2}' | xargs kill -9
+    retry=0
+    while [[ ${retry} -lt 10 ]] 
+    do 
+        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
                             --basedir=/u01/u${inst_num}/my3306 \
+                            --user=mysql \
                             --datadir=/u01/u${inst_num}/my3306/data &
+        if [ "$(ps -aux | grep "u01/u${inst_num}/my3306" | grep -v mysqld_safe | grep -v grep | grep -v skip-grant-tables)" ] ; then
+            break
+        fi
+        echo "Try to restart server-${inst_num} again ......"
+        let "retry++"
+        sleep 5
+    done
 
     check_startup_str ${inst_num} "Starting mysqld daemon with databases"
     
