@@ -192,8 +192,10 @@ if [ $# -lt 1 ] ; then
     initialize_mysql_inst "00" "my.conf" 
 else 
     cur_inst=${1}
- 
-    initialize_mysql_inst ${cur_inst} my_lot_inst.conf
+    
+    if [ -z "$(ps -aux | grep "/u01/u${cur_inst}"/ | grep -v grep | grep -v mysqld_safe | grep -v skip-grant-tables)" ] ; then
+        initialize_mysql_inst ${cur_inst} my_lot_inst.conf
+    fi
     
     sleep 10
     init_root_rights ${cur_inst}
