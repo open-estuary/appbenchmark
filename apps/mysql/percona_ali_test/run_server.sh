@@ -16,6 +16,11 @@ if [ $# -lt 1 ] ; then
     echo "Start single server ......"
     ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh
 else 
+    if [ $# -lt 2 ] ; then 
+        echo "Usage : ./run_servers.sh <inst_num> {init | start}" 
+        exit 0
+    fi
+
     echo "Start multi servers ......"
     tmp_mysql_init_file="/tmp/mysql_init_cmd_"${RANDOM}
     rm ${tmp_mysql_init_file}
@@ -26,13 +31,20 @@ else
     max_inst=${1}
     while [[ ${cur_inst} -lt ${max_inst} ]] 
     do
-        echo "${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst}" >> ${tmp_mysql_init_file}
+        #echo "${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst} $@" >> ${tmp_mysql_init_file}
+        ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst} ${2}
         let "cur_inst++"
     done
 
-    ${APP_ROOT}/toolset/util/parallel_cmds.py ${tmp_mysql_init_file}
+    #${APP_ROOT}/toolset/util/parallel_cmds.py ${tmp_mysql_init_file}
     rm ${tmp_mysql_init_file}
     
-    echo "Start ${1} servers successfully"
+    if [ "${2}" == "init" ] ; then
+        cmd_str="Initialize" 
+    else 
+        cmd_str="Start"
+    fi
+
+    echo "${cmd_str} ${1} servers successfully"
 fi
 

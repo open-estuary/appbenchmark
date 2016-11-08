@@ -14,6 +14,8 @@ else
     inst_dir=u${1}
 fi
 
+cmd_str="${2}"
+
 if [ "$(ps -aux | grep "/u01/${inst_dir}/my3306/bin/mysqld_safe" | grep -v "grep")" != "" ]; then
     echo "Percona server is running"
     exit 0
@@ -103,65 +105,80 @@ initialize_mysql_inst() {
 
     #######################################################################################
     ############ Start Server by using new ways for 5.7+ versions #########################
-    $(tool_add_sudo) /u01/my3306/bin/mysqld_safe  --defaults-file=/etc/my_${inst_num}.conf \
+        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe  --defaults-file=/etc/my_${inst_num}.conf \
                                               --user=mysql \
                                               --skip-grant-tables \
                                               --skip-networking  \
                                               --basedir=/u01/u${inst_num}/my3306 \
                                               --datadir=/u01/u${inst_num}/my3306/data &
 
-    check_startup_str ${inst_num} "Starting mysqld daemon with databases"
-    sleep 10
-    retry=0
-    while [[ ${retry} -lt 10 ]] 
-    do
-        /u01/my3306/bin/mysql -uroot  --socket=/u01/u${inst_num}/my3306/run/mysql.sock << EOF
+        check_startup_str ${inst_num} "Starting mysqld daemon with databases"
+        sleep 10
+        retry=0
+        while [[ ${retry} -lt 10 ]] 
+        do
+            /u01/my3306/bin/mysql -uroot  --socket=/u01/u${inst_num}/my3306/run/mysql.sock << EOF
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='root';
 UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE user='mysql';
 flush privileges;
 shutdown;
 exit
 EOF
-        if [ $? -eq 0 ] ; then
-            break
-        fi
-        let "retry++"
-        sleep 10
-    done
+            if [ $? -eq 0 ] ; then
+                break
+            fi
+            let "retry++"
+            sleep 10
+        done
+    fi
+    echo "Initialize servers-${inst_num} successfully"
+}
+
+######################################################################################
+start_mysql_inst() {
+
+    local inst_num=${1}  
+    config_file=${2}
+    
+    new_start_flag=0
+    if [ $(tool_check_exists "/u01/my3306/scripts/mysql_install_db") != 0 ] ; then
+        new_start_flag=1
+    fi
 
     echo "Restart server-${inst_num}......"
-    rm -f /u01/u${inst_num}/my3306/log/alert.log
-    #Restart server again 
-    #ps -aux | grep "u01/u${inst_num}/my3306" | grep -v grep | grep -v start | awk '{print $2}' | xargs kill -9
-    retry=0
-    while [[ ${retry} -lt 10 ]] 
-    do 
-        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
+    
+    if [ ${new_start_flag} -eq 1 ] ; then
+        rm -f /u01/u${inst_num}/my3306/log/alert.log
+        #Restart server again 
+        #ps -aux | grep "u01/u${inst_num}/my3306" | grep -v grep | grep -v start | awk '{print $2}' | xargs kill -9
+        retry=0
+        while [[ ${retry} -lt 10 ]] 
+        do 
+            $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
                             --basedir=/u01/u${inst_num}/my3306 \
                             --user=mysql \
                             --datadir=/u01/u${inst_num}/my3306/data &
-        if [ "$(ps -aux | grep "u01/u${inst_num}/my3306" | grep -v mysqld_safe | grep -v grep | grep -v skip-grant-tables)" ] ; then
-            break
-        fi
-        echo "Try to restart server-${inst_num} again ......"
-        let "retry++"
-        sleep 5
-    done
+            if [ "$(ps -aux | grep "u01/u${inst_num}/my3306" | grep -v mysqld_safe | grep -v grep | grep -v skip-grant-tables)" ] ; then
+                break
+            fi
+            echo "Try to restart server-${inst_num} again ......"
+            let "retry++"
+            sleep 5
+        done
 
-    check_startup_str ${inst_num} "Starting mysqld daemon with databases"
-    
-else
+        check_startup_str ${inst_num} "Starting mysqld daemon with databases"
+    else
     #################################################################################### 
     ########### Start server by using old ways for pre 5.7 versions ####################
-    $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
+        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
                             --basedir=/u01/u${inst_num}/my3306 \
                             --datadir=/u01/u${inst_num}/my3306/data &
 
-    #Check whether server has started successfully or not
-    check_startup_str ${inst_num} "ready for connection"
+        #Check whether server has started successfully or not
+        check_startup_str ${inst_num} "ready for connection"
 
-    #Install Step 6:set root rights and create initial database
-    /u01/my3306/bin/mysql -uroot << EOF
+        #Install Step 6:set root rights and create initial database
+        /u01/my3306/bin/mysql -uroot << EOF
 SET PASSWORD=PASSWORD('123456');
 UPDATE mysql.user SET password=PASSWORD('123456') WHERE user='mysql';
 GRANT ALL PRIVILEGES ON *.* TO mysql@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
@@ -171,7 +188,7 @@ GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY '123456' WITH GRANT OPTION
 create database sysbench;
 EOF
 
-fi
+    fi
 }
 
 #######################################################################################
@@ -194,12 +211,17 @@ else
     cur_inst=${1}
     
     if [ -z "$(ps -aux | grep "/u01/u${cur_inst}"/ | grep -v grep | grep -v mysqld_safe | grep -v skip-grant-tables)" ] ; then
-        initialize_mysql_inst ${cur_inst} my_lot_inst.conf
+        if [ "x${cmd_str}" == "xinit" ] ; then      
+            initialize_mysql_inst ${cur_inst} my_lot_inst.conf
+        fi
+
+        if [ "x${cmd_str}" == "xstart" ] ; then
+            start_mysql_inst ${cur_inst} my_lot_inst.conf
+            sleep 5
+            init_root_rights ${cur_inst}
+        fi
     fi
-    
-    sleep 10
-    init_root_rights ${cur_inst}
 fi
 
 echo "========================================================================================="
-echo "Percona server-${1} has been started successfully"
+#echo "Percona server-${1} has been started successfully"
