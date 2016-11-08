@@ -17,7 +17,7 @@ if [ $# -lt 1 ] ; then
     ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh
 else 
     if [ $# -lt 2 ] ; then 
-        echo "Usage : ./run_servers.sh <inst_num> {init | start}" 
+        echo "Usage : ./run_servers.sh {init | start} <inst_num>" 
         exit 0
     fi
 
@@ -28,11 +28,11 @@ else
     echo > ${tmp_mysql_init_file}
   
     cur_inst=0
-    max_inst=${1}
+    max_inst=${2}
     while [[ ${cur_inst} -lt ${max_inst} ]] 
     do
         #echo "${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst} $@" >> ${tmp_mysql_init_file}
-        ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst} ${2}
+        ${APP_ROOT}/apps/mysql/percona_ali_test/scripts/run_single_server.sh ${cur_inst} ${1}
         let "cur_inst++"
     done
 
