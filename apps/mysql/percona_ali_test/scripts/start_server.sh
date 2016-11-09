@@ -51,16 +51,19 @@ check_startup_str() {
 ###########################################################################################
 # Begin to start percona server
 ###########################################################################################
-
-#Run step 1: Add 'mysql' test user account and rights
-$(tool_add_sudo) groupadd mysql
-$(tool_add_sudo) useradd -g mysql mysql
-
-#########################################################################################
 initialize_mysql_inst() {
     local inst_num=${1}  
     config_file=${2}
     
+    #Run step 1: Add 'mysql' test user account and rights
+
+    if id -u "mysql" > /dev/null 2>&1; then
+        echo "Mysql user exist" > /dev/null
+    else 
+        $(tool_add_sudo) groupadd mysql
+        $(tool_add_sudo) useradd -g mysql mysql
+    fi
+
     #Backup existing conf if necessary
     if [ $(tool_check_exists "/etc/my_${inst_num}.conf") == 0 ]; then
         cur_day_str=`date +%Y-%m-%d`
@@ -130,6 +133,10 @@ EOF
             let "retry++"
             sleep 10
         done
+
+        if [[ ${retry} -ge 10 ]] ; then
+            ps -aux | grep "u01/u${inst_num}/my3306" | grep -v grep | grep -v start | awk '{print $2}' | xargs kill -9
+        fi
     fi
     echo "Initialize servers-${inst_num} successfully"
 }
@@ -158,12 +165,12 @@ start_mysql_inst() {
                             --basedir=/u01/u${inst_num}/my3306 \
                             --user=mysql \
                             --datadir=/u01/u${inst_num}/my3306/data &
+            sleep 5
             if [ "$(ps -aux | grep "u01/u${inst_num}/my3306" | grep -v mysqld_safe | grep -v grep | grep -v skip-grant-tables)" ] ; then
                 break
             fi
             echo "Try to restart server-${inst_num} again ......"
             let "retry++"
-            sleep 5
         done
 
         check_startup_str ${inst_num} "Starting mysqld daemon with databases"
@@ -220,6 +227,8 @@ else
             sleep 5
             init_root_rights ${cur_inst}
         fi
+    else
+        echo "Server-${cur_inst} is running...."
     fi
 fi
 
