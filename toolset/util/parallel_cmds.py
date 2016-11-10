@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 def parallel_execute_cmd(cmd_str_list):
-    max_proc_num = 1  
+    max_proc_num = 100  
    
     proc_list = []
     for index in range(len(cmd_str_list)):
