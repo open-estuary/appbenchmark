@@ -86,7 +86,7 @@ initialize_mysql_inst() {
     sed -i "s/u01/u01\/u${inst_num}/g" /etc/my_${inst_num}.conf
     new_port=3306
     let "new_port+=${inst_num}"
-    sed -i "s/port=3306/port=${new_port}/g" /etc/my_${inst_num}.conf
+    sed -i "s/port.*=.*3306/port=${new_port}/g" /etc/my_${inst_num}.conf
 
     $(tool_add_sudo) mkdir -p /u01/u${inst_num}/mysql
     $(tool_add_sudo) cp -fr /u01/my3306/share /u01/u${inst_num}/mysql
@@ -105,6 +105,8 @@ initialize_mysql_inst() {
         new_start_flag=1
         INSTALL_DB_CMD="/u01/my3306/bin/mysqld  --defaults-file=/etc/my_${inst_num}.conf --initialize"
     fi
+
+    new_start_flag=0
 
     echo "Start to initialize database-${inst_num} ......"
     $(tool_add_sudo) ${INSTALL_DB_CMD}   --basedir=/u01/u${inst_num}/my3306 \
@@ -156,11 +158,7 @@ start_mysql_inst() {
     local inst_num=${1}  
     config_file=${2}
     
-    new_start_flag=0
-    if [ $(tool_check_exists "/u01/my3306/scripts/mysql_install_db") != 0 ] ; then
-        new_start_flag=1
-    fi
-
+    new_start_flag=1
     echo "Restart server-${inst_num}......"
     
     if [ ${new_start_flag} -eq 1 ] ; then
@@ -209,8 +207,8 @@ EOF
 
 #######################################################################################
 init_root_rights() {
-    /u01/my3306/bin/mysql -uroot --connect-expired-password --socket=/u01/u${1}/my3306/run/mysql.sock -p'123456'<< EOF
-ALTER USER USER() IDENTIFIED BY '123456';
+#ALTER USER USER() IDENTIFIED BY '123456';
+    /u01/u${1}/my3306/bin/mysql -uroot --connect-expired-password --socket=/u01/u${1}/my3306/run/mysql.sock -p'123456'<< EOF
 GRANT ALL PRIVILEGES ON *.* TO mysql@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON *.* TO mysql@"%" IDENTIFIED BY '123456' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
@@ -237,9 +235,9 @@ else
 
             #Reset root password
             retry=0
-            while [[ ${retry} -lt 10 ]] 
+            while [[ ${retry} -lt 5 ]] 
             do
-                /u01/u${cur_inst}/my3306/bin/mysqladmin -u root password '123456' --socket=/u01/u{cur_inst}/my3306/run/mysql.sock
+                /u01/u${cur_inst}/my3306/bin/mysqladmin -u root password '123456' --socket=/u01/u${cur_inst}/my3306/run/mysql.sock
                 if [ $? -eq 0 ] ; then
                     break
                 fi
