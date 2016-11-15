@@ -42,6 +42,26 @@ fi
 pushd ${BUILD_DIR}/${TARGET_DIR} > /dev/null
 source /etc/profile
 set Platform=aarch64
+
+#Since it could not compile Hadoop by using jdk1.8, 
+#so we will use jdk1.7 to compile Hadoop temporaily.
+#However it will still use jdk1.8 to execute hadoop due to performance reason
+OLD_JAVA_HOME=${JAVA_HOME}
+JAVA_1_7_HOME=""
+for dirname in $(ls /usr/lib/jvm/) 
+do 
+   if [ -d ${dirname} ] && [ "$(grep java-1.7.0-openjdk ${dirname})" ] ; then
+       JAVA_1_7_HOME=${dirname}
+       break
+   fi
+done
+
+if [ -z "${JAVA_1_7_HOME}" ] ; then
+   echo "Please install java-1.7.0-openjdk firstly"
+   exit 0
+fi
+JAVA_HOME=${JAVA_1_7_HOME}
 mvn package -Pdist,native -DskipTests -Dtar 
+JAVA_HOME=${OLD_JAVA_HOME}
 popd > /dev/null
 

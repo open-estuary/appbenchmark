@@ -2,6 +2,8 @@
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
+exit 0
+
 ######################################################################################
 # Notes:
 #  To install Hadoop
