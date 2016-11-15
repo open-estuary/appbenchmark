@@ -12,10 +12,8 @@ SERVER_FILENAME=$1
 INSTALL_DIR="/home/hadoop"
 TARGET_DIR=$(tool_get_first_dirname ${INSTALL_DIR})
 
-exit 0
-
 #######################################################################################
-if [ "$(tool_check_exists ${INSTALL_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
+if [ ! "$(tool_check_exists ${INSTALL_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
       echo "Hadoop has been install successfully"
       exit 0
 fi
@@ -48,4 +46,14 @@ if [ -z "$(grep HADOOP_INSTALL /etc/profile)" ] ; then
     echo 'export HADOOP_OPTS="-Djava.library.path=${HADDOP_INSTALL}/lib:${HADOOP_INSTALL}/lib/native"' >> /etc/profile
 fi
 source /etc/profile
+
+#######################################################################################
+#Update configuration
+
+$(tool_add_sudo) mkdir -p /home/hadoop/tmp/dfs/data
+$(tool_add_sudo) mkdir -p /home/hadoop/tmp/dfs/name
+
+${HADOOP_INSTALL}/bin/hdfs namenode -format
+${HADOOP_INSTALL}/sbin/start-all.sh
+
 ##########################################################################################

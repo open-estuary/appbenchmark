@@ -17,8 +17,10 @@ if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
       exit 0
 fi
 
+###################################################################################
+
 ####################################################################################
-# Prepare for install
+# Prepare for build
 ####################################################################################
 rm -fr ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
@@ -30,12 +32,18 @@ if [ -z "$(grep MAVEN_OPTS /etc/profile)" ] ; then
 fi
 echo "Finish build preparation......"
 
+need_build=0
+if [ ${need_build} - eq 0 ] ; then 
+    echo "Not necessar to build Hadoop so far ....."
+    exit 0
+fi
+
 ######################################################################################
 # Build Hadoop
 ######################################################################################
 pushd ${BUILD_DIR}/${TARGET_DIR} > /dev/null
 source /etc/profile
 set Platform=aarch64
-mvn package -Pdist,native,docs -DskipTests -Dtar 
+mvn package -Pdist,native -DskipTests -Dtar 
 popd > /dev/null
 
