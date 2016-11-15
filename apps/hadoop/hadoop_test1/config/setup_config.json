@@ -1,0 +1,29 @@
+{
+  "application": "Hadoop Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "OpenJDK",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "openjdk_build.sh",
+      "install_cmd": "openjdk_install.sh"
+    },
+    { "name": "Hadoop Server",
+      "download_url": "http://apache.fayea.com/hadoop/common/hadoop-3.0.0-alpha1/hadoop-3.0.0-alpha1-src.tar.gz",
+      "local_filename" : "hadoop-3.0.0.tar.gz",
+      "pre_install_cmd": "hadoop_prerequisites.sh",
+      "build_cmd": "hadoop_build.sh",
+      "install_cmd": "hadoop_install.sh"
+    }],
+
+  "client_setup": [ {
+      "name": "Hadoop benchmark",
+      "download_url": "http://download.hadoop.io/releases/hadoop-3.2.4.tar.gz",
+      "local_filename" : "hadoop-3.2.4.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "hadoop_build.sh",
+      "install_cmd": "hadoopbenchmark_install.sh"
+    }]
+}

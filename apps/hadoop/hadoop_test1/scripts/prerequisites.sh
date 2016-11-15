@@ -6,7 +6,7 @@
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-y -q"
 
-BUILD_ESSENTIAL="build-essential automake cmake curl"
+BUILD_ESSENTIAL="build-essential automake cmake curl mercurial"
 COMMON_TOOLS="tcl"
 #However it will use yum on other platforms such as CentOS
 if [ "$(which yum 2>/dev/null)" ] ; then 
