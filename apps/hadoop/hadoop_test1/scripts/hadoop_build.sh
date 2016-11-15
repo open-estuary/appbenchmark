@@ -17,8 +17,6 @@ if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
       exit 0
 fi
 
-###################################################################################
-
 ####################################################################################
 # Prepare for build
 ####################################################################################
@@ -32,7 +30,7 @@ if [ -z "$(grep MAVEN_OPTS /etc/profile)" ] ; then
 fi
 echo "Finish build preparation......"
 
-need_build=0
+need_build=1
 if [ ${need_build} - eq 0 ] ; then 
     echo "Not necessar to build Hadoop so far ....."
     exit 0

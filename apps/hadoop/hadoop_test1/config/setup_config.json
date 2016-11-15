@@ -11,8 +11,8 @@
       "install_cmd": "openjdk_install.sh"
     },
     { "name": "Hadoop Server",
-      "download_url": "http://apache.fayea.com/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz",
-      "local_filename" : "hadoop-2.6.5.tar.gz",
+      "download_url": "http://apache.fayea.com/hadoop/common/hadoop-2.6.5/hadoop-2.6.5-src.tar.gz",
+      "local_filename" : "hadoop-2.6.5-src.tar.gz",
       "pre_install_cmd": "hadoop_prerequisites.sh",
       "build_cmd": "hadoop_build.sh",
       "install_cmd": "hadoop_install.sh"

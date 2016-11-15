@@ -23,7 +23,7 @@ fi
 # To install OpenJdk
 ####################################################################################
 pushd ${BUILD_DIR}/${TARGET_DIR} > /dev/null
-${tool_add_sudo} make install
+$(tool_add_sudo) make install
 popd > /dev/null
 
 if [ -z "$(grep "/usr/local/openjdk" /etc/profile)" ] ; then 

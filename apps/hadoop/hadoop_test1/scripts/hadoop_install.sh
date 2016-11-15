@@ -21,10 +21,10 @@ fi
 ####################################################################################
 # Prepare for install
 ####################################################################################
-${tool_add_sudo} useradd hadoop
-${tool_add_sudo} passwd hadoop hadooptest
-${tool_add_sudo} mkdir -p ${INSTALL_DIR}
-${tool_add_sudo} chown hadoop.$(whoami) ${INSTALL_DIR}
+$(tool_add_sudo) useradd hadoop
+$(tool_add_sudo) passwd hadoop hadooptest
+$(tool_add_sudo) mkdir -p ${INSTALL_DIR}
+$(tool_add_sudo) chown hadoop.$(whoami) ${INSTALL_DIR}
 
 tar -zxvf ${SERVER_FILENAME} -C ${INSTALL_DIR}
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
@@ -44,16 +44,8 @@ if [ -z "$(grep HADOOP_INSTALL /etc/profile)" ] ; then
     echo 'export YARN_HOME=${HADOOP_INSTALL}' >> /etc/profile
     echo 'export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native' >> /etc/profile
     echo 'export HADOOP_OPTS="-Djava.library.path=${HADDOP_INSTALL}/lib:${HADOOP_INSTALL}/lib/native"' >> /etc/profile
+    echo 'export PATH=$HADOOP_INSTALL/bin:$PATH' >> /etc/profile
 fi
 source /etc/profile
-
-#######################################################################################
-#Update configuration
-
-$(tool_add_sudo) mkdir -p /home/hadoop/tmp/dfs/data
-$(tool_add_sudo) mkdir -p /home/hadoop/tmp/dfs/name
-
-${HADOOP_INSTALL}/bin/hdfs namenode -format
-${HADOOP_INSTALL}/sbin/start-all.sh
 
 ##########################################################################################

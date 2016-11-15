@@ -38,18 +38,18 @@ sh get_source.sh
 #####################################################################################
 echo "Prepare system packages to build openjdk......"
 if [ "$(which yum 2>/dev/null)" ] ; then
-    ${tool_add_sudo} yum-builddep -y java-1.7.0-openjdk
-    ${tool_add_sudo} yum install -y java-1.7.0-openjdk
-    ${tool_add_sudo} yum install -y java-1.7.0-openjdk-devel
-    ${tool_add_sudo} yum install -y cups cups-devel
-    ${tool_add_sudo} yum install -y alsa-lib alsa-lib-devel freetype-devel
-    ${tool_add_sudo} yum install -y libXi libXi-devel
-    ${tool_add_sudo} yum install -y libXtst-devel libXt-devel libXrender-devel
+    $(tool_add_sudo) yum-builddep -y java-1.7.0-openjdk
+    $(tool_add_sudo) yum install -y java-1.7.0-openjdk
+    $(tool_add_sudo) yum install -y java-1.7.0-openjdk-devel
+    $(tool_add_sudo) yum install -y cups cups-devel
+    $(tool_add_sudo) yum install -y alsa-lib alsa-lib-devel freetype-devel
+    $(tool_add_sudo) yum install -y libXi libXi-devel
+    $(tool_add_sudo) yum install -y libXtst-devel libXt-devel libXrender-devel
 else 
-    ${tool_add_sudo} apt-get install -y java-1.7.0-openjdk  java-1.7.0-openjdk-dev
-    ${tool_add_sudo} apt-get install -y cups cups-dev 
-    ${tool_add_sudo} apt-get install -y alsa-lib alsa-lib-dev freetype-dev
-    ${tool_add_sudo} apt-get install -y libXi libXi-dev libXtst-devel libXt-devel libXrender-devel
+    $(tool_add_sudo) apt-get install -y java-1.7.0-openjdk  java-1.7.0-openjdk-dev
+    $(tool_add_sudo) apt-get install -y cups cups-dev 
+    $(tool_add_sudo) apt-get install -y alsa-lib alsa-lib-dev freetype-dev
+    $(tool_add_sudo) apt-get install -y libXi libXi-dev libXtst-devel libXt-devel libXrender-devel
 fi
 
 export LANG=c
@@ -61,7 +61,7 @@ echo "Finish build preparation......"
 # Build OpenJDK
 #####################################################################################
 #Build Step 1: auto generation
-${tool_add_sudo} chmod 755 ./configure
+$(tool_add_sudo) chmod 755 ./configure
 ./configure  --prefix=/usr/local/openjdk
 make all
 popd > /dev/null
