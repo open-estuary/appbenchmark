@@ -19,6 +19,12 @@ if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/build/linux-aarch64-normal-
       exit -1
 fi
 
+
+if [ "$(tool_check_exists /usr/local/openjdk/jvm/openjdk-1.8.0-internal/bin/java)"  == 0 ]; then
+      echo "Openjdk-1.8 has been built successfully"
+      exit 0
+fi
+
 ####################################################################################
 # To install OpenJdk
 ####################################################################################

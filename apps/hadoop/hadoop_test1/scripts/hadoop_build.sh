@@ -9,10 +9,11 @@
 #####################################################################################
 BUILD_DIR="./"$(tool_get_build_dir $1)
 SERVER_FILENAME=$1
+VERSION="2.6.5"
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 #######################################################################################
-if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
+if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz)"  == 0 ]; then
       echo "Hadoop has been built successfully"
       exit 0
 fi
@@ -20,9 +21,9 @@ fi
 ####################################################################################
 # Prepare for build
 ####################################################################################
-rm -fr ${BUILD_DIR}
+#rm -fr ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
-tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
+#tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 if [ -z "$(grep MAVEN_OPTS /etc/profile)" ] ; then 
@@ -31,7 +32,7 @@ fi
 echo "Finish build preparation......"
 
 need_build=1
-if [ ${need_build} - eq 0 ] ; then 
+if [ ${need_build} -eq 0 ] ; then 
     echo "Not necessar to build Hadoop so far ....."
     exit 0
 fi
@@ -49,9 +50,13 @@ set Platform=aarch64
 OLD_JAVA_HOME=${JAVA_HOME}
 JAVA_1_7_HOME=""
 for dirname in $(ls /usr/lib/jvm/) 
-do 
-   if [ -d ${dirname} ] && [ "$(grep java-1.7.0-openjdk ${dirname})" ] ; then
-       JAVA_1_7_HOME=${dirname}
+do
+   if [ ! -d "/usr/lib/jvm/"${dirname} ] ; then
+       continue
+   fi
+    
+   if [[ "${dirname}" =~ ^"java-1.7.0-openjdk".* ]] ; then
+       JAVA_1_7_HOME="/usr/lib/jvm/"${dirname}
        break
    fi
 done
@@ -60,6 +65,7 @@ if [ -z "${JAVA_1_7_HOME}" ] ; then
    echo "Please install java-1.7.0-openjdk firstly"
    exit 0
 fi
+
 JAVA_HOME=${JAVA_1_7_HOME}
 mvn package -Pdist,native -DskipTests -Dtar 
 JAVA_HOME=${OLD_JAVA_HOME}

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ${APP_ROOT}/toolset/setup/basic_cmd.sh
+
 if [ $# -lt 1 ]; then
     echo "Usage: start_server.sh <local | remote>"
     exit 0

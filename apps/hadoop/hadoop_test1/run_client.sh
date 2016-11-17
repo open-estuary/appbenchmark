@@ -11,17 +11,14 @@ fi
 export APP_ROOT=${APP_ROOT}
 
 
-ip="192.168.1.187"
-userid="root"
-password="123456"
+#Ip address has been specified by hadoop.conf
 
 if [ $# -lt 1 ] ; then 
-    echo "Usage: ./run_test.sh {init | loaddata | test}"
+    echo "Usage: ./run_test.sh {all or speicfic func name such as wordcount}"
     exit 0
 fi
 
 echo "Start client to test Hadoop server performance ......"
 
 #Include common setup utility functions
-${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/start_client.sh ${ip} \
-    ${userid} ${password} ${1}
+${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/start_client.sh ${1}

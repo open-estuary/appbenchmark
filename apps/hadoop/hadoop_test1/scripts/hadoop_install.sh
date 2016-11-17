@@ -1,22 +1,26 @@
 #!/bin/bash
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
-
-exit 0
-
 ######################################################################################
 # Notes:
 #  To install Hadoop
 #
 #####################################################################################
 BUILD_DIR="./"$(tool_get_build_dir $1)
-SERVER_FILENAME=$1
+VERSION="2.6.5"
 INSTALL_DIR="/home/hadoop"
-TARGET_DIR=$(tool_get_first_dirname ${INSTALL_DIR})
+TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
+SERVER_FILENAME=${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz
 
 #######################################################################################
-if [ ! "$(tool_check_exists ${INSTALL_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
-      echo "Hadoop has been install successfully"
+if [ ! "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz)"  == 0 ]; then
+      echo "Hadoop-${VERSION} has not been built successfully"
+      exit -1
+fi
+
+TARGET_DIR=$(tool_get_first_dirname ${INSTALL_DIR})
+if [ "$(tool_check_exists ${INSTALL_DIR}/${TARGET_DIR}/bin/hadoop)"  == 0 ]; then
+      echo "Hadoop-${VERSION} has been installed successfully"
       exit 0
 fi
 
@@ -29,7 +33,6 @@ $(tool_add_sudo) mkdir -p ${INSTALL_DIR}
 $(tool_add_sudo) chown hadoop.$(whoami) ${INSTALL_DIR}
 
 tar -zxvf ${SERVER_FILENAME} -C ${INSTALL_DIR}
-TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 source /etc/profile
 echo "Finish install preparation......"
 
