@@ -11,7 +11,7 @@ fi
 export APP_ROOT=${APP_ROOT}
 
 
-ip="192.168.1.226"
+ip="192.168.1.247"
 #ip="127.0.0.1"
 userid="root"
 password="123456"

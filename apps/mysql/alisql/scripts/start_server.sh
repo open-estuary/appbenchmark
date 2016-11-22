@@ -229,10 +229,12 @@ else
             initialize_mysql_inst ${cur_inst} my_small.conf
         fi
 
-        if [ "x${cmd_str}" == "xstart" ] ; then
+        if [ "x${cmd_str}" == "xstart" ] || [ "x${cmd_str}" == "xrestart" ] ; then
             start_mysql_inst ${cur_inst} my_small.conf
-            sleep 5
+        fi
 
+        if [ "x${cmd_str}" == "xstart" ] ; then
+            sleep 5
             #Reset root password
             retry=0
             while [[ ${retry} -lt 5 ]] 

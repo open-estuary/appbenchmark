@@ -17,7 +17,7 @@ if [ $# -lt 1 ] ; then
     ${APP_ROOT}/apps/mysql/alisql/scripts/run_single_server.sh
 else 
     if [ $# -lt 2 ] ; then 
-        echo "Usage : ./run_servers.sh {init | start} <inst_num>" 
+        echo "Usage : ./run_servers.sh {init | start | restart} <inst_num>" 
         exit 0
     fi
 
