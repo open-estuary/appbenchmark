@@ -88,6 +88,10 @@ initialize_mysql_inst() {
     let "new_port+=${inst_num}"
     sed -i "s/port.*=.*3306/port=${new_port}/g" /etc/my_${inst_num}.conf
 
+    echo 6553600 > /proc/sys/fs/aio-max-nr
+    echo 10 > /proc/sys/net/ipv4/tcp_fin_timeout
+    echo 1024000 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+
     $(tool_add_sudo) mkdir -p /u01/u${inst_num}/mysql
     $(tool_add_sudo) cp -fr /u01/my3306/share /u01/u${inst_num}/mysql
     $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/tmp

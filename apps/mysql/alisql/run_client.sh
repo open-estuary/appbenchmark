@@ -11,7 +11,7 @@ fi
 export APP_ROOT=${APP_ROOT}
 
 
-ip="192.168.1.247"
+ip="192.168.1.233"
 #ip="127.0.0.1"
 userid="root"
 password="123456"
@@ -28,7 +28,7 @@ if [ $# -ge 2 ] ; then
    inst_num=${2}
    if [ "x${1}" == "xtest" ] ; then
       ${APP_ROOT}/apps/mysql/alisql/scripts/start_client.sh ${ip} \
-               ${userid} ${password} ${1} ${inst_num}
+               ${userid} ${password} ${1} ${inst_num}  ${3}
    else    
 
        port_num=3306
@@ -36,7 +36,7 @@ if [ $# -ge 2 ] ; then
        while [[ ${cur_inst} -lt ${inst_num} ]]
        do
            ${APP_ROOT}/apps/mysql/alisql/scripts/start_client.sh ${ip} \
-               ${userid} ${password} ${1} ${port_num}
+               ${userid} ${password} ${1} ${port_num} ${3}
            let "port_num++"
            let "cur_inst++"
        done

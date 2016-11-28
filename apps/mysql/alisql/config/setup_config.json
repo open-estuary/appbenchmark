@@ -10,14 +10,6 @@
       "build_cmd": "libaio_build.sh",
       "install_cmd": ""
     }, 
-    {
-      "name": "Boost_1_59_0",
-      "download_url": "https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz",
-      "local_filename" : "boost_1_59_0.tar.gz",
-      "pre_install_cmd": "",
-      "build_cmd": "boost_build.sh",
-      "install_cmd": ""
-    },
     {"name": "AliSql",
       "download_url": "https://github.com/alibaba/AliSQL/archive/AliSQL-5.6.32-1.tar.gz",
       "local_filename" : "AliSQL-5.6.tar.gz",

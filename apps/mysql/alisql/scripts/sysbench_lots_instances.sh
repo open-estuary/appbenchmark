@@ -18,6 +18,12 @@ do
     let "inst_index++"
 done
 
+threads_num=200
+
+if [ ! -z "${3}" ] ; then
+    let "threads_num=200*${3}"
+fi
+
 #echo "mysql:${mysql_ports}"
 
 sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
@@ -32,5 +38,5 @@ sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
                  --mysql-password='123456' \
 		 --mysql-user=root \
 		 --mysql-table-engine=innodb \
-                 --num-threads=200 run &
+                 --num-threads=${threads_num} run 
 

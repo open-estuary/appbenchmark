@@ -60,7 +60,12 @@ elif [ "$4" == "test" ] ; then
 #${APP_ROOT}/apps/mysql/alisql/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
 
 inst_num=${5}
-${APP_ROOT}/apps/mysql/alisql/scripts/sysbench_lots_instances.sh ${1} ${inst_num}
+thread_per_inst=1
+if [ ! -z "${6} " ] ; then
+    thread_per_inst=${6}
+fi
+
+${APP_ROOT}/apps/mysql/alisql/scripts/sysbench_lots_instances.sh ${1} ${inst_num} ${thread_per_inst}
 
 else 
     echo "argument should be {init | loaddata | test} "
