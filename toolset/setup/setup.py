@@ -106,9 +106,9 @@ def main():
                 if os.path.exists("./"+target_filename):
                     print("%s already exist, so it would not be downloaded again"%target_filename)
                 elif local_filename == "":
-                    subprocess.check_call(["curl", "-L", "-O", download_url])
+                    subprocess.check_call(["curl", "-kL", "-O", download_url])
                 else:
-                    subprocess.check_call(["curl", "-L", "-o", target_filename, download_url])
+                    subprocess.check_call(["curl", "-kL", "-o", target_filename, download_url])
 
 
             build_cmd = json_data[install_elem][index]["build_cmd"]
