@@ -33,6 +33,7 @@ $(tool_add_sudo) mkdir -p ${INSTALL_DIR}
 $(tool_add_sudo) chown hadoop.$(whoami) ${INSTALL_DIR}
 
 tar -zxvf ${SERVER_FILENAME} -C ${INSTALL_DIR}
+TARGET_DIR=$(tool_get_first_dirname ${INSTALL_DIR})
 source /etc/profile
 echo "Finish install preparation......"
 

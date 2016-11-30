@@ -10,6 +10,14 @@
       "build_cmd": "openjdk_build.sh",
       "install_cmd": "openjdk_install.sh"
     },
+    {
+      "name": "ProtoBuffer",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "pb_build.sh",
+      "install_cmd": ""
+    },
     { "name": "Hadoop Server",
       "download_url": "http://apache.fayea.com/hadoop/common/hadoop-2.6.5/hadoop-2.6.5-src.tar.gz",
       "local_filename" : "hadoop-2.6.5-src.tar.gz",

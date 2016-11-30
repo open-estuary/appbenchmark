@@ -23,6 +23,7 @@ fi
 # Prepare for build
 ####################################################################################
 $(tool_add_sudo) rm -fr ${BUILD_DIR}
+rm -r ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 pushd ${BUILD_DIR} > /dev/null
 
@@ -32,7 +33,7 @@ if [ -z "$(which hg)" ] ; then
 fi
 
 hg clone http://hg.openjdk.java.net/aarch64-port/${BRANCH_NAME} ${TARGET_DIR}
-cd ./${TARGET_DIR}
+cd ${TARGET_DIR}
 sh get_source.sh
 
 #####################################################################################
@@ -42,14 +43,17 @@ if [ "$(which yum 2>/dev/null)" ] ; then
     $(tool_add_sudo) yum install -y java-1.7.0-openjdk
     $(tool_add_sudo) yum install -y java-1.7.0-openjdk-devel
     $(tool_add_sudo) yum install -y cups cups-devel
-    $(tool_add_sudo) yum install -y alsa-lib alsa-lib-devel freetype-devel
+    $(tool_add_sudo) yum install -y alsa-lib alsa-lib-devel libfreetype6-dev freetype-devel
     $(tool_add_sudo) yum install -y libXi libXi-devel
     $(tool_add_sudo) yum install -y libXtst-devel libXt-devel libXrender-devel
 else 
-    $(tool_add_sudo) apt-get install -y java-1.7.0-openjdk  java-1.7.0-openjdk-dev
-    $(tool_add_sudo) apt-get install -y cups cups-dev 
-    $(tool_add_sudo) apt-get install -y alsa-lib alsa-lib-dev freetype-dev
-    $(tool_add_sudo) apt-get install -y libXi libXi-dev libXtst-devel libXt-devel libXrender-devel
+    $(tool_add_sudo) apt-get install -y openjdk-7-jdk
+    $(tool_add_sudo) apt-get install -y openjdk-7-jre 
+    $(tool_add_sudo) apt-get install -y cups cups-common libcups2-dev
+    $(tool_add_sudo) apt-get install -y libfreetype6-dev
+    $(tool_add_sudo) apt-get install -y alsa-tools alsa-utils libfreetype6
+    $(tool_add_sudo) apt-get install -y libxi-dev libxtst-dev libxt-dev libxrender-dev
+    $(tool_add_sudo) apt-get install -y zip unzip libasound2-dev
 fi
 
 export LANG=c

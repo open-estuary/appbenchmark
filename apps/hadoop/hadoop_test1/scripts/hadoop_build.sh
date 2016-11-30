@@ -13,7 +13,7 @@ VERSION="2.6.5"
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 #######################################################################################
-if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz)"  == 0 ]; then
+if [ ! -z "${TARGET_DIR}" ] && [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz)"  == 0 ]; then
       echo "Hadoop has been built successfully"
       exit 0
 fi
@@ -21,9 +21,9 @@ fi
 ####################################################################################
 # Prepare for build
 ####################################################################################
-#rm -fr ${BUILD_DIR}
+rm -fr ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
-#tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
+tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 if [ -z "$(grep MAVEN_OPTS /etc/profile)" ] ; then 
@@ -54,8 +54,8 @@ do
    if [ ! -d "/usr/lib/jvm/"${dirname} ] ; then
        continue
    fi
-    
-   if [[ "${dirname}" =~ ^"java-1.7.0-openjdk".* ]] ; then
+      
+   if [[ "${dirname}" =~ ^"java-1.7.0-openjdk".* ]] || [[ "${dirname}" == "java-1.7.0-openjdk-arm64" ]] ; then
        JAVA_1_7_HOME="/usr/lib/jvm/"${dirname}
        break
    fi

@@ -21,7 +21,7 @@ fi
 
 
 if [ "$(tool_check_exists /usr/local/openjdk/jvm/openjdk-1.8.0-internal/bin/java)"  == 0 ]; then
-      echo "Openjdk-1.8 has been built successfully"
+      echo "Openjdk-1.8 has been installed successfully"
       exit 0
 fi
 
