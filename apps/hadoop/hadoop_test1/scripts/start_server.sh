@@ -22,7 +22,8 @@ start_local_hadoop() {
     #Update local configurations
     $(tool_add_sudo) cp ${APP_ROOT}/apps/hadoop/hadoop_test1/config/local-hdfs-site.xml ${HADOOP_INSTALL}/etc/hadoop/hdfs-site.xml
     $(tool_add_sudo) cp ${APP_ROOT}/apps/hadoop/hadoop_test1/config/local-core-site.xml ${HADOOP_INSTALL}/etc/hadoop/core-site.xml
-
+    $(tool_add_sudo) cp ${APP_ROOT}/apps/hadoop/hadoop_test1/config/local-yarn-site.xml ${HADOOP_INSTALL}/etc/hadoop/yarn-site.xml
+    $(tool_add_sudo) cp ${APP_ROOT}/apps/hadoop/hadoop_test1/config/local-mapred-site.xml ${HADOOP_INSTALL}/etc/hadoop/mapred-site.xml
     #Start Hadoop
     sed -i "s/export.*JAVA_HOME.*=.*\${JAVA_HOME}//g" ${HADOOP_INSTALL}/etc/hadoop/hadoop-env.sh
     echo "export JAVA_HOME=${JAVA_HOME}" >> ${HADOOP_INSTALL}/etc/hadoop/hadoop-env.sh
