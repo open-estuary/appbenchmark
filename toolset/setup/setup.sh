@@ -40,6 +40,10 @@ setup_app() {
 
     cp ${APP_ROOT}/apps/${app_name}/${app_test_name}/scripts/* ./
     chmod 755 *
+    
+    mkdir ./common/
+    cp ${APP_ROOT}/apps/${app_name}/common/scripts/* ./common/
+    chmod 755 ./common/*
 
     echo "Begin to build ${app_name} under ${PACKAGE_BUILD_DIR}"
     python ${APP_ROOT}/toolset/setup/setup.py "${APP_ROOT}/apps/${app_name}/${app_test_name}/config/${app_jsoncfg_name}" ${1}

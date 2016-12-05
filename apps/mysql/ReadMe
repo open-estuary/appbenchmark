@@ -1,0 +1,7 @@
+
+alisql_1    : 200 AliSql small instances test
+alisql_2    : 6 AliSql middle instances test
+alisql_3    : 1 Alisql large instance test
+percona_1   : Percona Server 5.6.25 one single instance read Test
+percona_2   : Percona Server 5.7.14 6 instance read-write Test
+percona_3   : Percona Server 5.7.14 200 small instances tests

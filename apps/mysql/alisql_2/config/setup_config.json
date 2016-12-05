@@ -1,0 +1,52 @@
+{
+  "application": "AliSQL Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "libaio_0_3_110",
+      "download_url": "http://libaio.sourcearchive.com/downloads/0.3.110-2/libaio_0.3.110.orig.tar.gz",
+      "local_filename" : "libaio_0.3.110.orig.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "common/libaio_build.sh",
+      "install_cmd": ""
+    }, 
+    {"name": "AliSql",
+      "download_url": "https://github.com/alibaba/AliSQL/archive/AliSQL-5.6.32-1.tar.gz",
+      "local_filename" : "AliSQL-5.6.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "common/alisql_build.sh",
+      "install_cmd": "common/alisql_install_server.sh"
+    },  
+    {
+      "name": "Tcprstat",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "common/tcprstat_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+      "name": "Orzdba",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/orzdba_install.sh"
+    }], 
+
+  "client_setup": [ {
+      "name": "AliSql_client_libs",
+      "download_url": "https://github.com/alibaba/AliSQL/archive/AliSQL-5.6.32-1.tar.gz",
+      "local_filename" : "AliSQL-5.6.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "common/alisql_build.sh",
+      "install_cmd": "common/alisql_install_client.sh"
+    }, {
+      "name": "sysbench",
+      "download_url": "https://github.com/akopytov/sysbench/archive/1.0.tar.gz",
+      "local_filename" : "sysbench-1.0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/sysbench_install.sh"
+    }]
+}
