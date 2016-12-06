@@ -4,10 +4,10 @@
   "server_setup": [ 
     {
       "name": "OpenJDK",
-      "download_url": "",
-      "local_filename" : "",
+      "download_url": "http://openjdk.linaro.org/releases/jdk8u-server-release-1609.tar.xz",
+      "local_filename" : "jdk8u-server-release.tar.xz",
       "pre_install_cmd": "prerequisites.sh",
-      "build_cmd": "openjdk_build.sh",
+      "build_cmd": "",
       "install_cmd": "openjdk_install.sh"
     },
     {

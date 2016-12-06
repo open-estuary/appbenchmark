@@ -10,6 +10,7 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
+APP_ROOT="/u01/perfdatas/applications"
 
 #Ip address has been specified by hadoop.conf
 

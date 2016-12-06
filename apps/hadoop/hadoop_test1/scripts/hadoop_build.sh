@@ -2,6 +2,8 @@
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
+exit 0
+
 ######################################################################################
 # Notes:
 #  To install Hadoop
@@ -31,7 +33,7 @@ if [ -z "$(grep MAVEN_OPTS /etc/profile)" ] ; then
 fi
 echo "Finish build preparation......"
 
-need_build=1
+need_build=0
 if [ ${need_build} -eq 0 ] ; then 
     echo "Not necessar to build Hadoop so far ....."
     exit 0

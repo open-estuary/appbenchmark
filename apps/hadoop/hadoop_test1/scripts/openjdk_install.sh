@@ -11,14 +11,9 @@
 BUILD_DIR="./build_openjdk"
 CTAG_NAME="112"
 BRANCH_NAME="jdk8u"
-TARGET_DIR=${BRANCH_NAME}${CTAG_NAME}
 
-#######################################################################################
-if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/build/linux-aarch64-normal-server-release/images/j2sdk-image/bin/java)"  != 0 ]; then
-      echo "Openjdk has not been built successfully"
-      exit -1
-fi
-
+TARGET_FILE=${1}
+TARGET_DIR="/usr/local/openjdk/jvm/"
 
 if [ "$(tool_check_exists /usr/local/openjdk/jvm/openjdk-1.8.0-internal/bin/java)"  == 0 ]; then
       echo "Openjdk-1.8 has been installed successfully"
@@ -28,9 +23,17 @@ fi
 ####################################################################################
 # To install OpenJdk
 ####################################################################################
-pushd ${BUILD_DIR}/${TARGET_DIR} > /dev/null
-$(tool_add_sudo) make install
-popd > /dev/null
+#pushd ${BUILD_DIR}/${TARGET_DIR} > /dev/null
+#$(tool_add_sudo) make install
+
+echo "TAGET_FILE:${TARGET_FILE}"
+cp ${TARGET_FILE} ${BUILD_DIR}
+cd ${BUILD_DIR}
+xz -d ${TARGET_FILE}
+TARGET_FILE=${TARGET_FILE:0:-3}
+tar -xvf ${TARGET_FILE} -C ${TARGET_DIR}
+mv ${TARGET_DIR}/${TARGET_FILE:0:-4}* ${TARGET_DIR}/openjdk-1.8.0-internal
+#popd > /dev/null
 
 if [ -z "$(grep "/usr/local/openjdk" /etc/profile)" ] ; then 
     

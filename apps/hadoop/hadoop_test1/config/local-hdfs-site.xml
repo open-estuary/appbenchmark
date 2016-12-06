@@ -17,6 +17,12 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+
+  <property>
+    <name>dfs.namenode.secondary.http-address</name>
+    <value>localhost:50090</value>
+  </property>
+
   <property>
     <name>dfs.replication</name>
     <value>1</value>

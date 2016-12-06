@@ -1,20 +1,27 @@
 #!/bin/bash
 
-./run_client.sh wordcount large
-./run_client.sh wordcount huge
-#./run_client.sh wordcount bigdata
+trap "" SIGTTOU
+
+source /etc/profile
+
+delete_tmp_dirs() {
+    retry_num=0
+    while [[ ${retry_num} -lt 6 ]]
+    do
+        hdfs dfs -rm -r /HiBench
+        let "retry_num++"
+        sleep 60
+    done
+}
 
 
-./run_client.sh terasort large
-./run_client.sh terasort huge
-#./run_client.sh terasort bigdata
-
-./run_client.sh pagerank large
-./run_client.sh pagerank huge
-#./run_client.sh pagerank bigdata
-
-
-./run_client.sh dfsioe large
-./run_client.sh dfsioe huge
-#./run_client.sh dfsioe bigdata
+caseslist=("wordcount" "terasort" "kmeans" "pagerank" "scan" "sort" "dfsioe")
+for casename in ${caseslist[@]} 
+do 
+    echo "Begin to test ${casename}"
+    ./run_client.sh ${casename} large    
+    ./run_client.sh ${casename} huge
+   
+    delete_tmp_dirs
+done
 

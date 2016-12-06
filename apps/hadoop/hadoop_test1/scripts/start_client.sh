@@ -5,7 +5,7 @@ if [ $# -lt 0 ]; then
     exit 0
 fi
 
-HIBENCH_CMD_DIR=/usr/local/hibench/
+HIBENCH_CMD_DIR=/usr/local/HiBench
 #######################################################################################
 # Notes:
 #  To start client tests
@@ -19,8 +19,8 @@ else
         sed -i "s/hibench\.scale\.profile.*/hibench\.scale\.profile\ ${2}/g" ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
         sed -i "s/hibench\.${1}\.datasize.*//g" ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
         sed -i "s/hibench\.workload\.datasize.*//g" ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
-        echo "hibench.${1}.datasize \${hibench.wordcount.${2}.datasize}" >> ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
-        echo "hibench.workload.datasize  \${hibench.${1}.datasize}" >> ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
+        #echo "hibench.${1}.datasize \${hibench.wordcount.${2}.datasize}" >> ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
+        #echo "hibench.workload.datasize  \${hibench.${1}.datasize}" >> ${HIBENCH_CMD_DIR}/workloads/${1}/conf/10-${1}-userdefine.conf
     fi 
  
     echo "Prepare Data ......"
