@@ -12,7 +12,7 @@ INSTALL_DIR="/home/hadoop"
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 SERVER_FILENAME=${BUILD_DIR}/${TARGET_DIR}/hadoop-dist/target/hadoop-${VERSION}.tar.gz
 #######################################################################################
-if [ ! "$(tool_check_exists ${SERVER_FILENAME})"  == 0 ]; then
+if [  "$(tool_check_exists ${SERVER_FILENAME})"  == 0 ]; then
       echo "Hadoop-${VERSION} has not been built successfully"
       exit -1
 fi
