@@ -9,6 +9,6 @@ if [ $# -lt 1 ] ; then
     exit 0
 fi
 
-./scripts/init_client.sh init
-./scripts/init_client.sh loaddata
+./scripts/init_client.sh ${ip} init
+./scripts/init_client.sh ${ip} loaddata
 

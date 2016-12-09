@@ -7,6 +7,7 @@ if [ $# -lt 4 ]; then
 fi
 
 BASE_DIR=$(cd ~; pwd)
+
 PORT_ID=3306
 if [ $# -ge 5 ] ; then
     PORT_ID=${5}
@@ -32,8 +33,6 @@ if [ "$4" == "init" ] ; then
         --oltp-tables-count=${default_table_count} --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 \
         --mysql-port=${PORT_ID} prepare
-    
-    exit 1
 
     #Step 2: Initialize tables
     sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
@@ -48,16 +47,34 @@ if [ "$4" == "init" ] ; then
 elif [ "$4" == "loaddata" ] ; then
 #Step 3: Run test case
 
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/readall.sh $1 $2 $3  47 3306
-${APP_ROOT}/apps/mysql/percona_ali_1/scripts/readall.sh $1 $2 $3  ${default_table_count}
+#${APP_ROOT}/apps/mysql/percona_1/scripts/readall.sh $1 $2 $3  47 3306
+${APP_ROOT}/apps/mysql/percona_1/scripts/readall.sh $1 $2 $3  ${default_table_count}
 
 elif [ "$4" == "test" ] ; then
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
+sleep 60
+
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 100  900 $1 sysbench 100 1000000 select6 100000
+sleep 60
+
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 150  1350 $1 sysbench 100 1000000 select6 100000
+sleep 60
+
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 200 1800 $1 sysbench 100 1000000 select6 100000
+sleep 60
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 250 2250  $1 sysbench 100 1000000 select6 100000
+sleep 60
+
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 300 2700 $1 sysbench 100 1000000 select6 100000
+sleep 60
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 350 3150 $1 sysbench 100 1000000 select6 100000
+
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
 
 else 
     echo "argument should be {init | loaddata | test} "

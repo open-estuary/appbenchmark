@@ -35,7 +35,16 @@
       "install_cmd": "common/orzdba_install.sh"
     }], 
 
-  "client_setup": [ {
+  "client_setup": [ 
+    {
+      "name": "libaio_0_3_110",
+      "download_url": "http://libaio.sourcearchive.com/downloads/0.3.110-2/libaio_0.3.110.orig.tar.gz",
+      "local_filename" : "libaio_0.3.110.orig.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "common/libaio_build.sh",
+      "install_cmd": ""
+    }, 
+    {
       "name": "Percona_client_libs",
       "download_url": "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.22-72.0/source/tarball/percona-server-5.6.22-72.0.tar.gz",
       "local_filename" : "PerconaServer-5.6.tar.gz",
