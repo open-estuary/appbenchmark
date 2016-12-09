@@ -55,23 +55,32 @@ elif [ "$4" == "test" ] ; then
 #${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
 #${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
 #${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
-sleep 60
 
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 100  900 $1 sysbench 100 1000000 select6 100000
-sleep 60
+active_num=50
+unactive_num=450
+multi_index=1
+if [ ! -z "${5}" ] ; then
+    multi_index=$5
+fi
+let "active_num=active_num*multi_index"
+let "unactive_num=unactive_num*multi_index"
 
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 150  1350 $1 sysbench 100 1000000 select6 100000
-sleep 60
+echo "start active connections:${active_num}, unactive connections:${unactive_num}"
+${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on ${active_num} ${unactive_num} $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 100  900 $1 sysbench 100 1000000 select6 100000
+#sleep 60
 
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 200 1800 $1 sysbench 100 1000000 select6 100000
-sleep 60
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 250 2250  $1 sysbench 100 1000000 select6 100000
-sleep 60
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 150  1350 $1 sysbench 100 1000000 select6 100000
+#sleep 60
 
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 300 2700 $1 sysbench 100 1000000 select6 100000
-sleep 60
-${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 350 3150 $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 200 1800 $1 sysbench 100 1000000 select6 100000
+#sleep 60
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 250 2250  $1 sysbench 100 1000000 select6 100000
+#sleep 60
+
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 300 2700 $1 sysbench 100 1000000 select6 100000
+#sleep 60
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 350 3150 $1 sysbench 100 1000000 select6 100000
 
 else 
     echo "argument should be {init | loaddata | test} "

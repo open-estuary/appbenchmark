@@ -9,7 +9,7 @@ if [ $# -lt 1 ] ; then
     echo "Use default IP:${ip}"
 fi
 
-./run_client.sh ${ip} 
+#./run_client.sh ${ip} 
 
 #./scripts/warmup.sh ${ip}
 ./scripts/init_client.sh ${ip} test

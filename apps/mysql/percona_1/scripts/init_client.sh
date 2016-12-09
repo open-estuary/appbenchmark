@@ -24,5 +24,6 @@ fi
 
 #Include common setup utility functions
 ${APP_ROOT}/apps/mysql/percona_1/scripts/start_client.sh ${ip} \
-            ${userid} ${password} ${2} 
+            ${userid} ${password} ${2} ${3} 
+
 
