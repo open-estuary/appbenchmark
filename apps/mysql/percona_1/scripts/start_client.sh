@@ -48,16 +48,16 @@ if [ "$4" == "init" ] ; then
 elif [ "$4" == "loaddata" ] ; then
 #Step 3: Run test case
 
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/readall.sh $1 $2 $3  47 3306
-${APP_ROOT}/apps/mysql/percona_ali_1/scripts/readall.sh $1 $2 $3  ${default_table_count}
+#${APP_ROOT}/apps/mysql/percona_1/scripts/readall.sh $1 $2 $3  47 3306
+${APP_ROOT}/apps/mysql/percona_1/scripts/readall.sh $1 $2 $3  ${default_table_count}
 
 elif [ "$4" == "test" ] ; then
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
-#${APP_ROOT}/apps/mysql/percona_ali_1/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 1 90 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 2 180 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 3 270 $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 4 360  $1 sysbench 100 1000000 select6 20000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
+#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 500 450 $1 sysbench 100 1000000 select6 100000
 
 else 
     echo "argument should be {init | loaddata | test} "

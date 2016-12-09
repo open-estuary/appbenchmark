@@ -12,6 +12,6 @@ export APP_ROOT=${APP_ROOT}
 
 echo "Start Single Percona Server ......"
 
-${APP_ROOT}/apps/mysql/percona_ali_1/scripts/start_server.sh init
-${APP_ROOT}/apps/mysql/percona_ali_1/scripts/start_server.sh start
+${APP_ROOT}/apps/mysql/percona_1/scripts/start_server.sh init
+${APP_ROOT}/apps/mysql/percona_1/scripts/start_server.sh start
 

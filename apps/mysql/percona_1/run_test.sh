@@ -10,3 +10,6 @@ if [ $# -lt 1 ] ; then
 fi
 
 ./scripts/init_client.sh test
+
+orzdba -mysql -i 10 -rt -L ./orzdba_1.log > /dev/null 2>&1 &
+
