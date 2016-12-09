@@ -73,9 +73,6 @@ ${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 300 2700 $1 sys
 sleep 60
 ${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 350 3150 $1 sysbench 100 1000000 select6 100000
 
-#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
-#${APP_ROOT}/apps/mysql/percona_1/scripts/sysbench.sh $1 $2 $3 on 50 450 $1 sysbench 100 1000000 select6 100000
-
 else 
     echo "argument should be {init | loaddata | test} "
 fi
