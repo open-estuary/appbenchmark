@@ -11,7 +11,7 @@
 import os
 import sys
 import re
-
+import time
 
 def get_redisbenchmark_logs(cur_dir):
     """
@@ -33,9 +33,11 @@ def analysis_redisbenchmark_qps_lat():
         return -1
 
     logfile_list = get_redisbenchmark_logs(sys.argv[1])
+    req_inst_num = int(sys.argv[2])
 
     qps_list =[]
     lat_list =[]
+
     for filename in logfile_list:
         logfile = open(filename)
 
@@ -59,10 +61,13 @@ def analysis_redisbenchmark_qps_lat():
             except :
                 continue
 
-            if perf_value >= 90.0 and elems[3] == "milliseconds":
+            if perf_value >= 99.0 and elems[3] == "milliseconds":
                 if not has_got_value:
                     has_got_value = True
                     cur_lat = lat_value
+                elif has_got_value:
+                    if lat_value < cur_lat:
+                        cur_lat = lat_value
 
         if has_got_value:
             qps_list.append(cur_qps)
@@ -70,9 +75,10 @@ def analysis_redisbenchmark_qps_lat():
 
             print("qps:%0.2f, lat:%0.2f"%(cur_qps, cur_lat))
 
-    if len(qps_list) == 0:
+    print("len=%d"%len(qps_list))
+    if len(qps_list) == 0 or len(qps_list) != req_inst_num:
         print("Operation is still in progress ......")
-        return
+        return -2
 
     total_qps = 0.0
     total_lat = 0.0
@@ -81,6 +87,11 @@ def analysis_redisbenchmark_qps_lat():
         total_lat += float(lat_list[index])
 
     print("Total qps:%0.2f, Avg lat:%0.2f"%(total_qps, total_lat/len(lat_list)))
+    return 0
 
 if __name__ == "__main__":
-    analysis_redisbenchmark_qps_lat()
+    ret = analysis_redisbenchmark_qps_lat()
+    while (ret == -2) :
+        time.sleep(60)
+        ret = analysis_redisbenchmark_qps_lat()
+

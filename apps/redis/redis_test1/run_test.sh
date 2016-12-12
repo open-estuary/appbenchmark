@@ -1,23 +1,30 @@
 #!/bin/bash
 
 #Define global APP_ROOT directory
-if [ -z "${APP_ROOT}" ]; then
-    # Default value
-    APP_ROOT=$(cd `dirname $0` ; cd ../../../; pwd)
-else
-    # Re-declare so it can be used in this script
-    APP_ROOT=$(echo $APP_ROOT)
-fi
-export APP_ROOT=${APP_ROOT}
 
-ip="192.168.1.178"
+ip="192.168.10.174"
 
 echo "Try to connect server-${ip}......"
 
-if [ $# -lt 2 ] ; then 
-    echo "Usage: ./run_test.sh {init | test} {redis-inst:1 ~ 32} {keep-alive:0 or 1} {pipeline:0 ~ 100}"
-    exit 0
-fi
+test_log_dir="/root/apptests/redis/"
 
-#Include common setup utility functions
-${APP_ROOT}/apps/redis/redis_test1/scripts/start_client.sh ${1} ${ip} ${2} ${3}
+#Bind network interrupt to specific cpus
+python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 15
+
+start_cpu_num=20
+inst_num=1
+echo "Initialize database......"
+#./scripts/init_test.sh init ${ip} ${start_cpu_num} ${inst_num} 
+
+echo "Short case"
+./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 0 1
+./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num}
+
+echo "Basci case"
+./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 1 1
+./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num}
+
+echo "Pipeline case"
+./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 1 100
+./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num}
+
