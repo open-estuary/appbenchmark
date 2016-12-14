@@ -54,7 +54,6 @@ def set_ethirq_cpu_affinity():
 
         ethname = device.split('-')[0]
         ethname += device.split('x')[-1]
-       
 	print("%s-%s"%(irq_num, ethname))
         if not eth_irq_dict.has_key(ethname):
             eth_irq_dict[ethname] = [irq_num]

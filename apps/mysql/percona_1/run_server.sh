@@ -15,3 +15,10 @@ echo "Start Single Percona Server ......"
 ${APP_ROOT}/apps/mysql/percona_1/scripts/start_server.sh init
 ${APP_ROOT}/apps/mysql/percona_1/scripts/start_server.sh start
 
+log_name="./orzdba.log"
+if [ ! -z "${1}" ] ;
+    log_name=${1}
+fi
+
+echo "Start orzdba and tcprstat to catpure latency ......"
+orzdba -mysql -i 10 -rt -c -L ${log_name} > /dev/null 2>&1 &

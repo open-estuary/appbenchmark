@@ -7,7 +7,7 @@ ip="192.168.10.168"
 echo "Try to connect server-${ip}......"
 
 echo "Disable unused CPU..."
-./enable_cpus.sh 32 64 0
+./scripts/enable_cpus.sh 32 64 0
 
 test_log_dir="/root/apptests/redis/"
 
