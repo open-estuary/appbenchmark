@@ -53,6 +53,7 @@ def set_ethirq_cpu_affinity():
             continue
 
         ethname = device.split('-')[0]
+        ethname += device.split('x')[-1]
        
 	print("%s-%s"%(irq_num, ethname))
         if not eth_irq_dict.has_key(ethname):
@@ -79,7 +80,9 @@ def set_ethirq_cpu_affinity():
                 cmd_str = "echo ffffffff > /proc/irq/"+str(irq_num)+"/smp_affinity"
 
             print("cmd:%s"%cmd_str)
-            os.system(cmd_str)
+
+            cmd_str=str(cmd_str)
+            ret=os.system(cmd_str)
         cur_cpu += 1
         if cur_cpu > cpu_end:
             cur_cpu = cpu_start

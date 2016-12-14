@@ -45,7 +45,7 @@ if [ "$1" == "init" ] ; then
     echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
     echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
     echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
-    
+    ulimit -n 1024000
     #data_num=10000
     #data_size=128
 
@@ -56,6 +56,7 @@ if [ "$1" == "init" ] ; then
     do
         echo "call redis-cli to initialize data for redis-${index}"
         port=`expr ${base_port_num} + ${index} + ${start_cpu_num}`
+        echo "flushdb"  |  ${REDIS_CMD_DIR}/redis-cli -h ${ip_addr} -p ${port} --pipe
         cat ./input_data | ${REDIS_CMD_DIR}/redis-cli -h ${ip_addr} -p ${port} --pipe
     done
 
@@ -63,13 +64,14 @@ if [ "$1" == "init" ] ; then
 
 elif [ "$1" == "test" ] ; then
     pushd ${REDIS_TEST_DIR} > /dev/null
-    #rm redis_benchmark_log*
+    rm redis_benchmark_log*
 
     let "redis_inst_num--"
     for index in $(seq 0 ${redis_inst_num})
     do
         port=`expr ${base_port_num} + ${index} + ${start_cpu_num}`
-        taskindex=`expr 32 + ${index}`
+        taskindex=`expr 17 + ${index}`
+        #taskend=`expr 6 + ${taskindex}`
         echo "call redis-benchmark to test redis-${index}"
 
         taskset -c ${taskindex} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n ${data_num} -d ${data_size} -k ${keep_alive} -r ${key_space_len} -P ${pipeline} -t get > redis_benchmark_log_${port} & 

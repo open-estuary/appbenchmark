@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit 0
+
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
 #By default, it will use apt-get to install packages
