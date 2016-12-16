@@ -82,9 +82,17 @@ initialize_mysql_inst() {
     let "new_port+=${inst_num}"
     sed -i "s/port=3306/port=${new_port}/g" /etc/my_${inst_num}.conf
 
-    echo 6553600 > /proc/sys/fs/aio-max-nr
-    echo 10 > /proc/sys/net/ipv4/tcp_fin_timeout
-    echo 1024000 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+    $(tool_add_sudo) echo 6553600 > /proc/sys/fs/aio-max-nr
+    $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_timestamps
+    $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+    $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
+    $(tool_add_sudo) echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
+    $(tool_add_sudo) echo 2621440 > /proc/sys/net/core/somaxconn
+    $(tool_add_sudo) echo 2621440 > /proc/sys/net/core/netdev_max_backlog
+    $(tool_add_sudo) echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
+    $(tool_add_sudo) echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+    $(tool_add_sudo) echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
+    $(tool_add_sudo) echo 10 > /proc/sys/net/ipv4/tcp_fin_timeout
 
     $(tool_add_sudo) mkdir -p /u01/u${inst_num}/mysql
     $(tool_add_sudo) cp -fr /u01/my3306/share /u01/u${inst_num}/mysql
