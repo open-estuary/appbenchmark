@@ -1,6 +1,6 @@
 #!/bin/bash
 
-default_ip="192.168.10.174"
+default_ip="192.168.11.174"
 ip=${1}
 
 if [ $# -lt 1 ] ; then 
@@ -8,6 +8,10 @@ if [ $# -lt 1 ] ; then
     ip=${default_ip}
     echo "Use default IP:${ip}"
 fi
+
+service irqbalance stop
+#Bind network interrupt to specific cpus
+python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 7
 
 ./run_client.sh ${ip} 
 
@@ -17,7 +21,9 @@ index=1
 while [[ ${index} -lt 20 ]] 
 do
 ./scripts/init_client.sh ${ip} test ${index}
-sleep 7200
+ps -aux | grep sysbench | grep -v grep | awk '{print $2}' | xargs -n 1 taskset -pc 8-63
+ps -aux | grep run | grep -v grep | awk '{print $2}' | xargs -n 1 taskset -pc 8-63
+sleep 3600
 let "index++"
 done
 
