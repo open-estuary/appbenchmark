@@ -18,8 +18,6 @@ if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin/XXXX)"  == 0 ]; then
       exit 0
 fi
 
-exit 0
-
 ####################################################################################
 # Prepare for build
 ####################################################################################
@@ -54,7 +52,7 @@ fi
 
 JAVA_HOME=${JAVA_1_7_HOME}
 
-#git clone https://github.com/intel-hadoop/HiBench.git
+git clone https://github.com/intel-hadoop/HiBench.git
 TARGET_DIR=$(tool_get_first_dirname ../${BUILD_DIR})
 cd ./${TARGET_DIR}
 git checkout ${CTAG_VERSION}

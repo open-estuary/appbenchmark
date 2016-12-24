@@ -29,4 +29,6 @@ fi
 echo "Start client to test Hadoop server performance ......"
 
 #Include common setup utility functions
-${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/start_client.sh $@
+NUMA_CMD=""
+#NUMA_CMD="numactl --cpunodebind=0,1,2,3 --localalloc"
+${NUMA_CMD} ${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/start_client.sh $@

@@ -67,6 +67,10 @@ if [ -z "${JAVA_1_7_HOME}" ] ; then
 fi
 
 JAVA_HOME=${JAVA_1_7_HOME}
+echo "Apply numa patch which is only valid for hadoop-2.6.0 so far "
+${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/hadoop_numa_patch.sh ${APP_ROOT}/apps/hadoop/hadoop_test1/src/hadoop_numa ./
+
+echo "Begin to build Hadoop"
 mvn package -Pdist,native -DskipTests -Dtar 
 JAVA_HOME=${OLD_JAVA_HOME}
 popd > /dev/null

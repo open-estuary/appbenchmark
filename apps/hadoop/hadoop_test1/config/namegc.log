@@ -1,0 +1,8 @@
+OpenJDK 64-Bit Server VM (25.71-b00) for linux-aarch64 JRE (1.8.0-internal-stuart_2016_09_21_15_15-b00), built on Sep 21 2016 15:22:42 by "stuart" with gcc 5.3.1 20160209
+Memory: 4k page, physical 528116512k(524188396k free), swap 0k(0k free)
+CommandLine flags: -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:InitialHeapSize=2147483648 -XX:MaxHeapSize=2147483648 -XX:NewSize=536870912 -XX:ParallelGCThreads=4 -XX:+PrintGC -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCTimeStamps -XX:-UseAdaptiveSizePolicy -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC 
+0.757: Total time for which application threads were stopped: 0.0002877 seconds, Stopping threads took: 0.0000204 seconds
+0.856: Total time for which application threads were stopped: 0.0002182 seconds, Stopping threads took: 0.0000199 seconds
+0.865: Total time for which application threads were stopped: 0.0000843 seconds, Stopping threads took: 0.0000163 seconds
+1.183: Total time for which application threads were stopped: 0.0003745 seconds, Stopping threads took: 0.0000183 seconds
+1.346: Total time for which application threads were stopped: 0.0005807 seconds, Stopping threads took: 0.0003134 seconds

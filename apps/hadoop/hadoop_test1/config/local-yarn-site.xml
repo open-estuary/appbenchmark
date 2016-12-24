@@ -27,6 +27,18 @@
    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
   </property>
+  
+  <property>
+    <name>yarn.nodemanager.numa-awareness.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.numa-awareness.read-topology</name>
+    <value>true</value>
+  </property>
+
+
   <property>
    <name>yarn.resourcemanager.address</name>
    <value>127.0.0.1:8032</value>

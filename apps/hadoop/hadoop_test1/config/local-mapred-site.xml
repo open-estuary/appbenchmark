@@ -23,7 +23,7 @@
     </property>
     <property>
         <name>mapred.child.java.opts</name>
-        <value>-Xmx2048m</value>
+        <value>-Xmx2048m -Xms2048m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC</value>
     </property>
     <property>
         <name>mapreduce.job.reduce.slowstart.completedmaps</name>
@@ -37,14 +37,9 @@
 
     <property>
         <name>mapred.tasktracker.reduce.tasks.maximum</name>
-        <value>32</value>
+        <value>64</value>
     </property>
-
-    <property>
-        <name>mapred.reduce.parallel.copies</name>
-        <value>32</value>
-    </property>
-
+    
     <property>
         <name>mapreduce.job.jvm.numtasks</name>
         <value>-1</value>
@@ -57,7 +52,7 @@
 
     <property>
         <name>io.sort.mb</name>
-        <value>1000</value>
+        <value>1024</value>
     </property>
 
 </configuration>

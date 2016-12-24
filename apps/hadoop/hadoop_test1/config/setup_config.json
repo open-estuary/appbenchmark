@@ -19,10 +19,10 @@
       "install_cmd": ""
     },
     { "name": "Hadoop Server",
-      "download_url": "http://apache.fayea.com/hadoop/common/hadoop-2.6.5/hadoop-2.6.5-src.tar.gz",
-      "local_filename" : "hadoop-2.6.5-src.tar.gz",
-      "pre_install_cmd": "hadoop_prerequisites.sh",
-      "build_cmd": "hadoop_build.sh",
+      "download_url": "http://apache.fayea.com/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz",
+      "local_filename" : "hadoop-2.6.0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
       "install_cmd": "hadoop_install.sh"
     }],
 

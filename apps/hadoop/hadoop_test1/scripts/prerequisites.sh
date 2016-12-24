@@ -2,6 +2,8 @@
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
+exit 0
+
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-y -q"

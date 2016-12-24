@@ -5,7 +5,7 @@ if [ $# -lt 0 ]; then
     exit 0
 fi
 
-HIBENCH_CMD_DIR=/usr/local/HiBench
+HIBENCH_CMD_DIR=/u01/hibench
 #######################################################################################
 # Notes:
 #  To start client tests

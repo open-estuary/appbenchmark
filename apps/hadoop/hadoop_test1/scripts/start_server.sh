@@ -16,6 +16,9 @@ if [ -z "${HADOOP_INSTALL}" ] ; then
     exit 0
 fi
 
+NUMA_CMD=""
+#NUMA_CMD="numactl --cpunodebind=0,1,2,3 --localalloc
+
 ##############################################################################
 #Start load mode hadoop
 start_local_hadoop() {
@@ -28,8 +31,8 @@ start_local_hadoop() {
     sed -i "s/export.*JAVA_HOME.*=.*\${JAVA_HOME}//g" ${HADOOP_INSTALL}/etc/hadoop/hadoop-env.sh
     echo "export JAVA_HOME=${JAVA_HOME}" >> ${HADOOP_INSTALL}/etc/hadoop/hadoop-env.sh
     ${HADOOP_INSTALL}/bin/hdfs namenode -format
-    ${HADOOP_INSTALL}/sbin/start-dfs.sh
-    ${HADOOP_INSTALL}/sbin/start-yarn.sh
+    ${NUMA_CMD} ${HADOOP_INSTALL}/sbin/start-dfs.sh
+    ${NUMA_CMD} ${HADOOP_INSTALL}/sbin/start-yarn.sh
 }
 
 start_local_hadoop
