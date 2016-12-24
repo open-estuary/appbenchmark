@@ -61,7 +61,7 @@ public class NUMAResourcesManager extends CompositeService {
   private static final String NUMA_NODE = "<NUMA-NODE>";
   private static final String SPACE = "\\s";
 
-  private List<NumaNode> numaNodesList = new ArrayList<>();
+  private List<NumaNode> numaNodesList = new ArrayList<NumaNode>();
   private int noOfNumaNodes;
   private int currentAssignNode;
 

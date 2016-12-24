@@ -265,13 +265,13 @@ public class DefaultContainerExecutor extends ContainerExecutor {
         containerIdStr, user, pidFile, this.getConf());
 
     if (YarnConfiguration.numaAwarenessEnabled(this.getConf())) {
-      String[] cmd = new String[command.length  3];
+      String[] cmd = new String[command.length + 3];
       AssignedNumaNodeInfo numaNodeInfo = getNumaResourcesManager()
           .assignNumaNode(ContainerId.fromString(containerIdStr), resource);
       if (numaNodeInfo != null) {
         cmd[0] = "numactl";
-        cmd[1] = "--membind="  numaNodeInfo.getMemNode();
-        cmd[2] = "--cpunodebind="  numaNodeInfo.getCpuNode();
+        cmd[1] = "--membind=" + numaNodeInfo.getMemNode();
+        cmd[2] = "--cpunodebind="  + numaNodeInfo.getCpuNode();
         System.arraycopy(command, 0, cmd, 3, command.length);
         command = cmd;
       }

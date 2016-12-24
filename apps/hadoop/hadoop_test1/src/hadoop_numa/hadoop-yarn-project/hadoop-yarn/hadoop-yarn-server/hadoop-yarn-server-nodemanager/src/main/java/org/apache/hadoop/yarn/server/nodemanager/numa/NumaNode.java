@@ -39,9 +39,9 @@ public class NumaNode {
   private static final Log LOG = LogFactory.getLog(NumaNode.class);
 
   private Map<ContainerId, Long> containerVsMemUsage =
-      new ConcurrentHashMap<>();
+      new ConcurrentHashMap<ContainerId, Long>();
   private Map<ContainerId, Integer> containerVsCpusUsage =
-      new ConcurrentHashMap<>();
+      new ConcurrentHashMap<ContainerId, Integer>();
 
   public NumaNode(String nodeId, long totalMemory, int totalCpus) {
     this.nodeId = nodeId;

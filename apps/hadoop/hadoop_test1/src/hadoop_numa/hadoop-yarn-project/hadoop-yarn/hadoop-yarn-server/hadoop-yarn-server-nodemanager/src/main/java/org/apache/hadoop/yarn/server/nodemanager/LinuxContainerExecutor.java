@@ -173,8 +173,8 @@ public class LinuxContainerExecutor extends ContainerExecutor {
           .assignNumaNode(container.getContainerId(), container.getResource());
       if (numaNodeInfo != null) {
         command.addAll(
-            Arrays.asList("numactl", "--membind="  numaNodeInfo.getMemNode(),
-                "--cpunodebind="  numaNodeInfo.getCpuNode()));
+            Arrays.asList("numactl", "--membind="+numaNodeInfo.getMemNode(),
+                "--cpunodebind="+numaNodeInfo.getCpuNode()));
       }
     }
   }
