@@ -1,6 +1,11 @@
 #!/bin/bash
 
-ip=${1}
+if [ -z "${1}" ] ; then
+    ip="127.0.0.1"
+else 
+    ip=${1}
+fi
+
 #Notes: Userid and passwd have been specified in scripts/init_client.sh
 
 ./setup.sh client

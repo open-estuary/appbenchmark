@@ -18,11 +18,11 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-#if [ "$(which sysbench)" ] ; then
-#    echo "sysbench has been built, so do nothing"
-#    echo "Build sysbench successfully"
-#    exit 0 
-#fi
+if [ "$(which sysbench)" ] ; then
+    echo "sysbench has been built, so do nothing"
+    echo "Build sysbench successfully"
+    exit 0 
+fi
 
 $(tool_add_sudo) rm -fr ${BUILD_DIR}/${TARGET_DIR}*
 mkdir -p ${BUILD_DIR}
