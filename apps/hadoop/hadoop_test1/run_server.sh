@@ -20,6 +20,8 @@ ulimit -n 32768
 service irqbalance stop
 echo never > /sys/kernel/mm/transparent_hugepage/defrag
 echo cfq > /sys/block/sda/queue/scheduler
+blockdev --setra 1024 /dev/sda3
+blockdev --setra 1024 /dev/nvme0n1
 
 #Include common setup utility functions
 ${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/start_server.sh $@ 

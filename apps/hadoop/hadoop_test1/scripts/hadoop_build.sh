@@ -9,7 +9,7 @@
 #####################################################################################
 BUILD_DIR="./"$(tool_get_build_dir $1)
 SERVER_FILENAME=$1
-VERSION="2.6.5"
+VERSION="2.6.0"
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 #######################################################################################
@@ -71,7 +71,8 @@ echo "Apply numa patch which is only valid for hadoop-2.6.0 so far "
 ${APP_ROOT}/apps/hadoop/hadoop_test1/scripts/hadoop_numa_patch.sh ${APP_ROOT}/apps/hadoop/hadoop_test1/src/hadoop_numa ./
 
 echo "Begin to build Hadoop"
-mvn package -Pdist,native -DskipTests -Dtar 
+mvn package -Pdist,native -DskipTests -Dtar -T64 
+mvn package -Pdist,native -DskipTests -Dtar  
 JAVA_HOME=${OLD_JAVA_HOME}
 popd > /dev/null
 

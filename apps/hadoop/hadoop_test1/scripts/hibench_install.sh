@@ -13,15 +13,16 @@ CTAG_VERSION="HiBench-5.0"
 TARGET_DIR="HiBench"
 
 #######################################################################################
-#if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin)"  != 0 ]; then
-#      echo "Hibench has not been built"
-#      exit 0
-#fi
+if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin)"  != 0 ]; then
+      echo "Hibench has not been built"
+      exit 0
+fi
 
 #tar -zxvf HiBench.tar.gz -C /usr/local/
-mv /usr/local/HiBench -T /usr/local/hibench
+#mv /usr/local/HiBench -T /usr/local/hibench
 
 HIBENCH_INSTALL_DIR="/u01/hibench"
+
 $(tool_add_sudo) mkdir -p ${HIBENCH_INSTALL_DIR}
 $(tool_add_sudo) cp -fr ${BUILD_DIR}/${TARGET_DIR}/. ${HIBENCH_INSTALL_DIR}/
 
