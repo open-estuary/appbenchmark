@@ -10,10 +10,6 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
-APP_ROOT="/u01/perfdatas/applications"
-
-#Ip address has been specified by hadoop.conf
-
 if [ $# -lt 1 ] ; then 
     echo "Usage: ./run_test.sh {all or speicfic func name such as wordcount} {data_size=tiny, small, large, huge, gigantic, bigdata}"
     exit 0

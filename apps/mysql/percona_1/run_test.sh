@@ -9,6 +9,8 @@ if [ $# -lt 1 ] ; then
     echo "Use default IP:${ip}"
 fi
 
+echo 1 > /proc/sys/kernel/numa_balancing
+
 service irqbalance stop
 #Bind network interrupt to specific cpus
 python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 7

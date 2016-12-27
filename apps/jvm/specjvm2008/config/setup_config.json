@@ -1,0 +1,21 @@
+{
+  "application": "JVM Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "OpenJDK",
+      "download_url": "http://openjdk.linaro.org/releases/jdk8u-server-release-1609.tar.xz",
+      "local_filename" : "jdk8u-server-release.tar.xz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "openjdk_install.sh"
+    } ],
+  "client_setup": [ {
+      "name": "SpecJVM2008 benchmark",
+      "download_url": "ftp://ftp.spec.org/dist/osg/java/SPECjvm2008_1_01_setup.jar",
+      "local_filename" : "SPECjvm2008_1_01_setup.jar",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "specjvm_install.sh"
+    }]
+}
