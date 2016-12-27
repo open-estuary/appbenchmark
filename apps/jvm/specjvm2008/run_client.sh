@@ -22,3 +22,6 @@ pushd ${SPEC_INSTALL_DIR} > /dev/null
 ./run-specjvm.sh -peak -pf props/specjvm.properties -ikv
 popd > /dev/null
 
+#Restore to default values
+echo 1 > /proc/sys/kernel/numa_balancing
+echo 1 > /proc/sys/kernel/numa_balancing
