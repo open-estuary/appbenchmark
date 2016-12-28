@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ -z "${1}" ] ; then
-    ip="127.0.0.1"
-else 
-    ip=${1}
+    echo "Usage: ./run_client.sh <server ip (not local ip address)>"
+    exit 0  
 fi
+ip=${1}
 
 #Notes: Userid and passwd have been specified in scripts/init_client.sh
 

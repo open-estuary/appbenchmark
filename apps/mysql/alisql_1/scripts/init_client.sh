@@ -23,9 +23,14 @@ else
    echo "Try to test multi mysql instances[$3]......"
 
    inst_num=${3}
-   if [ "x${1}" == "xtest" ] ; then
+   instance_per_thread=1
+   if [ ! -z "${4}" ] ; then
+       instance_per_thread=${4}
+   fi   
+
+   if [ "x${2}" == "xtest" ] ; then
       ${APP_ROOT}/apps/mysql/alisql_1/scripts/start_client.sh ${ip} \
-               ${userid} ${password} ${2} ${inst_num}
+               ${userid} ${password} ${2} ${inst_num} ${instance_per_thread}
    else    
 
        port_num=3306

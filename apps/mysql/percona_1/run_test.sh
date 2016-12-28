@@ -1,13 +1,11 @@
 #!/bin/bash
 
-default_ip="192.168.11.174"
-ip=${1}
-
-if [ $# -lt 1 ] ; then 
-    echo "Usage: ./run_test.sh {ip} ${test_multi_num=1}"
-    ip=${default_ip}
-    echo "Use default IP:${ip}"
+if [ -z "${1}" ] ; then 
+    echo "Usage: ./run_test.sh {percona_server_ip}"
+    exit 0
 fi
+
+ip=${1}
 
 echo 1 > /proc/sys/kernel/numa_balancing
 
