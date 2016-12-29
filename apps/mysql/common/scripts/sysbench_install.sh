@@ -18,7 +18,7 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ "$(which sysbench)" ] ; then
+if [ "$(which sysbench > /dev/null)" ] ; then
     echo "sysbench has been built, so do nothing"
     echo "Build sysbench successfully"
     exit 0 

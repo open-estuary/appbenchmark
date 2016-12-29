@@ -18,7 +18,7 @@ python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 7
 #./scripts/warmup.sh ${ip}
 
 index=1
-while [[ ${index} -lt 20 ]] 
+while [[ ${index} -lt 6 ]] 
 do
 ./scripts/init_client.sh ${ip} test ${index}
 ps -aux | grep sysbench | grep -v grep | awk '{print $2}' | xargs -n 1 taskset -pc 8-63

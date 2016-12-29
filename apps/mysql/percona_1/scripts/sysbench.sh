@@ -25,7 +25,7 @@ do
              --mysql-table-engine=innodb \
              --oltp-table-size=${size} \
              --oltp-tables-count=${tables} \
-             --max-time=720000 \
+             --max-time=3600 \
              --num-threads=10 --mysql-port=3306 run &
     let ++i
     usleep ${12}
@@ -41,7 +41,7 @@ do
              --max-requests=0 --mysql-user=root \
              --mysql-table-engine=innodb \
              --oltp-table-size=${size}  \
-             --max-time=720000 \
+             --max-time=3600 \
              --oltp-tables-count=${tables} \
              --num-threads=10 --mysql-port=3306 run &
     let ++i

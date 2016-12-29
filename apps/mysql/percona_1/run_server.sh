@@ -10,6 +10,8 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
+./setup.sh server
+
 echo "Start Single Percona Server ......"
 
 ${APP_ROOT}/apps/mysql/percona_1/scripts/start_server.sh init
