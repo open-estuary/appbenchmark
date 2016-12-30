@@ -13,7 +13,7 @@ CTAG_VERSION="HiBench-5.0"
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 #######################################################################################
-if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/bin/XXXX)"  == 0 ]; then
+if [ "$(tool_check_exists ${BUILD_DIR}/${TARGET_DIR}/src/target/hibench-4.0-SNAPSHOT.jar)"  == 0 ]; then
       echo "Hibench has been built successfully"
       exit 0
 fi

@@ -2,7 +2,12 @@
 
 #Define global APP_ROOT directory
 
-ip="192.168.10.168"
+if [ -z "${1}" ] ; then
+    echo "Usage: ./run_test.sh <server ip>"
+    exit 0
+fi
+
+ip="${1}"
 
 echo "Try to connect server-${ip}......"
 
@@ -30,7 +35,7 @@ service irqbalance stop
 python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 15
 
 max_inst=11
-cur_inst=3
+cur_inst=1
 
 while [[ ${cur_inst} -lt ${max_inst} ]] ; 
 do

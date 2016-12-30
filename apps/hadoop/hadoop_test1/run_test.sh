@@ -45,10 +45,10 @@ do
         echo "${casename} has numa_balancing :$(cat /proc/sys/kernel/numa_balancing)"
 
         delete_tmp_dirs
-        ./run_client.sh ${casename} large    
+        ./scripts/start_client.sh ${casename} large    
         
         delete_tmp_dirs
-        ./run_client.sh ${casename} huge 
+        ./scripts/start_client.sh ${casename} huge 
         let "case_index++"
     done
 
@@ -72,10 +72,10 @@ do
         echo "${casename} has numa_balancing :$(cat /proc/sys/kernel/numa_balancing)"
 
         delete_tmp_dirs
-        ./run_client.sh ${casename} large    
+        ./scripts/start_client.sh ${casename} large    
         
         delete_tmp_dirs
-        ./run_client.sh ${casename} huge 
+        ./scripts/start_client.sh ${casename} huge 
         let "case_index++"
     done
 
