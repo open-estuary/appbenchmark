@@ -17,19 +17,18 @@ fi
 
 #######################################################################################
 check_startup_str() {
-    local inst_num=${1}
-    expected_str=${2}
+    expected_str=${1}
     max_retry_num=20
     cur_retry=0
     has_started=0
     while [[ ${cur_retry} -lt ${max_retry_num} ]] ;
     do
-        echo "Check whether server-${inst_num} has started yet or not ......"
-        if [ $(tool_check_exists "/u01/u${inst_num}/my3306/log/alert.log") == 0 ] ; then 
-            CHECK_STR=$($(tool_add_sudo) grep "${expected_str}" /u01/u${inst_num}/my3306/log/alert.log)
+        echo "Check whether server has started yet or not ......"
+        if [ $(tool_check_exists "/u01/my3306/log/alert.log") == 0 ] ; then 
+            CHECK_STR=$($(tool_add_sudo) grep "${expected_str}" /u01/my3306/log/alert.log)
             if [ "${CHECK_STR}" ] ; then
                 let "has_started=1"
-                echo "Percona Server-${inst_num} has started successfully"
+                echo "Percona Server has started successfully"
                 break
             fi
         fi
@@ -46,8 +45,7 @@ check_startup_str() {
 # Begin to start percona server
 ###########################################################################################
 initialize_mysql_inst() {
-    local inst_num=${1}  
-    config_file=${2}
+    config_file=${1}
     
     #Run step 1: Add 'mysql' test user account and rights
 
@@ -58,29 +56,21 @@ initialize_mysql_inst() {
         $(tool_add_sudo) useradd -g mysql mysql
     fi
 
-    ${tool_add_sudo} mkdir -p /u01/u${inst_num}/my3306
-    ln -s /u01/my3306/bin /u01/u${inst_num}/my3306/bin
-    ln -s /u01/my3306/docs /u01/u${inst_num}/my3306/docs
-    ln -s /u01/my3306/include /u01/u${inst_num}/my3306/include
-    ln -s /u01/my3306/lib /u01/u${inst_num}/my3306/lib
-    ln -s /u01/my3306/scripts /u01/u${inst_num}/my3306/scripts
-    ln -s /u01/my3306/support-files /u01/u${inst_num}/my3306/support-files
-    ln -s /u01/my3306/share /u01/u${inst_num}/my3306/share
+    ${tool_add_sudo} mkdir -p /u01/my3306
+    ln -s /u01/my3306/share /u01/my3306/share
     
     #Backup existing conf if necessary
-    if [ $(tool_check_exists "/etc/my_${inst_num}.conf") == 0 ]; then
+    if [ $(tool_check_exists "/etc/my.conf") == 0 ]; then
         cur_day_str=`date +%Y-%m-%d`
-        echo "Backup existing /etc/my_${inst_num}.conf ......"
-        if [ $(tool_check_exists "/etc/my_${inst_num}.conf_${cur_day_str}") != 0 ]; then
-            $(tool_add_sudo) cp /etc/my_${inst_num}.conf /etc/my_${inst_num}.conf_${cur_day_str}
+        echo "Backup existing /etc/my.conf ......"
+        if [ $(tool_check_exists "/etc/my.conf_${cur_day_str}") != 0 ]; then
+            $(tool_add_sudo) cp /etc/my.conf /etc/my.conf_${cur_day_str}
         fi
     fi
 
-    $(tool_add_sudo) cp -f ${APP_ROOT}/apps/mysql/percona_1/config/${config_file} /etc/my_${inst_num}.conf
-    sed -i "s/u01/u01\/u${inst_num}/g" /etc/my_${inst_num}.conf
+    $(tool_add_sudo) cp -f ${APP_ROOT}/apps/mysql/percona_1/config/${config_file} /etc/my.conf
     new_port=3306
-    let "new_port+=${inst_num}"
-    sed -i "s/port=3306/port=${new_port}/g" /etc/my_${inst_num}.conf
+    sed -i "s/port=3306/port=${new_port}/g" /etc/my.conf
 
     $(tool_add_sudo) echo 6553600 > /proc/sys/fs/aio-max-nr
     $(tool_add_sudo) echo 1 > /proc/sys/net/ipv4/tcp_timestamps
@@ -94,65 +84,54 @@ initialize_mysql_inst() {
     $(tool_add_sudo) echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
     $(tool_add_sudo) echo 10 > /proc/sys/net/ipv4/tcp_fin_timeout
 
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/mysql
-    $(tool_add_sudo) cp -fr /u01/my3306/share /u01/u${inst_num}/mysql
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/tmp
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/log
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/run
+    cur_user=`whoami`
+    $(tool_add_sudo) mkdir -p /u01/mysql
+    $(tool_add_sudo) ln -s /u01/my3306/share /u01/mysql/share
+    $(tool_add_sudo) mkdir -p /u01/my3306/tmp
+    $(tool_add_sudo) mkdir -p /u01/my3306/log
+    $(tool_add_sudo) mkdir -p /u01/my3306/run
 
     cur_user=`whoami`
-    $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01/u${inst_num}
-    $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/mysql
-    $(tool_add_sudo) cp -fr /u01/my3306/share /u01/u${inst_num}/mysql
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/tmp
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/log
-    $(tool_add_sudo) mkdir -p /u01/u${inst_num}/my3306/run
-
-    cur_user=`whoami`
-    $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01/u${inst_num}
     $(tool_add_sudo) chown -L -R mysql.${cur_user} /u01
     
     #Initialize database
-    INSTALL_DB_CMD="/u01/my3306/scripts/mysql_install_db --defaults-file=/etc/my_${inst_num}.conf "
+    INSTALL_DB_CMD="/u01/my3306/scripts/mysql_install_db --defaults-file=/etc/my.conf "
     new_start_flag=0
     if [ $(tool_check_exists "/u01/my3306/scripts/mysql_install_db") != 0 ] ; then
         new_start_flag=1
-        INSTALL_DB_CMD="/u01/my3306/bin/mysqld  --defaults-file=/etc/my_${inst_num}.conf --initialize"
+        INSTALL_DB_CMD="/u01/my3306/bin/mysqld  --defaults-file=/etc/my.conf --initialize"
     fi
 
-    echo "Start to initialize database-${inst_num} ......"
-    $(tool_add_sudo) ${INSTALL_DB_CMD}   --basedir=/u01/u${inst_num}/my3306 \
-                                     --datadir=/u01/u${inst_num}/my3306/data \
+    echo "Start to initialize database ......"
+    $(tool_add_sudo) ${INSTALL_DB_CMD}   --basedir=/u01/my3306 \
+                                     --datadir=/u01/my3306/data \
                                      --user=mysql
 
     #Start mysql server
-    echo "Initialize servers-${inst_num} successfully"
+    echo "Initialize servers successfully"
 }
 
 ######################################################################################
 start_mysql_inst() {
-
-    local inst_num=${1}  
-    config_file=${2}
+    config_file=${1}
     
     new_start_flag=0
     if [ $(tool_check_exists "/u01/my3306/scripts/mysql_install_db") != 0 ] ; then
         new_start_flag=1
     fi
         
-    rm -fr /u01/u${inst_num}/my3306/log/alert.log
-    echo "Restart server-${inst_num}......"
+    rm -fr /u01/my3306/log/alert.log
+    echo "Restart server ......"
     ########### Start server by using old ways for pre 5.7 versions ####################
-        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my_${inst_num}.conf  \
-                            --basedir=/u01/u${inst_num}/my3306 \
-                            --datadir=/u01/u${inst_num}/my3306/data &
+        $(tool_add_sudo) /u01/my3306/bin/mysqld_safe --defaults-file=/etc/my.conf  \
+                            --basedir=/u01/my3306 \
+                            --datadir=/u01/my3306/data &
 
         #Check whether server has started successfully or not
-        check_startup_str ${inst_num} "ready for connection"
+        check_startup_str "ready for connection"
 
         #Install Step 6:set root rights and create initial database
-        /u01/my3306/bin/mysql -uroot --socket=/u01/u${inst_num}/my3306/run/mysql.sock << EOF
+        /u01/my3306/bin/mysql -uroot --socket=/u01/my3306/run/mysql.sock << EOF
 SET PASSWORD=PASSWORD('123456');
 UPDATE mysql.user SET password=PASSWORD('123456') WHERE user='mysql';
 GRANT ALL PRIVILEGES ON *.* TO mysql@localhost IDENTIFIED BY '123456' WITH GRANT OPTION;
@@ -165,9 +144,9 @@ EOF
 
 
 if [ "x${cmd_str}" == "xinit" ] ; then
-    initialize_mysql_inst "00" "my.conf"
+    initialize_mysql_inst "my.conf"
 elif [ "x${cmd_str}" == "xstart" ] || [ "x${cmd_str}" == "xrestart" ] ; then
-    start_mysql_inst "00" "my.conf"
+    start_mysql_inst "my.conf"
 else
     echo "Unknown commands:${cmd_str}"
 fi

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 4 ]; then
-    echo "Usage: client_start.sh <ip_address> <username> <userpassword> <action> [port/inst_num]"
+    echo "Usage: client_start.sh <ip_address> <username> <userpassword> <action> [port]"
     echo "By default, it will connect 3306 port"
     exit 0
 fi
