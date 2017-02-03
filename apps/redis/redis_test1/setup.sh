@@ -15,6 +15,6 @@ if [ $# -lt 1 ]; then
     exit 0
 fi
 
-#call setup utility to setup mysql 
+#call setup utility to setup redis 
 ${APP_ROOT}/toolset/setup/setup.sh "redis" "redis_test1" "setup_config.json" ${1}
 
