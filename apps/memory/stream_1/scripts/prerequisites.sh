@@ -6,11 +6,12 @@
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-y -q"
 
-BUILD_ESSENTIAL="build-essential automake cmake"
+BUILD_ESSENTIAL="build-essential automake numactl"
+COMMON_TOOLS="tcl"
 #However it will use yum on other platforms such as CentOS
 if [ "$(which yum 2>/dev/null)" ] ; then 
     INSTALL_CMD="$(tool_add_sudo) yum install"
-    BUILD_ESSENTIAL="automake cmake"
+    BUILD_ESSENTIAL="automake numactl"
 fi
 
 if [ "$(which apt-get 2>/dev/null)" ] ; then
@@ -23,6 +24,5 @@ if [ "$(which yum 2>/dev/null)" ] ; then
 fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS} ${BUILD_ESSENTIAL} 
-
-
+${INSTALL_CMD} ${INSTALL_OPTIONS} ${COMMON_TOOLS}
 

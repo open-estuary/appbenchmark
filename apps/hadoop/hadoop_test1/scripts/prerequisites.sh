@@ -2,8 +2,6 @@
 
 . ${APP_ROOT}/toolset/setup/basic_cmd.sh
 
-exit 0
-
 #By default, it will use apt-get to install packages
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-y -q"
@@ -13,7 +11,7 @@ COMMON_TOOLS="tcl"
 #However it will use yum on other platforms such as CentOS
 if [ "$(which yum 2>/dev/null)" ] ; then 
     INSTALL_CMD="$(tool_add_sudo) yum install"
-    BUILD_ESSENTIAL="automake"
+    BUILD_ESSENTIAL="automake cmake curl mercurial maven cpio"
 fi
 
 if [ "$(which apt-get 2>/dev/null)" ] ; then
