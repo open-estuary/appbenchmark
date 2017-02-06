@@ -1,0 +1,21 @@
+{
+  "application": "PostgreSQL Performance Test",
+
+  "server_setup": [ {
+      "name": "PostgreSQL Server",
+      "download_url": "https://ftp.postgresql.org/pub/source/v9.6.1/postgresql-9.6.1.tar.gz",
+      "local_filename" : "postgresql-9.6.1.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "postgresql_build.sh",
+      "install_cmd": ""
+    }], 
+
+  "client_setup": [ {
+      "name": "PostgreSQL Benchmark Tools",
+      "download_url": "https://ftp.postgresql.org/pub/source/v9.6.1/postgresql-9.6.1.tar.gz",
+      "local_filename" : "postgresql-9.6.1.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "postgresql_build.sh",
+      "install_cmd": ""
+    }]
+}
