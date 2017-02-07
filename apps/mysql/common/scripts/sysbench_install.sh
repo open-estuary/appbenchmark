@@ -18,7 +18,7 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ "$(which sysbench > /dev/null)" ] ; then
+if [ "$(which sysbench 2>/dev/null)" ] ; then
     echo "sysbench has been built, so do nothing"
     echo "Build sysbench successfully"
     exit 0 
@@ -31,6 +31,11 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 echo "Finish build preparation......"
 
+if [ -z "$(which pip 2>/dev/null)" ] ; then
+    curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+pip install cram
+
 ######################################################################################
 # Build sysbench
 #####################################################################################
@@ -40,17 +45,19 @@ cd ${TARGET_DIR}/
 
 CONFIGURE_OPTIONS=""
 if [ $(uname -m) == "aarch64" ] ; then
-    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" --build=arm "
+    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" --build=aarch64-linux-gnu "
 fi
 
 ./autogen.sh
+sed -i 's/0x43)/0x41\ |\ 0x43)/g' configure
 ./configure ${CONFIGURE_OPTIONS}
 make
 $(tool_add_sudo) make install
 
 SYSBENCH_DB_DIR="${BASE_DIR}/apptests/sysbench/tests/db"
 mkdir -p ${SYSBENCH_DB_DIR}
-cp ./sysbench/tests/db/* ${SYSBENCH_DB_DIR}
+cp -fr ./sysbench/tests/db/* ${SYSBENCH_DB_DIR}
+cp -fr ./tests/include/oltp_legacy/*.lua ${SYSBENCH_DB_DIR}/
 cp ${APP_ROOT}/apps/mysql/common/config/*.lua ${SYSBENCH_DB_DIR}
 cp ${APP_ROOT}/apps/mysql/common/scripts/*.lua ${SYSBENCH_DB_DIR}
 echo "copy sysbench data to ${SYSBENCH_DB_DIR}"

@@ -23,7 +23,8 @@ default_table_size=100000
 
 if [ "$4" == "init" ] ; then
     #Step 1: Prepare data
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+        --db-driver=mysql \
         --oltp-test-mode=complex  \
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \

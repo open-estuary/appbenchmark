@@ -34,6 +34,14 @@ fi
 
 ${INSTALL_CMD} ${INSTALL_OPTIONS}  ${CURSES_LIB}
 
+if [ -z "$(which pip 2>/dev/null)" ] ; then
+    curl https://bootstrap.pypa.io/get-pip.py | python
+fi
+
+if [ -z "$(which cram 2>/dev/null)" ] ; then
+    pip install cram
+fi
+
 if [ "$(which yum)" ] ; then
     $(tool_add_sudo) yum install -y -q perl-ExtUtils-MakeMaker glibc-static
 fi

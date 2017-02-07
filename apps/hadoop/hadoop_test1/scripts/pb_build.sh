@@ -15,8 +15,6 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 #######################################################################################
 PROTOC_VERSION="$(protoc --version)"
 
-exit 0
-
 echo "${PROTOC_VERSION}"
 if [[ "${PROTOC_VERSION}" =~ "2.5.0" ]] ; then  
       echo "ProtoBuffer-2.5.0 has been built successfully"
@@ -46,5 +44,6 @@ $(tool_add_sudo) chmod 755 ./configure
 ./configure --prefix=/usr
 make -j32
 $(tool_add_sudo) make install
+$(tool_add_sudo) ldconfig
 popd > /dev/null
 ##########################################################################################

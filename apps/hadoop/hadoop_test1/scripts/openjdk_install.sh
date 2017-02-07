@@ -15,10 +15,10 @@ BRANCH_NAME="jdk8u"
 TARGET_FILE=${1}
 TARGET_DIR="/usr/local/openjdk/jvm/"
 
-#if [ "$(tool_check_exists /usr/local/openjdk/jvm/openjdk-1.8.0-internal/bin/java)"  == 0 ]; then
-#      echo "Openjdk-1.8 has been installed successfully"
-#      exit 0
-#fi
+if [ "$(tool_check_exists ${TARGET_DIR}/openjdk-1.8.0-internal/bin/java)"  == 0 ]; then
+      echo "Openjdk-1.8 has been installed successfully"
+      exit 0
+fi
 
 ####################################################################################
 # To install OpenJdk
