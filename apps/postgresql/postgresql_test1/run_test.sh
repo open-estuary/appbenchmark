@@ -14,6 +14,20 @@ fi
 source /etc/profile
 
 echo "Load system variables ..."
+CUR_DIR="$(cd `dirname $0`; pwd)"
+
+if [ ! -f /etc/sysctl.conf ] ; then
+    sudo touch /etc/sysctl.conf
+    sudo echo "#PostgreSQL Test Configuration" >> /etc/sysctl.conf
+    sudo cat ${CUR_DIR}/cofig/sysctl.conf >> /etc/sysctl.conf
+else 
+    CHECK_STR=$(grep "#PostgreSQL Test Configuration" /etc/sysctl.conf)
+    if [ -z "${CHECK_STR}" ] ; then
+        sudo cat ${CUR_DIR}/config/sysctl.conf >> /etc/sysctl.conf
+    fi
+fi 
+
+systcl -p
 
 echo "Initialize database firstly ......"
 PGHOME="/usr/local/postgresql"
