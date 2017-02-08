@@ -3,73 +3,73 @@
 #Define global APP_ROOT directory
 
 if [ -z "${1}" ] ; then
-    echo "Usage: ./run_test.sh <server ip>"
-    exit 0
+    echo "Try to connect local host(Note:Use ./run_test.sh <server IP> <pgbench> to connect non-local server"
+    IP="127.0.0.1"
+else
+    IP="${1}"
+    echo "Try to connect server-${IP}......"
 fi
 
-ip="${1}"
 
-echo "Try to connect server-${ip}......"
+source /etc/profile
 
-echo "Disable unused CPU..."
-./scripts/enable_cpus.sh 32 64 0
+echo "Load system variables ..."
 
-test_log_dir="/root/apptests/redis/"
+echo "Initialize database firstly ......"
+PGHOME="/usr/local/postgresql"
+PGPORT=5432
+TESTUSER='postgres'
+TESTDB='postgres'
 
-check_redis_benchmark() {
-    while [[ 1 ]]
-    do
-        is_running=$(ps -aux | grep redis-benchmark | grep -v grep)
-        if [ -z "${is_running}" ] ; then
-            return
-        else
-            echo "Wait for redis-benchmark done......"
-            sleep 60
-        fi
-    done
-} 
+TEST_TYPE="complex"
 
-echo "Stop irqbalance service firstly"
-service irqbalance stop
-#Bind network interrupt to specific cpus
-python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 15
+if [ x"${TEST_TYPE}" == x"basi" ] ; then
+    echo "Use pgbench to perform basic test(userid:${TESTUSER}, database:${TESTDB}) ......"
 
-max_inst=11
-cur_inst=1
+    CLIENT_NUM=128
+    TIME_PERIOD=60
+    SCALE=1
+    TRANSACTION_NUM=1
 
-while [[ ${cur_inst} -lt ${max_inst} ]] ; 
-do
+    echo "Intialize Test Database ..."
+    ${PGHOME}/bin/pgbench -h ${IP} -p ${PGPORT} -U ${TESTUSER} -i ${TESTDB} -s ${SCALE}
 
-start_cpu_num=1
-inst_num=${cur_inst}
-echo "Initialize database......"
-./scripts/init_test.sh init ${ip} ${start_cpu_num} ${inst_num} 
-mkdir -p ./log/${cur_inst}/
+    echo "Start Benchmark Test ..."
+    ${PGHOME}/bin/pgbench -h ${IP} -p ${PGPORT} -U ${TESTUSER} -n -c ${CLIENT_NUM} -s ${SCALE} -t ${TRANSACTION_NUM} -S -T ${TIME_PERIOD} ${TESTDB}
 
-echo "Short case" > ./redis_log_${cur_inst}
-./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 0 1
-check_redis_benchmark
-./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num} >> ./redis_log_${cur_inst}
+else 
+    
+    TESTUSER=`whoami`
+    echo "Use Pgbench tools to perform complex benchmark tests(userid:${TESTUSER}, database:pgbench,results)..."
+    
+    PGBENCH_TOOL_DIR="/usr/local/postgresql/pgbench-tools/"
+    TESTDIR="${HOME}/apptests/pgbench-tools"
+  
+    if [ ! -d ${TESTDIR} ] ; then
+        mkdir -p ${TESTDIR}
+    fi
+   
+    cp -fr ${PGBENCH_TOOL_DIR}/* ${TESTDIR}
+    pushd ${TESTDIR} > /dev/null
+    export PATH=${PGHOME}/bin:$PATH
 
-mkdir -p ./log/${cur_inst}/short
-mv ${test_log_dir}/redis_benchmark_log* ./log/${cur_inst}/short
+    #sed -i  's/setrandom/set\ random/g' tests/select.sql
+    sed -i 's/\\setrandom.*naccounts/\\set\ aid\ random(1,\ \:naccounts)/g' tests/select.sql
 
-echo "Basic case"
-./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 1 1
-check_redis_benchmark
-./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num} >> ./redis_log_${cur_inst}
+    dropdb -h ${IP} -p ${PGPORT} -U ${TESTUSER} results
+    dropdb -h ${IP} -p ${PGPORT} -U ${TESTUSER} pgbench
+    
+    createdb -h ${IP} -p ${PGPORT} -U ${TESTUSER} results
+    createdb -h ${IP} -p ${PGPORT} -U ${TESTUSER} pgbench
+    
+    psql -h ${IP} -p ${PGPORT} -U ${TESTUSER} -f ${PGBENCH_TOOL_DIR}/init/resultdb.sql -d results
 
-mkdir -p ./log/${cur_inst}/basic
-mv ${test_log_dir}/redis_benchmark_log* ./log/${cur_inst}/basic
+    ./newset "Initial Config"
+    ./runset 
+    
+    psql -h ${IP} -p ${PGPORT} -U ${TESTUSER}  -d results -f ${PGBENCH_TOOL_DIR}/reports/report.sql
 
-echo "Pipeline case"
-./scripts/init_test.sh test ${ip} ${start_cpu_num} ${inst_num} 1 100
-check_redis_benchmark
-./scripts/analysis_qps_lat.py ${test_log_dir} ${inst_num} >> ./redis_log_${cur_inst}
-
-mkdir -p ./log/${cur_inst}/pipeline
-mv ${test_log_dir}/redis_benchmark_log* ./log/${cur_inst}/pipeline
-
-let "cur_inst++"
-
-done
+    #To generate report agains
+    #./webreport
+    popd > /dev/null
+fi

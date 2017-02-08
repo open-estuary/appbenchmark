@@ -17,5 +17,14 @@
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "postgresql_build.sh",
       "install_cmd": ""
-    }]
+    }, 
+    {
+      "name": "Pgbench-tools",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "pgbench-tools_install.sh"
+    }
+    ]
 }

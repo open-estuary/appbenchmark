@@ -44,6 +44,10 @@ LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" ./configure --prefix=${INSTALL_DIR}
 LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" make world -j 64
 LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" make install-world
 
+if [ -z "$(grep ${INSTALL_DIR} /etc/profile)" ] ; then
+    sudo sed -i '$ a export PATH=$PATH:/usr/local/postgresql/bin' /etc/profile
+fi
+
 popd > /dev/null
 
 ##########################################################################################
