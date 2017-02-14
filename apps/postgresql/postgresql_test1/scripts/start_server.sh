@@ -101,6 +101,7 @@ ${PGHOME}/bin/psql -h 127.0.0.1 -p ${PGPORT} -U ${CURUSER} -d template1 << EOF
 CREATE DATABASE ${CURUSER} WITH OWNER ${CURUSER} ENCODING 'UTF8';
 CREATE USER ${TESTUSER} WITH PASSWORD 'postgres';
 CREATE DATABASE ${TESTUSER} WITH OWNER ${TESTUSER} ENCODING 'UTF8';
+CREATE EXTENSION pg_stat_statements;
 EOF
 
 #sudo sed -i 's/host.*all.*all.*trust/host\ all\ all\ 0\.0\.0\.0\/0\ md5/g' ${PGDATA}/pg_hba.conf

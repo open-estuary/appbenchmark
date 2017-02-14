@@ -13,10 +13,15 @@ SERVER_FILENAME=$1
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 INSTALL_DIR="/usr/local/postgresql"
 
-#######################################################################################
+####################################################################################
+if [ "$(which pg_config 2>/dev/null)" ] && [ -z "$(pg_config | grep '/usr/local/postgresql/bin')" ] ; then
+    echo "Another Postgresql has been installed, please remove it firstly"
+    exit 1
+fi
+
 if [ "$(tool_check_exists ${INSTALL_DIR}/bin/postgres)"  == 0 ]; then
-      echo "PostgreSQL has been built successfully"
-      exit 0
+    echo "PostgreSQL has been built successfully"
+    exit 0
 fi
 
 ####################################################################################
