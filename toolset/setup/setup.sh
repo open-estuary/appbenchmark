@@ -42,7 +42,14 @@ setup_app() {
     chmod 755 *
     
     mkdir ./common/
-    cp ${APP_ROOT}/apps/${app_name}/common/scripts/* ./common/
+    if [ -d "${APP_ROOT}/apps/${app_name}/common" ] ; then
+        cp ${APP_ROOT}/apps/${app_name}/common/scripts/* ./common/
+    fi
+     
+    if [ -d "${APP_ROOT}/apps/common/" ] ; then
+        cp ${APP_ROOT}/apps/common/scripts/* ./common/
+    fi    
+
     chmod 755 ./common/*
 
     echo "Begin to build ${app_name} under ${PACKAGE_BUILD_DIR}"
