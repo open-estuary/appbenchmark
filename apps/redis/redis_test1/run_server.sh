@@ -17,3 +17,6 @@ echo "Disable CPU 32~64"
 python ../../../toolset/perftools/miscs/set_ethirq_cpu_affinity.py 0 15
 ./scripts/start_server.sh ${start_cpu_num} ${end_cpu_num}
 #./scripts/init_server.sh 17 18
+
+echo "Please run './scripts/enable_cpus.sh 32 64 1' to enable other CPUs after test"
+

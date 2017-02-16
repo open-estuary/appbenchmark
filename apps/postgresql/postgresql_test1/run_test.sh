@@ -23,11 +23,12 @@ if [ ! -f /etc/sysctl.conf ] ; then
 else 
     CHECK_STR=$(grep "#PostgreSQL Test Configuration" /etc/sysctl.conf)
     if [ -z "${CHECK_STR}" ] ; then
+        sudo chmod 755 /etc/sysctl.conf 
         sudo cat ${CUR_DIR}/config/sysctl.conf >> /etc/sysctl.conf
     fi
 fi 
 
-systcl -p
+sudo sysctl -p
 
 echo "Initialize database firstly ......"
 PGHOME="/usr/local/postgresql"
@@ -36,20 +37,25 @@ TESTUSER='postgres'
 TESTDB='postgres'
 
 TEST_TYPE="complex"
+if [ "${2}" ] ; then
+    TEST_TYPE="${2}"
+fi
 
-if [ x"${TEST_TYPE}" == x"basi" ] ; then
+if [ x"${TEST_TYPE}" == x"basic" ] ; then
     echo "Use pgbench to perform basic test(userid:${TESTUSER}, database:${TESTDB}) ......"
 
     CLIENT_NUM=128
-    TIME_PERIOD=60
-    SCALE=1
-    TRANSACTION_NUM=1
+    TIME_PERIOD=7200
+    SCALE=40000
+    #TRANSACTION_NUM=1
+    REPORT_PERIOD=1
+    JOB_THREADS=128
 
     echo "Intialize Test Database ..."
     ${PGHOME}/bin/pgbench -h ${IP} -p ${PGPORT} -U ${TESTUSER} -i ${TESTDB} -s ${SCALE}
 
     echo "Start Benchmark Test ..."
-    ${PGHOME}/bin/pgbench -h ${IP} -p ${PGPORT} -U ${TESTUSER} -n -c ${CLIENT_NUM} -s ${SCALE} -t ${TRANSACTION_NUM} -S -T ${TIME_PERIOD} ${TESTDB}
+    ${PGHOME}/bin/pgbench -M prepared -n -r -h ${IP} -p ${PGPORT} -U ${TESTUSER} -P ${REPORT_PERIOD} -j ${JOB_THREADS} -c ${CLIENT_NUM} -s ${SCALE} -T ${TIME_PERIOD} ${TESTDB}
 
 else 
     

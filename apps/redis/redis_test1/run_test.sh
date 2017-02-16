@@ -73,3 +73,6 @@ mv ${test_log_dir}/redis_benchmark_log* ./log/${cur_inst}/pipeline
 let "cur_inst++"
 
 done
+
+echo "Enable unused CPU after test ..."
+./scripts/enable_cpus.sh 32 64 1

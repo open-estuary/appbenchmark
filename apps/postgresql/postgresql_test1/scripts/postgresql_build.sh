@@ -42,10 +42,15 @@ pushd ${BUILD_DIR} > /dev/null
 cd ${TARGET_DIR}/
 export USE_NAMED_POSIX_SEMAPHORES=1
 
-CFLAGS_VALUE="-O3 -flto" 
-#CFLAGS_VALUE="-O3 -flto -g -ggdb -fno-omit-frame-pointer" 
+if [ -f "/usr/local/bin/gcc" ] ; then
+    export PATH=/usr/local/bin:$PATH
+fi
 
-LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" ./configure --prefix=${INSTALL_DIR}
+#CFLAGS_VALUE="-O3 -flto" 
+#CFLAGS_VALUE="-O3 -flto -g -ggdb -fno-omit-frame-pointer" 
+CFLAGS_VALUE="-O3  -fno-omit-frame-pointer" 
+
+LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" ./configure --prefix=${INSTALL_DIR} --enable-dtrace DTRACEFLAGS='-64' 
 LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" make world -j 64
 LIBS=-lpthread CFLAGS="${CFLAGS_VALUE}" make install-world
 
