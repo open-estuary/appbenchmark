@@ -36,7 +36,7 @@ PGPORT=5432
 TESTUSER='postgres'
 TESTDB='postgres'
 
-TEST_TYPE="complex"
+TEST_TYPE="basic"
 if [ "${2}" ] ; then
     TEST_TYPE="${2}"
 fi
@@ -59,7 +59,7 @@ if [ x"${TEST_TYPE}" == x"basic" ] ; then
 
 else 
     
-    TESTUSER=`whoami`
+    #TESTUSER=`whoami`
     echo "Use Pgbench tools to perform complex benchmark tests(userid:${TESTUSER}, database:pgbench,results)..."
     
     PGBENCH_TOOL_DIR="/usr/local/postgresql/pgbench-tools/"

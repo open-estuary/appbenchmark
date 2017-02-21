@@ -1,0 +1,30 @@
+#!/bin/expect --
+
+set timeout 10
+
+set password [lindex $argv 0]
+set command [lindex $argv 1]
+set arguments [lindex $argv 2 end]
+
+spawn "$command" "$arguments"
+#spawn [lindex $argv 1 end]
+
+expect {
+    "*assword:*" {
+        send "$password\r"
+    }
+
+    "*assword for*" {
+        send "$password\r"
+    }
+
+    "*es/no)?" {
+        send "yes\r"
+    }
+    timeout {
+        puts "connect is timeout"
+        exit 1
+    }
+}
+
+
