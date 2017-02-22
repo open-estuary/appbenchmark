@@ -13,12 +13,6 @@ SERVER_FILENAME=$1
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 SUBBUILD_DIR="armbuild"
 
-if [ "${TARGET_DIR}" ] && [ "$(tool_check_exists ${LIB_INSTALL_DIR}/lib/libmysqlclient.so)"  == 0 ]; then
-    echo "Target:${TARGET_DIR}"
-    echo "AliSQL libs has been built successfully"
-    exit 0
-fi
-
 echo ""
 echo "##############################################################################"
 echo ""
