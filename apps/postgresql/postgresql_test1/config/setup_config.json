@@ -17,7 +17,16 @@
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "postgresql_build.sh",
       "install_cmd": ""
-    }], 
+    },
+    {
+      "name": "PgBouncer",
+      "download_url": "https://pgbouncer.github.io/downloads/files/1.7.2/pgbouncer-1.7.2.tar.gz",
+      "local_filename" : "pgbouncer-1.7.2.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "pgbouncer_build.sh",
+      "install_cmd": ""
+    }
+    ], 
 
   "client_setup": [ {
       "name": "PostgreSQL Benchmark Tools",

@@ -5,6 +5,12 @@ if [ -z "$(which stream 2>/dev/null)" ] ; then
     exit 0
 fi
 
+CPUCORES=`lscpu | grep "^CPU(s):" | awk '{$2 = $2 + 0; print $2}'`
+CUR_DIR=$(cd `dirname $0`; pwd)
+${CUR_DIR}/scripts/stream_test.sh ${CPUCORES}
+
+#The following commands are just listed here for references 
+exit 0
 
 #Basic commands
 #stream -P threads_num -M data_size -W warmup -N repetion_times
@@ -14,9 +20,6 @@ numactl  --localalloc stream -v 1 -M 200M -P 64 -N 10
 
 echo "Test V2 mode ..."
 numactl  --localalloc stream -v 2 -M 200M -P 64 -N 10
-
-#The following commands are just listed here for references 
-exit 0
 
 taskset -c 0   stream -v 2 -M 100M -P 1
 taskset -c 0-3 stream -v 2 -M 100M -P 4
