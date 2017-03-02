@@ -20,7 +20,7 @@ done
 
 #echo "mysql:${mysql_ports}"
 
-sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
+sysbench  ${BASE_DIR}/apptests/sysbench/tests/db/oltp.lua \
                  --oltp-table-size=100000 \
 		 --oltp-tables-count=8 \
 		 --mysql-db=sysbench \

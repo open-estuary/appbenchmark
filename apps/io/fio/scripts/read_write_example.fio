@@ -1,0 +1,16 @@
+
+
+[read-write]
+rw=rw
+rwmixread=50
+size=7g
+directory=/test
+fadvise_hint=0
+blocksize=8k
+direct=0
+numjobs=8
+nrfiles=1
+runtime=1h
+time_based
+exec_prerun=echo 3 > /proc/sys/vm/drop_caches
+

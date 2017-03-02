@@ -23,7 +23,8 @@ if [ "$4" == "init" ] ; then
     #default_table_count=100
 
     #Step 1: Prepare data
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+    --db-driver=mysql \
         --oltp-test-mode=complex  \
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \
@@ -32,11 +33,10 @@ if [ "$4" == "init" ] ; then
         --oltp-tables-count=${default_table_count} --rand-type=special --rand-spec-pct=100 \
         --num-threads=10 \
         --mysql-port=${PORT_ID} prepare
-    
-    exit 1
 
     #Step 2: Initialize tables
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/parallel_prepare.lua \
+    --db-driver=mysql \
         --oltp-test-mode=complex  \
         --mysql-host=$1 --mysql-db=sysbench \
         --mysql-password=$3 \

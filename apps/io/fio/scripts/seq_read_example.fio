@@ -1,0 +1,14 @@
+[seq-read]
+rw=read
+size=56g
+directory=/test
+fadvise_hint=0
+blocksize=8k
+direct=0
+numjobs=1
+nrfiles=1
+runtime=1h
+time_based
+exec_prerun=echo 3 > /proc/sys/vm/drop_caches
+
+

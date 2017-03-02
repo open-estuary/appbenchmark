@@ -18,7 +18,8 @@ BASE_DIR=$(cd ~; pwd)
 while ((i<=${active}))
 do 
     echo ${i}
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
+    --db-driver=mysql \
              --tx-rate=100 --oltp-test-mode=complex --oltp-read-only=${read_only} \
              --mysql-host=${ip} --mysql-db=sysbench --mysql-password=${password} \
              --max-requests=0 --mysql-user=${user} \
@@ -35,7 +36,8 @@ i=1
 while ((i<=${unactive}))
 do 
     echo "start unactive test${i}"
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/${scripts}.lua \
+    --db-driver=mysql \
              --tx-rate=10 --oltp-test-mode=complex --oltp-read-only=${read_only} \
              --mysql-host=${ip} --mysql-db=sysbench --mysql-password=${password}  \
              --max-requests=0 --mysql-user=root \

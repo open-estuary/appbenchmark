@@ -29,7 +29,7 @@ fi
 
 #echo "mysql:${mysql_ports}"
 
-sysbench  --test=${BASE_DIR}/apptests/sysbench/tests/db/readwrite.lua \
+sysbench  ${BASE_DIR}/apptests/sysbench/tests/db/readwrite.lua \
                  --oltp-table-size=${table_size} \
 		 --oltp-tables-count=${table_count} \
 		 --mysql-db=sysbench \

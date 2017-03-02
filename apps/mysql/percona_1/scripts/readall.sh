@@ -9,7 +9,8 @@ BASE_DIR=$(cd ~; pwd)
 while ((i<=${total}))
 do 
     echo ${i}
-    sysbench --test=${BASE_DIR}/apptests/sysbench/tests/db/readall.lua \
+    sysbench ${BASE_DIR}/apptests/sysbench/tests/db/readall.lua \
+    --db-driver=mysql \
              --oltp-test-mode=complex --oltp-read-only=on --mysql-host=${1} \
              --mysql-db=sysbench --mysql-password=${3}  \
              --max-requests=1 --mysql-user=${2} --mysql-table-engine=innodb \
