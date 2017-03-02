@@ -1,0 +1,61 @@
+{
+  "application": "MariaDB Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "libaio_0_3_110",
+      "download_url": "http://libaio.sourcearchive.com/downloads/0.3.110-2/libaio_0.3.110.orig.tar.gz",
+      "local_filename" : "libaio_0.3.110.orig.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "common/libaio_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+      "name": "MaraDB",
+      "download_url": "http://sfo1.mirrors.digitalocean.com/mariadb//mariadb-10.1.21/source/mariadb-10.1.21.tar.gz",
+      "local_filename" : "mariadb-10.1.21.tar.gz",
+      "pre_install_cmd" : "prerequisites.sh",
+      "build_cmd": "mariadb_build.sh",
+      "install_cmd": ""
+    },  
+    {
+      "name": "Orzdba",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/orzdba_install.sh"
+    }], 
+
+  "client_setup": [ 
+    {
+      "name": "libaio_0_3_110",
+      "download_url": "http://libaio.sourcearchive.com/downloads/0.3.110-2/libaio_0.3.110.orig.tar.gz",
+      "local_filename" : "libaio_0.3.110.orig.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "common/libaio_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+      "name": "Percona_client_libs",
+      "download_url": "http://sfo1.mirrors.digitalocean.com/mariadb//mariadb-10.1.21/source/mariadb-10.1.21.tar.gz",
+      "local_filename" : "mariadb-10.1.21.tar.gz",
+      "pre_install_cmd": "client_prerequisites.sh",
+      "build_cmd": "mariadb_build.sh",
+      "install_cmd": "mariadb_install_client.sh"
+    }, {
+      "name": "sysbench",
+      "download_url": "https://github.com/akopytov/sysbench/archive/1.0.tar.gz",
+      "local_filename" : "sysbench-1.0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/sysbench_install.sh"
+    }, {
+      "name": "benchmarktools",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": ""
+    }]
+}
