@@ -42,11 +42,11 @@ cd ../
 if [ x$(uname -m) == x"aarch64" ] ; then
     echo "Apply bug fix for arm64 platform ......"
 
-#    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_ali_2/bugfix/percona_5_6_25/storage/innobase/include/sync0sync.ic \
+#    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_2/bugfix/percona_5_6_25/storage/innobase/include/sync0sync.ic \
 #        ./storage/innobase/include/sync0sync.ic
 
 
-#    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_ali_2/bugfix/percona_5_7_14/storage/innobase/include/ib0mutex.h \
+#    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_2/bugfix/percona_5_7_14/storage/innobase/include/ib0mutex.h \
 #        ./storage/innobase/include/ib0mutex.h
 
 fi

@@ -10,11 +10,14 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
-echo "Start Percona Server ......"
+echo "Start to setup server"
+CUR_DIR=$(cd `dirname $0`; pwd)
+${CUR_DIR}/setup.sh server
 
+echo "Start Percona Server ......"
 if [ $# -lt 1 ] ; then 
     echo "Start single server ......"
-    ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/run_single_server.sh
+    ${APP_ROOT}/apps/mysql/percona_2/scripts/run_single_server.sh
 else 
     if [ $# -lt 2 ] ; then 
         echo "Usage : ./run_servers.sh {init | start} <inst_num>" 
@@ -31,8 +34,8 @@ else
     max_inst=${2}
     while [[ ${cur_inst} -lt ${max_inst} ]] 
     do
-        #echo "${APP_ROOT}/apps/mysql/percona_ali_2/scripts/run_single_server.sh ${cur_inst} $@" >> ${tmp_mysql_init_file}
-        ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/run_single_server.sh ${cur_inst} ${1}
+        #echo "${APP_ROOT}/apps/mysql/percona_2/scripts/run_single_server.sh ${cur_inst} $@" >> ${tmp_mysql_init_file}
+        ${APP_ROOT}/apps/mysql/percona_2/scripts/run_single_server.sh ${cur_inst} ${1}
         let "cur_inst++"
     done
 

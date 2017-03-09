@@ -78,7 +78,7 @@ popd > /dev/null
 
 # Step 2: Install orzdba
 # Use local orzdba version which has minor modification
-$(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/orzdba.pl ${INSTALL_DIR}/orzdba
+$(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_2/scripts/orzdba.pl ${INSTALL_DIR}/orzdba
 $(tool_add_sudo) chmod 755 ${INSTALL_DIR}/orzdba
 
 popd > /dev/null

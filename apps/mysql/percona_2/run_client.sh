@@ -10,6 +10,9 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
+echo "Start to setup client"
+CUR_DIR="$(cd `dirname $0`; pwd)"
+${CUR_DIR}/setup.sh client
 
 #ip="192.168.1.187"
 
@@ -28,7 +31,7 @@ if [ $# -ge 2 ] ; then
 
    inst_num=${2}
    if [ "x${1}" == "xtest" ] ; then
-      ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/start_client.sh ${ip} \
+      ${APP_ROOT}/apps/mysql/percona_2/scripts/start_client.sh ${ip} \
                ${userid} ${password} ${1} ${inst_num}
    else    
 
@@ -36,7 +39,7 @@ if [ $# -ge 2 ] ; then
        cur_inst=0
        while [[ ${cur_inst} -lt ${inst_num} ]]
        do
-           ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/start_client.sh ${ip} \
+           ${APP_ROOT}/apps/mysql/percona_2/scripts/start_client.sh ${ip} \
                ${userid} ${password} ${1} ${port_num}
            let "port_num++"
            let "cur_inst++"
@@ -44,7 +47,7 @@ if [ $# -ge 2 ] ; then
    fi
 else 
     #Include common setup utility functions
-    ${APP_ROOT}/apps/mysql/percona_ali_2/scripts/start_client.sh ${ip} \
+    ${APP_ROOT}/apps/mysql/percona_2/scripts/start_client.sh ${ip} \
             ${userid} ${password} ${1} 
 fi
 

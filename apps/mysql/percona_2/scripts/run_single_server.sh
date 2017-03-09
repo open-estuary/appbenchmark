@@ -11,4 +11,4 @@ fi
 export APP_ROOT=${APP_ROOT}
 
 #Include common setup utility functions
-${APP_ROOT}/apps/mysql/percona_ali_2/scripts/start_server.sh $@
+${APP_ROOT}/apps/mysql/percona_2/scripts/start_server.sh $@

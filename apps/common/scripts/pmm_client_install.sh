@@ -7,7 +7,7 @@ source ${BASE_DIR}/.bashrc
 
 ######################################################################################
 # Notes:
-#  To build and sysbench
+#  To build and pmm-client
 #
 #####################################################################################
 
@@ -18,11 +18,11 @@ TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 ####################################################################################
 # Prepare for build
 ####################################################################################
-#if [ "$(which sysbench)" ] ; then
-#    echo "sysbench has been built, so do nothing"
-#    echo "Build sysbench successfully"
-#    exit 0 
-#fi
+if [ "$(which pmm-client 2>/dev/null)" ] ; then
+    echo "pmm-client has been built, so do nothing"
+    echo "Build pmm-client successfully"
+    exit 0 
+fi
 
 $(tool_add_sudo) rm -fr ${BUILD_DIR}/${TARGET_DIR}*
 mkdir -p ${BUILD_DIR}
@@ -30,31 +30,20 @@ tar -zxvf ${SERVER_FILENAME} -C ${BUILD_DIR}
 TARGET_DIR=$(tool_get_first_dirname ${BUILD_DIR})
 
 echo "Finish build preparation......"
-
 ######################################################################################
-# Build sysbench
+# Build pmm-client
 #####################################################################################
 #Build Step 1: auto generation
 pushd ${BUILD_DIR} > /dev/null
 cd ${TARGET_DIR}/
 
-CONFIGURE_OPTIONS=""
-if [ $(uname -m) == "aarch64" ] ; then
-    CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" --build=arm "
-fi
+sed -i 's/x86_64/aarch64/g' ./scripts/*
+sed -i 's/amd64/aarch64/g' ./scripts/*
 
-./autogen.sh
-./configure ${CONFIGURE_OPTIONS}
-make
+
 $(tool_add_sudo) make install
 
-SYSBENCH_DB_DIR="${BASE_DIR}/apptests/sysbench/tests/db"
-mkdir -p ${SYSBENCH_DB_DIR}
-cp ./sysbench/tests/db/* ${SYSBENCH_DB_DIR}
-cp ${APP_ROOT}/apps/mysql/percona_2/config/*.lua ${SYSBENCH_DB_DIR}
-
-echo "copy sysbench data to ${SYSBENCH_DB_DIR}"
 popd > /dev/null
 
-echo "Build sysbench completed"
+echo "Build pmm-client completed"
 

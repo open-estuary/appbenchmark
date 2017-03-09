@@ -49,7 +49,7 @@ if [ $(uname -m) == "aarch64" ] ; then
     CONFIGURE_OPTIONS=${CONFIGURE_OPTIONS}" -build=arm "
 
     #Add bug fix for arm platform
-    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_ali_2/bugfix/tcprstat/src/tcprstat.c \
+    $(tool_add_sudo) cp ${APP_ROOT}/apps/mysql/percona_2/bugfix/tcprstat/src/tcprstat.c \
             ./src/tcprstat.c 
 fi
 

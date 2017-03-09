@@ -58,5 +58,12 @@
       "pre_install_cmd": "",
       "build_cmd": "",
       "install_cmd": "common/sysbench_install.sh"
-    }]
+    }, {
+      "name": "Tpcc-MySQL",
+      "download_url":"",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/percona_tpcc_build.sh"
+    } ]
 }

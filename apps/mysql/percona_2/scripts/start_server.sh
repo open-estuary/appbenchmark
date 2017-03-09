@@ -73,7 +73,7 @@ initialize_mysql_inst() {
         fi
     fi
 
-    $(tool_add_sudo) cp -f ${APP_ROOT}/apps/mysql/percona_ali_2/config/${config_file} /etc/my_${inst_num}.conf
+    $(tool_add_sudo) cp -f ${APP_ROOT}/apps/mysql/percona_2/config/${config_file} /etc/my_${inst_num}.conf
     sed -i "s/u01/u01\/u${inst_num}/g" /etc/my_${inst_num}.conf
     new_port=3306
     let "new_port+=${inst_num}"

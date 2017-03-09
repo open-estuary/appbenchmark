@@ -58,5 +58,12 @@
       "pre_install_cmd": "",
       "build_cmd": "",
       "install_cmd": "common/sysbench_install.sh"
-    }]
+    }, {
+      "name": "percona_mointor_tools",
+      "download_url": "https://www.percona.com/downloads/pmm-client/pmm-client-1.1.1/source/tarball/pmm-client-1.1.1.tar.gz",
+      "local_filename" : "pmm-client.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/pmm_client_install.sh"
+    }]  
 }
