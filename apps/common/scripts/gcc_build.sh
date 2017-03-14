@@ -30,16 +30,17 @@ echo "Finish build preparation......"
 
 INSTALL_CMD="yum install"
 if [ -z "$(which yum 2>/dev/null)" ] ; then
-    INSTALL_CMD="apt-get insall"
+    INSTALL_CMD="apt-get install"
 fi
 
-sudo ${INSALL_CMD} -y texinfo gcc-gnat
+sudo ${INSTALL_CMD} -y texinfo gcc-gnat
 
 ######################################################################################
 # Build gcc
 #####################################################################################
 
-unset LD_LIBRARY_PATH
+unset LD_LIBRARY_PATH LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE
+
 #Build Step 1: auto generation
 
 general_build_install() {
@@ -67,6 +68,11 @@ cd build_arm
 
 make -j 64
 make install
+
+if [ ! -f /usr/local/bin/gcc ] ; then
+    echo "Fail to build gcc "
+    exit 1
+fi
 
 popd > /dev/null
 
