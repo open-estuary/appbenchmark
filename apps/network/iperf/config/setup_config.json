@@ -1,0 +1,21 @@
+{
+  "application": "Stream Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "iperf",
+      "download_url": "http://nchc.dl.sourceforge.net/project/iperf/iperf-2.0.5.tar.gz",
+      "local_filename" : "iperf-2.0.5.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "iperf_install.sh"
+    } ],
+  "client_setup": [ {
+      "name": "iperf",
+      "download_url": "http://nchc.dl.sourceforge.net/project/iperf/iperf-2.0.5.tar.gz",
+      "local_filename" : "iperf-2.0.5.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "iperf_install.sh"
+    }]
+}

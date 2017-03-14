@@ -1,0 +1,21 @@
+{
+  "application": "Stream Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "netperf",
+      "download_url": "ftp://ftp.netperf.org/netperf/netperf-2.7.0.tar.gz",
+      "local_filename" : "netperf-2.7.0.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "netperf_install.sh"
+    } ],
+  "client_setup": [ {
+      "name": "netperf",
+      "download_url": "ftp://ftp.netperf.org/netperf/netperf-2.7.0.tar.gz",
+      "local_filename" : "netperf-2.7.0.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "netperf_install.sh"
+    }]
+}
