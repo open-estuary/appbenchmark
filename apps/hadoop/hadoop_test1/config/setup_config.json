@@ -8,7 +8,7 @@
       "local_filename" : "jdk8u-server-release.tar.xz",
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "",
-      "install_cmd": "openjdk_install.sh"
+      "install_cmd": "common/openjdk_install.sh"
     },
     {
       "name": "ProtoBuffer",
