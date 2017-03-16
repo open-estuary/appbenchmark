@@ -12,6 +12,7 @@ LOG_DIR="/u01/mongodb/log"
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
 echo never > /sys/kernel/mm/transparent_hugepage/defrag
 echo 0 > /proc/sys/kernel/numa_balancing
+echo 0 > /proc/sys/vm/zone_reclaim_mode
 
 #2. Readahead was reduced to 64 blocks
 echo "It is assumed that the data will be stored into /dev/sda"
