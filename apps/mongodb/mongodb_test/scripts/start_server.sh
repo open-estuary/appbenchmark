@@ -36,4 +36,25 @@ fi
 ##########################################################################
 # Start Server
 ##########################################################################
-numactl --interleave=all ${MONGODBHOME}/bin/mongod -f /etc/mongod.conf
+enable_auth=0
+
+if [ ${enable_auth} -eq 0 ] ; then
+  ##########################################################################
+  # Just disable auth during performance test because YCSB doesn't support that yet
+  ##########################################################################
+  sed -i 's/authorization:\.*enabled/authorization:\ disabled/g' /etc/mongod.conf
+  numactl --interleave=all ${MONGODBHOME}/bin/mongod -f /etc/mongod.conf
+else
+  #Disabled during first startup
+  sed -i 's/authorization:\ .*enabled/authorization:\ disabled/g' /etc/mongod.conf
+  sudo cp ${CUR_DIR}/../config/mongod.conf /etc/
+  numactl --interleave=all ${MONGODBHOME}/bin/mongod -f /etc/mongod.conf
+
+  #Setup root account
+  ${MONGODBHOME}/bin/mongo admin ${CUR_DIR}/createroot.js
+
+  echo "Start MongoDB with Auth (root, Estuary12#$)..."
+  sed -i 's/authorization:\ disabled/authorization:\ enabled/g' /etc/mongod.conf
+  numactl --interleave=all ${MONGODBHOME}/bin/mongod -f /etc/mongod.conf
+fi
+

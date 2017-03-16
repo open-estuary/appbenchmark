@@ -10,6 +10,7 @@ MONGOBIN="/usr/local/mongodb/bin"
 IP=${1}
 PORT=${2}
 THREADS=${3}
+
 TESTDB="ycsb"
 
 CUR_DIR=$(cd `dirname $0`; pwd)
@@ -40,8 +41,8 @@ do
     #Make sure database have been cleared before each test
     ${MONGOBIN}/mongo ${IP}:${PORT}/${TESTDB} ${CUR_DIR}/delete_ycsb.js
 
-    ./bin/ycsb load mongodb -s -threads ${THREADS} -p mongodb.url=mongodb://${IP}:${PORT}/${TESTDB} -p batchsize=100 -P ${MONGODATA_HOME}/workloads/workload${casename}
-    ./bin/ycsb run mongodb -s -threads ${THREADS} -p mongodb.url=mongodb://${IP}:${PORT}/${TESTDB} -p batchsize=100 -P  ${MONGODATA_HOME}/workloads/workload${casename} > ${TEST_RESULT}/test_${casename}_result
+    ./bin/ycsb load mongodb -s -threads ${THREADS} -p mongodb.url=mongodb://${IP}:${PORT}/${TESTDB}  -P ${MONGODATA_HOME}/workloads/workload${casename}
+    ./bin/ycsb run mongodb -s -threads ${THREADS} -p mongodb.url=mongodb://${IP}:${PORT}/${TESTDB}  -P  ${MONGODATA_HOME}/workloads/workload${casename} > ${TEST_RESULT}/test_${casename}_result
 done
 
 popd > /dev/null
