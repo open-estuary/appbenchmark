@@ -1,0 +1,57 @@
+{
+  "application": "PostgreSQL Performance Test",
+
+  "server_setup": [ 
+    {
+      "name": "Cassandra Cluter Manager",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "",
+      "build_cmd": "ccm_build.sh",
+      "install_cmd": ""
+    }, 
+    {
+      "name": "OpenJDK",
+      "download_url": "http://openjdk.linaro.org/releases/jdk8u-server-release-1609.tar.xz",
+      "local_filename" : "jdk8u-server-release.tar.xz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "common/openjdk_install.sh"
+    },
+    {
+      "name": "Cassandra",
+      "download_url": "http://archive.apache.org/dist/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz",
+      "local_filename" : "apache-cassandra-3.10-bin.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "cassandra_install.sh"
+    },
+    {
+      "name": "Jemalloc",
+      "download_url": "https://github.com/jemalloc/jemalloc/archive/4.5.0.tar.gz",
+      "local_filename" : "jemalloc-4.5.0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/jemalloc_install.sh"
+    }
+    ], 
+
+  "client_setup": [ 
+    {
+      "name": "OpenJDK",
+      "download_url": "http://openjdk.linaro.org/releases/jdk8u-server-release-1609.tar.xz",
+      "local_filename" : "jdk8u-server-release.tar.xz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "",
+      "install_cmd": "common/openjdk_install.sh"
+    }, 
+    {
+      "name": "Cassandra Client",
+      "download_url": "http://archive.apache.org/dist/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz",
+      "local_filename" : "apache-cassandra-3.10-bin.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "cassandra_install.sh"
+    }
+  ]
+}
