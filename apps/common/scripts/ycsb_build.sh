@@ -4,7 +4,7 @@
 
 ######################################################################################
 # Notes:
-#  To build MongoDB-YCSD
+#  To build YCSD
 #
 #####################################################################################
 
@@ -15,7 +15,7 @@ INSTALL_DIR="/usr/local/ycsb"
 
 ####################################################################################
 if [ "$(tool_check_exists ${INSTALL_DIR}/ycsb_data/ycsb-mongodb/workloads/workloada)"  == 0 ]; then
-    echo "MongoDB-YCSD has been built successfully"
+    echo "YCSD has been built successfully"
     exit 0
 fi
 

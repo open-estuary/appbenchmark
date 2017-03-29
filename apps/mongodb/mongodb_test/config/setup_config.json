@@ -51,7 +51,7 @@
       "download_url": "https://github.com/brianfrankcooper/YCSB/releases/download/0.12.0/ycsb-0.12.0.tar.gz",
       "local_filename" : "ycsb-0.12.0.tar.gz",
       "pre_install_cmd": "prerequisites_client.sh",
-      "build_cmd": "ycsb_build.sh",
+      "build_cmd": "common/ycsb_build.sh",
       "install_cmd": ""
     }, 
     {

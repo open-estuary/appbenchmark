@@ -52,6 +52,14 @@
       "pre_install_cmd": "",
       "build_cmd": "",
       "install_cmd": "cassandra_install.sh"
+    },
+    {
+      "name": "YCSB(Yahoo Cloud Serving Benchmark)",
+      "download_url": "https://github.com/brianfrankcooper/YCSB/releases/download/0.12.0/ycsb-0.12.0.tar.gz",
+      "local_filename" : "ycsb-0.12.0.tar.gz",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "common/ycsb_build.sh",
+      "install_cmd": ""
     }
   ]
 }
