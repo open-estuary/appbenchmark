@@ -1,5 +1,5 @@
 {
-  "application": "PostgreSQL Performance Test",
+  "application": "Cassandra Performance Test",
 
   "server_setup": [ 
     {

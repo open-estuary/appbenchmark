@@ -1,15 +1,7 @@
 {
-  "application": "MongoDB Performance Test",
+  "application": "Ceph Performance Test",
 
-  "server_setup": [
-    {
-      "name": "SCons",
-      "download_url": "http://sourceforge.net/projects/scons/files/scons-src/2.5.1/scons-src-2.5.1.tar.gz",
-      "local_filename" : "scons-src-2.5.1.tar.gz",
-      "pre_install_cmd": "",
-      "build_cmd": "common/scons_build.sh",
-      "install_cmd": ""
-    },
+  "server_setup": [ 
     {
       "name": "gcc5.3 or newer",
       "download_url": "http://mirrors.ustc.edu.cn/gnu/gcc/gcc-5.4.0/gcc-5.4.0.tar.gz",
@@ -17,25 +9,24 @@
       "pre_install_cmd": "",
       "build_cmd": "common/gcc_build.sh",
       "install_cmd": ""
+   }, 
+   {
+      "name": "Ceph",
+      "download_url": "",
+      "local_filename" : "",
+      "pre_install_cmd": "prerequisites.sh",
+      "build_cmd": "ceph_build.sh",
+      "install_cmd": ""
     }, 
     {
-      "name": "Clang",
+      "name": "Ceph Deploy",
       "download_url": "",
       "local_filename" : "",
       "pre_install_cmd": "",
-      "build_cmd": "common/clang_build.sh",
-      "install_cmd": ""
-    }, 
-    {
-      "name": "MongoDB Server",
-      "download_url": "",
-      "local_filename" : "",
-      #"download_url": "https://github.com/mongodb/mongo/archive/r3.4.0.tar.gz",
-      #"local_filename" : "mongodb-3.4.tar.gz",
-      "pre_install_cmd": "prerequisites.sh",
-      "build_cmd": "mongodb_build.sh",
-      "install_cmd": ""
-    } ], 
+      "build_cmd": "",
+      "install_cmd": "ceph_deploy_build.sh"
+    }
+    ], 
 
   "client_setup": [ 
     {
@@ -45,22 +36,22 @@
       "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "",
       "install_cmd": "common/openjdk_install.sh"
+    }, 
+    {
+      "name": "Ceph Client",
+      "download_url": "http://archive.apache.org/dist/ceph/3.10/apache-ceph-3.10-bin.tar.gz",
+      "local_filename" : "apache-ceph-3.10-bin.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "ceph_install.sh"
     },
     {
       "name": "YCSB(Yahoo Cloud Serving Benchmark)",
       "download_url": "https://github.com/brianfrankcooper/YCSB/releases/download/0.12.0/ycsb-0.12.0.tar.gz",
       "local_filename" : "ycsb-0.12.0.tar.gz",
-      "pre_install_cmd": "prerequisites_client.sh",
+      "pre_install_cmd": "prerequisites.sh",
       "build_cmd": "common/ycsb_build.sh",
       "install_cmd": ""
-    }, 
-    {
-      "name": "MongoDB-tools",
-      "download_url": "",
-      "local_filename" : "",
-      "pre_install_cmd": "",
-      "build_cmd": "",
-      "install_cmd": "mongodb-tools_install.sh"
     }
-    ]
+  ]
 }

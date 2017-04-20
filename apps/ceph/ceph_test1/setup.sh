@@ -15,6 +15,6 @@ if [ $# -lt 1 ]; then
     exit 0
 fi
 
-#call setup utility to setup Cassandra
-${APP_ROOT}/toolset/setup/setup.sh "cassandra" "cassandra_test1" "setup_config.json" ${1}
+#call setup utility to setup Ceph
+${APP_ROOT}/toolset/setup/setup.sh "ceph" "ceph_test1" "setup_config.json" ${1}
 

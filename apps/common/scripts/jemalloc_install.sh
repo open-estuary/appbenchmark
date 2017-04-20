@@ -19,7 +19,7 @@ INSTALL_DIR="/usr/local/jemalloc"
 ####################################################################################
 # Prepare for build
 ####################################################################################
-if [ "$(which jemalloc 2>/dev/null)" ] ; then
+if [ -f "${INSTALL_DIR}/lib/libjemalloc.a" ] ; then
     echo "jemalloc has been built, so do nothing"
     echo "Build jemalloc successfully"
     exit 0 
