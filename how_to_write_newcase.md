@@ -1,15 +1,15 @@
 * [Introduction](#1)
-* [](#2)
+* [Benchmark Test Scripts Guidelines](#2)
 * [Others](#3)
 
 ## <a name="1">Introduction</a>
 This document will describe how to write new test cases for each application.
 
-## <a name="2">Build</a>
-Let''s suppose that we want to write test case for `packageA`
+## <a name="2">Benchmark Test Scripts Guidelines</a>
+Let's suppose that we want to write test case for `packageA`
 
 ### File Strucutes Overview ###
-Usually the fillowing files and directories need to be prepared:
+Usually the fillowing files and directories need to be prepared for `packageA`:
 ```
 apps
 ├── packageA
