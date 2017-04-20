@@ -18,7 +18,7 @@ Currently the following applications have been supported so far :
 - MySQL(Percona Server)
   - Test Case 1(1 large instance test which focus on latency) [ ]
 - AliSQL
-  - Test Case 1(200 small instances test) [ ]
+  - Test Case 1(200 small instances test) []
   - Test Case 2(5 middle instances test) []
 - MariaDB
 - PostgreSQL
@@ -27,5 +27,5 @@ Currently the following applications have been supported so far :
 - Ceph
                                            
 ## <a name="3">Others</a>
-- As for how to write new test case for applications, please refer to []
-- Any Questions, please 
+- As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/sjtuhjh/appbenchmark/edit/master/how_to_write_newcase.md)
+
