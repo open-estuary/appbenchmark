@@ -10,18 +10,24 @@ Let''s suppose that we want to write test case for `packageA`
 
 ### File Strucutes Overview ###
 Usually the fillowing files and directories need to be prepared:
-   *[apps](./apps)
-    *[packageA](./apps/packageA)
-      *[packageA_test1)(./apps/packageA/packageA_test1)
-       *[setup.sh](./apps/packageA/packageA_test1/setup.sh)
-       *[run_server.sh](./apps/packageA/packageA_test1/run_server.sh)
-       *[run_client.sh](./apps/packageA/packageA_test1/run_client.sh)
-       *[run_test.sh](./apps/packageA/packageA_test1/run_test.sh)
-       *[config](./apps/packageA/packageA_test1/config)
-         *[setup_config.json](./apps/packageA/packageA_test1/config/setup_config.json)
-       *[scripts](./apps/packageA/packageA_test1/scripts)
-         *[build/setup_package.sh](./apps/packageA/packageA_test1/scripts/build_setuppackage.sh)
+```
+apps
+├── packageA
+│   └── packageA_test1
+│       ├── config
+│       │   └── setup_config.json
+│       ├── run_test.sh
+│       ├── run_client.sh
+│       ├── run_server.sh
+│       ├── scripts
+│       │   ├── xxx_install.sh
+│       │   ├── prerequisites.sh
+│       │   ├── start_server.sh
+│       │   └── start_client.sh
+│       ├── setup.sh
+│       └── stop.sh
 
+```
 ### Test Setup Scripts
 The `setup.sh` will calls the corresponding `setup_config.json` to setup server and client sides.
 There are some guidelines to help write `setup_config.json` properly as follows:
