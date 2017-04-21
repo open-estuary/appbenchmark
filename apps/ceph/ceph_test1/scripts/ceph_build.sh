@@ -7,7 +7,7 @@
 #  To build Ceph
 #
 #####################################################################################
-
+CUR_FILE_DIR=$(cd `dirname $0`; pwd)
 BUILD_DIR="./builddir_ceph"
 INSTALL_DIR="/usr/local"
 VERSION="v12.0.1"
@@ -26,21 +26,35 @@ pushd ${BUILD_DIR} > /dev/null
 
 export CC=/usr/local/bin/gcc
 export CXX=/usr/local/bin/g++
+export LD_LIBRARY_PATH=/usr/local/lib64
 
 git clone --recursive https://github.com/ceph/ceph.git
 cd ceph
 git checkout --f ${VERSION}
-git submodule update --force --init --recursive
+#git submodule update --force --init --recursive
 
+# Replace x86_64 with aarch64
+sed -i 's/x86_64/aarch64/g' install-deps.sh
 ./install-deps.sh
+
+############## Warning ##############################################################
+# Currently the leveldb installed via public way could not work properly 
+# So we re-build leveldb
+#####################################################################################
+${CUR_FILE_DIR}/leveldb_build.sh
+
 if [ -z "$(grep 'mtune=generic' CMakeLists.txt)" ] ; then
     echo 'set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv8-a+crc -mtune=generic")' >> CMakeLists.txt
     echo 'set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=armv8-a+crc -mtune=generic")' >> CMakeLists.txt
 fi
-mkdir build
+
+if [ -d ./build ] ; then
+    rm -fr ./build
+fi 
+./do_cmake.sh
 cd build
-cmake ..
-make -j 64
+#cmake ..
+make -j 10
 make install
 
 popd > /dev/null
