@@ -9,7 +9,7 @@ This document will describe how to write new test cases for each application.
 Let's suppose that we want to write test case for `packageA`
 
 ### File Strucutes Overview ###
-Usually the fillowing files and directories need to be prepared for `packageA`:
+Usually the following files and directories need to be prepared for `packageA`:
 ```
 apps
 ├── packageA
