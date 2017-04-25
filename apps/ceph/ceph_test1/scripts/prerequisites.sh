@@ -6,7 +6,7 @@
 INSTALL_CMD="$(tool_add_sudo) apt-get install"
 INSTALL_OPTIONS="-y "
 
-COMMON_ESSENTIAL="cmake gcc make python2-pip"
+COMMON_ESSENTIAL="python2-pip"
 
 #However it will use yum on other platforms such as CentOS
 

@@ -3,19 +3,11 @@
 
   "server_setup": [ 
     {
-      "name": "gcc5.3 or newer",
-      "download_url": "http://mirrors.ustc.edu.cn/gnu/gcc/gcc-5.4.0/gcc-5.4.0.tar.gz",
-      "local_filename" : "gcc-5.4.0.tar.gz",
-      "pre_install_cmd": "",
-      "build_cmd": "common/gcc_build.sh",
-      "install_cmd": ""
-   }, 
-   {
       "name": "Ceph",
       "download_url": "",
       "local_filename" : "",
       "pre_install_cmd": "prerequisites.sh",
-      "build_cmd": "ceph_build.sh",
+      "build_cmd": "",
       "install_cmd": ""
     }, 
     {
@@ -24,7 +16,7 @@
       "local_filename" : "",
       "pre_install_cmd": "",
       "build_cmd": "",
-      "install_cmd": "ceph_deploy_build.sh"
+      "install_cmd": "ceph_deploy_install.sh"
     }
     ], 
 
