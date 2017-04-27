@@ -1,77 +1,92 @@
 #!/bin/bash
 
-BASE_DIR=$(cd ~; pwd)
+CUR_DIR=$(cd `dirname $0`; pwd)
 CASSANDRA_HOME=/usr/local/ceph
 BASE_DIR="/u01/ceph"
-DATA_DIR=${BASE_DIR}/data
-COMMIT_DIR=${BASE_DIR}/commitlog
-CACHES_DIR=${BASE_DIR}/saved_caches
-HITS_DIR=${BASE_DIR}/hints
-TMP_DIR=${BASE_DIR}/tmp
+OSD_DIR="${BASE_DIR}"/osd
+MON_DIR="${BASE_DIR}"/mon
+DEFAULT_USER="ceph"
 
-CUR_DIR=$(cd `dirname $0`; pwd)
-
-##################################################################################################
-# Define system variables 
-##################################################################################################
-source /etc/profile
-
-##################################################################################################
-# Initialize database 
-##################################################################################################
-
-# Make sure that file system have been formatted and mounted properly
-# 
-# DISK=/dev/sda
-# parted -s ${DISK} mklabel gpt
-# parted -s ${DISK} mkpart primary 1MiB 100%
-# mkfs.ext4 /dev/sda1 -m 0 -O extent,uninit_bg -E lazy_itable_init=1 -T largefile -L u01
-# 
-# vim /etc/fstab (mount)
-# LABEL=u01 /u01     ext4        defaults,noatime,nodiratime,nodelalloc,barrier=0,data=writeback    0 0
-#
-
-if [ ! -d "/u01" ] ; then
-    echo "Please mount disk to /u01 directory firstly" 
-    exit 0
+if [ ! -d "${BASE_DIR}" ] ; then
+    mkdir -p ${BASE_DIR}
+    echo "Please mount /u01/ceph to different disk partition"
 fi
 
-if [ ! -d ${BASE_DIR} ] ; then
-    sudo mkdir -p ${BASE_DIR}
+sudo useradd ${DEFAULT_USER}
+
+if [ ! -d "${OSD_DIR}" ] ; then
+    mkdir -p ${OSD_DIR}
 fi
 
-sudo chown `whoami` ${BASE_DIR}
+if [ ! -d "${MON_DIR}" ] ; then
+    mkdir -p ${MON_DIR}
+fi
+sudo chown -R ${DEFAULT_USER} ${BASE_DIR}
+sudo chown -R ${DEFAULT_USER} ${OSD_DIR}
+sudo chown -R ${DEFAULT_USER} ${MON_DIR}
 
-if [ ! -d ${DATA_DIR} ] ; then
-    mkdir -p ${DATA_DIR}
+INSTALL_CMD="yum"
+if [ -z "$(which yum 2>/dev/null)" ] ; then
+    INSTALL_CMD="apt-get"
 fi
 
-if [ ! -d ${COMMIT_DIR} ] ; then
-    mkdir -p ${COMMIT_DIR}
+hostname=$(hostname)
+
+#########################################################################################
+# Prepare
+#########################################################################################
+sudo ${INSTALL_CMD} install -y ntp ntpupdate
+sudo ${INSTALL_CMD} install openssh-server
+ntpdate pool.ntp.org
+systemctl restart netdate.service
+systemctl restart ntpd.service
+systemctl enable ntpd.service
+systemctl enable ntpdate.service
+service sshd restart
+sudo setenforce 0
+
+##########################################################################################
+# Setup Ceph: Basic Setup
+##########################################################################################
+cd ${BASE_DIR}
+
+if [ ! -f ceph.conf ] ; then
+    sudo ceph-deploy new ${hostname}
+    sudo ceph-deploy install ${hostname}
+
+    sudo sed -i '/\[global\]/a mon\ data\ avail\ crit\ =\ 1' ceph.conf
+    sudo sed -i '/\[global\]/a public\ network\ =\ 192\.168\.1\.0\/24' ceph.conf
+
+    sudo sed -i '/\[global\]/a max\ open\ files\ =\ 131072' ceph.conf
+
+    sudo sed -i '/\[global\]/a osd_max_object_name_len\ =\ 256' ceph.conf
+    sudo sed -i '/\[global\]/a osd_max_object_namespace_len\ =\ 64' ceph.conf
 fi
 
-if [ ! -d ${CACHES_DIR} ] ; then
-    mkdir -p ${CACHES_DIR}
+if [ -z "$(grep -r "\[mon\]")" ] ; then
+    sudo cat ${CUR_DIR}/../config/mon_osd.conf >> ceph.conf
 fi
 
-if [ ! -d ${HITS_DIR} ] ; then
-    mkdir -p ${HITS_DIR}
+#sudo -u ${DEFAULT_USER} ceph-mon --mkfs -i ${hostname} --keyring ${BASE_DIR}/ceph.mon.keyring
+#sudo -u ${DEFAULT_USER} touch ${MON_DIR}/done
+
+if [ -z "$(ps -aux | grep ceph-mon | grep -v grep 2>/dev/null)" ] ; then
+    sudo ceph-deploy --overwrite-conf mon create-initial 
 fi
 
-if [ ! -d ${TMP_DIR} ] ; then
-    mkdir -p ${TMP_DIR}
-fi
+##########################################################################################
+# Setup Ceph: OSD
+##########################################################################################
+sudo ceph-deploy --overwrite-conf osd prepare ${hostname}:${OSD_DIR}
+sudo ceph-deploy osd activate ${hostname}:${OSD_DIR}
+sudo ceph-deploy admin ${hostname}
+sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 
-sudo cp ${CUR_DIR}/../config/ceph.yaml ${CASSANDRA_HOME}/conf/
-sudo cp ${CUR_DIR}/../config/jvm.options ${CASSANDRA_HOME}/conf/
-sudo cp ${CUR_DIR}/../config/ceph-env.sh ${CASSANDRA_HOME}/conf/
-sudo cp ${CUR_DIR}/../config/logback.xml ${CASSANDRA_HOME}/conf/
-sudo sed -i "s/\${ceph\.logdir}/\/u01\/ceph\/logs/g" ${CASSANDRA_HOME}/conf/logback.xml
-
-#Repleace JNA libs to support AARCH64 platform
-sudo cp ${CUR_DIR}/../source/jna.aarch64.jar ${CASSANDRA_HOME}/lib/jna-*.jar
-
-${CASSANDRA_HOME}/bin/ceph -p ${BASE_DIR}/ceph.pid
+##########################################################################################
+# Check Ceph status
+##########################################################################################
+echo "Checking ceph cluster status ......"
+ceph health
 
 echo "Ceph has been started in /u01/ceph directory ..."
 echo "**********************************************************************************"

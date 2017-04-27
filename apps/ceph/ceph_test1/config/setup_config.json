@@ -22,14 +22,6 @@
 
   "client_setup": [ 
     {
-      "name": "OpenJDK",
-      "download_url": "http://openjdk.linaro.org/releases/jdk8u-server-release-1609.tar.xz",
-      "local_filename" : "jdk8u-server-release.tar.xz",
-      "pre_install_cmd": "prerequisites.sh",
-      "build_cmd": "",
-      "install_cmd": "common/openjdk_install.sh"
-    }, 
-    {
       "name": "Ceph Client",
       "download_url": "http://archive.apache.org/dist/ceph/3.10/apache-ceph-3.10-bin.tar.gz",
       "local_filename" : "apache-ceph-3.10-bin.tar.gz",
