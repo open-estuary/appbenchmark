@@ -89,6 +89,8 @@ if [ ! -f ceph.conf ] ; then
 
     sed -i '/\[global\]/a max\ open\ files\ =\ 131072' ceph.conf
 
+    sed -i '/\[global\]/a rbd_default_features\ =\ 1' ceph.conf
+    
     sed -i '/\[global\]/a pid\ file\ =\ \/u01\/ceph\/ceph\.\$type\.\$id\.pid' ceph.conf
     sed -i '/\[global\]/a osd_max_object_name_len\ =\ 256' ceph.conf
     sed -i '/\[global\]/a osd_max_object_namespace_len\ =\ 64' ceph.conf

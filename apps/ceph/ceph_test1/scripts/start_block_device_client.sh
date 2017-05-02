@@ -27,11 +27,12 @@ sudo chmod +r /etc/ceph/ceph.client.admin.keyring
 sudo rbd create foo --size 4096 -m  ${monitor_node}  
 
 #Step4: Map the image to a block device
-sudo rbd map foo --name client.amdin -m ${monitor_node} 
+sudo rbd map foo --name client.admin -m ${monitor_node} 
 
 #Step5: create file system
-sudo mkfs.xfs -m0 /dev/rbd/rbd/foo
+sudo mkfs.xfs /dev/rbd/rbd/foo
 
+#sudo mkfs.xfs -m0 /dev/rbd/rbd/foo
 #Step6: Mount the file system on ceph-client node
 sudo mkdir /mnt/ceph-block-device
 sudo mount /dev/rbd/rbd/foo /mnt/ceph-block-device
