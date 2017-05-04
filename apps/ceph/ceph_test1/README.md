@@ -13,21 +13,13 @@ Currently it support perform benchmark tests on single node or multiple nodes.
 - Client Side: execute `./run_test.sh` or `./setup.sh client` 
 
 ### Test 
-Usually there are four kinds of test cases, that is:
+Usually there are two kinds of test cases, that is:
 - Basic: 
   - Description: It uses internal `rados bench` tools to test ceph storage pool performance
   - Usage: `./run_test.sh basic`
 - Block:
   - Description: It uses `rbd bench` or `fio` to test ceph block device performance
   - Usage: `./run_test.sh block <monitor_server_name/ip>`
-- Fio:
-  - Description: It uses 
-  - Usage:
-- Object: 
-  - Description:
-  - Usage:
-    - Server side: execute `run_test_object_server.sh` to setup rgw gateway firstly 
-    - Client side: execute `./run_test.sh object <monitor_server_name/ip>` 
 
 ### Test Results
                                            
