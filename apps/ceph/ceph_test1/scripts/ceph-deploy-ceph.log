@@ -1,181 +1,80 @@
-[2017-04-27 19:37:27,403][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
-[2017-04-27 19:37:27,404][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy install ceph-client
-[2017-04-27 19:37:27,404][ceph_deploy.cli][INFO  ] ceph-deploy options:
-[2017-04-27 19:37:27,404][ceph_deploy.cli][INFO  ]  verbose                       : False
-[2017-04-27 19:37:27,404][ceph_deploy.cli][INFO  ]  testing                       : None
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x281931b8>
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  cluster                       : ceph
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  dev_commit                    : None
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  install_mds                   : False
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  stable                        : None
-[2017-04-27 19:37:27,405][ceph_deploy.cli][INFO  ]  default_release               : False
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  username                      : None
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x28106d70>
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  install_all                   : False
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  repo                          : False
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  host                          : ['ceph-client']
-[2017-04-27 19:37:27,406][ceph_deploy.cli][INFO  ]  install_rgw                   : False
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  install_tests                 : False
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  repo_url                      : None
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  install_osd                   : False
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  version_kind                  : stable
-[2017-04-27 19:37:27,407][ceph_deploy.cli][INFO  ]  install_common                : False
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  quiet                         : False
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  dev                           : master
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  nogpgcheck                    : False
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  local_mirror                  : None
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  release                       : None
-[2017-04-27 19:37:27,408][ceph_deploy.cli][INFO  ]  install_mon                   : False
-[2017-04-27 19:37:27,409][ceph_deploy.cli][INFO  ]  gpg_url                       : None
-[2017-04-27 19:37:27,409][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts ceph-client
-[2017-04-27 19:37:27,409][ceph_deploy.install][DEBUG ] Detecting platform for host ceph-client ...
-[2017-04-27 19:37:27,526][ceph_deploy][ERROR ] RuntimeError: connecting to host: ceph-client resulted in errors: HostNotFound ceph-client
+[2017-05-03 11:50:30,513][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
+[2017-05-03 11:50:30,514][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy admin centos
+[2017-05-03 11:50:30,514][ceph_deploy.cli][INFO  ] ceph-deploy options:
+[2017-05-03 11:50:30,514][ceph_deploy.cli][INFO  ]  username                      : None
+[2017-05-03 11:50:30,514][ceph_deploy.cli][INFO  ]  verbose                       : False
+[2017-05-03 11:50:30,514][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  quiet                         : False
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x1a47f1b8>
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  cluster                       : ceph
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  client                        : ['centos']
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  func                          : <function admin at 0x1a3e9848>
+[2017-05-03 11:50:30,515][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
+[2017-05-03 11:50:30,516][ceph_deploy.cli][INFO  ]  default_release               : False
+[2017-05-03 11:50:30,516][ceph_deploy][ERROR ] ConfigError: Cannot load config: [Errno 2] No such file or directory: 'ceph.conf'; has `ceph-deploy new` been run in this directory?
 
-[2017-04-27 19:37:27,815][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
-[2017-04-27 19:37:27,816][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy admin centos
-[2017-04-27 19:37:27,816][ceph_deploy.cli][INFO  ] ceph-deploy options:
-[2017-04-27 19:37:27,816][ceph_deploy.cli][INFO  ]  username                      : None
-[2017-04-27 19:37:27,816][ceph_deploy.cli][INFO  ]  verbose                       : False
-[2017-04-27 19:37:27,817][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
-[2017-04-27 19:37:27,817][ceph_deploy.cli][INFO  ]  quiet                         : False
-[2017-04-27 19:37:27,817][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x21bfcf80>
-[2017-04-27 19:37:27,817][ceph_deploy.cli][INFO  ]  cluster                       : ceph
-[2017-04-27 19:37:27,817][ceph_deploy.cli][INFO  ]  client                        : ['centos']
-[2017-04-27 19:37:27,818][ceph_deploy.cli][INFO  ]  func                          : <function admin at 0x21b67848>
-[2017-04-27 19:37:27,818][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
-[2017-04-27 19:37:27,818][ceph_deploy.cli][INFO  ]  default_release               : False
-[2017-04-27 19:37:27,818][ceph_deploy][ERROR ] ConfigError: Cannot load config: [Errno 2] No such file or directory: 'ceph.conf'; has `ceph-deploy new` been run in this directory?
+[2017-05-03 11:50:31,069][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
+[2017-05-03 11:50:31,070][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy install --rgw centos
+[2017-05-03 11:50:31,070][ceph_deploy.cli][INFO  ] ceph-deploy options:
+[2017-05-03 11:50:31,070][ceph_deploy.cli][INFO  ]  verbose                       : False
+[2017-05-03 11:50:31,070][ceph_deploy.cli][INFO  ]  testing                       : None
+[2017-05-03 11:50:31,070][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x3ebc2488>
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  cluster                       : ceph
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  dev_commit                    : None
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  install_mds                   : False
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  stable                        : None
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  default_release               : False
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  username                      : None
+[2017-05-03 11:50:31,071][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x3eb35d70>
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  install_all                   : False
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  repo                          : False
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  host                          : ['centos']
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  install_rgw                   : True
+[2017-05-03 11:50:31,072][ceph_deploy.cli][INFO  ]  install_tests                 : False
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  repo_url                      : None
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  install_osd                   : False
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  version_kind                  : stable
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  install_common                : False
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
+[2017-05-03 11:50:31,073][ceph_deploy.cli][INFO  ]  quiet                         : False
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  dev                           : master
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  nogpgcheck                    : False
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  local_mirror                  : None
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  release                       : None
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  install_mon                   : False
+[2017-05-03 11:50:31,074][ceph_deploy.cli][INFO  ]  gpg_url                       : None
+[2017-05-03 11:50:31,075][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts centos
+[2017-05-03 11:50:31,075][ceph_deploy.install][DEBUG ] Detecting platform for host centos ...
+[2017-05-03 11:50:31,185][centos][DEBUG ] connected to host: centos 
+[2017-05-03 11:50:31,186][centos][DEBUG ] detect platform information from remote host
+[2017-05-03 11:50:31,233][centos][DEBUG ] detect machine type
+[2017-05-03 11:50:31,241][ceph_deploy.install][INFO  ] Distro info: CentOS Linux 7.3.1611 AltArch
+[2017-05-03 11:50:31,241][centos][INFO  ] installing Ceph on centos
+[2017-05-03 11:50:31,244][centos][INFO  ] Running command: yum clean all
+[2017-05-03 11:50:31,572][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
+[2017-05-03 11:50:31,636][centos][DEBUG ] Cleaning repos: Ceph Ceph-noarch base ceph-source epel extras linaro-overlay
+[2017-05-03 11:50:31,636][centos][DEBUG ]               : test updates
+[2017-05-03 11:50:31,636][centos][DEBUG ] Cleaning up everything
+[2017-05-03 11:50:31,668][centos][DEBUG ] Cleaning up list of fastest mirrors
+[2017-05-03 11:50:31,702][centos][INFO  ] Running command: yum -y install epel-release
+[2017-05-03 11:50:32,025][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
+[2017-05-03 11:50:44,595][ceph_deploy][ERROR ] KeyboardInterrupt
 
-[2017-04-27 19:38:19,526][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
-[2017-04-27 19:38:19,527][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy install ceph-client
-[2017-04-27 19:38:19,527][ceph_deploy.cli][INFO  ] ceph-deploy options:
-[2017-04-27 19:38:19,527][ceph_deploy.cli][INFO  ]  verbose                       : False
-[2017-04-27 19:38:19,527][ceph_deploy.cli][INFO  ]  testing                       : None
-[2017-04-27 19:38:19,527][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x56a41b8>
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  cluster                       : ceph
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  dev_commit                    : None
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  install_mds                   : False
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  stable                        : None
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  default_release               : False
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  username                      : None
-[2017-04-27 19:38:19,528][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x5617d70>
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  install_all                   : False
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  repo                          : False
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  host                          : ['ceph-client']
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  install_rgw                   : False
-[2017-04-27 19:38:19,529][ceph_deploy.cli][INFO  ]  install_tests                 : False
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  repo_url                      : None
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  install_osd                   : False
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  version_kind                  : stable
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  install_common                : False
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
-[2017-04-27 19:38:19,530][ceph_deploy.cli][INFO  ]  quiet                         : False
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  dev                           : master
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  nogpgcheck                    : False
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  local_mirror                  : None
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  release                       : None
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  install_mon                   : False
-[2017-04-27 19:38:19,531][ceph_deploy.cli][INFO  ]  gpg_url                       : None
-[2017-04-27 19:38:19,532][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts ceph-client
-[2017-04-27 19:38:19,532][ceph_deploy.install][DEBUG ] Detecting platform for host ceph-client ...
-[2017-04-27 19:38:19,588][ceph_deploy][ERROR ] RuntimeError: connecting to host: ceph-client resulted in errors: HostNotFound ceph-client
-
-[2017-04-27 19:39:58,614][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
-[2017-04-27 19:39:58,615][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy install centos
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ] ceph-deploy options:
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ]  verbose                       : False
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ]  testing                       : None
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x7182200>
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ]  cluster                       : ceph
-[2017-04-27 19:39:58,616][ceph_deploy.cli][INFO  ]  dev_commit                    : None
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  install_mds                   : False
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  stable                        : None
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  default_release               : False
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  username                      : None
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  adjust_repos                  : True
-[2017-04-27 19:39:58,617][ceph_deploy.cli][INFO  ]  func                          : <function install at 0x70f5d70>
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  install_all                   : False
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  repo                          : False
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  host                          : ['centos']
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  install_rgw                   : False
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  install_tests                 : False
-[2017-04-27 19:39:58,618][ceph_deploy.cli][INFO  ]  repo_url                      : None
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  install_osd                   : False
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  version_kind                  : stable
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  install_common                : False
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
-[2017-04-27 19:39:58,619][ceph_deploy.cli][INFO  ]  quiet                         : False
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  dev                           : master
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  nogpgcheck                    : False
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  local_mirror                  : None
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  release                       : None
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  install_mon                   : False
-[2017-04-27 19:39:58,620][ceph_deploy.cli][INFO  ]  gpg_url                       : None
-[2017-04-27 19:39:58,621][ceph_deploy.install][DEBUG ] Installing stable version jewel on cluster ceph hosts centos
-[2017-04-27 19:39:58,621][ceph_deploy.install][DEBUG ] Detecting platform for host centos ...
-[2017-04-27 19:39:58,736][centos][DEBUG ] connected to host: centos 
-[2017-04-27 19:39:58,737][centos][DEBUG ] detect platform information from remote host
-[2017-04-27 19:39:58,787][centos][DEBUG ] detect machine type
-[2017-04-27 19:39:58,795][ceph_deploy.install][INFO  ] Distro info: CentOS Linux 7.3.1611 AltArch
-[2017-04-27 19:39:58,795][centos][INFO  ] installing Ceph on centos
-[2017-04-27 19:39:58,798][centos][INFO  ] Running command: yum clean all
-[2017-04-27 19:39:59,127][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
-[2017-04-27 19:39:59,191][centos][DEBUG ] Cleaning repos: Ceph Ceph-noarch base ceph-source epel extras linaro-overlay
-[2017-04-27 19:39:59,191][centos][DEBUG ]               : test updates
-[2017-04-27 19:39:59,191][centos][DEBUG ] Cleaning up everything
-[2017-04-27 19:39:59,255][centos][DEBUG ] Cleaning up list of fastest mirrors
-[2017-04-27 19:39:59,273][centos][INFO  ] Running command: yum -y install epel-release
-[2017-04-27 19:39:59,596][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
-[2017-04-27 19:40:44,518][centos][DEBUG ] Determining fastest mirrors
-[2017-04-27 19:40:44,632][centos][DEBUG ]  * epel: mirror.premi.st
-[2017-04-27 19:40:49,802][centos][DEBUG ] 510 packages excluded due to repository priority protections
-[2017-04-27 19:40:51,118][centos][DEBUG ] Package epel-release-7-9.noarch already installed and latest version
-[2017-04-27 19:40:51,118][centos][DEBUG ] Nothing to do
-[2017-04-27 19:40:51,335][centos][INFO  ] Running command: yum -y install yum-plugin-priorities
-[2017-04-27 19:40:51,658][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
-[2017-04-27 19:40:51,722][centos][DEBUG ] Loading mirror speeds from cached hostfile
-[2017-04-27 19:40:51,723][centos][DEBUG ]  * epel: mirror.premi.st
-[2017-04-27 19:40:53,940][centos][DEBUG ] 510 packages excluded due to repository priority protections
-[2017-04-27 19:40:55,205][centos][DEBUG ] Package yum-plugin-priorities-1.1.31-40.el7.noarch already installed and latest version
-[2017-04-27 19:40:55,205][centos][DEBUG ] Nothing to do
-[2017-04-27 19:40:55,419][centos][DEBUG ] Configure Yum priorities to include obsoletes
-[2017-04-27 19:40:55,421][centos][WARNING] check_obsoletes has been enabled for Yum priorities plugin
-[2017-04-27 19:40:55,424][centos][INFO  ] Running command: rpm --import https://download.ceph.com/keys/release.asc
-[2017-04-27 19:40:56,651][centos][INFO  ] Running command: rpm -Uvh --replacepkgs https://download.ceph.com/rpm-jewel/el7/noarch/ceph-release-1-0.el7.noarch.rpm
-[2017-04-27 19:40:57,875][centos][DEBUG ] Retrieving https://download.ceph.com/rpm-jewel/el7/noarch/ceph-release-1-0.el7.noarch.rpm
-[2017-04-27 19:40:57,875][centos][DEBUG ] Preparing...                          ########################################
-[2017-04-27 19:40:57,876][centos][DEBUG ] Updating / installing...
-[2017-04-27 19:40:57,876][centos][DEBUG ] ceph-release-1-1.el7                  ########################################
-[2017-04-27 19:40:58,090][centos][WARNING] ensuring that /etc/yum.repos.d/ceph.repo contains a high priority
-[2017-04-27 19:40:58,093][centos][WARNING] altered ceph.repo priorities to contain: priority=1
-[2017-04-27 19:40:58,095][centos][INFO  ] Running command: yum -y install ceph ceph-radosgw
-[2017-04-27 19:40:58,418][centos][DEBUG ] Loaded plugins: fastestmirror, priorities
-[2017-04-27 19:40:59,634][centos][DEBUG ] Loading mirror speeds from cached hostfile
-[2017-04-27 19:40:59,634][centos][DEBUG ]  * epel: mirror.premi.st
-[2017-04-27 19:41:01,850][centos][DEBUG ] 510 packages excluded due to repository priority protections
-[2017-04-27 19:41:03,116][centos][DEBUG ] Package 1:ceph-12.0.1-0.el7.centos.aarch64 already installed and latest version
-[2017-04-27 19:41:03,730][centos][DEBUG ] Package 1:ceph-radosgw-12.0.1-0.el7.centos.aarch64 already installed and latest version
-[2017-04-27 19:41:03,731][centos][DEBUG ] Nothing to do
-[2017-04-27 19:41:03,947][centos][INFO  ] Running command: ceph --version
-[2017-04-27 19:41:04,120][centos][DEBUG ] ceph version 12.0.1 (5456408827a1a31690514342624a4ff9b66be1d5)
-[2017-04-27 19:41:04,420][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
-[2017-04-27 19:41:04,421][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /bin/ceph-deploy admin centos
-[2017-04-27 19:41:04,421][ceph_deploy.cli][INFO  ] ceph-deploy options:
-[2017-04-27 19:41:04,421][ceph_deploy.cli][INFO  ]  username                      : None
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  verbose                       : False
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  quiet                         : False
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0x9594f80>
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  cluster                       : ceph
-[2017-04-27 19:41:04,422][ceph_deploy.cli][INFO  ]  client                        : ['centos']
-[2017-04-27 19:41:04,423][ceph_deploy.cli][INFO  ]  func                          : <function admin at 0x94ff848>
-[2017-04-27 19:41:04,423][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
-[2017-04-27 19:41:04,423][ceph_deploy.cli][INFO  ]  default_release               : False
-[2017-04-27 19:41:04,423][ceph_deploy][ERROR ] ConfigError: Cannot load config: [Errno 2] No such file or directory: 'ceph.conf'; has `ceph-deploy new` been run in this directory?
+[2017-05-03 12:35:07,104][ceph_deploy.conf][DEBUG ] found configuration file at: /root/.cephdeploy.conf
+[2017-05-03 12:35:07,105][ceph_deploy.cli][INFO  ] Invoked (1.5.37): /usr/bin/ceph-deploy rgw create centos
+[2017-05-03 12:35:07,105][ceph_deploy.cli][INFO  ] ceph-deploy options:
+[2017-05-03 12:35:07,106][ceph_deploy.cli][INFO  ]  username                      : None
+[2017-05-03 12:35:07,106][ceph_deploy.cli][INFO  ]  verbose                       : False
+[2017-05-03 12:35:07,106][ceph_deploy.cli][INFO  ]  rgw                           : [('centos', 'rgw.centos')]
+[2017-05-03 12:35:07,106][ceph_deploy.cli][INFO  ]  overwrite_conf                : False
+[2017-05-03 12:35:07,106][ceph_deploy.cli][INFO  ]  subcommand                    : create
+[2017-05-03 12:35:07,107][ceph_deploy.cli][INFO  ]  quiet                         : False
+[2017-05-03 12:35:07,107][ceph_deploy.cli][INFO  ]  cd_conf                       : <ceph_deploy.conf.cephdeploy.Conf instance at 0xd11a518>
+[2017-05-03 12:35:07,107][ceph_deploy.cli][INFO  ]  cluster                       : ceph
+[2017-05-03 12:35:07,107][ceph_deploy.cli][INFO  ]  func                          : <function rgw at 0xd08d668>
+[2017-05-03 12:35:07,107][ceph_deploy.cli][INFO  ]  ceph_conf                     : None
+[2017-05-03 12:35:07,108][ceph_deploy.cli][INFO  ]  default_release               : False
+[2017-05-03 12:35:07,108][ceph_deploy][ERROR ] ConfigError: Cannot load config: [Errno 2] No such file or directory: 'ceph.conf'; has `ceph-deploy new` been run in this directory?
 

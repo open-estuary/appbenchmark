@@ -1,0 +1,11 @@
+[write-4M]
+description="write test with block size 4M"
+ioengine=rbd
+clientname=admin
+pool=rbd
+rbdname=foo
+iodepth=32
+runtime=120
+rw=write
+bs=4M
+
