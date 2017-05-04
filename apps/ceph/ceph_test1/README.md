@@ -4,11 +4,11 @@
 
 # Ceph Benchmark Test 
 ## <a name="1">Introduction</a>
+It is to perform [Ceph](https://github.com/ceph/ceph) benchmark tests.
 
 ## <a name="2">Benchmark Test</a>
-### Test Topology
-
 ### Setup
+Currently it support perform benchmark tests on single node or multiple nodes.
 - Server Side: execute `./run_server.sh` 
 - Client Side: execute `./run_test.sh` or `./setup.sh client` 
 

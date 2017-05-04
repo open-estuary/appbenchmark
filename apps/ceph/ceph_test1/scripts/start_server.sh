@@ -1,6 +1,15 @@
 #!/bin/bash
 
-SIGNLE_NODE="true"
+SIGNLE_NODE="yes"
+HOSTNAME=$(hostname)
+
+if [ ! -z "${1}" ] ; then
+    HOSTNAME="${1}"
+fi
+
+if [ ! -z "${2}" ] ; then
+    SIGNLE_NODE="${2}"
+fi
 
 CUR_DIR=$(cd `dirname $0`; pwd)
 CASSANDRA_HOME=/usr/local/ceph
@@ -11,7 +20,7 @@ MON_DIR="${BASE_DIR}"/mon
 DEFAULT_USER="ceph"
 CUR_USER=`whoami`
 
-if [ x"${SIGNLE_NODE}" == x"true" ] ; then
+if [ x"${SIGNLE_NODE}" == x"yes" ] ; then
     POOL_SIZE=1
 else 
     POOL_SIZE=3
@@ -25,8 +34,6 @@ echo "Change POOL_SIZE when it is to install ceph on multiple node!"
 #    echo "Please use non-root account to setup ceph"
 #    exit 0
 #fi
-
-HOSTNAME=$(hostname)
 
 if [ ! -d "${BASE_DIR}" ] ; then
     mkdir -p ${BASE_DIR}
@@ -99,7 +106,7 @@ fi
 if [ -z "$(grep -r "\[mon\]")" ] ; then
     cat ${CUR_DIR}/../config/mon_osd.conf >> ceph.conf
 
-    if [ x"${SIGNLE_NODE}" == x"true" ] ; then
+    if [ x"${SIGNLE_NODE}" == x"yes" ] ; then
         sed -i "/\[global\]/a osd\ pool\ default\ size\ =\ ${POOL_SIZE}" ceph.conf
         sed -i '/\[global\]/a osd\ crush\ chooseleaf\ type\ =\ 0' ceph.conf
     fi
