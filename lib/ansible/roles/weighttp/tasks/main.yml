@@ -1,0 +1,15 @@
+---
+- include: install_from_source.yml
+
+- name: Install the weighttp package
+  apt: 
+     name: weighttp
+     state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_architecture == 'aarch64'
+
+- name: Install the weighttp package
+  yum: 
+     name: weighttp
+     state: present
+  when: ansible_os_family == 'RedHat' and ansible_architecture == 'aarch64'
+

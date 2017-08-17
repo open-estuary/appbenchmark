@@ -1,0 +1,40 @@
+---
+- name: Install php-fpm and deps via yum
+  yum: name={{ item }} state=present
+  with_items:
+    - php
+    - php-fpm
+    - php-enchant
+    - php-mbstring
+    - php-mysql
+    - php-xml
+  when: ansible_os_family == 'RedHat' 
+
+- name: Install php-fpm and deps via apt-get
+  apt: name={{ item }} state=present
+  with_items:
+    - php
+    - php-fpm
+    - php-enchant
+    - php-mbstring
+    - php-mysql
+    - php-xml
+  when: ansible_distribution == 'Ubuntu' 
+
+- stat: path=/etc/php/7.0/fpm/pool.d/www.conf
+  register: php_default_pool
+
+- name: Disable default pool
+  command: rm /etc/php/7.0/fpm/pool.d/www.conf
+  when: php_default_pool.stat.exists == True  
+
+- name: Copy php-fpm configuration
+  template: src=estuaryapp.conf dest=/etc/php/7.0/fpm/pool.d/estuaryapp.conf
+
+- name: Restart php-fpm on Redhat
+  command: service php7.0-fpm restart
+  when: ansible_os_family == 'RedHat'
+
+- name: Restart php-fpm on Ubuntu
+  command:  /etc/init.d/php7.0-fpm restart
+  when: ansible_distribution == 'Ubuntu'
