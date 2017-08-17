@@ -10,8 +10,7 @@ It is to maintain application benchmark test scripts including:
 
 ## <a name="2">Benchmark Test</a>
 Usually it is only necessary to execute following commands in order to perform benchmark test for each application:
-- `./run_server.sh` to setup server on server side
-- `./run_client.sh` to setup client on client side
+- `./setup.sh` to setup client and server side;
 - `./run_{test/xxx}.sh` to perform benchmark test on client side
 
 Currently the following applications have been supported so far :
