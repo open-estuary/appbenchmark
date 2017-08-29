@@ -1,7 +1,8 @@
 #{{ ansible_managed }}
 user              {{ nginx_user }}  {{ nginx_group }};
 
-worker_processes  {{ nginx_worker_processes }};
+worker_processes auto;
+#worker_processes  {{ nginx_worker_processes }};
 
 {% if nginx_pid_file %}
 pid        {{ nginx_pid_file }};

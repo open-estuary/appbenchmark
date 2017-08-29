@@ -1,0 +1,17 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      vrrp_sync_groups:
+        - name: 'VG_0'
+          group:
+            - 'VI_10'
+            - 'VI_20'
+        - name: 'VG_1'
+          group:
+            - 'VI_11'
+            - 'VI_21'
+          notify_master: '/path/to/script.sh'
+          notify_backup: '/path/to/script.sh arg1 arg2'
+          notify_fault: '/path/to/script.sh'
+          notify: '/path/to/script.sh'
+          smtp_alert: True

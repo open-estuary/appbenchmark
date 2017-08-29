@@ -1,0 +1,19 @@
+{% if virtual_server_groups is defined %}
+{% for item in virtual_server_groups %}
+{% if item.name is defined %}
+virtual_server_group {{ item.name }} {
+{% if item.vips is defined %}
+{% for vip in item.vips %}
+  {{ vip }}
+{% endfor %}
+{% endif %}
+{% if item.fwmarks is defined %}
+{% for fwmark in item.fwmarks %}
+  fwmark {{ fwmark }}
+{% endfor %}
+{% endif %}
+}
+{% endif %}
+
+{% endfor %}
+{% endif %}

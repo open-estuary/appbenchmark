@@ -1,0 +1,129 @@
+{% if vrrp_instances is defined %}
+{% for item in vrrp_instances %}
+vrrp_instance {{ item.name }} {
+  virtual_router_id {{ item.virtual_router_id | int | abs }}
+  interface {{ item.interface }}
+{% if item.version is defined and item.version in [2,3] %}
+  version {{ item.version }}
+{% endif %}
+{% if item.state is defined and item.state in ["MASTER", "BACKUP"] %}
+  state {{ item.state }}
+{% endif %}
+{% if item.use_vmac is defined and item.use_vmac == True %}
+  use_vmac
+{% endif %}
+{% if item.vmac_xmit_base is defined and item.vmac_xmit_base == True %}
+  vmac_xmit_base
+{% endif %}
+{% if item.native_ipv6 is defined and item.native_ipv6 == True %}
+  native_ipv6
+{% endif %}
+{% if item.dont_track_primary is defined and item.dont_track_primary == True %}
+  dont_track_primary
+{% endif %}
+{% if item.track_script is defined %}
+  track_script {
+{% for script in item.track_script %}
+    {{ script }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.track_interface is defined %}
+  track_interface {
+{% for interface in item.track_interface %}
+    {{ interface }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.mcast_src_ip is defined %}
+  mcast_src_ip {{ item.mcast_src_ip }}
+{% endif %}
+{% if item.unicast_src_ip is defined %}
+  unicast_src_ip {{ item.unicast_src_ip }}
+{% endif %}
+{% if item.unicast_peer is defined %}
+  unicast_peer {
+{% for peer in item.unicast_peer %}
+    {{ peer }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.garp_master_delay is defined %}
+  garp_master_delay {{ item.garp_master_delay | int(default=5) | abs }}
+{% endif %}
+{% if item.garp_master_repeat is defined %}
+  garp_master_repeat {{ item.garp_master_repeat | int(default=5) | abs }}
+{% endif %}
+{% if item.garp_master_refresh is defined %}
+  garp_master_refresh {{ item.garp_master_refresh | int | abs }}
+{% endif %}
+{% if item.garp_master_refresh_repeat is defined %}
+  garp_master_refresh_repeat {{ item.garp_master_refresh_repeat | int(default=1) | abs }}
+{% endif %}
+{% if item.lvs_sync_daemon_interface is defined %}
+  lvs_sync_daemon_interface {{ item.lvs_sync_daemon_interface }}
+{% endif %}
+{% if item.priority is defined %}
+  priority {{ item.priority | int | abs }}
+{% endif %}
+{% if item.advert_int is defined %}
+  advert_int {{ item.advert_int | int(default=1) | abs }}
+{% endif %}
+{% if item.auth_pass is defined %}
+  authentication {
+    auth_type {{ item.auth_type | default("PASS") }}
+    auth_pass {{ item.auth_pass }}
+  }
+{% endif %}
+{% if item.virtual_ipaddress is defined %}
+  virtual_ipaddress {
+{% for address in item.virtual_ipaddress %}
+    {{ address }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.virtual_ipaddress_excluded is defined %}
+  virtual_ipaddress_excluded {
+{% for address in item.virtual_ipaddress_excluded %}
+    {{ address }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.virtual_routes is defined %}
+  virtual_routes {
+{% for route in item.virtual_routes %}
+    {{ route }}
+{% endfor %}
+  }
+{% endif %}
+{% if item.nopreempt is defined and item.nopreempt == True %}
+  nopreempt
+{% endif %}
+{% if item.preempt_delay is defined and item.preempt_delay <= 1000 %}
+  preempt_delay {{ item.preempt_delay | int | abs }}
+{% endif %}
+{% if item.debug is defined and item.debug == True%}
+  debug
+{% endif %}
+{% if item.notify_master is defined %}
+  notify_master "{{ item.notify_master }}"
+{% endif %}
+{% if item.notify_backup is defined %}
+  notify_backup "{{ item.notify_backup }}"
+{% endif %}
+{% if item.notify_fault is defined %}
+  notify_fault "{{ item.notify_fault }}"
+{% endif %}
+{% if item.notify_stop is defined %}
+  notify_stop "{{ item.notify_stop }}"
+{% endif %}
+{% if item.notify is defined %}
+  notify {{ item.notify }}
+{% endif %}
+{% if item.smtp_alert is defined and item.smtp_alert == True %}
+  smtp_alert
+{% endif %}
+}
+
+{% endfor %}
+{% endif %}
