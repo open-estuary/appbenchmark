@@ -1,0 +1,8 @@
+{% if static_routes is defined %}
+static_routes {
+{% for route in static_routes %}
+  {{ route }}
+{% endfor %}
+}
+
+{% endif %}
