@@ -1,0 +1,68 @@
+---
+- name: install build-essential,automake,numactl,tcl,lmbench
+  apt: name=build-essential,automake,numactl,tcl,lmbench   state=present
+  when: ansible_os_family == 'Ubuntu'
+
+- name: install build-essential,automake,numactl,tcl,lmbench
+  yum: name=automake,numactl,tcl,lmbench   state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: bw test
+  shell: taskset -c {{ item[0] }} -N 5 {{ item[1] }} {{ item[2] }}
+  with_nested:
+        - ['0 bw_mem -P 1','0-3 bw_mem -P 4','0-15 bw_mem -P 16','0-31 bw_mem -P 32']
+        - ['32M']
+        - ['rd','frd','wr','fwr','bzero','rdwr','cp','fcp','bcopy']
+
+- name: bw test
+  shell: numactl -m 1 -C {{ item[0] }} -N 5 {{ item[1] }} {{ item[2] }}
+  with_nested:
+        - ['0 bw_mem -P 1','0-3 bw_mem -P 4','0-15 bw_mem -P 16']
+        - ['32M']
+        - ['rd','frd','wr','fwr','bzero','rdwr','cp','fcp','bcopy']
+
+
+- name: lat test 1 core t
+  shell: numactl --membind=0 --physcpubind=0 lat_mem_rd -P 1 -t 32M 128
+
+- name: lat test 4 core t
+  shell: numactl --membind=0 --physcpubind=0-3 lat_mem_rd -P 4 -t 32M 128
+
+- name: lat test 16 core t
+  shell: numactl --membind=0 --physcpubind=0-15 lat_mem_rd -P 16 -t 32M 128
+
+- name: lat test 1P core t
+  shell: numactl --membind=0 --physcpubind=0-31 lat_mem_rd -P 32 -t 32M 128
+
+
+- name: lat test 1 core s
+  shell: numactl --membind=0 --physcpubind=0 lat_mem_rd -P 1 32M 128
+
+- name: lat test 4 core s
+  shell: numactl --membind=0 --physcpubind=0-3 lat_mem_rd -P 1 32M 128
+
+- name: lat test 16 core s
+  shell: numactl --membind=0 --physcpubind=0-15 lat_mem_rd -P 1 32M 128
+
+- name: lat test 1P core s
+  shell: numactl --membind=0 --physcpubind=0-31 lat_mem_rd -P 1 32M 128
+
+
+- name: lat test 1P TA->TC 1 core t
+  shell: numactl --membind=1 --physcpubind=0 lat_mem_rd -P 1 -t 32M 128
+
+- name: lat test P TA->TC 4 core t
+  shell: numactl --membind=1 --physcpubind=0-3 lat_mem_rd -P 4 -t 32M 128
+
+- name: lat test 1P TA->TC 16 core t
+  shell: numactl --membind=1 --physcpubind=0-15 lat_mem_rd -P 16 -t 32M 128
+
+
+- name: lat test 1P TA->TC 1 core S
+  shell: numactl --membind=1 --physcpubind=0 lat_mem_rd -P 1 32M 128
+
+- name: lat test 1P TA->TC 4 core S
+  shell: numactl --membind=1 --physcpubind=0-3 lat_mem_rd -P 4 32M 128
+
+- name: lat test 1P TA->TC 16 core S
+  shell: numactl --membind=1 --physcpubind=0-15 lat_mem_rd -P 16 -t 32M 128
