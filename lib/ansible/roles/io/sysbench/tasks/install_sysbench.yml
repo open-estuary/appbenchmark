@@ -1,17 +1,17 @@
 ## install mysql-devel
-- name: install mysql-devel
-  yum: name=mysql-devel state=present
-  when: ansible_os_family == 'RedHat'
-- name: install libmysqld-dev
-  apt: name=libmysqld-dev state=present
-  when: ansible_distribution == 'Ubuntu'
+#- name: install mysql-devel
+#  yum: name=mysql-devel state=present
+#  when: ansible_os_family == 'RedHat'
+#- name: install libmysqld-dev
+#  apt: name=libmysqld-dev state=present
+#  when: ansible_distribution == 'Ubuntu'
 ## install sysbench
 - name: install sysbench for redhat
-  yum: name=sysbench state=present
+  yum: name=sysbench state=present disable_gpg_check=yes
   when: ansible_os_family == 'RedHat'
 - name: install sysbench for ubuntu
   apt: name=sysbench state=present
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' disable_gpg_check=yes
 ## source code install 
 #  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
 #- name: fetch  {{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log

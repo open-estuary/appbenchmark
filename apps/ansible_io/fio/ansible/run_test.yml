@@ -8,4 +8,4 @@
   - name: fetch result from nodes
     fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_{{item}} flat=yes
     with_items:
-    - 192.168.1.111
+    - 192.168.1.116

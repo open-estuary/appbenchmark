@@ -1,9 +1,9 @@
 ## install fio
 - name: install fio for redhat
-  yum: name=fio state=present
+  yum: name=fio state=present disable_gpg_check=yes
   when: ansible_os_family == 'RedHat'
 - name: install fio for ubuntu
-  apt: name=fio state=present
+  apt: name=fio state=present disable_gpg_check=yes
   when: ansible_distribution == 'Ubuntu'
 ## source code install 
 #  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
