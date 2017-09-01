@@ -1,0 +1,20 @@
+## install mysql-devel
+- name: install mysql-devel
+  yum: name=mysql-devel state=present
+  when: ansible_os_family == 'RedHat'
+- name: install libmysqld-dev
+  apt: name=libmysqld-dev state=present
+  when: ansible_distribution == 'Ubuntu'
+## install sysbench
+- name: install sysbench for redhat
+  yum: name=sysbench state=present
+  when: ansible_os_family == 'RedHat'
+- name: install sysbench fro ubuntu
+  apt: name=sysbench state=present
+  when: ansible_distribution == 'Ubuntu'
+## source code install 
+#  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
+- name: fetch  {{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
+  fetch: src=~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log dest=~/{{local_log_dir}}/ flat=yes
+
+

@@ -1,0 +1,15 @@
+{
+  "application": "Sysbench Test",
+
+  "server_setup": [ 
+   {
+      "name": "sysbench",
+      "download_url": "https://github.com/akopytov/sysbench/archive/1.0.tar.gz",
+      "local_filename" : "sysbench-1.0.tar.gz",
+      "pre_install_cmd": "",
+      "build_cmd": "",
+      "install_cmd": "common/sysbench_install.sh"
+    } ], 
+
+  "client_setup": [ ]
+}

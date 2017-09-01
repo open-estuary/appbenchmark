@@ -1,0 +1,9 @@
+---
+- include: create_install_dir.yml
+
+- include: copy_file_to_nodes.yml
+  
+- include: install_fio.yml
+
+#- include: run_test.yml 
+...
