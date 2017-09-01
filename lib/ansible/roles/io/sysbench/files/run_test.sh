@@ -21,7 +21,7 @@ pushd ${IOTEST_DIR} > /dev/null
 for var in "${TEST_MODE[@]}"
 do 
 	 sysbench fileio --file-total-size=${FILE_SIZE} prepare	
-	 nohup sysbench fileio --file-total-size=${FILE_SIZE} --file-test-mode=$var --time=${TIME} --max-requests=0 run >result_${IP}  2>&1 &
+	 nohup sysbench fileio --file-total-size=${FILE_SIZE} --file-test-mode=$var --time=${TIME} --max-requests=0 run >>result_${IP}  2>&1 &
 	 sleep ${WAIT_CLEANUP}
 done
 sysbench fileio --file-total-size=${FILE_SIZE} cleanup
