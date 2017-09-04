@@ -1,0 +1,3 @@
+- name: cpu speed test
+  shell: "/bin/bash {{workspace}}/{{SPEC_CPU_TESTING_SCRIPT}}"
+

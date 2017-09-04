@@ -1,0 +1,4 @@
+SPEC_CPU_TOOL_NAME: speccpu2006
+SPEC_CPU_TOOL_PKG_NAME: speccpu2006.tar.gz
+SPEC_CPU_TESTING_SCRIPT: cputest.sh
+

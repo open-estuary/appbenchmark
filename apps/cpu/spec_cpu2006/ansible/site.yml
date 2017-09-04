@@ -1,0 +1,7 @@
+---
+- name: Install Speccpu2006 on ARM64Server
+  hosts: CpuTestD05
+  roles:
+    - estuaryrepo
+    - spec_cpu2006
+
