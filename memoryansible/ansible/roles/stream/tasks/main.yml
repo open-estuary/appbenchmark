@@ -1,0 +1,54 @@
+---
+- name: install build-essential,automake,numactl,tcl,lmbench
+  apt: name=build-essential,automake,numactl,tcl,lmbench   state=present
+  when: ansible_os_family == 'Ubuntu'
+
+- name: install automake,numactl,tcl,lmbench
+  yum: name=automake,numactl,tcl,lmbench   state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: streamv1 core0
+  shell: numactl -C 0 --localalloc stream -v 1 -M 200M -P 1
+
+- name: streamv2 core0
+  shell: numactl -C 0 --localalloc stream -v 2 -M 200M -P 1
+
+- name: streamv1 core0-3
+  shell: numactl -C 0-3 --localalloc stream -v 1 -M 200M -P 4
+
+- name: streamv2 core0-3
+  shell: numactl -C 0-3 --localalloc stream -v 2 -M 200M -P 4
+
+- name: streamv1 core0-15
+  shell: numactl --cpunodebind=0 --localalloc stream -v 1 -M 200M -P 16
+
+- name: streamv2 core0-15
+  shell: numactl --cpunodebind=0 --localalloc stream -v 2 -M 200M -P 16
+
+- name: streamv1 core0-31
+  shell: numactl --cpunodebind=0,1 --localalloc stream -v 1 -M 200M -P 32
+
+- name: streamv2 core0-31
+  shell: numactl --cpunodebind=0,1 --localalloc stream -v 2 -M 200M -P 32
+
+- name: streamv1 core32-63
+  shell: numactl --cpunodebind=2,3 --localalloc stream -v 1 -M 200M -P 32
+
+- name: streamv1 core32-63
+  shell: numactl --cpunodebind=2,3 --localalloc stream -v 2 -M 200M -P 32
+
+- name: streamv1 core0-63
+  shell: numactl --cpunodebind=0,1,2,3 --localalloc stream -v 1 -M 200M -P 64
+
+- name: streamv1 core0-63
+  shell: numactl --cpunodebind=0,1,2,3 --localalloc stream -v 2 -M 200M -P 64
+
+- name: stream test maxscore V1 mode
+  shell: numactl --cpunodebind=0,1,2,3 --localalloc stream -v 1 -M 200M -P 16
+  retries: 10
+  delay: 0
+
+- name: stream test maxscore v2 mode
+  shell: numactl --cpunodebind=0,1,2,3 --localalloc stream -v 2 -M 200M -P 16
+  retries: 10
+  delay: 0

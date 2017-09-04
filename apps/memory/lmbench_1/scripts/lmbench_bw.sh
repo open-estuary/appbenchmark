@@ -31,20 +31,20 @@ echo "*******************core0***********************"
 perform_bandwidth_test "taskset -c" 1 0 
 
 echo "*******************cluster0********************"
-perform_bandwidth_test "taskset -c" 4 "0-3"
+#perform_bandwidth_test "taskset -c" 4 "0-3"
 
 echo "*******************Die0************************"
-perform_bandwidth_test "taskset -c" 16 "0-15"
+#perform_bandwidth_test "taskset -c" 16 "0-15"
 
 echo "*******************1P*************************"
-perform_bandwidth_test "taskset -c" 32 "0-31"
+#perform_bandwidth_test "taskset -c" 32 "0-31"
 
 echo "*******************core0 Ta->Tb****************"
-perform_bandwidth_test "numactl -m 1 -C" 1 0 
+#perform_bandwidth_test "numactl -m 1 -C" 1 0 
 
 echo "*******************cluster0 Ta->Tb*************"
-perform_bandwidth_test "numactl -m 1 -C" 4 "0-3" 
+#perform_bandwidth_test "numactl -m 1 -C" 4 "0-3" 
 
 echo "*******************Die0 Ta->Tb*****************"
-perform_bandwidth_test "numactl -m 1 -C" 16 "0-15"
+#perform_bandwidth_test "numactl -m 1 -C" 16 "0-15"
 
