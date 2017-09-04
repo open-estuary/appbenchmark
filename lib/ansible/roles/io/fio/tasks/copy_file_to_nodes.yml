@@ -16,4 +16,9 @@
   - run_server.sh
   - run_test.sh
   - setup.sh
+  - rndread.sh
+  - rndrw.sh
+  - rndwrite.sh
+  - seqread.sh
+  - seqwrite.sh
 

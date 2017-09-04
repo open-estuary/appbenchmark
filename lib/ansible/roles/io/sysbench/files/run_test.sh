@@ -11,7 +11,7 @@ if [ -d "${CUR_DIR}/result" ]; then
 fi
 mkdir -p ${CUR_DIR}/result
 IOTEST_DIR="${CUR_DIR}/result"
-echo "Start fio test......"
+echo "Start sysbench test......"
 FILE_SIZE="4G"
 TEST_MODE=("rndrw" "rndwr" "rndrd" "seqrd" "seqrewr" "seqwr") 
 TIME=60

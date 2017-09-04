@@ -11,7 +11,7 @@
   when: ansible_os_family == 'RedHat'
 - name: install sysbench for ubuntu
   apt: name=sysbench state=present
-  when: ansible_distribution == 'Ubuntu' disable_gpg_check=yes
+  when: ansible_distribution == 'Ubuntu' 
 ## source code install 
 #  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
 #- name: fetch  {{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
