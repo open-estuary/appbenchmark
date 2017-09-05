@@ -10,4 +10,11 @@ else
 fi
 export APP_ROOT=${APP_ROOT}
 
-${APP_ROOT}/apps/io/fio/setup.sh server
+if [ $# -lt 1 ]; then
+    echo "setup.sh {client | server}"
+    exit 0
+fi
+
+#call setup utility to setup mysql 
+${APP_ROOT}/toolset/setup/setup.sh "io" "sysbench" "setup_config.json" ${1}
+

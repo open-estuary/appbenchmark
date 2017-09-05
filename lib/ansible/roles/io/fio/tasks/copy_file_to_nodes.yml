@@ -1,0 +1,24 @@
+- name: copy common/scripts directory to target machmine
+  copy: src=~/{{root_dir}}/{{app_dir}}/common/ dest={{root_dir}}/{{app_dir}}/common mode=0755
+
+- name: copy toolset to remote server {{root_dir}}/{{tool_set_dir}}
+  copy: src=~/{{root_dir}}/toolset/ dest={{root_dir}}/{{tool_set_dir}} mode=0755
+
+- name: copy config to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/config
+  copy: src=config/ dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/config mode=0755
+
+- name: copy scripts to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/scripts
+  copy: src=scripts/ dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/scripts mode=0755
+
+- name: copy shell to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}
+  copy: src={{item}} dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}} mode=0755
+  with_items:
+  - run_server.sh
+  - run_test.sh
+  - setup.sh
+  - rndread.sh
+  - rndrw.sh
+  - rndwrite.sh
+  - seqread.sh
+  - seqwrite.sh
+
