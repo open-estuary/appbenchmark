@@ -1,20 +1,10 @@
 #!/bin/bash
 
-#Define global APP_ROOT directory
-if [ -z "${APP_ROOT}" ]; then
-    # Default value
-    APP_ROOT=$(cd `dirname $0` ; cd ../../../; pwd)
-else
-    # Re-declare so it can be used in this script
-    APP_ROOT=$(echo $APP_ROOT)
-fi
-export APP_ROOT=${APP_ROOT}
+CURDIR=$(cd `dirname $0`; pwd)
 
-if [ $# -lt 1 ]; then
-    echo "setup.sh {client | server}"
-    exit 0
-fi
+pushd ${CURDIR}/ansible > /dev/null
 
-#call setup utility to setup mysql 
-${APP_ROOT}/toolset/setup/setup.sh "io" "sysbench" "setup_config.json" ${1}
+ansible-playbook -i hosts init.yml  --user=root --ask-sudo-pass --extra-vars "ansible_sudo_pass=root"
+
+popd > /dev/null
 
