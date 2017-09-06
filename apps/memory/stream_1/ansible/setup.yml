@@ -1,0 +1,6 @@
+---
+- name: install lmbench
+  hosts: WebServerD05
+  remote_user: root
+  roles:
+    - stream
