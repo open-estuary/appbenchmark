@@ -9,7 +9,7 @@ CUR_DIR=$(cd `dirname $0`; pwd)
 if [ -d "${CUR_DIR}/result" ]; then
   rm -rf ${CUR_DIR}/result
 fi
-SLEEPTIME=65
+SLEEPTIME=305
 pushd ${CUR_DIR} > /dev/null
 sh rndread.sh 
 sleep ${SLEEPTIME} 
