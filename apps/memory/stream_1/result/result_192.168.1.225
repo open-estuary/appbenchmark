@@ -178,3 +178,39 @@ STREAM2 daxpy latency: 26.14 nanoseconds
 STREAM2 daxpy bandwidth: 58765.77 MB/sec
 STREAM2 sum latency: 8.20 nanoseconds
 STREAM2 sum bandwidth: 62423.38 MB/sec
+V1 Mode......
+STREAM copy latency: 17.59 nanoseconds
+STREAM copy bandwidth: 58214.08 MB/sec
+STREAM scale latency: 17.76 nanoseconds
+STREAM scale bandwidth: 57670.95 MB/sec
+STREAM add latency: 26.19 nanoseconds
+STREAM add bandwidth: 58659.03 MB/sec
+STREAM triad latency: 26.54 nanoseconds
+STREAM triad bandwidth: 57875.57 MB/sec
+V2 Mode......
+STREAM2 fill latency: 8.53 nanoseconds
+STREAM2 fill bandwidth: 60023.58 MB/sec
+STREAM2 copy latency: 17.95 nanoseconds
+STREAM2 copy bandwidth: 57044.51 MB/sec
+STREAM2 daxpy latency: 26.18 nanoseconds
+STREAM2 daxpy bandwidth: 58671.42 MB/sec
+STREAM2 sum latency: 7.95 nanoseconds
+STREAM2 sum bandwidth: 64405.51 MB/sec
+V1 Mode......
+STREAM copy latency: 17.12 nanoseconds
+STREAM copy bandwidth: 59812.07 MB/sec
+STREAM scale latency: 17.20 nanoseconds
+STREAM scale bandwidth: 59538.76 MB/sec
+STREAM add latency: 27.18 nanoseconds
+STREAM add bandwidth: 56519.15 MB/sec
+STREAM triad latency: 26.14 nanoseconds
+STREAM triad bandwidth: 58757.66 MB/sec
+V2 Mode......
+STREAM2 fill latency: 8.55 nanoseconds
+STREAM2 fill bandwidth: 59866.80 MB/sec
+STREAM2 copy latency: 17.30 nanoseconds
+STREAM2 copy bandwidth: 59180.48 MB/sec
+STREAM2 daxpy latency: 26.75 nanoseconds
+STREAM2 daxpy bandwidth: 57410.41 MB/sec
+STREAM2 sum latency: 8.32 nanoseconds
+STREAM2 sum bandwidth: 61565.34 MB/sec

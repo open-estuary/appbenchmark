@@ -29,8 +29,11 @@
 - name: mkdir result_memory
   file: dest=~/result_memory state=directory
 
-- name: mkdir result_memory_stream
-  file: dest=~/result_memory/stream state=directory
+- name: mkdir result_memory_bw
+  file: dest=~/result_memory/bw state=directory
+
+- name: mkdir result_memory_lat
+  file: dest=~/result_memory/lat state=directory
 
 - name: run lmbench setup when redhat
   shell: sh ~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/setup.sh 
