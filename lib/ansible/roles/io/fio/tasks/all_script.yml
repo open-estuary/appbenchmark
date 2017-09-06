@@ -1,0 +1,75 @@
+## create directory and copy files to target machine
+- name: create root directory for benchmark
+  file: state=directory path={{root_dir}}
+
+- name: create tools install log directory
+  file: state=directory path={{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}
+
+- name: create app directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}
+
+- name: create app name directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}/{{app_name_dir}}
+
+- name: create app test tool directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}
+
+- name: create app test tool script directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/{{app_test_tool_scripts_dir}}
+
+- name: create app test tool configure directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/{{app_test_tool_config_dir}}
+
+- name: create toolset directory for benchmark
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}
+
+- name: create all tool set dierctory | {{root_dir}}/{{tool_set_dir}}/util
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}/util
+
+- name: create all tool set dierctory | {{root_dir}}/{{tool_set_dir}}/setup
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}/setup
+
+- name: create all tool set dierctory | {{root_dir}}/{{tool_set_dir}}/perftools/miscs
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}/perftools/miscs
+
+- name: create all tool set dierctory | {{root_dir}}/{{tool_set_dir}}/include
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}/include
+
+- name: create all tool set dierctory | {{root_dir}}/{{tool_set_dir}}/config
+  file: state=directory path={{root_dir}}/{{tool_set_dir}}/config
+
+- name: create common/scripts directory for benchmark
+  file: state=directory path={{root_dir}}/{{app_dir}}/common/scripts
+
+- name: copy common/scripts directory to target machmine
+  copy: src=~/workplace/{{root_dir}}/{{app_dir}}/common/ dest={{root_dir}}/{{app_dir}}/common mode=0755
+
+- name: copy toolset to remote server {{root_dir}}/{{tool_set_dir}}
+  copy: src=~/workplace/{{root_dir}}/toolset/ dest={{root_dir}}/{{tool_set_dir}} mode=0755
+
+- name: copy config to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/config
+  copy: src=config/ dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/config mode=0755
+
+- name: copy scripts to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/scripts
+  copy: src=scripts/ dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/scripts mode=0755
+
+- name: copy shell to {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}
+  copy: src={{item}} dest={{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}} mode=0755
+  with_items:
+  - run_server.sh
+  - run_test.sh
+  - setup.sh
+## install mysql-devel
+- name: install mysql-devel and record the log to {{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/mysql-devel-install.log
+  yum: name=mysql-devel
+## install sysbench
+- name: install sysbench
+  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
+
+#  script: {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_server.sh >>{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
+- name: fetch  {{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log
+  fetch: src=~/{{root_dir}}/{{tools_install_log_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/sysbench-install.log dest=~/{{local_log_dir}}/ flat=yes
+
+
+
+
