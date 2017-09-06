@@ -1,0 +1,5 @@
+- name: make repo
+  hosts: repohost
+  roles:
+   - estuaryrepo
+

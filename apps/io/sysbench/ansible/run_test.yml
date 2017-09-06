@@ -3,9 +3,13 @@
   vars_files:
    - roles/sysbench/vars/main.yml
   tasks:
+  - name: install ifconfig for redhat
+    yum: name=net-tools state=present disable_gpg_check=yes
+    when: ansible_os_family == 'RedHat'
   - name: run test
     shell: sh ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_test.sh 
   - name: fetch result from nodes
     fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_{{item}} flat=yes
     with_items:
     - 192.168.1.116
+    - 192.168.1.122
