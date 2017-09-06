@@ -1,12 +1,22 @@
-******************************************************************
+* [Introduction](#1)
+* [Benchmark Test](#2)
+* [Others](#3)
 
-hello everyone, this is a tool about memory perform test!
+# Memory Benchmark Test 
+## <a name="1">Introduction</a>
+Stream is a tool about memory performance test
 
-run_test.yml aim to run test shell to check memory.
-tests include two parts.The one is stream_test.sh, and the other one is run_test.sh.If you want to save time, you can annotate some part of them.
+## <a name="2">Benchmark Test</a>
+### Test Topology
 
+### Setup
+setup.sh -> setup.yml -> task
 
-setup.yml aim to install some related package an make some directory.
+### Test 
+run_test.sh -> run_test.yml -> file/shell
 
-
+### Test Results
+result dir
+                                           
+## <a name="3">Others</a>
 
