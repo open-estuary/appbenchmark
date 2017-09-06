@@ -1,0 +1,13 @@
+---
+- name: Run Lmbench
+  hosts: WebServerD05
+  remote_user: root
+  vars_files:
+  - roles/lmbench/vars/main.yml
+  tasks:
+  - name: run test
+    shell: sh ~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/run_bw_test.sh
+  - name: fetch result
+    fetch: src=~/result_memory/bw/result_{{item}} dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/result_bw/ flat=yes
+    with_items:
+    - 192.168.1.115

@@ -1,0 +1,37 @@
+---
+- include_vars: ../vars/main.yml
+
+- name: install lmbench when debian
+  apt: name=build-essential,automake,numactl,tcl,lmbench   state=present
+  when: ansible_os_family == 'Debian'
+
+- name: install lmbench when redhat
+  yum: name=automake,numactl,tcl   state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: copy install lmbench shell when redhat
+  copy: src=../files/setup.sh dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/ mode=0755
+  when: ansible_os_family == 'RedHat'
+
+- name: copy package lmbench when redhat
+  copy: src=../files/lmbench.tgz dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/ mode=0755
+  when: ansible_os_family == 'RedHat'
+
+- name: copy shell bw test
+  copy: src=../files/run_bw_test.sh dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/ mode=0755
+
+- name: copy shell lat test
+  copy: src=../files/run_lat_test.sh dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/ mode=0755
+
+#- name: copy hosts
+#  copy: src=../files/hosts dest=~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/
+
+- name: mkdir result_memory
+  file: dest=~/result_memory state=directory
+
+- name: mkdir result_memory_stream
+  file: dest=~/result_memory/stream state=directory
+
+- name: run lmbench setup when redhat
+  shell: sh ~/{{root_dir}}/{{app_dir}}/{{basic_dir}}/{{tool_dir}}/setup.sh 
+  when: ansible_os_family == 'RedHat'
