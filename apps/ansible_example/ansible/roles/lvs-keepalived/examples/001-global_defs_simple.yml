@@ -1,0 +1,8 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      global_defs:
+        notification_email:
+          - email1@example.com
+          - email2@example.com
+        notification_email_from: 'keepalived@example.com'

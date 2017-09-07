@@ -1,0 +1,8 @@
+{% if static_ipaddress is defined %}
+static_ipaddress {
+{% for address in static_ipaddress %}
+  {{ address }}
+{% endfor %}
+}
+
+{% endif %}

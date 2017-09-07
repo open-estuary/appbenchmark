@@ -1,0 +1,7 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      vrrp_scripts:
+        - name: 'chk_sshd'
+          script: 'killall -0 sshd'
+          interval: 1

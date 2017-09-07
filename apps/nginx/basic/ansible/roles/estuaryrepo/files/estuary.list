@@ -1,0 +1,4 @@
+###Open-Estuary domestic apt source
+deb ftp://repoftp:repopushez7411@117.78.41.188/releases/5.0/ubuntu/ estuary-5.0 main
+deb-src ftp://repoftp:repopushez7411@117.78.41.188/releases/5.0/ubuntu/ estuary-5.0 main
+

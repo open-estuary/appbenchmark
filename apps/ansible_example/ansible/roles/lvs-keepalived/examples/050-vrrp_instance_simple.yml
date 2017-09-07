@@ -1,0 +1,25 @@
+- hosts: keepalived2
+  roles:
+    - role: lvs-keepalived
+      vrrp_instances:
+        - name: 'VI_100'
+          virtual_router_id: 100
+          interface: 'eth0'
+          state: 'MASTER'
+          priority: 100
+          virtual_ipaddress:
+            - '192.168.234.100/24 dev eth0'
+          auth_pass: 's3cr3tp'
+
+- hosts: keepalived3
+  roles:
+    - role: lvs-keepalived
+      vrrp_instances:
+        - name: 'VI_100'
+          virtual_router_id: 100
+          interface: 'eth0'
+          state: 'BACKUP'
+          priority: 50
+          virtual_ipaddress:
+            - '192.168.234.100/24 dev eth0'
+          auth_pass: 's3cr3tp'

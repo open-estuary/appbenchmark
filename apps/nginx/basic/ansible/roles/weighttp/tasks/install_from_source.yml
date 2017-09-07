@@ -1,0 +1,32 @@
+---
+- name: Copy weighttp build scripts
+  copy: 
+    src: weighttp_build.sh 
+    dest: "{{ workspace }}/weighttp_build.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}" 
+
+- name: Download Wrk 
+  get_url:
+     url: https://github.com/lighttpd/weighttp/archive/weighttp-{{ weighttp_version }}.tar.gz
+     dest: "{{ workspace }}/weighttp-{{ weighttp_version }}.tar.gz"
+
+- name: Expand Wrk git archive
+  unarchive:
+    src: "{{ workspace }}/weighttp-{{ weighttp_version }}.tar.gz"
+    dest: "{{ workspace }}"
+    copy: no
+
+- name: Install libev-devel via yum
+  yum: name=libev-devel state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install libev-devel via apt
+  apt: name=libev-devel state=present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Build Weighttp  
+  shell: "{{ workspace }}/weighttp_build.sh {{ workspace }}"
+  become: yes
+

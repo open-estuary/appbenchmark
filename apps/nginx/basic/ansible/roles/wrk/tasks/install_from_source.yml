@@ -1,0 +1,20 @@
+---
+- name: Download Wrk 
+  get_url:
+     url: https://github.com/wg/wrk/archive/{{ wrk_version }}.tar.gz
+     dest: "{{ workspace }}/wrk-{{ wrk_version }}.tar.gz"
+
+- name: Expand Wrk git archive
+  unarchive:
+    src: "{{ workspace }}/wrk-{{ wrk_version }}.tar.gz"
+    dest: "{{ workspace }}"
+    copy: no
+
+- name: Build Wrk
+  command: >
+    chdir={{ workspace }}/wrk-{{ wrk_version }}  
+    make
+  become: yes
+
+- name: Install Wrk from source
+  shell: cp "{{ workspace }}/wrk-{{ wrk_version }}/wrk"  /usr/bin/wrk 

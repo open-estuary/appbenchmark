@@ -1,0 +1,8 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      vrrp_sync_groups:
+        - name: 'VG_0'
+          group:
+            - 'VI_100'
+            - 'VI_200'
