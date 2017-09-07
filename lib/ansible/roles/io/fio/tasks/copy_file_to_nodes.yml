@@ -23,3 +23,4 @@
   - seqwrite.sh
   - fio.cfg
   - fio_test.sh
+  - run_all_test.sh
