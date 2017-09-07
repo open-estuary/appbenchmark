@@ -8,7 +8,8 @@ CURDIR=$(cd `dirname $0`; pwd)
 
 pushd ${CURDIR}/ansible > /dev/null
 
-ansible-playbook setup.yml
+#ansible-playbook setup.yml
+ansible-playbook -i hosts ${CURDIR}/ansible/setup.yml --user=root --ask-sudo-pass --extra-vars "ansible_sudo_pass=root"
 
 popd > /dev/null
 
