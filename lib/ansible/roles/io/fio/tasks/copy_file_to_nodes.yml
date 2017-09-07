@@ -21,4 +21,5 @@
   - rndwrite.sh
   - seqread.sh
   - seqwrite.sh
-
+  - fio.cfg
+  - fio_test.sh
