@@ -1,0 +1,2 @@
+- name: run sysbench io test
+  shell: sh  {{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_test.sh 

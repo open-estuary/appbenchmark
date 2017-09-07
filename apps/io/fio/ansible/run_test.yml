@@ -1,0 +1,38 @@
+- name: RUN SYSBENCH TEST
+  hosts: TestServerD05
+  vars_files:
+   - roles/fio/vars/main.yml
+  tasks:
+  - name: run test
+    shell: sh ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_test.sh 
+  - name: fetch result from nodes
+    fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_read_{{item}} flat=yes
+    with_items:
+    - 192.168.1.116
+    - 192.168.1.115
+    - 192.168.1.122
+  - name: fetch result from nodes
+    fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_write_{{item}} flat=yes
+    with_items:
+    - 192.168.1.116
+    - 192.168.1.115
+    - 192.168.1.122
+  - name: fetch result from nodes
+    fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_randread_{{item}} flat=yes
+    with_items:
+    - 192.168.1.116
+    - 192.168.1.115
+    - 192.168.1.122
+  - name: fetch result from nodes
+    fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_randwrite_{{item}} flat=yes
+    with_items:
+    - 192.168.1.116
+    - 192.168.1.115
+    - 192.168.1.122
+  - name: fetch result from nodes
+    fetch: dest=~/result_io/  src=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/result_randrw_{{item}} flat=yes
+    with_items:
+    - 192.168.1.116
+    - 192.168.1.115
+    - 192.168.1.122
+

@@ -1,0 +1,4 @@
+root_dir: "appbenchmark-1"
+app_dir: "apps"
+basic_dir: "memory"
+tool_dir: "lmbench_1"

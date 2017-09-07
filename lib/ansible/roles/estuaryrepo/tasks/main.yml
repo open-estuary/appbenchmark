@@ -12,7 +12,7 @@
   when: ansible_distribution == 'Ubuntu'
 
 - name: Copy the Estuary GPG key
-  copy: src=ESTUARY-GPG-KEY dest={{ workspace }}
+  copy: src=ESTUARY-GPG-KEY dest={{ workspace }}/
   when: ansible_distribution == 'Ubuntu'
 
 - name: Add the Estuary GPG key
