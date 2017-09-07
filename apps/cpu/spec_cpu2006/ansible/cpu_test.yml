@@ -1,0 +1,6 @@
+---
+  - name: cpu test
+    hosts: CpuTestD05
+    tasks:
+    - name: run cpu test
+      shell: /bin/bash {{workspace}}/cputest.sh

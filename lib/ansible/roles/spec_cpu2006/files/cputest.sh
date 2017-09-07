@@ -3,9 +3,7 @@
 CURR_WORK_PATH=$(cd `dirname $0`;pwd)
 
 CURR_WORK_PATH=$CURR_WORK_PATH/speccpu2006
-echo "path $CURR_WORK_PATH" >>/tmp/test12345
 cd $CURR_WORK_PATH
-echo "currpath = `pwd`" >>/tmp/test12345
 source shrc
 bin/relocate
 source shrc

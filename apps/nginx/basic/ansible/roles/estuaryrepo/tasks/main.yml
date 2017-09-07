@@ -1,0 +1,29 @@
+---
+- name: Copy the EPEL repository definition
+  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+  when: ansible_os_family == 'RedHat'
+
+- name: Create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
+  when: ansible_os_family == 'RedHat'
+
+- name: Copy the Estuary repository definition
+  copy: src=estuary.list dest=/etc/apt/sources.list.d/estuary.list
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Copy the Estuary GPG key
+  copy: src=ESTUARY-GPG-KEY dest={{ workspace }}
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Add the Estuary GPG key
+  command: apt-key add {{ workspace }}/ESTUARY-GPG-KEY
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Copy the Estuary repository definition
+  copy: src=estuary.repo dest=/etc/yum.repos.d/estuary.repo
+  when: ansible_os_family == 'RedHat'
+  
+- name: Copy the Estuary GPG key
+  copy: src=ESTUARY-GPG-KEY dest=/etc/pki/rpm-gpg
+  when: ansible_os_family == 'RedHat'
+  

@@ -1,0 +1,20 @@
+{% if vrrp_scripts is defined %}
+{% for item in vrrp_scripts %}
+vrrp_script {{ item.name }} {
+  script "{{ item.script }}"
+  interval {{ item.interval | int(default=1) }}
+{% if item.timeout is defined %}
+  timeout {{ item.timeout | int(default=10) }}
+{% endif %}
+{% if item.weight is defined %}
+  weight {{ item.weight | int(default=2) }}
+{% endif %}
+{% if item.fall is defined %}
+  fall {{ item.fall | int(default=3)}}
+{% endif %}
+{% if item.rise is defined %}
+  rise {{ item.rise | int(default=3) }}
+{% endif %}
+}
+{% endfor %}
+{% endif %}

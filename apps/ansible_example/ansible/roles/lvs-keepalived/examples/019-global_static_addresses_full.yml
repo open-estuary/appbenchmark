@@ -1,0 +1,7 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      static_ipaddress:
+        - '192.168.200.16 dev eth0 scope link'
+        - '192.168.200.17 dev eth1 scope link'
+        - '192.168.200.18 dev eth2'

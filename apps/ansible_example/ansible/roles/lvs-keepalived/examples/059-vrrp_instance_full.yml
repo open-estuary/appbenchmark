@@ -1,0 +1,47 @@
+- hosts: keepalived
+  roles:
+    - role: lvs-keepalived
+      vrrp_instances:
+        - name: 'VI_100'
+          virtual_router_id: 100
+          interface: 'eth0'
+          state: 'BACKUP'
+          priority: 100
+          virtual_ipaddress:
+            - '192.168.234.100/24 dev eth0'
+          auth_type: 'PASS'
+          auth_pass: 's3cr3tp'
+          version: 3
+          use_vmac: True
+          vmac_xmit_base: True
+          native_ipv6: True
+          dont_track_primary: True
+          debug: True
+          smtp_alert: True
+          nopreempt: True
+          preempt_delay: 10
+          mcast_src_ip: '192.168.234.10'
+          unicast_src_ip: '192.168.234.10'
+          unicast_peer:
+            - '192.168.234.11'
+          track_script:
+            - 'chk_haproxy'
+          track_interface:
+            - 'eth2'
+          lvs_sync_daemon_interface: 'eth2'
+          garp_master_delay: 10
+          garp_master_repeat: 10
+          garp_master_refresh: 10
+          garp_master_refresh_repeat: 10
+          advert_int: 4
+          virtual_ipaddress:
+            - '192.168.234.100/24 dev eth0'
+          virtual_ipaddress_excluded:
+            - '192.168.234.99/24 dev eth0'  
+          virtual_routes:
+            - '192.168.234.192/26 via 192.168.200.254 dev eth1'
+          notify_master: '/path/to/script.sh'
+          notify_backup: '/path/to/script.sh arg1 arg2'
+          notify_fault: '/path/to/script.sh'
+          notify_stop: '/path/to/script.sh'
+          notify: '/path/to/script.sh'

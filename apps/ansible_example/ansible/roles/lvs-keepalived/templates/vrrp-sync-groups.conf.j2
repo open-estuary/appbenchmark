@@ -1,0 +1,26 @@
+{% if vrrp_sync_groups is defined %}
+{% for item in vrrp_sync_groups %}
+vrrp_sync_group {{ item.name }} {
+  group {
+{% for network in item.group %}
+    {{ network }}
+{% endfor %}
+  }
+{% if item.notify_master is defined %}
+  notify_master "{{ item.notify_master }}"
+{% endif %}
+{% if item.notify_backup is defined %}
+  notify_backup "{{ item.notify_backup }}"
+{% endif %}
+{% if item.notify_fault is defined %}
+  notify_fault "{{ item.notify_fault }}"
+{% endif %}
+{% if item.notify is defined %}
+  notify {{ item.notify }}
+{% endif %}
+{% if item.smtp_alert is defined and item.smtp_alert == True %}
+  smtp_alert
+{% endif %}
+}
+{% endfor %}
+{% endif %}

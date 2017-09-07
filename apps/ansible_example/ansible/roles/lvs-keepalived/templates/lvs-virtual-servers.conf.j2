@@ -1,0 +1,191 @@
+{% if virtual_servers is defined %}
+{% for item in virtual_servers %}
+{% if item.name is defined %}
+virtual_server {{ item.name }} {
+{% if item.delay_loop is defined %}
+  delay_loop {{ item.delay_loop }}
+{% endif %}
+{% if item.lb_algo is defined %}
+  lb_algo {{ item.lb_algo }}
+{% endif %}
+{% if item.lb_kind is defined %}
+  lb_kind {{ item.lb_kind }}
+{% endif %}
+{% if item.lvs_sched is defined %}
+  lvs_sched {{ item.lvs_sched }}
+{% endif %}
+{% if item.ops is defined and item.ops == True %}
+  ops
+{% endif %}
+{% if item.lvs_method is defined %}
+  lvs_method {{ item.lvs_method }}
+{% endif %}
+{% if item.persistence_timeout is defined %}
+  persistence_timeout {{ item.persistence_timeout }}
+{% endif %}
+{% if item.protocol is defined %}
+  protocol {{ item.protocol }}
+{% endif %}
+{% if item.persistence_granularity is defined %}
+  persistence_granularity {{ item.persistence_granularity }}
+{% endif %}
+{% if item.ha_suspend is defined and item.ha_suspend == True %}
+  ha_suspend
+{% endif %}
+{% if item.virtualhost is defined %}
+  virtualhost {{ item.virtualhost }}
+{% endif %}
+{% if item.alpha is defined and item.alpha == True %}
+  alpha
+{% endif %}
+{% if item.omega is defined and item.omega == True %}
+  omega
+{% endif %}
+{% if item.quorum is defined %}
+  quorum {{ item.quorum }}
+{% endif %}
+{% if item.hysteresis is defined %}
+  hysteresis {{ item.hysteresis }}
+{% endif %}
+{% if item.quorum_up is defined %}
+  quorum_up "{{ item.quorum_up }}"
+{% endif %}
+{% if item.quorum_down is defined %}
+  quorum_down "{{ item.quorum_down }}"
+{% endif %}
+{% if item.sorry_server is defined %}
+  sorry_server {{ item.sorry_server.address }} {{ item.sorry_server.port }}
+{% endif %}
+{% if item.sorry_server_inhibit is defined and item.sorry_server_inhibit == True %}
+  sorry_server_inhibit
+{% endif %}
+{# ========================================== real_server #}
+{% if item.real_servers is defined %}
+{% for rs in item.real_servers %}
+  real_server {{ rs.address }} {{ rs.port }} {
+{% if rs.weight is defined %}
+    weight {{ rs.weight }}
+{% endif %}
+{% if rs.inhibit_on_failure is defined and rs.inhibit_on_failure == True %}
+    inhibit_on_failure
+{% endif %}
+{% if rs.notify_up is defined %}
+    notify_up "{{ rs.notify_up }}"
+{% endif %}
+{% if rs.notify_down is defined %}
+    notify_down "{{ rs.notify_down }}"
+{% endif %}
+{# ========================================== real_server checks #}
+{% if rs.check is defined %}
+    {{ rs.check.type }} {
+{% if rs.check.warmup is defined %}
+      warmup {{ rs.check.warmup }}
+{% endif %}
+{# ========================================= MISC_CHECK       #}
+{% if rs.check.type == "MISC_CHECK" %}
+{% if rs.check.misc_path is defined %}
+      misc_path "{{ rs.check.misc_path }}"
+{% endif %}
+{% if rs.check.misc_timeout is defined %}
+      misc_timeout {{ rs.check.misc_timeout }}
+{% endif %}
+{% if rs.check.misc_dynamic is defined and rs.check.misc_dynamic == True %}
+      misc_dynamic
+{% endif %}
+{# ========================================== real_server checks common #}
+{% else %}
+{% if rs.check.connect_ip is defined %}
+      connect_ip {{ rs.check.connect_ip }}
+{% endif %}
+{% if rs.check.connect_port is defined %}
+      connect_port {{ rs.check.connect_port }}
+{% endif %}
+{% if rs.check.bindto is defined %}
+      bindto {{ rs.check.bindto }}
+{% endif %}
+{% if rs.check.bind_port is defined %}
+      bind_port {{ rs.check.bind_port }}
+{% endif %}
+{% if rs.check.connect_timeout is defined %}
+      connect_timeout {{ rs.check.connect_timeout }}
+{% endif %}
+{% if rs.check.fwmark is defined %}
+      fwmark {{ rs.check.fwmark }}
+{% endif %}
+{% endif %}
+{# ========================================== HTTP_GET|SSL_GET adds #}
+{% if rs.check.type == "HTTP_GET" or rs.check.type == "SSL_GET" or rs.check.type == "TCP_CHECK" %}
+{% if rs.check.nb_get_retry is defined %}
+      nb_get_retry {{ rs.check.nb_get_retry }}
+{% endif %}
+{% if rs.check.delay_before_retry is defined %}
+      delay_before_retry {{ rs.check.delay_before_retry }}
+{% endif %}
+{% if rs.check.urls is defined %}
+{% for url in rs.check.urls %}
+      url {
+{% if url.path is defined %}
+        path {{ url.path }}
+{% endif %}
+{% if url.digest is defined %}
+        digest {{ url.digest }}
+{% endif %}
+{% if url.status_code is defined %}
+        status_code {{ url.status_code }}
+{% endif %}
+      }
+{% endfor %}
+{% endif %}
+{% endif %}
+{# ========================================== HTTP_GET|SSL_GET adds end#}
+{# ========================================== SMTP adds #}
+{% if rs.check.type == "SMTP_CHECK" %}
+{% if rs.check.retry is defined %}
+      retry {{ rs.check.retry }}
+{% endif %}
+{% if rs.check.retry is defined %}
+      retry {{ rs.check.retry }}
+{% endif %}
+{% if rs.check.delay_before_retry is defined %}
+      delay_before_retry {{ rs.check.delay_before_retry }}
+{% endif %}
+{% if rs.check.helo_name is defined %}
+      helo_name "{{ rs.check.helo_name }}"
+{% endif %}
+{% if rs.check.hosts is defined %}
+{% for host in rs.check.hosts %}
+      host {
+{% if host.connect_ip is defined %}
+        connect_ip {{ host.connect_ip }}
+{% endif %}
+{% if host.connect_port is defined %}
+        connect_port {{ host.connect_port }}
+{% endif %}
+{% if host.bindto is defined %}
+        bindto {{ host.bindto }}
+{% endif %}
+{% if host.bind_port is defined %}
+        bind_port {{ host.bind_port }}
+{% endif %}
+{% if host.connect_timeout is defined %}
+        connect_timeout {{ host.connect_timeout }}
+{% endif %}
+{% if host.fwmark is defined %}
+        fwmark {{ host.fwmark }}
+{% endif %}
+      }
+{% endfor %}
+{% endif %}
+{% endif %}
+{# ========================================== SMTP adds end #}
+    }
+{% endif %}
+{# ========================================== real_server checks end #}
+  }
+{% endfor %}
+{% endif %}
+{# ========================================== real_server end #}
+}
+{% endif %}
+{% endfor %}
+{% endif %}

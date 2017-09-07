@@ -1,0 +1,44 @@
+{% if global_defs is defined %}
+global_defs {
+{% if global_defs.notification_email is defined %}
+  notification_email {
+{% for email in global_defs.notification_email %}
+    {{ email }}
+{% endfor %}
+  }
+{% endif %}
+{% if global_defs.notification_email_from is defined %}
+  notification_email_from {{ global_defs.notification_email_from }}
+{% endif %}
+{% if global_defs.smtp_server is defined %}
+  smtp_server {{ global_defs.smtp_server }}
+{% endif %}
+{% if global_defs.smtp_connect_timeout is defined %}
+  smtp_connect_timeout {{ global_defs.smtp_connect_timeout | int(default=10) }}
+{% endif %}
+{% if global_defs.router_id is defined %}
+  router_id {{ global_defs.router_id }}
+{% endif %}
+{% if global_defs.vrrp_mcast_group4 is defined %}
+  vrrp_mcast_group4 {{ global_defs.vrrp_mcast_group4 }}
+{% endif %}
+{% if global_defs.vrrp_mcast_group6 is defined %}
+  vrrp_mcast_group6 {{ global_defs.vrrp_mcast_group6 }}
+{% endif %}
+{% if global_defs.vrrp_garp_master_delay is defined %}
+  vrrp_garp_master_delay {{ global_defs.vrrp_garp_master_delay | int(default=5) }}
+{% endif %}
+{% if global_defs.vrrp_garp_master_repeat is defined %}
+  vrrp_garp_master_repeat {{ global_defs.vrrp_garp_master_repeat | int(default=5) }}
+{% endif %}
+{% if global_defs.vrrp_garp_master_refresh is defined %}
+  vrrp_garp_master_refresh {{ global_defs.vrrp_garp_master_refresh | int }}
+{% endif %}
+{% if global_defs.vrrp_garp_master_refresh_repeat is defined %}
+  vrrp_garp_master_refresh_repeat {{ global_defs.vrrp_garp_master_refresh_repeat | int(default=1) }}
+{% endif %}
+{% if global_defs.vrrp_version is defined and global_defs.vrrp_version in [2,3] %}
+  vrrp_version {{ global_defs.vrrp_version | int(default=2) | abs }}
+{% endif %}
+}
+{% endif %}
