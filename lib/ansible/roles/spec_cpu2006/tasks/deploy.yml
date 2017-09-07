@@ -1,0 +1,12 @@
+---
+- name: clear old testing tool and script
+  file: path={{workspace}}/{{SPEC_CPU_TOOL_NAME}} state=absent
+
+- name: copy spec_cpu performance testing tool and script to remote hosts
+  copy: src={{ item }} dest={{workspace}} owner=estuaryapp mode=777
+  with_items:
+    - speccpu2006.tar.gz
+    - cputest.sh
+
+- name: decompression spec_cpu performance testing tools on remote hosts
+  unarchive: src={{workspace}}/{{SPEC_CPU_TOOL_PKG_NAME}} dest={{workspace}} copy=no
