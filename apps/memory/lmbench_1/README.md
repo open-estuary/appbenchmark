@@ -38,10 +38,16 @@ You can change target machine ip address in hosts file. It allows several ip add
 some test results are as follow:
 *************************************************************************
 bandwidth test
+
 -order:
+
  for bm in rd frd wr fwr bzero rdwr cp fcp bcopy
-     do 
+
+     do
+
       nohup numactl --localalloc -C 0 bw_mem -P 1 -N 5 32M $bm
+
+
  done
 
 -result
@@ -52,73 +58,137 @@ bandwidth test
 32.00 7689.54
 
 32.00 8933.56
+
 32.00 8951.05
+
 32.00 5920.44
+
 32.00 5223.64
+
 32.00 6776.79
+
 32.00 7170.87
+
+
 the left data is size(MB), the right data is bandwidth(MB)
 
 ************************************************************************
 latency test
+
 -order:
+
  numactl --localalloc --physcpubind=0 lat_mem_rd -P 1 -t 256M 128
 
+
 -result
+
 "stride=128
+
 0.00049 1.667
+
 0.00098 1.667
+
 0.00195 1.667
+
 0.00293 1.667
+
 0.00391 1.667
+
 0.00586 1.667
+
 0.00781 1.667
+
 0.01172 1.667
+
 0.01562 1.667
+
 0.02344 7.506
+
 0.03125 6.133
+
 0.04688 5.805
+
 0.06250 7.507
+
 0.09375 7.521
+
 0.12500 7.508
+
 0.18750 9.847
+
 0.25000 10.198
+
 0.37500 10.068
+
 0.50000 10.100
+
 0.75000 13.300
+
 1.00000 17.250
+
 1.50000 21.901
+
 2.00000 23.286
+
 3.00000 24.578
+
 4.00000 25.233
+
 6.00000 27.642
+
 8.00000 35.726
+
 12.00000 62.295
+
 16.00000 81.065
+
 24.00000 108.238
+
 32.00000 120.291
+
 48.00000 126.411
+
 64.00000 128.708
+
 96.00000 128.736
+
 128.00000 130.194
+
 192.00000 130.870
+
 256.00000 135.272
+
 
 the left data is size(MB) , the right is latency(ns)
 
+
 ***********************************************************************
 stream test 
+
 -order:
+
  taskset -c 0   stream -v 1 -M 200M -P 1
+
 -result:
+
  STREAM copy latency: 1.40 nanoseconds
+
  STREAM copy bandwidth: 11425.31 MB/sec
+
  STREAM scale latency: 1.47 nanoseconds
+
  STREAM scale bandwidth: 10913.75 MB/sec
+
  STREAM add latency: 2.03 nanoseconds
+
  STREAM add bandwidth: 11844.13 MB/sec
+
  STREAM triad latency: 2.03 nanoseconds
+
  STREAM triad bandwidth: 11805.68 MB/sec
+
                                            
+
 ## <a name="3">Others</a>
+
 
