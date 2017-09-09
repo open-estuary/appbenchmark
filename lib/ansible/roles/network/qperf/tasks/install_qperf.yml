@@ -1,0 +1,8 @@
+#install qperf
+- name: install qperf for redhat
+  yum: name=qperf state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+- name: install qperf for ubuntu
+  apt: name=qperf state=present
+  when: ansible_distribution == 'Ubuntu'

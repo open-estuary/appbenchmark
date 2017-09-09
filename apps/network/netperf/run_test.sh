@@ -1,16 +1,10 @@
 #!/bin/bash
 
-SERVERIP=${1}
 
-if [ -z "${SERVERIP}" ] ; then
-    echo "Usage: ./run_test.sh <remote server IP> "
-    exit 0
-fi
+CURDIR=$(cd `dirname $0`; pwd)
 
-echo "Start Client Right Now"
-netperf -t TCP_STREAM -H ${SERVERIP} -l 60 -- -m 2048
-netperf -t TCP_RR -H ${SERVERIP} -l 60 -- -m 1024
-netperf -t TCP_CRR -H ${SERVERIP} -l 60 -- -m 1024
-netperf -t UDP_RR -H ${SERVERIP} -l 60 -- -m 1024
+pushd ${CURDIR}/ansible > /dev/null
 
+ansible-playbook -i hosts run_test.yml --user=root --extra-vars "ansible_sudo_pass=root"
 
+popd > /dev/nul

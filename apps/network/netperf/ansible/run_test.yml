@@ -1,0 +1,46 @@
+---
+- hosts: NetworkClient
+  vars_files:
+  - roles/netperf/vars/main.yml
+  tasks:
+    - name: remove latest data
+      file:
+        path: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/
+        state: absent
+
+    - name: TCP_STREAM test
+      command: netperf -t TCP_STREAM -H {{ server_addr }} -l 60 -- -m 204
+      register: logdata
+
+    - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/netperf_TCP_STREAM_output.txt line="{{ logdata.stdout }}" state=present
+
+    - name: TCP_RR test
+      command: netperf -t TCP_RR -H {{ server_addr }} -l 60 -- -r 64,1024
+      register: logdata
+
+    - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/netperf_TCP_RR_output.txt line="{{ logdata.stdout }}" state=present
+
+    - name: TCP_CRR test
+      command: netperf -t TCP_CRR -H {{ server_addr }} -l 60 -- -r 64,1024
+      register: logdata
+
+    - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/netperf_TCP_CRR_output.txt line="{{ logdata.stdout }}" state=present
+
+    - name: UDP_RR test
+      command: netperf -t UDP_RR -H {{ server_addr }} -l 60 -- -r 64,1024
+      register: logdata
+
+    - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/netperf_UDP_RR_output.txt line="{{ logdata.stdout }}" state=present
+ 
+    - name: mkdir result
+      file: dest=~/result state=directory
+
+    - name: fetch all results
+      fetch:
+        src: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/{{ item }} 
+        dest: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/
+      with_items: 
+          - netperf_TCP_STREAM_output.txt
+          - netperf_TCP_RR_output.txt
+          - netperf_TCP_CRR_output.txt
+          - netperf_UDP_RR_output.txt

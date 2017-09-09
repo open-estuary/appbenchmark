@@ -1,0 +1,68 @@
+tcp_bw:
+    bw  =  1.83 MB/sec
+tcp_bw:
+    bw  =  3.5 MB/sec
+tcp_bw:
+    bw  =  6.89 MB/sec
+tcp_bw:
+    bw  =  12.9 MB/sec
+tcp_bw:
+    bw  =  23 MB/sec
+tcp_bw:
+    bw  =  41 MB/sec
+tcp_bw:
+    bw  =  72.3 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  117 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_bw:
+    bw  =  118 MB/sec
+tcp_lat:
+    latency  =  42.1 us
+tcp_lat:
+    latency  =  42.8 us
+tcp_lat:
+    latency  =  43.2 us
+tcp_lat:
+    latency  =  43.2 us
+tcp_lat:
+    latency  =  44.1 us
+tcp_lat:
+    latency  =  44.9 us
+tcp_lat:
+    latency  =  47.4 us
+tcp_lat:
+    latency  =  52.1 us
+tcp_lat:
+    latency  =  61.2 us
+tcp_lat:
+    latency  =  80.1 us
+tcp_lat:
+    latency  =  118 us
+tcp_lat:
+    latency  =  182 us
+tcp_lat:
+    latency  =  184 us
+tcp_lat:
+    latency  =  222 us
+tcp_lat:
+    latency  =  297 us
+tcp_lat:
+    latency  =  435 us
+tcp_lat:
+    latency  =  722 us
