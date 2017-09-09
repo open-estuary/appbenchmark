@@ -1,0 +1,14 @@
+---
+- name: Install Network performance test tools including iperf
+  hosts: NetworkClient
+  remote_user: root
+  roles:
+    - iperf
+
+- name: Install iperf server on ARM64Server
+  hosts: NetworkServerD05
+  remote_user: root
+  roles:
+    - iperf
+
+

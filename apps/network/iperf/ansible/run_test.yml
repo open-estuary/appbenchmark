@@ -1,0 +1,25 @@
+---
+- hosts: NetworkClient
+  vars_files:
+  - roles/iperf/vars/main.yml  
+  tasks:
+    - name: remove latest data
+      file:
+        path: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/
+        state: absent
+
+
+    - name: run iperf on client with 1 thread
+      command: iperf -c {{server_addr}} -P 1 -t 100 -i 1 -w 256k 
+      register: logdata
+
+    - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/iper_output.txt line="{{ logdata.stdout }}" state=present
+    
+    - name: mkdir result
+      file: dest=~/result state=directory
+
+    - name: fetch result
+      fetch: 
+        src: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/iper_output.txt 
+        dest: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/result/iper_output.txt 
+        flat: yes
