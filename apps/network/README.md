@@ -20,15 +20,15 @@ This is a test about network, include 3 tools: iperf, netperf  and qperf.
 
 ## <a name="2">Benchmark Test</a>
 ### Test Topology
-- 'vim ansible/hosts' to change your client ip address under NetworkClient group
-- 'vim ansible/roles/{xxx}/vars/' to change variable 'server_add' to your server ip address
+- `vim ansible/hosts` to change your client ip address under NetworkClient group
+- `vim ansible/roles/{xxx}/vars/` to change variable 'server_add' to your server ip address
 
 ### Setup
-- './setup.sh' to setup tools in client side
+- `./setup.sh` to setup tools in client side
 
 ### Test 
-- './run_server.sh' to perform benchmark test on server side
-- './run_test.sh' to perform benchmark test on client side
+- `./run_server.sh` to perform benchmark test on server side
+- `./run_test.sh` to perform benchmark test on client side
 
 ### Test Results
 - Getting test result from result directory.
