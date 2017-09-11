@@ -1,0 +1,7 @@
+---
+- hosts: NetworkServerD05
+
+  tasks:
+  - name: run iperf on server
+    command: iperf -s -w 256k &
+

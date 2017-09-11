@@ -1,0 +1,7 @@
+---
+- hosts: NetworkServerD05
+
+  tasks:
+  - name: run netperf on server
+    command: netserver
+
