@@ -17,7 +17,7 @@ fi
 IOTEST_DIR="${CUR_DIR}/result"
 pushd ${IOTEST_DIR} > /dev/null
 
-nohup fio fio.cfg  >>result_fiotest_${IP} 2>&1 & 
+nohup fio ../fio.cfg  >>result_fiotest_${IP} 2>&1 & 
 
 popd > /dev/null
 
