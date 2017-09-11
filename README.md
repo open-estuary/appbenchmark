@@ -24,7 +24,7 @@ Currently the following applications have been supported so far :
     - [LmBench](https://github.com/open-estuary/appbenchmark/tree/master/apps/memory/lmbench_1)
     - [Stream](https://github.com/open-estuary/appbenchmark/tree/master/apps/memory/stream_1)
   - Network
-    - [Iperf/Qperf/NetPerf](https://github.com/open-estuary/appbenchmark/tree/master/apps/network)
+    - [Iperf/Qperf/NetPerf](https://github.com/open-estuary/appbenchmark/tree/master/apps/network)
   - JVM
     - [SpecJVM2008](https://github.com/open-estuary/appbenchmark/tree/master/apps/jvm/specjvm2008)
   
