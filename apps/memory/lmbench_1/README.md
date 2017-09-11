@@ -4,7 +4,7 @@
 
 # Memory Benchmark Test 
 ## <a name="1">Introduction</a>
-This is a memory test using lmbench,
+This is a memory test using lmbench.
 
 1.Run "setup.sh" to install necessary softwares, copy files and create directories.
 
@@ -16,7 +16,7 @@ This is a memory test using lmbench,
 ### Test Topology
 
 ### Setup
-This step is to excute install shell
+This step is to excute install shell.
 
 Progress: setup.sh -> ./ansible/setup.yml -> roles/{tool}/task/main.yml
 
