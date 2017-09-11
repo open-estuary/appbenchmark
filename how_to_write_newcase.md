@@ -19,7 +19,7 @@ apps
 │       ├── ansible
 │       │   └── roles
 |       |        └── mysql -> ../../../../../lib/ansible/roles/mysql (reuse existing role)
-|       |        ├── newrole
+|       |        ├── new role
 |       |   ├── hosts ( which specify test client/servers) 
 |       |   ├── site.yml (which specify what need to performed)
 |       |   ├── group_vars
