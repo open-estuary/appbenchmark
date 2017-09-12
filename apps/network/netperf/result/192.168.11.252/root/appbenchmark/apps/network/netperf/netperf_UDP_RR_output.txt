@@ -1,8 +1,8 @@
-UDP REQUEST/RESPONSE TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.1.245 (192.168.1.245) port 0 AF_INET
+UDP REQUEST/RESPONSE TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.231 (192.168.11.231) port 0 AF_INET
 Local /Remote
 Socket Size   Request  Resp.   Elapsed  Trans.
 Send   Recv   Size     Size    Time     Rate         
 bytes  Bytes  bytes    bytes   secs.    per sec   
 
-229376 229376 64       1024    60.00    6300.56   
+229376 229376 64       1024    60.00    23618.13   
 229376 229376

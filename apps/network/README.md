@@ -31,7 +31,7 @@ This is a test about network, include 3 tools: iperf, netperf  and qperf.
 - `./run_test.sh` to perform benchmark test on client side
 
 ### Test Results
-- Getting test result from result directory.
+- Get test result from result directory.
                                            
 ## <a name="3">Others</a>
 
