@@ -1,17 +1,10 @@
 #!/bin/bash
 
-CUR_DIR=$(cd `dirname $0`; pwd)
-${CUR_DIR}/setup.sh client
 
-SERVERIP=${1}
+CURDIR=$(cd `dirname $0`; pwd)
 
-if [ -z "${SERVERIP}" ] ; then
-    echo "Usage: ./run_test.sh <remote server IP> "
-    exit 0
-fi
+pushd ${CURDIR}/ansible > /dev/null
 
-echo "Start Client Right Now"
-iperf -c ${SERVERIP} -P 1 -t 100 -i 1 -w 256k
-iperf -c ${SERVERIP} -P 4 -t 100 -i 1 -w 256k
+ansible-playbook -i hosts run_test.yml --user=root --extra-vars "ansible_sudo_pass=root"  
 
-
+popd > /dev/nul

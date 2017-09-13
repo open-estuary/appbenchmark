@@ -1,0 +1,14 @@
+---
+- include_vars: ../vars/main.yml
+
+- name: copy install netperf shell when redhat
+  copy: src=../files/setup_netperf.sh dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
+  when: ansible_os_family == "RedHat"
+
+- name: copy netperf package when redhat
+  copy: src=../files/netperf-2.4.5.tar.gz    dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
+  when: ansible_os_family == 'RedHat'
+
+- name: install netperf when redhat
+  shell: sh ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/setup_netperf.sh
+  when: ansible_os_family == 'RedHat'

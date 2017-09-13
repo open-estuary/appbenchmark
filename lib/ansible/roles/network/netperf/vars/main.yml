@@ -1,0 +1,6 @@
+
+root_dir: "appbenchmark"
+app_dir: "apps"
+app_name_dir: "network"
+app_test_tool_dir: "netperf"
+server_addr: "192.168.1.245"
