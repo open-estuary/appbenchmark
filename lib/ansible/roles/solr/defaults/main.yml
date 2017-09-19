@@ -1,1 +1,4 @@
 ---
+solr_memory: 1g
+solr_jvm_options: ""
+ 

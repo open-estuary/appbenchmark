@@ -13,9 +13,14 @@
   yum: name=solr state=present
   when: ansible_os_family == "RedHat" and ansible_architecture == "aarch64"
   tags: Solr
-  notify: restart solr
 
 - name: Install Solr on Ubuntu or X86 Server
   shell: "{{ workspace }}/solr_install.sh {{ workspace }} {{ solr_version }}" 
   when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
+
+- name : Stop Solr Server firstly
+  shell: "/opt/solr/bin/solr stop"
+
+- name: Start Solr Server 
+  shell:  "/opt/solr/bin/solr start -m {{ solr_memory }} -a {{ solr_jvm_options }}" 
 
