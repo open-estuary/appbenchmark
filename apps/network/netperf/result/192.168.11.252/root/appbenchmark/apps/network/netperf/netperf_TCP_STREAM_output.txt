@@ -1,7 +1,7 @@
-TCP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.1.245 (192.168.1.245) port 0 AF_INET
+TCP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.231 (192.168.11.231) port 0 AF_INET
 Recv   Send    Send                          
 Socket Socket  Message  Elapsed              
 Size   Size    Size     Time     Throughput  
 bytes  bytes   bytes    secs.    10^6bits/sec  
 
- 87380  16384    204    60.03     941.40   
+ 87380  16384   2048    60.00    7871.26   

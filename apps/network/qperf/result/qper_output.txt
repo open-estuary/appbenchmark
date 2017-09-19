@@ -1,68 +1,68 @@
 tcp_bw:
-    bw  =  1.83 MB/sec
+    bw  =  1.65 MB/sec
 tcp_bw:
-    bw  =  3.5 MB/sec
+    bw  =  3.35 MB/sec
 tcp_bw:
-    bw  =  6.89 MB/sec
+    bw  =  7.05 MB/sec
 tcp_bw:
-    bw  =  12.9 MB/sec
+    bw  =  12.7 MB/sec
 tcp_bw:
-    bw  =  23 MB/sec
+    bw  =  25.9 MB/sec
 tcp_bw:
-    bw  =  41 MB/sec
+    bw  =  38.2 MB/sec
 tcp_bw:
-    bw  =  72.3 MB/sec
+    bw  =  70.9 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  184 MB/sec
 tcp_bw:
-    bw  =  117 MB/sec
+    bw  =  258 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  428 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  561 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  599 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  675 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  707 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  938 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  703 MB/sec
 tcp_bw:
-    bw  =  118 MB/sec
+    bw  =  745 MB/sec
 tcp_lat:
-    latency  =  42.1 us
+    latency  =  17.8 us
 tcp_lat:
-    latency  =  42.8 us
+    latency  =  19.3 us
 tcp_lat:
-    latency  =  43.2 us
+    latency  =  18.5 us
 tcp_lat:
-    latency  =  43.2 us
+    latency  =  19.4 us
 tcp_lat:
-    latency  =  44.1 us
+    latency  =  19.4 us
 tcp_lat:
-    latency  =  44.9 us
+    latency  =  18.6 us
 tcp_lat:
-    latency  =  47.4 us
+    latency  =  19.7 us
 tcp_lat:
-    latency  =  52.1 us
+    latency  =  19.7 us
 tcp_lat:
-    latency  =  61.2 us
+    latency  =  19.1 us
 tcp_lat:
-    latency  =  80.1 us
+    latency  =  20.2 us
 tcp_lat:
-    latency  =  118 us
+    latency  =  20.3 us
 tcp_lat:
-    latency  =  182 us
+    latency  =  55.4 us
 tcp_lat:
-    latency  =  184 us
+    latency  =  53.3 us
 tcp_lat:
-    latency  =  222 us
+    latency  =  58.3 us
 tcp_lat:
-    latency  =  297 us
+    latency  =  63.4 us
 tcp_lat:
-    latency  =  435 us
+    latency  =  88 us
 tcp_lat:
-    latency  =  722 us
+    latency  =  109 us

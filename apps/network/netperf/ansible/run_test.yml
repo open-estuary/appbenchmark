@@ -9,7 +9,7 @@
         state: absent
 
     - name: TCP_STREAM test
-      command: netperf -t TCP_STREAM -H {{ server_addr }} -l 60 -- -m 204
+      command: netperf -t TCP_STREAM -H {{ server_addr }} -l 60 -- -m 2048
       register: logdata
 
     - lineinfile: create=yes  dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/netperf_TCP_STREAM_output.txt line="{{ logdata.stdout }}" state=present
