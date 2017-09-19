@@ -1,0 +1,19 @@
+---
+# This role installs and sets up Jmeter
+
+- name: Copy Jmeter Install scripts
+  copy:
+    src: jmeter_install.sh
+    dest: "{{ workspace }}/jmeter_install.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Install Jmeter on ARM64 CentOS
+  yum: name=jmeter state=present
+  when: ansible_os_family == "RedHat" and ansible_architecture == "aarch64"
+
+- name: Install Jmeter on Ubuntu or X86 Server
+  shell: "{{ workspace }}/jmeter_install.sh {{ workspace }} {{ jmeter_version }}" 
+  when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
+

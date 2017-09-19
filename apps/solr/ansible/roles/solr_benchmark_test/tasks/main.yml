@@ -1,0 +1,12 @@
+---
+# This role is to setup solr test scripts
+
+- name: Create Solr E-Commerce Core and Fields
+  shell: "{{ workspace }}/solr_create_fields.sh {{ solr_server }} {{ solr_port }}" 
+
+- name: Load Test Data
+  shell: "{{ workspace }}/solr_post_data.sh {{ solr_server }} {{ solr_data_file }} {{ solr_port }}" 
+
+- name: Perform Solr Benchmark Test
+  shell: "{{ workspace }}/solr_benchmark_test.sh {{ solr_server }} {{ solr_query_file }} {{ solr_port }}" 
+

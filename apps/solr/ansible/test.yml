@@ -1,0 +1,9 @@
+---
+- name: Perform Solr Test
+  hosts: SolrClientX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - solr_benchmark_test
+

@@ -1,0 +1,27 @@
+---
+- name: Install Solr Test Scripts
+  hosts: SolrClientX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - jmeter
+    - solr_benchmark_setup
+
+- name: Install Solr on ARM64Server
+  hosts: SolrServerD05
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - solr
+
+- name: Install Solr on X86Server
+  hosts: SolrServerX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - solr
+

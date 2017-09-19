@@ -1,0 +1,21 @@
+---
+# This role installs and sets up Solr
+
+- name: Copy Solr Install scripts
+  copy:
+    src: solr_install.sh
+    dest: "{{ workspace }}/solr_install.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Install Solr on ARM64 CentOS
+  yum: name=solr state=present
+  when: ansible_os_family == "RedHat" and ansible_architecture == "aarch64"
+  tags: Solr
+  notify: restart solr
+
+- name: Install Solr on Ubuntu or X86 Server
+  shell: "{{ workspace }}/solr_install.sh {{ workspace }} {{ solr_version }}" 
+  when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
+

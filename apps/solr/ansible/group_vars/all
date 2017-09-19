@@ -1,0 +1,8 @@
+---
+estuaryuser: estuaryapp
+workspace: /home/estuaryapp
+solr_port: 8983
+solr_version: 6.6.1
+jmeter_version: 3.2
+solr_data_file:  "./solr_data"
+solr_query_file: "./solr_query"
