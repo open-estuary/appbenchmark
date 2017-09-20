@@ -14,9 +14,6 @@ wget https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-
 wget https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/solr_benchmark/solr_post_data.sh
 wget https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/solr_benchmark/solr_query
 
-sudo chmod 755 solr_benchmark_test.sh
-sudo chmod 755 solr_create_fields.sh
-sudo chmod 755 solr_post_data.sh
 
 popd > /dev/null
 

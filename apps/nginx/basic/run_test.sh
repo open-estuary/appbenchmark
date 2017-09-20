@@ -1,16 +1,10 @@
 #!/bin/bash
 
-if [ -z "${1}" ] ; then
-    echo "Usage: ./run_client.sh <server ip (not local ip address)>"
-    exit 0  
-fi
+CURDIR=$(cd `dirname $0`; pwd)
 
-ip=${1}
+pushd ${CURDIR}/ansible > /dev/null
 
-echo 1 > /proc/sys/kernel/numa_balancing
-ulimit -n 10240
+ansible-playbook -i hosts test.yml  --user=estuaryapp --extra-vars "ansible_sudo_pass=estuaryapp"
 
-./scripts/init_client.sh ${ip} test 200   > ./testresult_200_1thread
-./scripts/init_client.sh ${ip} test 200 4 > ./testresult_200_4thread
-./scripts/init_client.sh ${ip} test 200 8 > ./testresult_200_8thread
+popd > /dev/null
 

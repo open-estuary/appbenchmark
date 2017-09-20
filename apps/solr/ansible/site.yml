@@ -15,7 +15,9 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - openjdk
     - solr
+    - solr_benchmark_setup
 
 - name: Install Solr on X86Server
   hosts: SolrServerX86
@@ -23,5 +25,6 @@
   become: yes
   become_method: sudo
   roles:
+    - openjdk
     - solr
-
+    - solr_benchmark_setup

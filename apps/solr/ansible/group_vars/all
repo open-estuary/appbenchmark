@@ -1,12 +1,13 @@
 ---
 estuaryuser: estuaryapp
 workspace: /home/estuaryapp
+solr_server: "192.168.11.243"
 solr_port: 8983
 solr_version: 6.6.1
 jmeter_version: 3.2
-solr_data_file:  "./solr_data"
+solr_data_file:  "{{ workspace }}/solr_benchmark/solr_ecommerce_data"
 solr_query_file: "./solr_query"
-
 solr_memory: 2g
 solr_jvm_options: ""
-
+solr_test_user: 100
+solr_test_time_insec: 240

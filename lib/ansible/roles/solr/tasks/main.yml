@@ -18,9 +18,16 @@
   shell: "{{ workspace }}/solr_install.sh {{ workspace }} {{ solr_version }}" 
   when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
 
+- name: Change file owner
+  file: dest=/opt/solr owner={{ estuaryuser }} group={{ estuaryuser }} recurse=yes
+
 - name : Stop Solr Server firstly
-  shell: "/opt/solr/bin/solr stop"
+  shell: "/opt/solr/bin/solr stop -p {{ solr_port }}"
+  become: user
+  become_user: "{{ estuaryuser }}"
+  ignore_errors: True
 
 - name: Start Solr Server 
-  shell:  "/opt/solr/bin/solr start -m {{ solr_memory }} -a {{ solr_jvm_options }}" 
-
+  shell:  "/opt/solr/bin/solr start -m {{ solr_memory }} -a '{{ solr_jvm_options }}'" 
+  become: yes
+  become_user: "{{ estuaryuser }}"
