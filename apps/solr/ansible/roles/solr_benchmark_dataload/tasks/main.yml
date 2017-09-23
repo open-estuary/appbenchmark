@@ -10,7 +10,12 @@
      dest: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
 
 - name: Extract Test Data
-  shell: "tar -zxf {{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz -C {{ workspace }}/solr_benchmark" 
+  unarchive:
+      src: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
+      dest: "{{ workspace }}/solr_benchmark"
+      remote_src: yes
+  become: yes
+  become_user: "{{ estuaryuser }}"
 
 - name: Load Test Data
   shell: "{{ workspace }}/solr_benchmark/solr_post_data.sh {{ solr_server }} {{ solr_data_file }} {{ solr_port }}" 

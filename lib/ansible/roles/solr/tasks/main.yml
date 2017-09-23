@@ -9,6 +9,25 @@
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
 
+- name: Copy sysctl configuration
+  copy:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Set file open number limit
+  shell: "ulimit -n 102400"
+  become: yes
+  become_user: root
+
+- name: Load sysctl configuration
+  shell: "sysctl -p"
+  become: yes
+  become_user: root
+  ignore_errors: True
+
 - name: Install Solr on ARM64 CentOS
   yum: name=solr state=present
   when: ansible_os_family == "RedHat" and ansible_architecture == "aarch64"
@@ -20,6 +39,14 @@
 
 - name: Change file owner
   file: dest=/opt/solr owner={{ estuaryuser }} group={{ estuaryuser }} recurse=yes
+
+- name: Configure solr configuration
+  template: 
+      src: solr.in.sh.j2 
+      dest: /opt/solr/bin/solr.in.sh
+      owner: "{{ estuaryuser }}"
+      group: "{{ estuaryuser }}"
+      mode:  0755
 
 - name : Stop Solr Server firstly
   shell: "/opt/solr/bin/solr stop -p {{ solr_port }}"

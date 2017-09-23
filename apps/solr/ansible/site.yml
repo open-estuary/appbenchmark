@@ -18,6 +18,7 @@
     - openjdk
     - solr
     - solr_benchmark_setup
+    - solr_benchmark_dataload
 
 - name: Install Solr on X86Server
   hosts: SolrServerX86
@@ -28,3 +29,4 @@
     - openjdk
     - solr
     - solr_benchmark_setup
+    - solr_benchmark_dataload

@@ -5,7 +5,6 @@
   become: yes
   become_method: sudo
   roles:
-    - solr_benchmark_dataload
 
 - name: Load Solr Test Data on X86 Servers
   hosts: SolrServerX86
@@ -13,7 +12,6 @@
   become: yes
   become_method: sudo
   roles:
-    - solr_benchmark_dataload
 
 - name: Perform Solr Test on X86 Clients
   hosts: SolrClientX86
