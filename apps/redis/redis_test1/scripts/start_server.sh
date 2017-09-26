@@ -7,7 +7,7 @@ fi
 
 BASE_DIR=$(cd ~; pwd)
 REDIS_TEST_DIR=${BASE_DIR}/apptests/redis/
-REDIS_CMD_DIR=/usr/local/redis/bin
+REDIS_CMD_DIR=/usr/bin
 REDIS_CFG_DIR=/usr/local/redis/config
 
 mkdir -p ${REDIS_TEST_DIR}
