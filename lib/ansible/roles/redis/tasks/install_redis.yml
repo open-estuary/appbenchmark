@@ -1,0 +1,8 @@
+#install redis
+- name: install redis for redhat
+  yum: name=redis state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+- name: install redis for ubuntu
+  apt: name=redis state=present
+  when: ansible_os_family == 'Ubuntu'
