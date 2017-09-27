@@ -3,7 +3,7 @@
 
 #Start 
 start_cpu_num=17
-inst_num=3
+inst_num=10
 let "end_cpu_num=${start_cpu_num} + ${inst_num} - 1"
 
 echo "Stop irqbalance firstly"
