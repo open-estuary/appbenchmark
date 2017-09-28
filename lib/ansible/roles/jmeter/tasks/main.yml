@@ -17,6 +17,14 @@
     owner: root
     group: root
 
+- name: Copy limit configuration
+  copy:
+    src: limits.conf
+    dest: /etc/security/limits.conf
+    mode: 0644
+    owner: root
+    group: root
+
 - name: Set file open number limit
   shell: "ulimit -n 102400"
   become: yes
@@ -35,4 +43,7 @@
 - name: Install Jmeter on Ubuntu or X86 Server
   shell: "{{ workspace }}/jmeter_install.sh {{ workspace }} {{ jmeter_version }}" 
   when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
+
+- name: Start jmemter for distributed test 
+  shell: "/opt/jmeter/bin/jmeter-server -Djava.rmi.server.hostname={{inventory_hostname}} &"
 

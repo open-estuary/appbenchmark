@@ -12,7 +12,12 @@ solr_version: 6.6.1
 jmeter_version: 3.2
 solr_data_file:  "{{ workspace }}/solr_benchmark/solr_ecommerce_data"
 solr_query_file: "./solr_query"
-solr_memory: 20g
+solr_memory: 30g
 solr_jvm_options: ""
+solr_gc_tune: "-XX:NewRatio=3 -XX:SurvivorRatio=4 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=8  -XX:ConcGCThreads=4 -XX:ParallelGCThreads=4 -XX:+CMSScavengeBeforeRemark -XX:PretenureSizeThreshold=512m -XX:+UseCMSInitiatingOccupancyOnly \
+        -XX:CMSInitiatingOccupancyFraction=90 -XX:CMSMaxAbortablePrecleanTime=6000 -XX:+CMSParallelRemarkEnabled -XX:+ParallelRefProcEnabled \
+        -XX:-OmitStackTraceInFastThrow  \
+	-XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:+UnlockExperimentalVMOptions -XX:G1MaxNewSizePercent=30 -XX:G1NewSizePercent=5 -XX:G1HeapRegionSize=32M"
+
 solr_test_user: 100
 solr_test_time_insec: 240
