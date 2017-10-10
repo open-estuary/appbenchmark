@@ -1,0 +1,12 @@
+#install iperf
+- name: download weave
+  get_url: 
+    url: '{{ weave_url }}'
+    dest: /usr/local/bin/weave
+    mode: 0755
+  
+- name: launch weave 
+  command: weave launch {{ main_server_ip }} 
+
+- name: setup weave env
+  command: weave env
