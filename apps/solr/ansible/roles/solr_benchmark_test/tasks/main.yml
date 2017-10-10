@@ -1,0 +1,6 @@
+---
+# This role is to setup solr test scripts
+
+- name: Perform Solr Benchmark Test
+  shell: "{{ workspace }}/solr_benchmark/solr_benchmark_test.sh {{ solr_server }} {{ solr_query_file }} {{ solr_port }} {{ solr_test_user }} {{ solr_test_time_insec }} " 
+

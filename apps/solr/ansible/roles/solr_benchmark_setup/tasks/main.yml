@@ -1,0 +1,18 @@
+---
+# This role is to setup solr test scripts
+
+- name: Create solr_benchmark test directory
+  file: dest="{{ workspace }}/solr_benchmark" state=directory
+
+- name: Copy Solr Download Test Scripts
+  copy:
+    src: download_solr_testscripts.sh 
+    dest: "{{ workspace }}/solr_benchmark/download_solr_testscripts.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Install Solr Test Scripts
+  shell: "{{ workspace }}/solr_benchmark/download_solr_testscripts.sh {{ workspace }}" 
+
+

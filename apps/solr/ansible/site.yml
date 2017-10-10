@@ -1,0 +1,23 @@
+---
+- name: Install Solr on ARM64Server
+  hosts: SolrServerD05
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - openjdk
+    - solr
+    - solr_benchmark_setup
+    - solr_benchmark_dataload
+
+- name: Install Solr on X86Server
+  hosts: SolrServerX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - openjdk
+    - solr
+    - solr_benchmark_setup
+    - solr_benchmark_dataload
