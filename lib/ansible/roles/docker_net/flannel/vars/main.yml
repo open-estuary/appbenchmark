@@ -1,0 +1,4 @@
+FLANNEL_VER: v0.9.0
+Etcd_Server: 192.168.1.234
+Netcard: eth0
+

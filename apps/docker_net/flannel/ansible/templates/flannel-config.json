@@ -1,0 +1,13 @@
+{
+
+  "Network": "10.2.0.0/16",
+
+  "SubnetLen": 24,
+
+  "Backend": {
+
+    "Type": "{{ Backend_Type }}"
+
+  }
+
+}
