@@ -1,0 +1,18 @@
+---
+# This role installs and sets up Openjdk
+
+- name: Stop irqbalance 
+  command: service irqbalance stop
+
+- name: Copy set_ethirq_cpu_affinity.py
+  copy:
+    src: set_ethirq_cpu_affinity.py 
+    dest: "{{ workspace }}/set_ethirq_cpu_affinity.py"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Set CPU affinity for irq processing 
+  shell: "python {{ workspace }}/set_ethirq_cpu_affinity.py {{ irq_start_cpu }} {{ irq_end_cpu }}"
+
+

@@ -1,4 +1,14 @@
 ---
+- name: Install Solr Test Scripts
+  hosts: SolrClientX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - openjdk
+    - jmeter
+    - solr_benchmark_setup
+
 - name: Install Solr on ARM64Server
   hosts: SolrServerD05
   remote_user: estuaryapp
@@ -8,6 +18,7 @@
     - estuaryrepo
     - openjdk
     - solr
+    - irqbalance
     - solr_benchmark_setup
     - solr_benchmark_dataload
 
@@ -19,5 +30,6 @@
   roles:
     - openjdk
     - solr
+    - irqbalance
     - solr_benchmark_setup
     - solr_benchmark_dataload

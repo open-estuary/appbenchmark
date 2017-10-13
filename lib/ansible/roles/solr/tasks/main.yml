@@ -1,6 +1,12 @@
 ---
 # This role installs and sets up Solr
 
+- name : Stop Solr Server firstly
+  shell: "/opt/solr/bin/solr stop -p {{ solr_port }}"
+  become: user
+  become_user: "{{ estuaryuser }}"
+  ignore_errors: True
+
 - name: Copy Solr Install scripts
   copy:
     src: solr_install.sh
@@ -39,7 +45,6 @@
 - name: Install Solr on ARM64 CentOS
   yum: name=solr state=present
   when: ansible_os_family == "RedHat" and ansible_architecture == "aarch64"
-  tags: Solr
 
 - name: Install Solr on Ubuntu or X86 Server
   shell: "{{ workspace }}/solr_install.sh {{ workspace }} {{ solr_version }}" 
@@ -56,12 +61,6 @@
       group: "{{ estuaryuser }}"
       mode:  0755
 
-- name : Stop Solr Server firstly
-  shell: "/opt/solr/bin/solr stop -p {{ solr_port }}"
-  become: user
-  become_user: "{{ estuaryuser }}"
-  ignore_errors: True
-
 - name: Copy Chinese Analyzer libs
   copy:
     src: "/opt/solr/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-{{ solr_version }}.jar"
@@ -72,6 +71,12 @@
     mode:  0644
 
 - name: Start Solr Server 
-  shell:  "/opt/solr/bin/solr start -m {{ solr_memory }} -a '{{ solr_jvm_options }}'" 
+  shell:  "taskset -c {{ solr_cpus }} /opt/solr/bin/solr start -m {{ solr_memory }} -a '{{ solr_jvm_options }}'" 
   become: yes
   become_user: "{{ estuaryuser }}"
+
+- name: Set Solr CPU's affinity
+  shell: "ps -aux | grep solr | grep -v grep | awk '{print $2}' | xargs taskset -pc {{ solr_cpus }}"
+  become: yes
+  become_user: root
+
