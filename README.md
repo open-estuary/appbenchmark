@@ -8,6 +8,14 @@ It is to maintain application benchmark test scripts including:
 - Scripts which setup server and client 
 - Scripts which perform benchmark test  
 
+> Notes: 
+>    As for test cases based on Ansible framework, it might be necessary to change some configurations before setting up 
+>    benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
+>    and `ansible/group_vars/*` which define variables for this test.
+> 
+>    In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
+>    be performed manually.
+
 ## <a name="2">Benchmark Test</a>
 Usually it is only necessary to execute following commands in order to perform benchmark test for each application:
 - `./setup.sh` to setup client and server side;
