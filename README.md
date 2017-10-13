@@ -41,9 +41,9 @@ Currently the following applications have been supported so far :
 - [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
 - [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
 - Docker Networks
-  - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
-  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
-  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
+  - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
+  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
+  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
 ## <a name="3">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)
