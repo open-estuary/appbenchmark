@@ -33,8 +33,8 @@ sudo echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
 sudo echo 2621440 > /proc/sys/net/core/somaxconn
 sudo echo 2621440 > /proc/sys/net/core/netdev_max_backlog
 sudo echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
-sudo echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
-sudo echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
+#sudo echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+#sudo echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
 
 #support maxinum number of files open
 #sudo ulimit -n 102400

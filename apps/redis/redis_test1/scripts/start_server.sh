@@ -24,8 +24,8 @@ echo 2048 65000 > /proc/sys/net/ipv4/ip_local_port_range
 echo 2621440 > /proc/sys/net/core/somaxconn
 echo 2621440 > /proc/sys/net/core/netdev_max_backlog
 echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
-echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
-echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
+#echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+#echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
 
 #support maxinum number of files open
 ulimit -n 102400
