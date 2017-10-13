@@ -38,7 +38,12 @@ Currently the following applications have been supported so far :
 - [MariaDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mariadb/mariadb_test1)
 - [PostgreSQL](https://github.com/open-estuary/appbenchmark/tree/master/apps/postgresql/postgresql_test1)
 - [MongoDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_test1)
-- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)    
+- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
+- [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
+- Docker Networks
+  - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
+  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
+  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
 ## <a name="3">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)
