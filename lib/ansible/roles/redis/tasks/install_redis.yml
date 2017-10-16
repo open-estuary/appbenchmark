@@ -1,8 +1,16 @@
-#install redis
-- name: install redis for redhat
-  yum: name=redis state=present disable_gpg_check=yes
+---
+- include_vars: ../vars/main.yml
+
+- name: copy install redis shell when redhat
+  copy: src=../files/setup_redis.sh dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
+  when: ansible_os_family == "RedHat"
+
+- name: copy redis package when redhat
+  copy: src=../files/redis-4.0.2.tar.gz    dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
   when: ansible_os_family == 'RedHat'
 
-- name: install redis for ubuntu
-  apt: name=redis state=present
-  when: ansible_os_family == 'Ubuntu'
+- name: install redis when redhat
+  shell: sh ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/setup_redis.sh
+  when: ansible_os_family == 'RedHat'
+
+
