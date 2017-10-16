@@ -43,8 +43,8 @@ if [ "$1" == "init" ] ; then
     echo 2621440 > /proc/sys/net/core/somaxconn
     echo 2621440 > /proc/sys/net/core/netdev_max_backlog
     echo 2621440 > /proc/sys/net/ipv4/tcp_max_syn_backlog
-    echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
-    echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
+    #echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_timeout_time_wait
+    #echo 2621440 > /proc/sys/net/netfilter/nf_conntrack_max
     ulimit -n 1024000
     #data_num=10000
     #data_size=128
@@ -75,7 +75,7 @@ elif [ "$1" == "test" ] ; then
         echo "call redis-benchmark to test redis-${index}"
         
         #if testing perfrmance of twemproxy+redis cluster,you should uncomment next line#
-        #port=22121
+        port=22121
 
         taskset -c ${taskindex} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n ${data_num} -d ${data_size} -k ${keep_alive} -r ${key_space_len} -P ${pipeline} -t get > redis_benchmark_log_${port} & 
         #${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n ${data_num} -d ${data_size} -k ${keep_alive} -r ${key_space_len} -P ${pipeline} -t get > redis_benchmark_log_${port} &
