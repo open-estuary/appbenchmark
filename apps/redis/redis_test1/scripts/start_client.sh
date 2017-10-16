@@ -73,6 +73,9 @@ elif [ "$1" == "test" ] ; then
         taskindex=`expr 17 + ${index}`
         #taskend=`expr 6 + ${taskindex}`
         echo "call redis-benchmark to test redis-${index}"
+        
+        #if testing perfrmance of twemproxy+redis cluster,you should uncomment next line#
+        #port=22121
 
         taskset -c ${taskindex} ${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n ${data_num} -d ${data_size} -k ${keep_alive} -r ${key_space_len} -P ${pipeline} -t get > redis_benchmark_log_${port} & 
         #${REDIS_CMD_DIR}/redis-benchmark -h ${ip_addr} -p ${port} -c 50 -n ${data_num} -d ${data_size} -k ${keep_alive} -r ${key_space_len} -P ${pipeline} -t get > redis_benchmark_log_${port} &

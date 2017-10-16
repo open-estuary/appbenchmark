@@ -1,6 +1,5 @@
 #!/bin/bash
 
-./setup.sh server
 
 #Start 
 start_cpu_num=17
