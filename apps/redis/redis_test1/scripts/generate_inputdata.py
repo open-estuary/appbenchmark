@@ -29,7 +29,7 @@ def generate_dump_data():
         data_size = int(sys.argv[3])
 
         #key_value="X"*data_size
-        key_value="{"nshoppingcartid":6,"userId":1,"discount":990.00,"price":13392.00,"quantity":18,"currency":"RMB","skudtoList":[{"skuId":10001,"spuId":1001,"color":"白色","size":"4GB+128GB","price":799.00,"displayPrice":799.00,"currency":"RMB","discount":99.00,"dcreatetime":1506385918000,"dupdatetime":1506385918000,"quantity":10},{"skuId":10002,"spuId":1001,"color":"金色","size":"6GB+128GB","price":799.00,"displayPrice":799.00,"currency":"RMB","discount":0.00,"dcreatetime":1506385930000,"dupdatetime":1506385930000,"quantity":8}],"supdatetime":1506393229000,"ncreatetime":1506393229000}"
+        key_value='{\'nshoppingcartid\':6,\'userId\':1,\'discount\':990.00,\'price\':13392.00,\'quantity\':18,\'currency\':\'RMB\',\'skudtoList\':[{\'skuId\':10001,\'spuId\':1001,\'color\':\'白色\',\'size\':\'4GB+128GB\',\'price\':799.00,\'displayPrice\':799.00,\'currency\':\'RMB\',\'discount\':99.00,\'dcreatetime\':1506385918000,\'dupdatetime\':1506385918000,\'quantity\':10},{\'skuId\':10002,\'spuId\':1001,\'color\':\'金色\',\'size\':\'6GB+128GB\',\'price\':799.00,\'displayPrice\':799.00,\'currency\':\'RMB\',\'discount\':0.00,\'dcreatetime\':1506385930000,\'dupdatetime\':1506385930000,\'quantity\':8}],\'supdatetime\':1506393229000,\'ncreatetime\':1506393229000}'
 
     for index in range(data_num):
         outputfile.write("SET key:%012d %s\r\n"%(index, key_value))
