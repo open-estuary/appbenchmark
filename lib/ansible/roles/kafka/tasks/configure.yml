@@ -6,13 +6,13 @@
   user: name={{kafka_user}} system=yes group={{kafka_group}}
 
 - name: Uncompress the kafka tar
-  unarchive: copy=no creates=/opt/kafka_2.9.2-{{kafka_version}} dest=/opt src="{{ kafka_tarball_location }}/{{ kafka_tarball_name }}"
+  unarchive: copy=no creates=/opt/kafka-{{kafka_version}} dest=/opt src="{{ kafka_tarball_location }}/{{ kafka_tarball_name }}"
 
 - name: Link /opt/kafka to the right version
-  file: path=/opt/kafka state=link src=/opt/kafka_2.9.2-{{kafka_version}}
+  file: path=/opt/kafka state=link src=/opt/kafka-{{kafka_version}}
 
 - name: Overwrite the start script so the Java Opts can be changed if Kafka 0.8.1.1
-  lineinfile: dest=/opt/kafka_2.9.2-{{kafka_version}}/bin/kafka-server-start.sh regexp="^export KAFKA_HEAP_OPTS=" line="export KAFKA_HEAP_OPTS=\"{{ kafka_heap_opts }}\""
+  lineinfile: dest=/opt/kafka-{{kafka_version}}/bin/kafka-server-start.sh regexp="^export KAFKA_HEAP_OPTS=" line="export KAFKA_HEAP_OPTS=\"{{ kafka_heap_opts }}\""
   notify:
     - restart kafka
   when: kafka_version == "0.8.1.1"
