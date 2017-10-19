@@ -1,0 +1,13 @@
+---
+- name: Install redis on client
+  hosts: NetworkClient
+  remote_user: root
+  roles:
+    - redis
+
+- name: Install redis on Server
+  hosts: NetworkServer
+  remote_user: root
+  roles:
+    - redis
+
