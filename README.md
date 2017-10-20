@@ -8,6 +8,14 @@ It is to maintain application benchmark test scripts including:
 - Scripts which setup server and client 
 - Scripts which perform benchmark test  
 
+> Notes: 
+>    As for test cases based on Ansible framework, it might be necessary to change some configurations before setting up 
+>    benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
+>    and `ansible/group_vars/*` which define variables for this test.
+> 
+>    In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
+>    be performed manually.
+
 ## <a name="2">Benchmark Test</a>
 Usually it is only necessary to execute following commands in order to perform benchmark test for each application:
 - `./setup.sh` to setup client and server side;
@@ -38,7 +46,12 @@ Currently the following applications have been supported so far :
 - [MariaDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mariadb/mariadb_test1)
 - [PostgreSQL](https://github.com/open-estuary/appbenchmark/tree/master/apps/postgresql/postgresql_test1)
 - [MongoDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_test1)
-- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)    
+- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
+- [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
+- Docker Networks
+  - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
+  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
+  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
 ## <a name="3">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)

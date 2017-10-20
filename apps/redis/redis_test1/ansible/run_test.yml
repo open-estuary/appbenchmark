@@ -1,0 +1,22 @@
+---
+- hosts: NetworkClient
+  vars_files:
+  - roles/redis/vars/main.yml
+  tasks:
+   # - name: copy tool scripts
+    #  copy:
+     #   src: ~/{{root_dir}}/toolset/perftools/miscs/
+     #   dest: ~/{{root_dir}}/toolset/perftools/miscs/
+     #   group: root
+     #   mode: 0755 
+
+   # - name: copy test scriprts
+    #  copy:
+    #    src:  ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/
+    #    dest: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/
+    #    group: root
+    #    mode: 0755
+
+    - name: test redis benchmark on client
+      shell: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_client.sh {{ server_addr }} 
+

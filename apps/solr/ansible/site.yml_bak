@@ -18,6 +18,7 @@
     - estuaryrepo
     - openjdk
     - solr
+    - irqbalance
     - solr_benchmark_setup
     - solr_benchmark_dataload
 
@@ -29,5 +30,6 @@
   roles:
     - openjdk
     - solr
+    - irqbalance
     - solr_benchmark_setup
     - solr_benchmark_dataload

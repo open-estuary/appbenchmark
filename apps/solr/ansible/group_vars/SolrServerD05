@@ -1,0 +1,6 @@
+---
+
+#Solr Service IP
+solr_server: "192.168.11.249" 
+#Solr Management IP
+solr_host: "192.168.1.225" 
