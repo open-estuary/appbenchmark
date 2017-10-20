@@ -1,0 +1,17 @@
+- name: transfer qperf_clientcon.sh
+  template:
+    src: qperf_clientcon.sh
+    dest: /tmp/qperf_clientcon.sh
+    mode: 0755
+
+- name: transfer qperf_client.sh
+  template:
+    src: qperf_client.sh
+    dest: /tmp/qperf_client.sh
+    mode: 0755
+
+- name: run qperf in container on client
+  shell: ./qperf_client.sh
+  args:
+    chdir: /tmp/
+
