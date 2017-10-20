@@ -1,0 +1,3 @@
+netarch: flannel
+image: openestuary/centos:dockernet_test
+
