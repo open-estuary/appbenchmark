@@ -1,0 +1,11 @@
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','33.44','4','843426','2017919','4','2017-09-01');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-12','123','3','636847','2017926','0','2017-09-01');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','123123.4','5','987585','2017928','0','2017-09-01');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','456.12','7','938825','2017924','3','2017-09-04');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-04','123','1','371841','2017919','3','2017-09-12');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','1.1','2','925322','2017919','4','2017-09-12');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-04','123','7','278457','2017928','2','2017-09-01');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-04','33.44','4','926529','2017919','1','2017-09-04');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','123','4','294159','2017928','3','2017-09-04');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-12','123','8','964388','2017924','4','2017-09-01');
+replace into r_ec_orderinfo (sDate_created,nTotalPrice,nTotalQuantity,nUserID,sOrderID,cStatus,sDate_Modified) values('2017-09-01','1.2','6','831722','2017920','0','2017-09-12');

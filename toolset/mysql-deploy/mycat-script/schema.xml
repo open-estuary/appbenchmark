@@ -1,0 +1,25 @@
+<?xml version="1.0"?>    
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">    
+<mycat:schema xmlns:mycat="http://io.mycat/" >    
+    <!-- schema 中可以有多个table节点，列几个在Navicat中就能看到几个，库里有这里没有的话客户端中也看不到 -->    
+    <schema name="TESTDB" checkSQLschema="false" sqlMaxLimit="100">    
+        <table name="sbtest1" primaryKey="k" dataNode="dn1" rule="mod-long" />    
+        <table name="sbtest2" primaryKey="k" dataNode="dn1" rule="mod-long"/>    
+        <table name="sbtest3" primaryKey="k" dataNode="dn1" rule="mod-long"/>    
+        <table name="sbtest4" primaryKey="k" dataNode="dn1" rule="mod-long" />   
+	<table name="sbtest5" primaryKey="k" dataNode="dn1" rule="mod-long" />
+    </schema>    
+    <!-- 数据节点 -->    
+    <dataNode name="dn1" dataHost="sam_server_1" database="test" />    
+    <!-- 节点主机信息 -->    
+    <dataHost name="sam_server_1" maxCon="2000" minCon="10" balance="0"    
+        writeType="0" dbType="mysql" dbDriver="native" switchType="1" slaveThreshold="100">    
+        <heartbeat>select user()</heartbeat>    
+	<!-- 指定写入数据的主机 -->    
+        <writeHost host="hostM1" url="192.168.1.234:3307" user="root" password="">    
+            <!-- 指定读取数据的主机，可以有多个 -->    
+            <readHost host="hostS1" url="192.168.1.234:3308" user="root" password="" />    
+            <readHost host="hostS2" url="192.168.1.234:3309" user="root" password="" />
+        </writeHost>    
+    </dataHost>    
+</mycat:schema> 

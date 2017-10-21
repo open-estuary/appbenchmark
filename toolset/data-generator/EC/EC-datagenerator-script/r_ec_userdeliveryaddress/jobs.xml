@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>10000</num>
+            <table>r_ec_userdeliveryaddress</table>
+            <filename>r_ec_userdeliveryaddress.sql</filename>
+            <detail>
+		<nAddressNo>$rule{nAddressNo,3}</nAddressNo>
+		<nUserID>$rule{nUserID,3}</nUserID>
+                <sAddress>$pool{sAddress}</sAddress>
+		<sPhoneNo>$rule{sPhoneNo,11}</sPhoneNo>
+            </detail>
+	</job>
+     </jobs>
+</root>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>10000</num>
+            <table>r_ec_spu</table>
+            <filename>r_ec_spu.sql</filename>
+            <detail>
+		<nSPUID>$rule{nSPUID,3}</nSPUID>
+		<sSPUName>$pool{sSPUName}</sSPUName>
+                <nCategoryID>$rule{nCategoryID,3}</nCategoryID>
+            </detail>
+	</job>
+     </jobs>
+</root>
