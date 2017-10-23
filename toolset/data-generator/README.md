@@ -44,6 +44,8 @@ pool.sex=男,女
 ### $rule{type,len} 用法
 $rule{type,len} 中间是没有任何空格的，在jobs.xml中 $rule{hex,10} 代表从 hex 类型的数据中随机取出10个， hex 在 config.properties 中进行了定义
 > rule.hex=0123456789abcdef
+### $rule{type} 用法，生成一定范围内的数据
+假设id列需要在1~1000之间随机产生，那么在config.properties文件中设置rule.id=1000即可
 ### $key 用法
 $key 是适用于主键列，并且有自增需求的表，如果配置了$key，那么对应的列的值就会从1开始以递增的方式生成
 ### $pool{name} 用法
@@ -76,6 +78,8 @@ java -jar data-generator -h192.168.1.234 -p3306 -Dec -c500 -j jobs.xml -C config
 ```
 ### 可以通过命令行配置项，配置需要插入的数据库，并且可以通过-i选项选取插入的方式，默认是replace的方式，你也可以选择insert的方式。
 ### -c选项是配置数据插入线程的个数，也就是数据库连接的个数。
+如果只是进行数据生成并不需要插入数据库请使用:
+java -jar data-generator -O close -t csv
 
 注：如果想获取跟多详细信息，请访问[Data-generator](https://github.com/GongDexing/data-generator)
 
