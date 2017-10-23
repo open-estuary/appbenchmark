@@ -38,6 +38,14 @@ public class Generator {
 				}	
 			} else {
 				FileWriter writer = new FileWriter("" + filename, true);
+				FileWriter writerCSV = null;
+				if(ArgParser.FILETYPE.compareTo("csv")==0)
+				{
+					 writerCSV = new FileWriter("" + job.getTable()+".csv", true);
+					 fillTempMap(detail, tempMap);
+					 FileHelper.saveAsCSVWithTitle(writerCSV,job.getTable(), tempMap );
+					 tempMap.clear();
+				}
 				if (filename.indexOf(".csv") > 0) {
 					for (int i = 0; i < job.getNum(); i++) {
 						fillTempMap(detail, tempMap);
@@ -52,6 +60,8 @@ public class Generator {
 					for (int i = 0; i < job.getNum(); i++) {
 						fillTempMap(detail, tempMap);
 						FileHelper.save(writer,job.getTable(), tempMap );
+						if(ArgParser.FILETYPE.compareTo("csv")==0)
+							FileHelper.saveAsCSV(writerCSV,job.getTable(), tempMap,ArgParser.SEPARATOR );
 						String insertSQL = FileHelper.getInsertSQL(job.getTable(), tempMap).toString();
 						sqlList.add(insertSQL);
 						tempMap.clear();  
