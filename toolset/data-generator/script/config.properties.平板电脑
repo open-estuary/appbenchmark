@@ -1,0 +1,10 @@
+﻿#
+var.author=gdx
+#
+#
+pool.nSPUID=577,578,579,580,581,582,583,584,585,586,587,588,589,590,591
+pool.nColor=白色,黑色,苍穹灰,灰色,银白色,日辉金,皎月白,玫瑰金,香槟金
+pool.sSize=WIFI版 2GB+16GB 官方标配,2GB+16GB 官方标配,2GB+16GB 超值套餐,LTE 2GB+16GB 官方标配,LTE 3GB+32GB 官方标配,LTE 3GB+32GB 超值套餐,I5 8GB 256GB,I5 8GB 512GB,I7 8GB 256GB
+pool.nPrice=3399,3799,3899,4099,5099,5599,6099,7099
+pool.nInventory=1000,2000,3000,4000,5000,6000
+
