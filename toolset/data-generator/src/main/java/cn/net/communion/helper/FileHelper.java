@@ -43,12 +43,24 @@ public class FileHelper {
             System.out.println(line);
         }
     }
-    static public synchronized  void saveAsCSV(FileWriter writer, String table, Map<String, String> map) {
+    static public synchronized  void saveAsCSV(FileWriter writer, String table, Map<String, String> map,String split) {
         if(writer == null && (table == null || "".equals(table.trim()))){
             System.out.println(map);
             return;
         }
-        StringBuffer line =  new StringBuffer().append(collectionToLineWithQuotes(map.values()," "));
+        StringBuffer line =  new StringBuffer().append(collectionToLineWithQuotes(map.values(),split));
+        if (writer != null) {
+            save(writer, line);
+        } else {
+            System.out.println(line);
+        }
+    }
+    static public synchronized  void saveAsCSVWithTitle(FileWriter writer, String table, Map<String, String> map) {
+        if(writer == null && (table == null || "".equals(table.trim()))){
+            System.out.println(map);
+            return;
+        }
+        StringBuffer line =  new StringBuffer().append(collectionToLine(map.keySet()));
         if (writer != null) {
             save(writer, line);
         } else {
@@ -85,7 +97,6 @@ public class FileHelper {
         }
         return line.replace(line.length() - 1, line.length(), "");
     }
-
     private static StringBuffer collectionToLineWithQuotes(Collection<String> collection) {
         StringBuffer line = new StringBuffer();
         for (String value : collection) {
