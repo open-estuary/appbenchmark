@@ -9,20 +9,22 @@ if [ "X$nfEnd" == "X" ] ; then
 nfEnd="bin"
 fi
 #
-rm -rf f_*.$nfEnd
-rm -rf 1_1.$nfEnd
-rm -rf dataGen.$nfEnd
+FLUME_LOG_SOURCE="/etc/flume/log/static_log_source"
+
+rm -rf ${FLUME_LOG_SOURCE}/f_*.$nfEnd
+rm -rf ${FLUME_LOG_SOURCE}/1_1.$nfEnd
+rm -rf ${FLUME_LOG_SOURCE}/dataGen.$nfEnd
 #
-#oneLine=`cat 1.txt`
-#oneLine=$oneLine`echo "\n"`
+oneLine=`cat 1.txt`
+oneLine=$oneLine`echo "\n"`
 fileNum=50 #gen count
 #1M
 echo `date`
 lineCnt=""
-for((j=1;j<1000;j++))
+for((j=0;j<1024;j++))
 do
 #lineCnt="$lineCnt$oneLine"
-    cat $fileM >> 1_1.$nfEnd
+    cat $fileM >> ${FLUME_LOG_SOURCE}/1_1.$nfEnd
 done
 #echo $lineCnt>>1_1.bin
 echo `date`
@@ -34,7 +36,7 @@ rm $temp_fifo_file            #清空内容
   
 function eachLineGen                
 {  
-  #sleep 2
+  sleep 2
 }
 
 temp_thread=50               #  同时最多线程数
@@ -54,7 +56,7 @@ do
     for((j=1;j<20;j++))
     do
         #lineCntNew="$lineCntNew$lineCnt"
-        cat 1_1.$nfEnd>>f_$i.$nfEnd
+        cat ${FLUME_LOG_SOURCE}/1_1.$nfEnd>>${FLUME_LOG_SOURCE}/f_$i.$nfEnd
     done
     #  
     #echo $lineCntNew >>f_$i.bin  
@@ -68,8 +70,8 @@ exec 6>&-                     #完成，删除管道
 echo `date`
 for ((i=0;i<$fileNum;i++))
 do
-cat f_$i.$nfEnd >>dataGen.$nfEnd
-rm -rf f_$i.$nfEnd
+cat ${FLUME_LOG_SOURCE}/f_$i.$nfEnd >>${FLUME_LOG_SOURCE}/dataGen.$nfEnd
+rm -rf ${FLUME_LOG_SOURCE}/f_$i.$nfEnd
 done
 
 echo "done!"
