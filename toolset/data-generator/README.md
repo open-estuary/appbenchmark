@@ -64,17 +64,24 @@ INFO :
 USAGE :
 Command line options :
 
-   -h/--ip         Connect to host.                                       
-   -p/--port       Database port.                                         
-   -c/--thread_num Max connections.                                       
-   -p/--password   Password.                                              
-   -D/--database   Database.                                              
+   -h/--ip         Database host, default localhost.                      
+   -p/--port       Database port, default 3306.                           
+   -c/--thread_num Max connections, default 200                           
+   -p/--password   Password, default is empty string.                     
+   -D/--database   Database, default ec.                                  
    -j/--jobfile    Job files, default jobs.xml.                           
+   -t/--out_put_file_type Out put file type, default none, support type 'csv'.   
+   -S              Separators for each record,default is empty string.    
    -C/--configfile Configure files, default config.properties.            
-   -i/--insert_or_repalce Insert or Replace, default replace.                    
-   -O/--if_database_operation Open or close database operation, default open.        
+   -i/--insert_or_repalce Insert or Replace, two choice 'insert' or 'replave',default replace.
+   -O/--if_database_operation Open or close database operation,two choice 'open' or 'close', default open.
 SAMPLE :
 java -jar data-generator -h192.168.1.234 -p3306 -Dec -c500 -j jobs.xml -C config.properties -i insert
+java -jar data-generator -h192.168.1.234 -O close
+java -jar data-generator.jar -O close -t csv
+java -jar data-generator.jar -O close -t csv -S space
+java -jar data-generator.jar -O close -t csv -S comma
+
 ```
 ### 可以通过命令行配置项，配置需要插入的数据库，并且可以通过-i选项选取插入的方式，默认是replace的方式，你也可以选择insert的方式。
 ### -c选项是配置数据插入线程的个数，也就是数据库连接的个数。
