@@ -1,0 +1,6 @@
+---
+- name: install twemproxy for redhat
+  yum: name=twemproxy state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+
