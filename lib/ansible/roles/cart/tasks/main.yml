@@ -1,0 +1,13 @@
+---
+
+- name: create work dir
+  file: dest="{{workspace}}" state=directory
+
+- name: copy application-cart.yml
+  copy: src=../files/application-cart.yml dest="{{workspace}}/application-cart.yml" mode=0755
+
+- name: copy run-cart.sh
+  copy: src=../files/run-cart.sh dest="{{workspace}}/run-cart.sh" mode=0755
+
+- name: run E-Commerce Cart-MircoService
+  shell: "sh {{workspace}}/run-cart.sh" 

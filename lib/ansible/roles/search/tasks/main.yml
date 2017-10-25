@@ -1,0 +1,13 @@
+---
+
+- name: create work dir
+  file: dest="{{workspace}}" state=directory
+
+- name: copy application-search.yml
+  copy: src=../files/application-search.yml dest="{{workspace}}/application-search.yml" mode=0755
+
+- name: copy run-search.sh
+  copy: src=../files/run-search.sh dest="{{workspace}}/run-search.sh" mode=0755
+
+- name: run E-Commerce Search-MircoService
+  shell: "sh {{workspace}}/run-search.sh" 

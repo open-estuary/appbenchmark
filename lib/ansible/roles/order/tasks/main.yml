@@ -1,0 +1,13 @@
+---
+
+- name: create work dir
+  file: dest="{{workspace}}" state=directory
+
+- name: copy application-order.yml
+  copy: src=../files/application-order.yml dest="{{workspace}}/application-order.yml" mode=0755
+
+- name: copy run-order.sh
+  copy: src=../files/run-order.sh dest="{{workspace}}/run-order.sh" mode=0755
+
+- name: run E-Commerce Order-MircoService
+  shell: "sh {{workspace}}/run-order.sh" 
