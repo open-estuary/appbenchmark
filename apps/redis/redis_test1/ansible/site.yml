@@ -11,3 +11,8 @@
   roles:
     - redis
 
+- name: Install twemproxy on client
+  hosts: TwemproxyGroup
+  remote_user: root
+  roles:
+    - twemproxy
