@@ -5,106 +5,117 @@
   become: yes
   become_method: sudo
   roles:
-    - openjdk
-    - jmeter
 
-- name: Install LVS on ARM64 server
-  hosts: LVSARM64
+- name: Install Modules on ARM64 Server-01
+  hosts: ARM64Server01
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - lvs
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install Nginx on ARM64 server
-  hosts: NginxARM64
+
+- name: Install Modules on ARM64 Server-02
+  hosts: ARM64Server02
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - nginx
+    - { role: nginx, when: nginx_cpus is defined }
 
-- name: Install Api-Gateway on ARM64 server
-  hosts: ApiGateWayARM64
+- name: Install Modules on ARM64 Server-03
+  hosts: ARM64Server03
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - zuul
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install E-Commerce Order-MircoService on ARM64 server
-  hosts: OrderMircoServiceARM64
+
+- name: Install Modules on ARM64 Server-04
+  hosts: ARM64Server04
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - e-commerce-order
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install E-Commerce Cart-MicroService on ARM64 server
-  hosts: CartMicroServiceARM64
+
+- name: Install Modules on ARM64 Server-05
+  hosts: ARM64Server05
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - e-commerce-cart
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install E-Commerce Search-MicroService on ARM64 server
-  hosts: SearchMicroServiceARM64
-  remote_user: estuaryapp
-  become: yes
-  become_method: sudo
-  roles:
-    - estuaryapp
-    - e-commerce-search
-
-- name: Install MyCat Proxy on ARM64 server
-  hosts: MyCatProxyARM64
+- name: Install Modules on ARM64 Server-06
+  hosts: ARM64Server06
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - mycat
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install MySQL on ARM64 server
-  hosts: MySQLARM64
+
+- name: Install Modules on ARM64 Server-07
+  hosts: ARM64Server07
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - mysql
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install Twemproxy on ARM64 server
-  hosts: TwemproxyARM64
+- name: Install Modules on ARM64 Server-08
+  hosts: ARM64Server08
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - twemproxy
+    - { role: lvs, when: lvs_cpus is defined }
 
 
-- name: Install Redis on ARM64 server
-  hosts: RedisARM64
+- name: Install Modules on ARM64 Server-09
+  hosts: ARM64Server09
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - redis
+    - { role: lvs, when: lvs_cpus is defined }
 
-- name: Install Solr on ARM64 server
-  hosts: SolrARM64
+- name: Install Modules on ARM64 Server-10
+  hosts: ARM64Server10
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - solr
+    - { role: lvs, when: lvs_cpus is defined }
 
+
+- name: Install Modules on ARM64 Server-11
+  hosts: ARM64Server11
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: lvs, when: lvs_cpus is defined }
+
+- name: Install Modules on ARM64 Server-12
+  hosts: ARM64Server12
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: lvs, when: lvs_cpus is defined }

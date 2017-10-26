@@ -1,73 +1,39 @@
 [JMeterClient]
+192.168.1.166
 
-[LVSX86]
+[ARM64Server01]
+192.168.1.171
 
+[ARM64Server02]
+192.168.1.195
 
-[LVSARM64]
+[ARM64Server03]
+192.168.1.115
 
+[ARM64Server04]
+192.168.1.120
 
-[NginxX86]
+[ARM64Server05]
+192.168.1.175
 
+[ARM64Server06]
+192.168.1.191
 
-[NginxARM64]
+[ARM64Server07]
+192.168.1.160
 
+[ARM64Server08]
+192.168.1.234
 
-[ApiGateWayX86]
+[ARM64Server09]
+192.168.1.225
 
+[ARM64Server10]
+192.168.1.111
 
-[ApiGateWayARM64]
+[ARM64Server11]
+192.168.1.152
 
-
-[OrderMircoServiceX86]
-
-
-[OrderMircoServiceARM64]
-
-
-[CartMicroServiceX86]
-
-
-
-[CartMicroServiceARM64]
-
-
-
-[SearchMicroServiceX86]
-
-
-
-[SearchMicroServiceARM64]
-
-
-
-[MyCatProxyX86]
-
-
-
-[MyCatProxyARM64]
-
-
-
-[MySQLX86]
-
-
-[MySQLARM64]
-
-
-[TwemproxyX86]
-
-
-[TwemproxyARM64]
-
-
-[RedisX86]
-
-[RedisARM64]
-
-
-[SolrX86]
-
-
-[SolrARM64]
-
+[ARM64Server12]
+192.168.1.180
 
