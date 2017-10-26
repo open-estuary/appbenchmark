@@ -10,4 +10,4 @@
   copy: src=../files/run-order.sh dest="{{workspace}}/run-order.sh" mode=0755
 
 - name: run E-Commerce Order-MircoService
-  shell: "sh {{workspace}}/run-order.sh" 
+  shell: "sh {{workspace}}/run-order.sh {{order_cpus}}"

@@ -33,6 +33,8 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
 
 
 - name: Install Modules on ARM64 Server-04
