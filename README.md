@@ -9,8 +9,7 @@ It is to maintain application benchmark test scripts including:
 - Scripts which perform benchmark test  
 
 > Notes: 
->    As for test cases based on Ansible framework, it might be necessary to change some configurations before setting up 
->    benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
+>    It is required to write new benchmark scripts based on `ansible` framework. In addition, some existing old scripts might be changed to `ansible` framework in the future. As for test cases based on `ansible` framework, it might be necessary to change some configurations before setting up benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
 >    and `ansible/group_vars/*` which define variables for this test.
 > 
 >    In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
