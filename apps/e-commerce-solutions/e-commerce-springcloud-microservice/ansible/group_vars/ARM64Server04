@@ -1,0 +1,12 @@
+---
+
+zuul_cpus: "0-30"
+
+interrupt_cpus: "31-32"
+
+pcp_cpus: 33
+
+redis_cpus: "34-45"
+
+order_cpus: "46-62"
+

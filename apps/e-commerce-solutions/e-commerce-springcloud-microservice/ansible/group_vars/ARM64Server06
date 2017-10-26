@@ -1,0 +1,15 @@
+---
+
+solr_master_cpus: "0-15"
+
+solr_cpus: "16-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+solr_4_cpus: "35-43"
+
+twemproxy_cpus: "44-47"
+
+cart_cpus: "48-63"
