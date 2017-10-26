@@ -1,0 +1,13 @@
+alpha:
+  listen: 192.168.11.232:22144
+  hash: fnv1a_64
+  distribution: ketama
+  auto_eject_hosts: true
+  redis: true
+  server_retry_timeout: 30000
+  server_failure_limit: 3
+  servers:
+   - 192.168.1.195:7062:1
+   - 192.168.11.237:7040:1
+   - 192.168.11.237:7041:1
+   - 192.168.11.250:7037:1
