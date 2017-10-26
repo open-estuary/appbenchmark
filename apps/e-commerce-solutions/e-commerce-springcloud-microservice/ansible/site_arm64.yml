@@ -14,8 +14,8 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
-
-
+ 
+ 
 - name: Install Modules on ARM64 Server-02
   hosts: ARM64Server02
   remote_user: estuaryapp
@@ -23,7 +23,8 @@
   become_method: sudo
   roles:
     - estuaryrepo
-    - { role: nginx, when: nginx_cpus is defined }
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: redis, when: redis_cpus is defined }
 
 - name: Install Modules on ARM64 Server-03
   hosts: ARM64Server03
@@ -33,6 +34,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: redis, when: redis_cpus is defined }
 
 
 - name: Install Modules on ARM64 Server-04
@@ -43,7 +45,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
-
+    - { role: redis, when: redis_cpus is defined }
 
 - name: Install Modules on ARM64 Server-05
   hosts: ARM64Server05
@@ -62,6 +64,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { roles: twemproxy, when: twemproxy_cpus is defined }
 
 
 - name: Install Modules on ARM64 Server-07
@@ -91,6 +94,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { roles: twemproxy, when: twemproxy_cpus is defined }
 
 - name: Install Modules on ARM64 Server-10
   hosts: ARM64Server10
