@@ -1,0 +1,12 @@
+---
+
+nginx_cpus: "0-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+redis_cpus: "34-47"
+
+order_cpus: "48-63"
+

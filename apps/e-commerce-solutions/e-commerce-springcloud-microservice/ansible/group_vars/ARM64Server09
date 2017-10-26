@@ -1,0 +1,13 @@
+---
+
+mycat_3_cpus: "0-15"
+
+mycat_4_cpus: "16-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+twemproxy: "34-37"
+
+solr_cpus: "38-63"
