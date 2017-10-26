@@ -1,0 +1,9 @@
+---
+
+mysql_main2_cpus: "0-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+mysql_slave2_cpus: "34-63"

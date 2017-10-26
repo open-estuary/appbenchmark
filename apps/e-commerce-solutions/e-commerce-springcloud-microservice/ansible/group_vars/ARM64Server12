@@ -1,0 +1,13 @@
+---
+
+pcp_web_cpus: "0-3"
+
+elstaic_cpus: "4-20"
+
+kibana_cpus: "21-24"
+
+zipkin_cpus: "25-42"
+
+influxdb_cpus: "43-59"
+
+interrupt_cpus: "60-63"

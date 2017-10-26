@@ -1,0 +1,12 @@
+---
+
+mycat_1_cpus: "0-15"
+mycat_2_cpus: "16-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+search_cpus: "34-46"
+
+cart_cpus: "47-63"
