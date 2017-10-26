@@ -1,0 +1,110 @@
+---
+- name: Install Jmeter Test 
+  hosts: JMeterClient
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - openjdk
+    - jmeter
+
+- name: Install LVS on X86 server
+  hosts: LVSX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - lvs
+
+- name: Install Nginx on X86 server
+  hosts: NginxX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - nginx
+
+- name: Install Api-Gateway on X86 server
+  hosts: ApiGateWayX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - zuul
+
+- name: Install E-Commerce Order-MircoService on X86 server
+  hosts: OrderMircoServiceX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - e-commerce-order
+
+- name: Install E-Commerce Cart-MicroService on X86 server
+  hosts: CartMicroServiceX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - e-commerce-cart
+
+- name: Install E-Commerce Search-MicroService on X86 server
+  hosts: SearchMicroServiceX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryapp
+    - e-commerce-search
+
+- name: Install MyCat Proxy on X86 server
+  hosts: MyCatProxyX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - mycat
+
+- name: Install MySQL on X86 server
+  hosts: MySQLX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - mysql
+
+- name: Install Twemproxy on X86 server
+  hosts: TwemproxyX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - twemproxy
+
+
+- name: Install Redis on X86 server
+  hosts: RedisX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - redis
+
+- name: Install Solr on X86 server
+  hosts: SolrX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - solr
+

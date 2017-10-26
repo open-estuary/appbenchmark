@@ -1,0 +1,17 @@
+- name: transfer netperf_servercon.sh
+  template:
+    src: netperf_servercon.sh
+    dest: /tmp/netperf_servercon.sh
+    mode: 0755
+
+- name: transfer netperf_server.sh
+  template:
+    src: netperf_server.sh
+    dest: /tmp/netperf_server.sh
+    mode: 0755
+
+- name: run netperf in container on server
+  shell: ./netperf_server.sh
+  args:
+    chdir: /tmp/
+

@@ -8,6 +8,15 @@ It is to maintain application benchmark test scripts including:
 - Scripts which setup server and client 
 - Scripts which perform benchmark test  
 
+> Notes: 
+>    It is required to write new benchmark scripts based on `ansible` framework. In addition, some existing old scripts might be changed to `ansible` framework in the future. As for test cases based on `ansible` framework, it might be necessary to change some configurations before setting up benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
+>    and `ansible/group_vars/*` which define variables for this test.
+> 
+>    In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
+>    be performed manually.
+
+>    In addition, it could run test scripts which are based on `ansible` framework on any client server. Usually the client server uses `estuaryapp` or `root` account to login target test servers via ssh without password. Therefore it is required to create `estuaryapp` account firstly on target servers and copy the `id_rsa.pub` from client server to target server in order to login without password.
+
 ## <a name="2">Benchmark Test</a>
 Usually it is only necessary to execute following commands in order to perform benchmark test for each application:
 - `./setup.sh` to setup client and server side;
@@ -38,7 +47,12 @@ Currently the following applications have been supported so far :
 - [MariaDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mariadb/mariadb_test1)
 - [PostgreSQL](https://github.com/open-estuary/appbenchmark/tree/master/apps/postgresql/postgresql_test1)
 - [MongoDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_test1)
-- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)    
+- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
+- [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
+- Docker Networks
+  - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
+  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
+  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
 ## <a name="3">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)

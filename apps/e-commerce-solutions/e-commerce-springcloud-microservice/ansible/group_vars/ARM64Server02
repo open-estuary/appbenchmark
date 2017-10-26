@@ -1,0 +1,7 @@
+---
+nginx_cpus: "0-30"
+interrupt_cpus: 31-32
+pcp_cpus: 33
+eureka_cpus: 34-57
+redis_cpus: "58-63"
+

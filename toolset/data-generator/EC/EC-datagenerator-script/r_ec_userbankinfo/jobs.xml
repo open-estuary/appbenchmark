@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>10000</num>
+            <table>r_ec_userbankinfo</table>
+            <filename>r_ec_userbankinfo.sql</filename>
+            <detail>
+		<nUserID>$rule{nUserID,3}</nUserID>
+		<sBank>$pool{sBank}</sBank>
+                <sCardType>$pool{sCardType}</sCardType>
+		<sCardNumber>$rule{sCardNumber,17}</sCardNumber>
+            </detail>
+	</job>
+     </jobs>
+</root>

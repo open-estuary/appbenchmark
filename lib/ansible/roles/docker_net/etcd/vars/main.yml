@@ -1,0 +1,6 @@
+ETCD_VER: v3.2.7
+#etcd_nodes: 
+#  - { name: 'etcd1', url: 'http://192.168.1.234' }
+#cluster_token: etcd-cluster-1
+#cluster: 'infra0=http:/192.168.1.234:2380'
+

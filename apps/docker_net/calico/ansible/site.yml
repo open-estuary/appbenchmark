@@ -1,0 +1,13 @@
+---
+- hosts: etcd_servers
+
+  roles:
+  - role: etcd
+
+ 
+- hosts: calico_servers
+
+  roles:
+  - role: docker
+  - role: calico 
+

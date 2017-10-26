@@ -1,0 +1,3 @@
+---
+openjdk_major_version: 8
+openjdk_version: "1.{{ openjdk_major_version }}.0"

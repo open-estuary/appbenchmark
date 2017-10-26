@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>5000</num>
+            <table>r_ec_deliveryinfo</table>
+            <filename>r_ec_deliveryinfo.sql</filename>
+            <detail>
+		<sDeliveryID>$rule{sDeliveryID,3}</sDeliveryID>
+		<nDeliveryPrice>$pool{nDeliveryPrice}</nDeliveryPrice>
+                <cStatus>$pool{cStatus}</cStatus>
+            </detail>
+        </job>
+    </jobs>
+</root>

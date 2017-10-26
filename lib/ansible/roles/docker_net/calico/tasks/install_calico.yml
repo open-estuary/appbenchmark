@@ -1,0 +1,14 @@
+- name: transfer config_docker.sh
+  template: src=config_docker.sh dest=/tmp/config_docker.sh mode=0755
+
+- name: config docker daemon
+  shell: ./config_docker.sh
+  args:
+    chdir: /tmp/
+  
+- name: transfer setup_calico.sh
+  template: src=setup_calico.sh dest=/tmp/setup_calico.sh mode=0755
+
+- name: start calico
+  shell: ./setup_calico.sh
+
