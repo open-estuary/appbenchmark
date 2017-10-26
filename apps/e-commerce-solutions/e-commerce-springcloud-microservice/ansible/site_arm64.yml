@@ -23,6 +23,7 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: nginx, when: nginx_cpus is defined }
     - { role: lvs, when: lvs_cpus is defined }
     - { role: redis, when: redis_cpus is defined }
 
