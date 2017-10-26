@@ -16,6 +16,8 @@ It is to maintain application benchmark test scripts including:
 >    In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
 >    be performed manually.
 
+>    In addition, it could run test scripts which are based on `ansible` framework on any client server. Usually the client server uses `estuaryapp` or `root` account to login target test servers via ssh without password. Therefore it is required to create `estuaryapp` account firstly on target servers and copy the `id_rsa.pub` from client server to target server in order to login without password.
+
 ## <a name="2">Benchmark Test</a>
 Usually it is only necessary to execute following commands in order to perform benchmark test for each application:
 - `./setup.sh` to setup client and server side;
