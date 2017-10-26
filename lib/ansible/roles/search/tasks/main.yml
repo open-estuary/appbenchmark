@@ -10,4 +10,4 @@
   copy: src=../files/run-search.sh dest="{{workspace}}/run-search.sh" mode=0755
 
 - name: run E-Commerce Search-MircoService
-  shell: "sh {{workspace}}/run-search.sh" 
+  shell: "sh {{workspace}}/run-search.sh {{search_cpus}}" 

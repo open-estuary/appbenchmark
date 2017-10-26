@@ -10,4 +10,4 @@
   copy: src=../files/run-cart.sh dest="{{workspace}}/run-cart.sh" mode=0755
 
 - name: run E-Commerce Cart-MircoService
-  shell: "sh {{workspace}}/run-cart.sh" 
+  shell: "sh {{workspace}}/run-cart.sh {{cart_cpus}}" 
