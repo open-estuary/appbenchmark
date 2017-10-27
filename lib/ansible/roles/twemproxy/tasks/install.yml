@@ -6,14 +6,14 @@
 - name: copy twemproxy configurations
   copy:
     src: ../files/
-    dest: /usr/sbin/conf
+    dest: /etc
     mode: 0644
     owner: root
     group: root
 
 - name: copy 
   copy:
-    src: ../files/nutcracker.yml
+    src: ../files/twemproxy_{{ twemproxy_cpus.split('-')[-1] }}.yml
     dest: /etc/twemproxy.yml
     mode: 0644
     owner: root
