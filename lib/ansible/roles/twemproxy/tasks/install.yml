@@ -3,4 +3,18 @@
   yum: name=twemproxy state=present disable_gpg_check=yes
   when: ansible_os_family == 'RedHat'
 
+- name: copy twemproxy configurations
+  copy:
+    src: ../files/
+    dest: /usr/sbin/conf
+    mode: 0644
+    owner: root
+    group: root
 
+- name: copy 
+  copy:
+    src: ../files/nutcracker.yml
+    dest: /etc/twemproxy.yml
+    mode: 0644
+    owner: root
+    group: root
