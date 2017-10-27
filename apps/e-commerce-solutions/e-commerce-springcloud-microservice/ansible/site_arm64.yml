@@ -34,6 +34,10 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
     - { role: redis, when: redis_cpus is defined }
 
 
@@ -45,6 +49,10 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
     - { role: redis, when: redis_cpus is defined }
 
 - name: Install Modules on ARM64 Server-05
@@ -54,6 +62,10 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
     - { role: lvs, when: lvs_cpus is defined }
 
 - name: Install Modules on ARM64 Server-06
@@ -63,6 +75,10 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
     - { role: lvs, when: lvs_cpus is defined }
     - { roles: twemproxy, when: twemproxy_cpus is defined }
 
@@ -74,6 +90,10 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
     - { role: lvs, when: lvs_cpus is defined }
 
 - name: Install Modules on ARM64 Server-08
