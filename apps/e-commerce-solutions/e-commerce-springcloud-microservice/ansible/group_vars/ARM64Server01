@@ -6,16 +6,16 @@ global_defs:
 vrrp_instances:
   - name: 'VI_01'
     state: 'MASTER'
-    interface: 'enp2s0f1'
+    interface: 'eth2'
     virtual_router_id: 10
     priority: 100
     auth_type: 'PASS'
     auth_pass: 'secpass'
     virtual_ipaddress:
-      - '192.168.111.1'
-      - '192.168.111.2'
+      - '192.168.11.100'
+
 virtual_servers:
-  - name: '192.168.111 80'
+  - name: '192.168.11.100 9000'
     delay_loop: 6
     lb_algo: 'rr'
     lb_kind: 'NAT'
@@ -26,7 +26,7 @@ virtual_servers:
     hysteresis: 0
     persistence_timeout: 60
     real_servers: 
-      - address: '192.168.11.16'
+      - address: '192.168.11.237'
         port: 9000
         weight: 100
         check:
@@ -34,5 +34,13 @@ virtual_servers:
           connect_port: 9000
           connect_timeout: 15
           nb_get_retry: 5
-          delay_before_retry: 
-
+          delay_before_retry: 3
+      - address: '192.168.11.223'
+        port: 9000
+        weight: 100
+        check:
+          type: "TCP_CHECK"
+          connect_port: 9000
+          connect_timeout: 15
+          nb_get_retry: 5
+          delay_before_retry: 3 
