@@ -10,3 +10,11 @@
     mode: 0644
     owner: root
     group: root
+
+- name: copy 
+  copy:
+    src: ../files/nutcracker.yml
+    dest: /etc/twemproxy.yml
+    mode: 0644
+    owner: root
+    group: root
