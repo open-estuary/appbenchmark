@@ -1,0 +1,8 @@
+---
+- name: Run twemproxy on ARM64 Server
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  shell: cd /usr/sbin; taskset -c {{ item }} /usr/sbin/twemproxy /usr/sbin/conf/nutcracker_{{ item }}.yml -v 4 -m 1024 -s {{ "222" + item }}
+  with_sequence: start={{ twemproxy_cpus.split('-')[0] }} end={{ twemproxy_cpus.split('-')[-1] }}
+
