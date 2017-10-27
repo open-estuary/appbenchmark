@@ -3,4 +3,11 @@
   yum: name=redis state=present disable_gpg_check=yes
   when: ansible_os_family == 'RedHat'
 
+- name: copy redis server configurations
+  copy: 
+    src: ../files/
+    dest: /usr/local/redis/config/ 
+    mode: 0644
+    owner: root
+    group: root
 
