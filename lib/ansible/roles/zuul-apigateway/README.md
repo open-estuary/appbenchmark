@@ -1,9 +1,13 @@
-Role Name
-=========
+* [Introduction](#1)
+* [Role Variables](#2)
+* [Example Playbook](#3)
+
+## <a name="1">Introduction</a>
+--------------
 
 This ansible role is to setup Spring Cloud Zuul which plays the role of microservices gateway.
 
-Role Variables
+## <a name="2">Role Variables</a>
 --------------
 
 ### Expected to Be Configured
@@ -40,7 +44,7 @@ Role Variables
 * `eureka_port`: 8761
 * `eureka_url`: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
 
-Example Playbook
+## <a name="3">Example Playbook</a>
 ----------------
 
 ```
