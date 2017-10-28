@@ -22,7 +22,7 @@ Role Variables
 * `eureka_pkg_name`: micro-service-api
 * `eureka_service_name`: microservice-eureka
 * `eureka_config_dir`: "/etc/micro-services/api-gateway"
-* `eureka_server: localhost
+* `eureka_server`: localhost
 * `eureka_url`: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
 
 Example Playbook
