@@ -1,0 +1,20 @@
+server:
+  port: {{ zuul_port }}
+spring:
+  application:
+    name: api-gateway-service
+
+zuul:
+  routes:
+    {% for item in zuul_api_routes %}
+    {{ item.route_name }}:
+      path: {{ item.route_path }}
+      serviceId: {{ item.route_serviceid }}
+    {% endfor %}     
+
+eureka:
+  client:
+    service-url:
+      defaultZone: {{ eureka_url }} 
+
+

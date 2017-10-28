@@ -1,0 +1,14 @@
+[Unit]
+Description=Zuul - Spring Cloud Apigateway
+
+[Service]
+Type=simple
+PIDFile=/var/run/zuul-apigateway.pid
+ExecStart=java -jar -Dspring.config.location={{ zuul_config_dir }}/application.yml  /usr/e-commerce/zuul-apigateway.jar 
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+
