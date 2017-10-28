@@ -27,13 +27,13 @@ Role Variables
 * `zuul_service_name`: microservice-zuul
 * `zuul_config_dir`: "/etc/micro-services/api-gateway"
 * `zuul_api_routes`:
-  * - route_name: api-cart
+  * `- route_name`: api-cart
   *   route_path: "/cart/**"
   *   route_serviceid: cart-service
-  * - route_name: api-order
+  * `- route_name`: api-order
   *  route_path: "/order/**"
   *  route_serviceid: order-service
-  * - route_name: api-search
+  * `- route_name`: api-search
   *  route_path: "/search/**"
   * route_serviceid: search-service
 * `eureka_server: localhost
