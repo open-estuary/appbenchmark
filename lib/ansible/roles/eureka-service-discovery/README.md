@@ -3,7 +3,7 @@
 * [Example Playbook](#3)
 
 ## <a name="1">Introduction</a>
-=========
+--------------
 
 This ansible role is to setup Spring Cloud Eureka which plays the role of microservices gateway.
 
