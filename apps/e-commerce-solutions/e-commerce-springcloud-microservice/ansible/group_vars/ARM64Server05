@@ -6,9 +6,5 @@ pcp_cpus: 33
 solr_cpus: "34-47"
 search_cpus: "48-63"
 
-
 zuul_port: 8765
-eureka_server: "192.168.11.223"
-eureka_port: 8761
-
 

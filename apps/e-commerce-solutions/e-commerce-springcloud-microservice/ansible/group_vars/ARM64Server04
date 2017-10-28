@@ -7,6 +7,5 @@ redis_cpus: "34-45"
 order_cpus: "46-62"
 
 zuul_port: 8765
-eureka_server: "192.168.11.223"
-eureka_port: 8761
+
 

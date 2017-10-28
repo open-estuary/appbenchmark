@@ -1,8 +1,8 @@
 ---
 zuul_port: 5555
 zuul_pkg_name: micro-service-api
-zuul_service_name: zuul_apigateway
-zuul_config_dir: "/etc/e-commerce/api-gateway"
+zuul_service_name: microservice-zuul
+zuul_config_dir: "/etc/micro-services/api-gateway"
 zuul_api_routes:
   - route_name: api-cart
     route_path: "/cart/**"

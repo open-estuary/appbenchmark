@@ -1,0 +1,9 @@
+---
+eureka_port: 8761
+eureka_server: "localhost"
+eureka_url: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
+
+eureka_pkg_name: micro-service-discovery
+eureka_config_dir: "/etc/micro-services/eureka"
+eureka_service_name: microservice-eureka
+

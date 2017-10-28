@@ -2,3 +2,6 @@
 estuaryuser: estuaryapp
 workspace: /home/estuaryapp
 
+eureka_server: "192.168.11.223"
+eureka_port: 8761
+
