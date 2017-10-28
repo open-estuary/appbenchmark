@@ -11,10 +11,11 @@
     owner: root
     group: root
 
-- name: copy 
+- name: copy twemproxy shell
   copy:
-    src: ../files/twemproxy_{{ twemproxy_cpus.split('-')[-1] }}.yml
-    dest: /etc/twemproxy.yml
-    mode: 0644
+    src: ./run_twemproxy.sh
+    dest: /usr/sbin/run_twemproxy.sh
+    mode: 0755
     owner: root
     group: root
+
