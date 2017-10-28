@@ -13,7 +13,7 @@
 
 - name: copy twemproxy shell
   copy:
-    src: ./run_twemproxy.sh
+    src: ../files/run_twemproxy.sh
     dest: /usr/sbin/run_twemproxy.sh
     mode: 0755
     owner: root
