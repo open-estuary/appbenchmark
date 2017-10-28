@@ -1,9 +1,13 @@
-Role Name
-=========
+* [Introduction](#1)
+* [Role Variables](#2)
+* [Example Playbook](#3)
+
+## <a name="1">Introduction</a>
+--------------
 
 This ansible role is to setup [solr](http://lucene.apache.org/solr/). 
 
-Role Variables
+## <a name="2">Role Variables</a>
 --------------
 
 ### Expected to Be Configured
@@ -30,7 +34,8 @@ See the app2proxy definition in the example playbook below.
 * `solr_version`: 6.6.1
 * `solr_memory`: 32g
 * `solr_port`: 8983
-Example Playbook
+
+## <a name="3">Example Playbook</a>
 ----------------
 
 ```
