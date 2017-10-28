@@ -10,10 +10,13 @@ This ansible role is to setup LVS+ keepalived for load balancing.
 ## <a name="2">Role Variables</a>
 --------------
 ### Expected to Be Configured
+TBD
 
 ### Proxy configuration options
+TBD
 
 ### Role Defaults
+TBD
 
 ## <a name="3">Example Playbook</a>
 ----------------
