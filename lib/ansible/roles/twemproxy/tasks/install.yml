@@ -6,15 +6,16 @@
 - name: copy twemproxy configurations
   copy:
     src: ../files/
-    dest: /usr/sbin/conf
+    dest: /etc
     mode: 0644
     owner: root
     group: root
 
-- name: copy 
+- name: copy twemproxy shell
   copy:
-    src: ../files/nutcracker.yml
-    dest: /etc/twemproxy.yml
-    mode: 0644
+    src: ../files/run_twemproxy.sh
+    dest: /usr/sbin/run_twemproxy.sh
+    mode: 0755
     owner: root
     group: root
+
