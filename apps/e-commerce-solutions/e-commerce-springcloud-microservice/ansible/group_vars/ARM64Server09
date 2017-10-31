@@ -10,7 +10,7 @@ pcp_cpus: 33
 
 solr_cpus: "38-63"
 
-twemproxy_IP: 192.168.11.249
+twemproxy_IP: 192.168.11.219
 
 twemproxy_cpus: "34-37"
 
