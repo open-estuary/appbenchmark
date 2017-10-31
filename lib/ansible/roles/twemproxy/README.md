@@ -41,5 +41,5 @@ For more examples, please refer to [e-commerce-springcloud-microservice](https:/
 License
 -------
 
-BSD
+Apache
 
