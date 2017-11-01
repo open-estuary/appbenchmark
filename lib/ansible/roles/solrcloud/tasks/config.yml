@@ -1,0 +1,109 @@
+---
+- name: Ensure solr_user has the ownership of solr_home
+  file:
+    path: "{{ solr_home }}-{{ solr_cloud_version }}" 
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Ensure solr cloud data directory exist
+  file: 
+      path: "{{ solr_home }}/server/solrcloud/node_{{ item }}"
+      state: directory
+      mode: 0755
+      owner: "{{ solr_user }}"
+      group: "{{ solr_user }}"
+  with_items: "{{ solr_port_list }}"
+
+- name: SolrCloud | Give execution permission to zkcli script
+  file:
+    path: "{{ solr_zookeeper_client_path }}/zkcli.sh"
+    mode: 0744
+
+- name: SolrCloud | Check Root Path (znode) in ZooKeeper
+  command: >
+    {{ solr_zookeeper_client_path }}/zkcli.sh
+    -zkhost {{ solr_zookeeper_hosts }}
+    -cmd list /{{ solr_zookeeper_hosts_solr_path }}
+  register: solr_path_check
+  changed_when: false
+
+- name: SolrCloud | Create Root Path (znode) in ZooKeeper using zkcli script
+  command: >
+    {{ solr_zookeeper_client_path }}/zkcli.sh
+    -zkhost {{ solr_zookeeper_hosts }}
+    -cmd makepath /{{ solr_zookeeper_hosts_solr_path }}
+  when: '" /{{ solr_zookeeper_hosts_solr_path }} " not in solr_path_check.stdout'
+
+- name: SolrCloud | Configuring jetty server
+  template:
+      src: jetty.xml.j2
+      dest: /opt/solr/server/etc/jetty.xml
+      force: yes
+  notify: restart SolrCloud
+
+- name: SolrCloud | Configuring jetty server http
+  template:
+      src: jetty-http.xml.j2
+      dest: /opt/solr/server/etc/jetty-http.xml
+      force: yes
+  notify: restart SolrCloud
+
+- name: SolrCloud | Configuring SolrCloud init script
+  template:
+      src: solr.in.sh.j2
+      dest: /etc/default/solr.in.sh
+      force: yes
+  notify: restart SolrCloud
+
+- name: SolrCloud | Configuring SolrCloud properties
+  template:
+      src: solr.xml.j2
+      dest: "{{ solr_home }}/server/solrcloud/node_{{ item }}/solr.xml"
+      force: yes
+  with_items: "{{ solr_port_list }}"
+  notify: restart SolrCloud
+
+- name: SolrCloud | Configuring logging
+  template:
+      src: log4j.properties.j2
+      dest: /opt/solr/log4j.properties
+      force: yes
+  notify: restart SolrCloud
+
+- name: SolrCloud | Create NFS folder (Install dependencies)
+  apt:
+    name: nfs-common
+    state: installed
+  when:
+    - mount_name is defined
+    - mount_source is defined
+    - solr_mount_name is defined
+    - solr_mount_source is defined
+
+- name: SolrCloud | Create NFS folder (Mount the folder)
+  mount:
+    name: "{{ mount_name }}"
+    src: "{{ mount_source }}"
+    fstype: nfs
+    opts: "{{ mount_options }}"
+    state: mounted
+  when:
+    - mount_name is defined
+    - mount_source is defined
+    - solr_mount_name is defined
+    - solr_mount_source is defined
+
+- name: SolrCloud | Create NFS folder (Change owner)
+  file:
+    path: "{{ mount_name }}"
+    state: directory
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+  when:
+    - mount_name is defined
+    - mount_source is defined
+    - solr_mount_name is defined
+    - solr_mount_source is defined

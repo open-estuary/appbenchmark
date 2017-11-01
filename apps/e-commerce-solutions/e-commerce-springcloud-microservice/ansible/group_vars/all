@@ -5,3 +5,20 @@ workspace: /home/estuaryapp
 eureka_server: "192.168.11.223"
 eureka_port: 8761
 
+solr_user: "{{ estuaryuser }}"
+solr_group: "{{ estuaryuser }}"
+
+zookeeper_client_port: 2183
+zookeeper_hosts:
+  - host: "192.168.11.231"
+    id: 1
+  - host: "192.168.11.232"
+    id: 2
+  - host: "192.168.11.228"
+    id: 3
+
+solr_zookeeper_hosts: "192.168.11.231:{{ zookeeper_client_port }},192.168.11.232:{{ zookeeper_client_port }},192.168.11.228:{{ zookeeper_client_port }}"
+solr_zookeeper_hosts_solr_path: "solr"
+solr_zk_host: "192.168.11.231:{{ zookeeper_client_port }}/{{ solr_zookeeper_hosts_solr_path }},192.168.11.232:{{ zookeeper_client_port }}/{{ solr_zookeeper_hosts_solr_path }},192.168.11.228:{{ zookeeper_client_port }}/{{ solr_zookeeper_hosts_solr_path }}"
+
+

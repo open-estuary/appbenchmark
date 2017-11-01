@@ -1,0 +1,17 @@
+---
+
+#- name: SolrCloud | Configuring service
+#  systemd:
+#    name: solr_{{ item }}
+#    state: "{{ solr_service_state }}"
+#    enabled: "{{ solr_service_enabled }}"
+#    daemon_reload: yes
+#  with_items: "{{ solr_port_list }}"
+#
+
+- name: Start Solr Cloud Server
+  shell: "{{ solr_home }}/bin/solr restart -c -p {{ item }}  -z {{ solr_zookeeper_hosts }} -s server/solrcloud/node_{{ item }}"
+  with_items: "{{ solr_port_list }}"
+
+
+

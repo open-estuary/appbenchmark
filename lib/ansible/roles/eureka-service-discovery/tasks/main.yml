@@ -14,10 +14,15 @@
     src: application.yml.j2
     dest: "{{ eureka_config_dir }}/application.yml"
 
+- name: Copy the microservice-eureka.in.sh
+  template:
+    src: microservice-eureka.in.sh.j2
+    dest: "{{ eureka_config_dir }}/microservice-eureka.in.sh"
+
 - name: Start the eureka-server service
   service: name={{ eureka_service_name }}  state=started enabled=yes daemon_reload=yes
 
-- name: Set Zuul CPU affinity 
-  shell: "ps -aux | grep eureka-server | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ eureka_cpus }}"
+- name: Set Eureka CPU affinity 
+  shell: "ps -aux | grep micro-service-eureka | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ eureka_cpus }}"
   when: eureka_cpus is defined 
 

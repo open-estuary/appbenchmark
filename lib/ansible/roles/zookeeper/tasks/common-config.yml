@@ -1,0 +1,27 @@
+---
+- name: "Ensure the zookeeper_conf_dir exists"
+  file: path={{ zookeeper_conf_dir }} state=directory
+  ignore_errors: True
+
+- name: Configure zookeeper-env.sh
+  template: src=zookeeper-env.sh.j2 dest={{ zookeeper_conf_dir }}/conf/zookeeper-env.sh owner=zookeeper group=zookeeper
+  tags: deploy
+  notify:
+    - Restart zookeeper
+  when: zookeeper_env is defined and zookeeper_env|length > 0
+
+- name: Overwrite default config file
+  template: src=zoo.cfg.j2 dest={{zookeeper_conf_dir}}/conf/zoo.cfg
+  tags: deploy
+  notify:
+    - Restart zookeeper
+
+- name: Update the log4j config with saner production values
+  template: src=log4j.properties.j2 dest={{ zookeeper_conf_dir }}/conf/log4j.properties
+  tags: deploy
+  notify:
+    - Restart zookeeper
+
+- name: Enable zookeeper service
+  service: name=zookeeper enabled=yes  state=reloaded
+  tags: deploy

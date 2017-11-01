@@ -1,0 +1,15 @@
+# {{ansible_managed}}
+
+[Unit]
+Description=ZooKeeper
+
+[Service]
+Type=simple
+User=zookeeper
+Group=zookeeper
+ExecStart=/usr/bin/zookeeper-server start
+
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
