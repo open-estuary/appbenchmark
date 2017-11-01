@@ -13,3 +13,7 @@ redis_port: 7034
 cart_pkg_name: micro-service-cart
 cart_config_dir: "/etc/e-commerce/cart"
 cart_service_name: e-commerce-cart.service
+
+heap_option: "-Xms512m -Xmx512m"
+gc_algo_option: "-XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:G1ReservePercent=20"
+dump_option: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/e-commerce/logs-oomdump/cart.oomdump"

@@ -15,3 +15,7 @@ solr_port: 8983
 search_pkg_name: micro-service-search
 search_config_dir: "/etc/e-commerce/search"
 search_service_name: e-commerce-search.service
+
+heap_option: "-Xms512m -Xmx512m"
+gc_algo_option: "-XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:G1ReservePercent=20"
+dump_option: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/e-commerce/logs-oomdump/search.oomdump"
