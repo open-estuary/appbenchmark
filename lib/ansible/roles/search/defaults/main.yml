@@ -1,0 +1,21 @@
+---
+
+search_name: search-service
+search_port: 8002
+eureka_ip: 192.168.11.233
+eureka_port: 8761
+mysql_ip: 192.168.11.244
+mysql_port: 3307
+database_name: e-commerce-search
+redis_ip: 198.168.11.237
+redis_port: 7034
+solr_ip: 192.168.1.44
+solr_port: 8983
+
+search_pkg_name: micro-service-search
+search_config_dir: "/etc/e-commerce/search"
+search_service_name: e-commerce-search.service
+
+heap_option: "-Xms512m -Xmx512m"
+gc_algo_option: "-XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:G1ReservePercent=20"
+dump_option: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/e-commerce/logs-oomdump/search.oomdump"

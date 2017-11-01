@@ -1,27 +1,27 @@
 spring:
   application:
-    name: order-service
+    name: {{ order_name }}
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.225:3309/ec?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://{{ mysql_ip }}:{{ mysql_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
     username: root
     password:
   redis:
-    host: 192.168.1.111
-    port: 7017
+    host: {{ redis_ip }}
+    port: {{ redis_port }}
     pool:
       maxActive: -1
       maxWait: -1
       maxIdle: 100
       minIdle: 0
-    timeout: 0
+    timeout: 100
 
 server:
-  port: 8000
+  port: {{ order_port }}
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://{{ eureka_ip }}:{{ eureka_port }}/eureka/
 management:
   security:
     enabled: false
@@ -30,3 +30,6 @@ mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.htsat.order.model
+
+logging:
+  file: /opt/e-commerce/logs/order.log

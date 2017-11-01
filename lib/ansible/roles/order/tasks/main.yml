@@ -1,13 +1,27 @@
 ---
 
-- name: create work dir
-  file: dest="{{workspace}}" state=directory
+- name: Install the order-service discovery from open-estuary repo
+  yum: name={{ order_pkg_name }} state=present
 
-- name: copy application-order.yml
-  copy: src=../files/application-order.yml dest="{{workspace}}/application-order.yml" mode=0755
+- name: Copy the order application.yml
+  template:
+    src: application.yml.j2
+    dest: "{{ order_config_dir }}/application.yml"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
 
-- name: copy run-order.sh
-  copy: src=../files/run-order.sh dest="{{workspace}}/run-order.sh" mode=0755
+- name: Copy the order e-commerce-order.in.sh
+  template:
+    src: e-commerce-order.in.sh.j2
+    dest: "{{ order_config_dir }}/e-commerce-order.in.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
 
-- name: run E-Commerce Order-MircoService
-  shell: "sh {{workspace}}/run-order.sh {{order_cpus}}"
+- name: Start the order service
+  service: name={{ order_service_name }}  state=started enabled=yes daemon_reload=yes
+
+- name: Set Order CPU affinity 
+  shell: "ps -aux | grep e-commerce-order | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ order_cpus }}"
+  when: order_cpus is defined 
