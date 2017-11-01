@@ -63,33 +63,33 @@ Currently the following applications have been supported so far :
 ## <a name="3">Ansible role</a>
 Currently the following applications have been supported:
 
-|Application group|Application Name|Tool description|Role description|
-|--|--|--|--|
-|Other|[spec_cpu2006](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/spec_cpu2006)|SPEC cpu2006 is a tool for CPU testing| This ansible framework supply deploy and test scripts|
-|Other|[FIO](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/fio)|FIO is a tool for testing IOPS for stress testing and verification of hardware|This ansible framework supply deploy and test scripts|
-- [Sysbench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/sysbench):Sysbench is a modular, cross platform, multithreaded benchmark tool designed to evaluate and test database loads under a variety of system parameters.This ansible framework supply deploy and test scripts.
-- [LmBench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/lmbench):Lmbench is a tool for memory testing. This ansible framework supply deploy and test scripts.
-- [Stream](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/stream):
-- [Iperf/Qperf/NetPerf](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/network)
-- [MySQL](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql)
-- [MySQL_ecommerce](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql-ecommerce)
-- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/redis)
-- [twemproxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/twemproxy)
-- [estuaryrepo](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/estuaryrepo)
-- [nginx](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx)
-- [nginx-reverse-proxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx-reverse-proxy)
-- [wrk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/wrk)
-- [php-fpm](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/php-fpm)
-- [solr](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/solr)
-- [jmeter](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/jmeter)
-- [docker](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker)
-- [docker_net](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker_net)
-- [irqbalance](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/irqbalance)
-- [lvs-keepalived](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/lvs-keepalived)
-- [openjdk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/openjdk)
-- [weighttp](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/weighttp)
-- [kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)
-- [flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)
+|Application Name|Tool description|Role description|
+|--|--|--|
+|[spec_cpu2006](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/spec_cpu2006)|SPEC cpu2006 is a tool for CPU testing| This role installs and configures the SPEC CPU2006|
+|[FIO](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/fio)|FIO is a tool for testing IOPS for stress testing and verification of hardware|This role installs and configures the FIO tool|
+|[Sysbench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/sysbench)|Sysbench is a modular, cross platform, multithreaded benchmark tool designed to evaluate and test database loads under a variety of system parameters|This role installs and configures the sysbench tool|
+|[LmBench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/lmbench)|Lmbench is a tool for memory testing| This role installs and configures the lmbench tool|
+|[Stream](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/stream)|Stream is a tool for memory testing. Autually, stream is a subprogram of Lmbench|This role installs and configures the stream tool|
+|[Iperf/Qperf/NetPerf](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/network)|Iperf/Qperf/NetPerf are tools for network|This role installs and configures the netwoek testing tool|
+|[MySQL](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql)|MySQL is a relational database management system|This This role installs and configures MySQL to test benchmark performance|
+|[MySQL_ecommerce](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql-ecommerce)|MySQL is a relational database management system|This role installs and configures MySQL in E-Commerce scenes|
+|[Redis](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/redis)|Redis is a NO_SQL database management system|This role installs and configures the redis database|
+|[twemproxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/twemproxy)|Twemproxy is a fast and lightweight proxy for memcached and redis protocol|This role installs and configures the twemproxy tool|
+|[estuaryrepo](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/estuaryrepo)|estuaryrepo is a basic role to configre Estuary repository|This role configures Estuary repository information before testing other functions|
+|[nginx](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx)|Nginx is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server|This role installs and configures the nginx web server|
+|[nginx-reverse-proxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx-reverse-proxy)|Nginx is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server|This role installs and configures the nginx web server for reverse proxy|
+|[wrk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/wrk)|wrk(Windows Research Kernel) is a HTTP benchmarking tool|This role installs and configures the wrk tool|
+|[php-fpm](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/php-fpm)|PHP-FPM is a Fast-CGI frontend for php, and an enhancement of php-cgi|This role installs and configures the php-fpm tool|
+|[solr](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/solr)|Solr is the popular, blazing-fast, open source enterprise search platform built on Apache Lucene|This role installs and configures the solr tool|
+|[jmeter](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/jmeter)|Apache JMeter is a pure Java application designed to test and measure performance.|This role installs and configures the jmeter tool|
+|[docker](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker)|docker is the world's leading software containerization platform|This role installs docker tool|
+|[docker_net](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker_net)|docker is the world's leading software containerization platform|This role installs docker and some network test tools|
+|[irqbalance](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/irqbalance)|Irqbalance is a daemon to help balance the cpu load generated by interrupts across all of a systems cpus|This role installs and configures irqbalance tool|
+|[openjdk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/openjdk)|||
+|[weighttp](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/weighttp)|Weighttp is a lightweight and simple webserver benchmarking tool|This role installs and configures weighttp tool, and to tests webserver benchmark|
+|[kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)|Apache Kafka is a distributed streaming platform|This role installs and configures kafka tool|
+|[flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)|Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of streaming event data|This role installs and configures flume tool|
+||||
 
 - E-Commerce MicroServices
   - [cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)
