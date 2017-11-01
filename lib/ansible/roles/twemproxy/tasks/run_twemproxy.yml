@@ -1,11 +1,4 @@
 ---
-
-#- copy:
-#    run_twemproxy.sh
-#  dest: ~/run_twemproxy.sh
-#  owner: root
-#  mode: 0755
-
 - name: Run twemproxy on ARM64 Server
   remote_user: estuaryapp
   become: yes

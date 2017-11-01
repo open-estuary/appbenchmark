@@ -1,5 +1,5 @@
 alpha:
-  listen: 192.168.11.249:22135
+  listen: {{ twemproxy_IP }}:221{{ item }}
   hash: fnv1a_64
   distribution: ketama
   auto_eject_hosts: true
@@ -7,7 +7,3 @@ alpha:
   server_retry_timeout: 30000
   server_failure_limit: 3
   servers:
-   - 192.168.1.195:7063:1
-   - 192.168.11.237:7042:1
-   - 192.168.11.250:7038:1
-   - 192.168.11.250:7039:1
