@@ -89,15 +89,13 @@ Currently the following applications have been supported:
 |[weighttp](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/weighttp)|Weighttp is a lightweight and simple webserver benchmarking tool.|This role installs and configures weighttp tool, and to tests webserver benchmark.|
 |[kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)|Apache Kafka is a distributed streaming platform.|This role installs and configures kafka tool.|
 |[flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)|Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of streaming event data.|This role installs and configures flume tool.|
-||||
-
-- E-Commerce MicroServices
-  - [cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)
-  - [search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)
-  - [order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)
+|[cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)|Cart is a MicroServices of E-Commerce.|This role installs and configures cart MicroServices.|
+|[search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)||Search is a MicroServices of E-Commerce.|This role installs and configures search MicroServices.|
+|[order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)||Order is a MicroServices of E-Commerce.|This role installs and configures order MicroServices.|
 - Spring Cloud MicroServices
-  - [zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)
-  - [eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)
+|[zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)|Zuul-apigateway is a MicroServices of spring cloud.|This role installs and configures zuul-apigateway MicroServices.|
+|[eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)|Eureka-service-discovery  is a MicroServices of spring cloud.|This role installs and configures eureka-service-discovery MicroServices.|
+||||
 
 ## <a name="4">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)
