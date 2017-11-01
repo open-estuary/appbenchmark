@@ -1,6 +1,7 @@
 * [Introduction](#1)
 * [Benchmark Test](#2)
-* [Others](#3)
+* [Ansible role](#3)
+* [Others](#4)
 
 # Estuary Application Benchmark Test 
 ## <a name="1">Introduction</a>
@@ -49,11 +50,57 @@ Currently the following applications have been supported so far :
 - [MongoDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_test1)
 - [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
 - [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
+- [Hadoop](https://github.com/open-estuary/appbenchmark/tree/master/apps/hadoop/hadoop_test1)
+- [Flume](https://github.com/open-estuary/appbenchmark/tree/master/apps/flume/flume-ng)
+- e-commerce-solutions
+  - [e-commerce-kubernetes](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-kubernetes)
+  - [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
 - Docker Networks
   - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
   - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
   - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
-## <a name="3">Others</a>
+## <a name="3">Ansible role</a>
+Currently the following applications have been supported:
+- Basic Test
+  - CPU
+    - [spec_cpu2006](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/spec_cpu2006)
+  - IO
+    - [FIO](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/io/fio)
+    - [Sysbench](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/io/sysbench)
+  - Memory
+    - [LmBench](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/lmbench)
+    - [Stream](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/stream)
+  - Network
+    - [Iperf/Qperf/NetPerf](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/network)
+- MySQL
+  - [MySQL](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql)
+  - [MySQL_ecommerce](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql-ecommerce)
+- [Redis](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/redis)
+- [twemproxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/twemproxy)
+- [estuaryrepo](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/estuaryrepo)
+- [nginx](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx)
+- [nginx-reverse-proxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/nginx-reverse-proxy)
+- [wrk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/wrk)
+- [php-fpm](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/php-fpm)
+- [solr](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/solr)
+- [jmeter](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/jmeter)
+- [docker](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker)
+- [docker_net](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/docker_net)
+- [irqbalance](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/irqbalance)
+- [lvs-keepalived](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/lvs-keepalived)
+- [openjdk](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/openjdk)
+- [weighttp](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/weighttp)
+- [kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)
+- [flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)
+
+- Micro Service
+  - [cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)
+  - [search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)
+  - [order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)
+  - [zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)
+  - [eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)
+
+## <a name="4">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)
 
