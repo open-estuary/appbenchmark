@@ -1,6 +1,7 @@
 * [Introduction](#1)
 * [Benchmark Test](#2)
-* [Others](#3)
+* [Ansible role](#3)
+* [Others](#4)
 
 # Estuary Application Benchmark Test 
 ## <a name="1">Introduction</a>
@@ -49,11 +50,19 @@ Currently the following applications have been supported so far :
 - [MongoDB](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_test1)
 - [Redis](https://github.com/open-estuary/appbenchmark/tree/master/apps/mongodb/mongodb_1)   
 - [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
+- [Hadoop](https://github.com/open-estuary/appbenchmark/tree/master/apps/hadoop/hadoop_test1)
+- [Flume](https://github.com/open-estuary/appbenchmark/tree/master/apps/flume/flume-ng)
+- e-commerce-solutions
+  - [e-commerce-kubernetes](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-kubernetes)
+  - [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
 - Docker Networks
   - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
   - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
   - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
-## <a name="3">Others</a>
+## <a name="3">Ansible role</a>
+- Ansible
+
+## <a name="4">Others</a>
 - As for how to write new test case for applications, please refer to [how_to_write_newcase](https://github.com/open-estuary/appbenchmark/edit/master/how_to_write_newcase.md)
 
