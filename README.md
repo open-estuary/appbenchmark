@@ -62,20 +62,14 @@ Currently the following applications have been supported so far :
 
 ## <a name="3">Ansible role</a>
 Currently the following applications have been supported:
-- Basic Test
-  - CPU
-    - [spec_cpu2006](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/spec_cpu2006)
-  - IO
-    - [FIO](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/io/fio)
-    - [Sysbench](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/io/sysbench)
-  - Memory
-    - [LmBench](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/lmbench)
-    - [Stream](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/stream)
-  - Network
-    - [Iperf/Qperf/NetPerf](https://github.com/wangyu07/appbenchmark/tree/master/lib/ansible/roles/network)
-- MySQL
-  - [MySQL](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql)
-  - [MySQL_ecommerce](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql-ecommerce)
+- [spec_cpu2006](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/spec_cpu2006):SPEC cpu2006 is a tool for CPU testing. This ansible framework supply deploy and test scripts.
+- [FIO](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/fio):FIO is a tool for testing IOPS for stress testing and verification of hardware.This ansible framework supply deploy and test scripts.
+- [Sysbench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/io/sysbench):Sysbench is a modular, cross platform, multithreaded benchmark tool designed to evaluate and test database loads under a variety of system parameters.This ansible framework supply deploy and test scripts.
+- [LmBench](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/lmbench):Lmbench is a tool for memory testing. This ansible framework supply deploy and test scripts.
+- [Stream](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/stream):
+- [Iperf/Qperf/NetPerf](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/network)
+- [MySQL](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql)
+- [MySQL_ecommerce](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mysql-ecommerce)
 - [Redis](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/redis)
 - [twemproxy](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/twemproxy)
 - [estuaryrepo](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/estuaryrepo)
@@ -94,10 +88,11 @@ Currently the following applications have been supported:
 - [kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)
 - [flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)
 
-- Micro Service
+- E-Commerce MicroServices
   - [cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)
   - [search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)
   - [order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)
+- Spring Cloud MicroServices
   - [zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)
   - [eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)
 
