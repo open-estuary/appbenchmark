@@ -90,9 +90,8 @@ Currently the following applications have been supported:
 |[kafka](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/kafka)|Apache Kafka is a distributed streaming platform.|This role installs and configures kafka tool.|
 |[flume](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/flume)|Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of streaming event data.|This role installs and configures flume tool.|
 |[cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)|Cart is a MicroServices of E-Commerce.|This role installs and configures cart MicroServices.|
-|[search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)||Search is a MicroServices of E-Commerce.|This role installs and configures search MicroServices.|
-|[order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)||Order is a MicroServices of E-Commerce.|This role installs and configures order MicroServices.|
-- Spring Cloud MicroServices
+|[search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)|Search is a MicroServices of E-Commerce.|This role installs and configures search MicroServices.|
+|[order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)|Order is a MicroServices of E-Commerce.|This role installs and configures order MicroServices.|
 |[zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)|Zuul-apigateway is a MicroServices of spring cloud.|This role installs and configures zuul-apigateway MicroServices.|
 |[eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)|Eureka-service-discovery  is a MicroServices of spring cloud.|This role installs and configures eureka-service-discovery MicroServices.|
 ||||
