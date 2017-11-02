@@ -1,0 +1,5 @@
+
+root_dir: "appbenchmark"
+app_dir: "apps"
+app_name_dir: "mycat"
+app_test_tool_dir: "mycat-1"
