@@ -1,5 +1,11 @@
 ---
 
+- name: Create Zoookeeper Group
+  group: name="{{ zookeeper_group }}" system=yes
+
+- name: Create Zookeekper User
+  user: name="{{ zookeeper_user }}" group="{{ zookeeper_group }}" system=yes
+
 - include: Debian.yml
   when: ansible_os_family == 'Debian' and zookeeper_debian_apt_install
 

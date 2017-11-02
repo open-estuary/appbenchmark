@@ -1,7 +1,9 @@
 ---
 
 - name: Install the cart-service from open-estuary repo
-  yum: name={{ cart_pkg_name }} state=present
+  yum: 
+    name: "{{ cart_pkg_name }}"
+    state: latest
 
 - name: Copy the cart application.yml
   template:

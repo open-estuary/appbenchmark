@@ -1,0 +1,11 @@
+---
+- name: Load Solr Data 
+  hosts: 
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: zookeeper }
+

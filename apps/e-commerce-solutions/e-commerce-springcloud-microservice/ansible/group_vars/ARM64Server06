@@ -1,14 +1,11 @@
 ---
-
-solr_master_cpus: "0-15"
-
-solr_cpus: "16-30"
+solr_cpus: "0-30"
 
 interrupt_cpus: 31-32
-
+search_cpus: 35-43
 pcp_cpus: 33
 
-solr_4_cpus: "35-43"
+zookeeper_my_id: 2
 
 cart_cpus: "48-63"
 

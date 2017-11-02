@@ -2,6 +2,9 @@
 zookeeper_version: 3.4.9
 zookeeper_url: http://www.us.apache.org/dist/zookeeper/zookeeper-{{zookeeper_version}}/zookeeper-{{zookeeper_version}}.tar.gz
 
+zookeeper_user: zookeeper
+zookeeper_group: zookeeper
+
 # Flag that selects if systemd or upstart will be used for the init service:
 # Note: by default Ubuntu 15.04 and later use systemd (but support switch to upstart)
 _ubuntu_1504: "{{ ansible_distribution == 'Ubuntu' and ansible_distribution_version|version_compare(15.04, '>=') }}"
@@ -20,8 +23,8 @@ tick_time: 2000
 zookeeper_autopurge_purgeInterval: 0
 zookeeper_autopurge_snapRetainCount: 10
 
-data_dir: /var/lib/zookeeper
-log_dir: /var/log/zookeeper
+zookeeper_data_dir: /var/lib/zookeeper
+zookeeper_log_dir: /var/log/zookeeper
 zookeeper_dir: "{{ zookeeper_debian_apt_install | ternary('/usr/share/zookeeper', '/usr/lib/zookeeper') }}"
 zookeeper_conf_dir: "/etc/zookeeper"
 zookeeper_tarball_dir: /opt/src
@@ -34,6 +37,10 @@ zookeeper_max_rolling_log_file_count: 10
 zookeeper_hosts:
   - host: "{{inventory_hostname}}" # the machine running
     id: 1
+    data_port: 2888
+    election_port: 3888
+
+zookeeper_my_id: 1
 
 # Dict of ENV settings to be written into the (optional) conf/zookeeper-env.sh
 zookeeper_env: {}

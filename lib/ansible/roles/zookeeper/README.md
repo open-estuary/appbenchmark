@@ -53,8 +53,8 @@ tick_time: 2000
 zookeeper_autopurge_purgeInterval: 0
 zookeeper_autopurge_snapRetainCount: 10
 
-data_dir: /var/lib/zookeeper
-log_dir: /var/log/zookeeper
+zookeeper_data_dir: /var/lib/zookeeper
+zookeeper_log_dir: /var/log/zookeeper
 zookeeper_dir: /usr/lib/zookeeper # or /usr/share/zookeeper when zookeeper_debian_apt_install is true
 zookeeper_conf_dir: /etc/zookeeper/conf # or /etc/zookeeper when zookeeper_debian_apt_install is true
 zookeeper_tarball_dir: /opt/src # Not used for yum or apt installation
@@ -63,6 +63,8 @@ zookeeper_tarball_dir: /opt/src # Not used for yum or apt installation
 zookeeper_hosts:
   - host: "{{inventory_hostname}}" # the machine running
     id: 1
+    data_port: 2888
+    election_port: 3888
 
 # Dict of ENV settings to be written into the (optional) conf/zookeeper-env.sh
 zookeeper_env: {}

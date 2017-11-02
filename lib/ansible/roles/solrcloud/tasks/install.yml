@@ -36,5 +36,13 @@
 - name: SolrCloud | Execute SolrCloud installation script
   shell: /tmp/install_solr_service.sh /tmp/{{ solr_cloud_package }} -f -u {{ solr_user }} -s solr -n
 
-#  with_items: "{{ solr_port_list }}"
-   
+- name: Check if SolrCloud is runnning
+  shell: "ps -aux | grep solr | grep -v grep"
+  changed_when: false
+  register: solr_process_status
+  failed_when: solr_process_status.rc >= 2
+
+- name: SolrCloud | Ensure Solr Service has stopped firstly
+  shell: "{{ solr_home }}/bin/solr stop" 
+  when: "solr_process_status.stdout.find('solr') != -1"
+

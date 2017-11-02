@@ -35,9 +35,6 @@
   command: tar xf {{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz --strip-components=1 chdir={{zookeeper_dir}} creates={{zookeeper_dir}}/bin
   tags: bootstrap
 
-- group: name=zookeeper system=yes
-- user: name=zookeeper group=zookeeper system=yes
-
 - name: Change ownership on zookeeper directory.
   file: path={{zookeeper_dir}} state=directory owner=zookeeper group=zookeeper
   tags: bootstrap
@@ -46,11 +43,11 @@
   file: path={{item}} state=directory owner=zookeeper group=zookeeper
   tags: bootstrap
   with_items:
-    - "{{data_dir}}"
-    - "{{log_dir}}"
+    - "{{zookeeper_data_dir}}"
+    - "{{zookeeper_log_dir}}"
 
 - name: Write myid file.
-  template: src=myid.j2 dest={{data_dir}}/myid owner=zookeeper group=zookeeper force="{{ zookeeper_force_myid }}"
+  template: src=myid.j2 dest={{zookeeper_data_dir}}/myid owner=zookeeper group=zookeeper force="{{ zookeeper_force_myid }}"
   tags: deploy
   notify:
     - Restart zookeeper

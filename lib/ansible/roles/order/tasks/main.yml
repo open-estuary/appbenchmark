@@ -1,7 +1,9 @@
 ---
 
 - name: Install the order-service discovery from open-estuary repo
-  yum: name={{ order_pkg_name }} state=present
+  yum: 
+    name: "{{ order_pkg_name }}"
+    state: latest
 
 - name: Copy the order application.yml
   template:

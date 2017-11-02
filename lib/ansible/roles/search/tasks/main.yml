@@ -1,7 +1,9 @@
 ---
 
 - name: Install the search-service from open-estuary repo
-  yum: name={{ search_pkg_name }} state=present
+  yum:
+    name: "{{ search_pkg_name }}"
+    state: latest
 
 - name: Copy the search application.yml
   template:

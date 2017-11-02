@@ -1,7 +1,9 @@
 ---
 
 - name: Install the zuul-apigateway from open-estuary repo
-  yum: name={{ zuul_pkg_name }} state=present
+  yum: 
+    name: "{{ zuul_pkg_name }}"
+    state: latest
 
 - name: Create zuul configure directory 
   file: 

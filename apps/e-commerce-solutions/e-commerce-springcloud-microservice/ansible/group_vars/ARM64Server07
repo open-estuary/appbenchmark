@@ -6,6 +6,7 @@ mycat_2_cpus: "16-30"
 interrupt_cpus: 31-32
 
 pcp_cpus: 33
+zookeeper_my_id: 3
 
 search_cpus: "34-46"
 

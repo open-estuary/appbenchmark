@@ -1,7 +1,9 @@
 ---
 
 - name: Install the eureka-service discovery from open-estuary repo
-  yum: name={{ eureka_pkg_name }} state=present
+  yum: 
+    name: "{{ eureka_pkg_name }}"
+    state: latest
 
 - name: Create eureka configure directory 
   file: 

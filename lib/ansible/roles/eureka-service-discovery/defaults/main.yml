@@ -7,3 +7,5 @@ eureka_pkg_name: micro-service-discovery
 eureka_config_dir: "/etc/micro-services/eureka"
 eureka_service_name: microservice-eureka
 
+eureka_register_myself: false
+eureka_register_fetch: false
