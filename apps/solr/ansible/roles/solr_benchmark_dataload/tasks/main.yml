@@ -6,7 +6,7 @@
 
 - name: Download Test Data 
   get_url:
-     url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/solr_ecommerce_data.tar.gz"
+     url: "{{ solr_data_url }}"
      dest: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
 
 - name: Extract Test Data
