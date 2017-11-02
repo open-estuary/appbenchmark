@@ -15,6 +15,7 @@
   become: yes
   become_method: sudo
   roles:
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-01
   hosts: ARM64Server01
@@ -24,6 +25,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
  
 - name: Install Modules on ARM64 Server-02
   hosts: ARM64Server02
@@ -36,6 +38,7 @@
     - { role: lvs, when: lvs_cpus is defined }
     - { role: redis, when: redis_cpus is defined }
     - { role: eureka-service-discovery, when: eureka_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-03
   hosts: ARM64Server03
@@ -48,6 +51,7 @@
     - { role: openjdk, when: order_cpus is defined}
     - { role: order, when: order_cpus is defined}
     - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-04
   hosts: ARM64Server04
@@ -60,6 +64,7 @@
     - { role: zuul-apigateway, when: zuul_cpus is defined}
     - { role: order, when: order_cpus is defined}
     - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-05
   hosts: ARM64Server05
@@ -71,6 +76,7 @@
     - { role: openjdk, when: order_cpus is defined}
     - { role: solrcloud, when: solr_cpus is defined }
     - { role: zuul-apigateway, when: zuul_cpus is defined}
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-06
   hosts: ARM64Server06
@@ -85,6 +91,7 @@
     - { role: search, when: search_cpus is defined}
     - { role: solrcloud, when: solr_cpus is defined }
     - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-07
   hosts: ARM64Server07
@@ -98,6 +105,7 @@
     - { role: cart, when: cart_cpus is defined}
     - { role: search, when: search_cpus is defined}
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-08
   hosts: ARM64Server08
@@ -106,6 +114,7 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-09
   hosts: ARM64Server09
@@ -116,6 +125,7 @@
     - estuaryrepo
     - { role: twemproxy, when: twemproxy_cpus is defined }
     - { role: solrcloud, when: solr_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-10
   hosts: ARM64Server10
@@ -125,6 +135,7 @@
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-11
   hosts: ARM64Server11
@@ -133,6 +144,7 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: pcp }
 
 - name: Install Modules on ARM64 Server-12
   hosts: ARM64Server12
@@ -141,3 +153,5 @@
   become_method: sudo
   roles:
     - estuaryrepo
+    - { role: pcp }
+
