@@ -6,11 +6,11 @@ spring:
 
 zuul:
   routes:
-    {% for item in zuul_api_routes %}
-    {{ item.route_name }}:
+  {% for item in zuul_api_routes %}
+  {{ item.route_name }}:
       path: {{ item.route_path }}
       serviceId: {{ item.route_serviceid }}
-    {% endfor %}     
+  {% endfor %}     
 
 eureka:
   client:
