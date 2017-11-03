@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://io.mycat/">
+
+	<schema name="{{ item.mysql_schema }}" checkSQLschema="false" sqlMaxLimit="100">
+          <table name="r_ec_userinfo" primaryKey="nUserID" dataNode="dn1" rule="mod-long-nUserID" />
+          <table name="r_ec_cartsku" primaryKey="nCartSKUID" dataNode="dn1" rule="mod-long-nCartSKUID" />
+          <table name="r_ec_sku" primaryKey="nSKUID" dataNode="dn1" rule="mod-long-nSKUID" />
+	</schema>
+	<dataNode name="dn1" dataHost="{{ item.datahost_name }}" database="{{ item.mysql_database }}" />
+
+	<dataHost name="{{ item.datahost_name }}" maxCon="1000" minCon="10" balance="0"
+			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+		<heartbeat>select user()</heartbeat>
+		<!-- can have multi write hosts -->
+                <writeHost host="hostM1" url="{{ item.mysql_host_M_IP }}:{{ item.mysql_host_M_Port }}" user="root"
+                                   password="">
+                        <!-- can have multi read hosts -->
+                        <readHost host="hostS1" url="{{ item.mysql_host_S_IP }}:{{ item.mysql_host_S_Port }}" user="root" password="" />
+                        <readHost host="hostS2" url="{{ item.mysql_host_S_IP2 }}:{{ item.mysql_host_S_Port2 }}" user="root" password="" />
+
+                </writeHost>
+	</dataHost>
+</mycat:schema>
