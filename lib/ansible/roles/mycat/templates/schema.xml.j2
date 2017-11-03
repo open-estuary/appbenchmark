@@ -17,6 +17,8 @@
                                    password="">
                         <!-- can have multi read hosts -->
                         <readHost host="hostS1" url="{{ item.mysql_host_S_IP }}:{{ item.mysql_host_S_Port }}" user="root" password="" />
+                        <readHost host="hostS2" url="{{ item.mysql_host_S_IP2 }}:{{ item.mysql_host_S_Port2 }}" user="root" password="" />
+
                 </writeHost>
 	</dataHost>
 </mycat:schema>
