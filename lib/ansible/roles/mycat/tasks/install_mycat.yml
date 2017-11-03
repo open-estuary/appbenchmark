@@ -1,13 +1,17 @@
 ---
 - name: copy install mycat shell when redhat
-  copy: src=../files/setup_mycat.sh dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
+  copy: src=../files/setup_mycat.sh dest={{ mycat_home }}/ mode=0755
   when: ansible_os_family == "RedHat"
 
 - name: copy wrapper package when redhat
-  copy: src=../files/wrapper-linux-aarch64-64    dest=~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/ mode=0755
+  copy: src=../files/wrapper-linux-aarch64-64    dest={{ mycat_home}}/ mode=0755
+  when: ansible_os_family == 'RedHat'
+
+- name: copy wrapper package and rename when redhat
+  copy: src=../files/libwrapper.so    dest={{ mycat_home }}/libwrapper.so mode=0755
   when: ansible_os_family == 'RedHat'
 
 - name: install mycat when redhat
-  shell: sh ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/setup_mycat.sh
+  shell: sh {{ mycat_home }}/setup_mycat.sh
   when: ansible_os_family == 'RedHat'
 

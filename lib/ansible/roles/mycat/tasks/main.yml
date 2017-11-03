@@ -1,4 +1,4 @@
 ---
-- include: install_mycat.yml
+#- include: install_mycat.yml
 
 - include: generate_mycat_conf.yml

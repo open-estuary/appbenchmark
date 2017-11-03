@@ -78,8 +78,8 @@
 	-->
 	
 	<user name="root">
-		<property name="password">123456</property>
-		<property name="schemas">TESTDB</property>
+		<property name="password"></property>
+		<property name="schemas">ec</property>
 		
 		<!-- 表级 DML 权限设置 -->
 		<!-- 		
@@ -92,10 +92,5 @@
 		 -->
 	</user>
 
-	<user name="root">
-		<property name="password">{{ password }}</property>
-		<property name="schemas">TESTDB</property>
-		<property name="readOnly">true</property>
-	</user>
 
 </mycat:server>

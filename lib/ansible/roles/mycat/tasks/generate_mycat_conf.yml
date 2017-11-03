@@ -1,30 +1,37 @@
 ---
-- name: mkdir
-  shell: mkdir -p /usr/local/mycat
 
-#- name: generate schema.xml
-#  template:
-#    src: schema.xml.j2
-#    dest: /usr/local/mycat/schema_{{ item.ID }}.xml
-#    mode: 0644
-#    owner: "{{ estuaryuser }}"
-#    group: "{{ estuaryuser }}"
-#    with_items: "{{ mycat_config }}"
+- name: generate rule.xml
+  template: 
+    src: rule.xml.j2
+    dest: "{{ mycat_conf_dir }}/rule.xml"
+    mode: 0777
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
 
-#- name: generate wrapper.conf
-#  template:
-#    src: wrapper.conf.j2
-#    dest: /usr/local/mycat/wrapper{{ item.ID }}.conf
-#    mode: 0644
-#    owner: "{{ estuaryuser }}"
-#    group: "{{ estuaryuser }}"
-#    with_items: "{{ mycat_config }}"
+- name: generate schema.xml
+  template:
+    src: schema.xml.j2
+    dest: "{{ mycat_conf_dir }}/schema.xml"
+    mode: 0777
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+  with_items: "{{ mycat_config }}"
+
+- name: generate wrapper.conf
+  template:
+    src: wrapper.conf.j2
+    dest: "{{ mycat_conf_dir }}/wrapper.conf"
+    mode: 0777
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+  with_items: "{{ mycat_config }}"
 
 - name: generate server.xml
   template:
     src: server.xml.j2
-    dest: /usr/local/mycat/server_{{ item.ID }}.xml
-    mode: 0644
+    dest: "{{ mycat_conf_dir }}/server.xml"
+    mode: 0777
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
   with_items: "{{ mycat_config }}"
+

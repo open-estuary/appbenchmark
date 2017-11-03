@@ -3,3 +3,6 @@ root_dir: "appbenchmark"
 app_dir: "apps"
 app_name_dir: "mycat"
 app_test_tool_dir: "mycat-1"
+
+mycat_home: "~/mycat_home"
+mycat_conf_dir: "~/mycat_home/src/mycat/conf"

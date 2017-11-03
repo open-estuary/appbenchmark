@@ -41,6 +41,27 @@
 			<algorithm>mod-long</algorithm>
 		</rule>
 	</tableRule>
+        <tableRule name="mod-long-nUserID">
+		 <rule>
+                        <columns>nUserID</columns>
+                        <algorithm>mod-long</algorithm>
+                </rule>
+	</tableRule>
+        <tableRule name="mod-long-nSKUID">
+        	<rule>
+                        <columns>nSKUID</columns>
+                        <algorithm>mod-long</algorithm>
+                </rule>
+        </tableRule>
+        <tableRule name="mod-long-nCartSKUID">
+        	<rule>
+                        <columns>nCartSKUID</columns>
+                        <algorithm>mod-long</algorithm>
+                </rule>
+        </tableRule>
+
+
+
 	<tableRule name="sharding-by-murmur">
 		<rule>
 			<columns>id</columns>
@@ -104,7 +125,7 @@
 	</function>
 	<function name="mod-long" class="io.mycat.route.function.PartitionByMod">
 		<!-- how many data nodes -->
-		<property name="count">3</property>
+		<property name="count">1</property>
 	</function>
 
 	<function name="func1" class="io.mycat.route.function.PartitionByLong">

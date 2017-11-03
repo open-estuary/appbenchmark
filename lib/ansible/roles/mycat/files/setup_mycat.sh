@@ -17,9 +17,10 @@ fi
 pushd ${CUR_DIR}/${SRC_DIR} > /dev/null
 sudo tar -zxvf ${Mycat_FILENAME}
 sudo cp ${CUR_DIR}/${WRAPPER_FILENAME} ${CUR_DIR}/${SRC_DIR}/mycat/bin/
+sudp cp ${CUR_DIR}/${WRAPPER_FILENAME} ${CUR_DIR}/${SRC_DIR}/mycat/bin/wrapper
+sudo cp libwrapper.so /usr/lib64/
 
-pushd ${CUR_DIR}/${SRC_DIR}/mycat/bin > /dev/null
-sudo cp mycat wrapper* /usr/bin/
+pushd  > /dev/null
 
 
 

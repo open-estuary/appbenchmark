@@ -28,9 +28,9 @@ wrapper.java.additional.1=-DMYCAT_HOME=.
 wrapper.java.additional.2=-server
 wrapper.java.additional.3=-XX:MaxPermSize=64M
 wrapper.java.additional.4=-XX:+AggressiveOpts
-wrapper.java.additional.5=-XX:MaxDirectMemorySize=2G
+wrapper.java.additional.5=-XX:MaxDirectMemorySize=20G
 wrapper.java.additional.6=-Dcom.sun.management.jmxremote
-wrapper.java.additional.7=-Dcom.sun.management.jmxremote.port= {{ wrapper_port }}
+wrapper.java.additional.7=-Dcom.sun.management.jmxremote.port={{ item.wrapper_port}}
 wrapper.java.additional.8=-Dcom.sun.management.jmxremote.authenticate=false
 wrapper.java.additional.9=-Dcom.sun.management.jmxremote.ssl=false
 wrapper.java.additional.10=-Xmx4G
