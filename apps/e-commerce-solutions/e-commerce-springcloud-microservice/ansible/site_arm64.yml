@@ -9,6 +9,22 @@
     - { role: openjdk }
     - { role: zookeeper }
 
+- name: Install Mysql Master Server Firstly
+  hosts: ARM64MySQLMasterHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     mysql_instance:
+       - cpus: "0-30"
+         port: 3306
+         login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+         login_name: root
+         login_password:
+  roles:
+    - estuaryrepo
+    - { role: mysql-ecommerce, when: mysql_instance is defined }
+
 - name: Install Jmeter Test 
   hosts: JMeterClient
   remote_user: estuaryapp
@@ -112,9 +128,25 @@
   remote_user: estuaryapp
   become: yes
   become_method: sudo
+    vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+
+        mysql_instance:
+           - master_host: 192.168.1.234
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3307
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
   roles:
     - estuaryrepo
     - { role: pcp }
+    - { role: mysql-ecommerce, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-09
   hosts: ARM64Server09
@@ -132,19 +164,61 @@
   remote_user: estuaryapp
   become: yes
   become_method: sudo
+  vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+
+        mysql_instance:
+           - master_host: 192.168.1.111
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3308
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
   roles:
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
     - { role: pcp }
+    - { role: mysql-ecommerce, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-11
   hosts: ARM64Server11
   remote_user: estuaryapp
   become: yes
   become_method: sudo
+    vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+    
+        mysql_instance:
+           - master_host: 192.168.1.111
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "0-30"
+             port: 3308
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+
+           - master_host: 192.168.1.234
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3307
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
   roles:
     - estuaryrepo
     - { role: pcp }
+    - { role: mysql-ecommerce, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-12
   hosts: ARM64Server12
@@ -154,4 +228,20 @@
   roles:
     - estuaryrepo
     - { role: pcp }
+
+- name: Import Data to  Mysql Master
+  hosts: ARM64MySQLMasterHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     mysql_instance:
+       - cpus: "0-30"
+         port: 3306
+         login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+         login_name: root
+         login_password:
+  roles:
+    - estuaryrepo
+    - { role: mysql-ecommerce-data, when: mysql_instance is defined }
 
