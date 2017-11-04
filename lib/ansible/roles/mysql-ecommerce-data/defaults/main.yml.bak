@@ -1,8 +1,0 @@
----
-
-mysqluser: mysql
-
-mysql_data_dir: /home/mysql/mysql
-local_dir: /usr/local/mysql
-mysql_log_dir: /home/mysql/log
-mysql_root_dir: /home/mysql
