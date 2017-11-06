@@ -15,7 +15,7 @@
      name: e-commerce-order
      state: present
      login_host: "{{ item.login_host }}"
-    login_user: "{{ item.login_name }}"
+     login_user: "{{ item.login_name }}"
      login_password: "{{ item.login_password }}"
      login_port: "{{ item.port }}"
   with_items: "{{ mysql_instance }}"
