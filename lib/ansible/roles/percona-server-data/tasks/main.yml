@@ -86,17 +86,6 @@
      target: "{{ userbank_sql_location }}"
   with_items: "{{ mysql_instance }}"
 
-- name: import cart.sql to userdeliveryaddress mysql
-  mysql_db:
-     state: import
-     name: e-commerce-cart
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ userdeliveryaddress_sql_location }}"
-  with_items: "{{ mysql_instance }}"
-     
 - name: import order.sql to userdeliveryaddress mysql
   mysql_db:
      state: import
