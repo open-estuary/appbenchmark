@@ -11,4 +11,4 @@ qperf_file="${qperf_dir}/tcp_bw_lat.dat"
 
 touch ${qperf_file}
 
-qperf -oo msg_size:1:64K:*2 qperf_servercon tcp_bw tcp_lat > ${qperf_file}
+qperf -oo msg_size:1:64K:*2 {{ netarch }}_qperf_servercon tcp_bw tcp_lat > ${qperf_file}

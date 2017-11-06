@@ -17,10 +17,10 @@ touch ${tcprr_file}
 touch ${tcpcrr_file}
 touch ${udprr_file}
 
-netperf -t TCP_STREAM -H netperf_servercon -l 60 -- -m 2048 > ${tcpstream_file}
+netperf -t TCP_STREAM -H {{ netarch }}_netperf_servercon -l 60 -- -m 2048 > ${tcpstream_file}
 
-netperf -t TCP_RR -H netperf_servercon -l 60 -- -r 64,1024 >  ${tcprr_file}
+netperf -t TCP_RR -H {{ netarch }}_netperf_servercon -l 60 -- -r 64,1024 >  ${tcprr_file}
 
-netperf -t TCP_CRR -H netperf_servercon -l 60 -- -r 64,1024 > ${tcpcrr_file}
+netperf -t TCP_CRR -H {{ netarch }}_netperf_servercon -l 60 -- -r 64,1024 > ${tcpcrr_file}
 
-netperf -t UDP_RR -H netperf_servercon -l 60 -- -r 64,1024 > ${udprr_file}
+netperf -t UDP_RR -H {{ netarch }}_netperf_servercon -l 60 -- -r 64,1024 > ${udprr_file}

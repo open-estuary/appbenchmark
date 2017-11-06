@@ -13,6 +13,6 @@ thread4_file="${iperf_dir}/iperf_4thread.dat"
 touch ${thread1_file}
 touch ${thread4_file}
 
-iperf -c iperf_servercon -P 1 -t 100 -i 1 -w 256k > ${thread1_file}
+iperf -c {{ netarch }}_iperf_servercon -P 1 -t 100 -i 1 -w 256k > ${thread1_file}
 
-iperf -c iperf_servercon -P 4 -t 100 -i 1 -w 256k > ${thread4_file}
+iperf -c {{ netarch }}_iperf_servercon -P 4 -t 100 -i 1 -w 256k > ${thread4_file}
