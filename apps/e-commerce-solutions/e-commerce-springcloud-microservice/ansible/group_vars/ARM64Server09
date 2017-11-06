@@ -1,6 +1,6 @@
 ---
 
-mycat_3_cpus: "0-15"
+mycat_1_cpus: "0-15"
 
 mycat_4_cpus: "16-30"
 
@@ -79,56 +79,17 @@ twemproxy_redis_config:
     redis_ip: 192.168.11.250
     redis_port: 7043
 
-mycat_config:
-  - mycat_cpus: 0-15
 
-##wrapper.xml configuration
-    wrapper_port: 1984
+schemas: "e-commerce-order, e-commerce-cart"
+datanode_all: "dn1,dn2"
 
-##server configuration
-    mycat_serverport: 8066
-    mycat_managerport: 9066
-    user_name: "root"
-    password: ""
-
-#schema.xml configuration
-    mysql_schema: "e-commerce-order"
+mysql_cfg:
+  - schema: "e-commerce-order"
+    datanode_name: dn1
+    datahost_name: sam_server_1
     mysql_database: "e-commerce-order"
-    mysql_database_2: e-commerce-cart
-    datahost_name: "sam_server_1"
-    mysql_host_M_IP: "192.168.11.252"  #master IP address
-    mysql_host_M_Port: "3306"
 
-    host: "hostS1"
-    mysql_host_S_IP: "192.168.11.252"  #slave IP address
-    mysql_host_S_Port: "3308"
-    host: "hostS2"
-    mysql_host_S_IP2: "192.168.11.224"  #slave IP address
-    mysql_host_S_Port2: "3308"
-
-mycat_config_1:
-  - mycat_cpus: 16-30
-
-##wrapper.xml configuration
-    wrapper_port: 1985
-
-##server configuration
-    mycat_serverport: 8067
-    mycat_managerport: 9067
-    user_name: "root"
-    password: ""
-
-#schema.xml configuration
-    mysql_schema: "e-commerce-order"
-    mysql_database: "e-commerce-order"
-    mysql_database_2: e-commerce-cart
-    datahost_name: "sam_server_2"
-    mysql_host_M_IP: "192.168.11.252"  #master IP address
-    mysql_host_M_Port: "3306"
-
-    host: "hostS1"
-    mysql_host_S_IP: "192.168.11.252"  #slave IP address
-    mysql_host_S_Port: "3308"
-    host: "hostS2"
-    mysql_host_S_IP2: "192.168.11.224"  #slave IP address
-    mysql_host_S_Port2: "3308"
+  - schema: "e-commerce-cart"
+    datanode_name: dn2
+    datahost_name: sam_server_2
+    mysql_database: "e-commerce-cart"
