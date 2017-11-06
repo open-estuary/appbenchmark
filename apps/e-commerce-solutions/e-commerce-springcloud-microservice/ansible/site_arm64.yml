@@ -190,7 +190,7 @@
   remote_user: estuaryapp
   become: yes
   become_method: sudo
-    vars:
+  vars:
         repl_name: repl
         repl_password: repl
         repl_host: "%"
