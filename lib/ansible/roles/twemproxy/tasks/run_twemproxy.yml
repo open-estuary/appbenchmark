@@ -1,0 +1,8 @@
+---
+- name: Run twemproxy on ARM64 Server
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  #shell: taskset -c {{ item }} /usr/sbin/twemproxy /etc/twemproxy_{{ item }}.yml -v 4 -m 1024 -s {{ "222" + item }} chdir=/usr/sbin
+  #with_sequence: start={{ twemproxy_cpus.split('-')[0] }} end={{ twemproxy_cpus.split('-')[-1] }}
+  shell: /usr/sbin/run_twemproxy.sh {{ twemproxy_cpus }}

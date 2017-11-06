@@ -18,5 +18,5 @@
     #    mode: 0755
 
     - name: test redis benchmark on client
-      shell: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_client.sh {{ server_addr }} 
+      shell: ~/{{root_dir}}/{{app_dir}}/{{app_name_dir}}/{{app_test_tool_dir}}/run_client.sh {{ server_addr }}  
 

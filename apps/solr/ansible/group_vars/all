@@ -31,7 +31,7 @@ solr_gc_tune: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/solr/server
 solr_test_user: 100
 solr_test_time_insec: 240
 
-solr_cpus: "0-61"
+solr_cpus: "2-63"
 
-irq_start_cpu: 62
-irq_end_cpu: 63
+irq_start_cpu: 0
+irq_end_cpu: 1

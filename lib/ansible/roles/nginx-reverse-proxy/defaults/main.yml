@@ -1,0 +1,23 @@
+---
+# defaults file for ansible-nginx-reverse-proxy
+nginx_port: 80
+nginx_worker_rlimit_nofile: 102400
+nginx_max_connections: 102400
+nginx_worker_process_num: 30
+
+nginx_pkgs:
+  - nginx
+nginx_env:
+  RUNLEVEL: 1
+nginx_official_repo: True
+nginx_install_epel_repo: True
+nginx_official_repo_mainline: False
+nginx_reverse_proxy_config_directory: /etc/nginx/conf.d
+nginx_conf_dir: "{% if ansible_os_family == 'FreeBSD' %}/usr/local/etc/nginx{% else %}/etc/nginx{% endif %}"
+nginx_user: "{{estuaryuser}}"
+nginx_group: "{{nginx_user}}"
+nginx_reverse_proxy_nginx_service: nginx
+nginx_error_logfile: /var/log/{{ nginx_reverse_proxy_nginx_service }}.log
+nginx_daemon_mode: on
+nginx_log_level: warn
+nginx_pid_file: '/var/run/{{ nginx_reverse_proxy_nginx_service }}.pid'

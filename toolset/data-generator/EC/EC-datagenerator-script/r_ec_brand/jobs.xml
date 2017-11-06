@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>1000</num>
+            <table>r_ec_brand</table>
+            <filename>r_ec_brand.sql</filename>
+            <detail>
+		<sBrandName>$pool{sBrandName}</sBrandName>
+            </detail>
+        </job>
+    </jobs>
+</root>

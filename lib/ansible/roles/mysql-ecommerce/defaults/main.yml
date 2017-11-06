@@ -1,0 +1,7 @@
+---
+
+mysqluser: mysql
+
+mysql_data_dir: /opt/mysql
+local_dir: /opt/mysql/local
+mysql_log_dir: /opt/mysql/log

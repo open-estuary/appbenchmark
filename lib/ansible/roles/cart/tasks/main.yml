@@ -1,0 +1,29 @@
+---
+
+- name: Install the cart-service from open-estuary repo
+  yum: 
+    name: "{{ cart_pkg_name }}"
+    state: latest
+
+- name: Copy the cart application.yml
+  template:
+    src: application.yml.j2
+    dest: "{{ cart_config_dir }}/application.yml"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Copy the cart e-commerce-cart.in.sh
+  template:
+    src: e-commerce-cart.in.sh.j2
+    dest: "{{ cart_config_dir }}/e-commerce-cart.in.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Start the cart service
+  service: name={{ cart_service_name }}  state=started enabled=yes daemon_reload=yes
+
+- name: Set Cart CPU affinity 
+  shell: "ps -aux | grep e-commerce-cart | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ cart_cpus }}"
+  when: cart_cpus is defined 

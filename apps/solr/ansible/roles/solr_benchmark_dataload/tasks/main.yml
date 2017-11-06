@@ -6,12 +6,12 @@
 
 - name: Download Test Data 
   get_url:
-     url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/solr_ecommerce_data.tar.gz"
-     dest: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
+     url: "{{ solr_data_url }}"
+     dest: "{{ workspace }}/solr_benchmark/{{ solr_tar_filename }}"
 
 - name: Extract Test Data
   unarchive:
-      src: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
+      src: "{{ workspace }}/solr_benchmark/{{ solr_tar_filename }}"
       dest: "{{ workspace }}/solr_benchmark"
       remote_src: yes
   become: yes

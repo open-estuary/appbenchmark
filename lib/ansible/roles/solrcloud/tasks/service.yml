@@ -1,0 +1,34 @@
+---
+
+#- name: Configure SolrCloud service
+#  systemd:
+#    name: solr
+#    state: "{{ solr_service_state }}"
+#    enabled: "{{ solr_service_enabled }}"
+#    daemon_reload: yes
+
+- name: Start SolrCloud service
+  service: 
+    name: solr
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+#- name: Start Solr Cloud Server
+#  become: true
+#  become_user: "{{ solr_user }}"
+#  shell: "{{ solr_home }}/bin/solr restart -c -p {{ solr_port }}  -z {{ solr_zookeeper_hosts }} -s {{ solr_home }}/server/solr"
+
+- name: Set Solr CPU's affinity
+  shell: "ps -aux | grep solr | grep -v grep | awk '{print $2}' | xargs taskset -pc {{ solr_cpus }}"
+  become: yes
+  become_user: root
+
+- name: SolrCloud | Create ConfigSet in ZooKeeper using zkcli script
+  shell: >
+    {{ solr_zookeeper_client_path }}/zkcli.sh
+    -cmd upconfig
+    -zkhost {{ solr_zk_host }}
+    -confdir {{ solrcloud_configset_dir }}
+    -confname {{ solr_conf_name }} 
+    -s {{ solr_zookeeper_hosts_solr_path }}

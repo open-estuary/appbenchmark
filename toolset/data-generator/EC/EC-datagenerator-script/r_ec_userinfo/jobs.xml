@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>10000</num>
+            <table>r_ec_userinfo</table>
+            <filename>r_ec_userinfo.sql</filename>
+            <detail>
+		<sLoginName>$rule{sLoginName,10}</sLoginName>
+		<sLoginPassword>$rule{sLoginPassword,16}</sLoginPassword>
+                <sRegisterTime>$pool{sRegisterTime}</sRegisterTime>
+            </detail>
+	</job>
+     </jobs>
+</root>

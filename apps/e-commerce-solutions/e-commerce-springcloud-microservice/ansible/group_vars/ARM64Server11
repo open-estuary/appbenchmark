@@ -1,0 +1,5 @@
+---
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33

@@ -1,0 +1,8 @@
+---
+- name: Run redis server on ARM64 Server
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  shell: taskset -c {{ item }} /usr/bin/redis-server /usr/local/redis/config/redis_cpu{{ item }}_port{{ "70" + item }}.conf
+  with_sequence: start={{ redis_cpus.split('-')[0] }} end={{ redis_cpus.split('-')[-1] }}
+

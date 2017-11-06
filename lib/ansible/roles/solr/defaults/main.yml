@@ -1,4 +1,5 @@
 ---
-solr_memory: 1g
+solr_memory: 32g
 solr_jvm_options: ""
- 
+solr_version: "6.6.1"
+

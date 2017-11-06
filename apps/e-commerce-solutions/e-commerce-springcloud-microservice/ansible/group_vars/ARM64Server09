@@ -1,0 +1,81 @@
+---
+
+mycat_3_cpus: "0-15"
+
+mycat_4_cpus: "16-30"
+
+interrupt_cpus: 31-32
+
+pcp_cpus: 33
+
+solr_cpus: "38-63"
+
+twemproxy_IP: 192.168.11.219
+
+twemproxy_cpus: "34-37"
+
+twemproxy_redis_config:
+  - twemproxy_cpu: "34"
+    redis_ip: 192.168.11.237
+    redis_port: 7046
+
+  - twemproxy_cpu: "34"
+    redis_ip: 192.168.11.237
+    redis_port: 7047
+
+  - twemproxy_cpu: "34"
+    redis_ip: 192.168.11.250
+    redis_port: 7044
+
+  - twemproxy_cpu: "34"
+    redis_ip: 192.168.11.250
+    redis_port: 7045
+
+  - twemproxy_cpu: "35"
+    redis_ip: 192.168.11.223
+    redis_port: 7063
+
+  - twemproxy_cpu: "35"
+    redis_ip: 192.168.11.237
+    redis_port: 7042
+
+  - twemproxy_cpu: "35"
+    redis_ip: 192.168.11.250
+    redis_port: 7038
+
+  - twemproxy_cpu: "35"
+    redis_ip: 192.168.11.250
+    redis_port: 7039
+
+  - twemproxy_cpu: "36"
+    redis_ip: 192.168.11.223
+    redis_port: 7058
+
+  - twemproxy_cpu: "36"
+    redis_ip: 192.168.11.237
+    redis_port: 7043
+
+  - twemproxy_cpu: "36"
+    redis_ip: 192.168.11.250
+    redis_port: 7040
+
+  - twemproxy_cpu: "36"
+    redis_ip: 192.168.11.250
+    redis_port: 7041
+
+  - twemproxy_cpu: "37"
+    redis_ip: 192.168.11.237
+    redis_port: 7044
+
+  - twemproxy_cpu: "37"
+    redis_ip: 192.168.11.237
+    redis_port: 7045
+
+  - twemproxy_cpu: "37"
+    redis_ip: 192.168.11.250
+    redis_port: 7042
+
+  - twemproxy_cpu: "37"
+    redis_ip: 192.168.11.250
+    redis_port: 7043
+

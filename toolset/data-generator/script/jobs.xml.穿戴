@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>55</num>
+            <table>r_ec_sku</table>
+            <filename>r_ec_sku.sql</filename>
+            <detail>
+		<nSPUID>$pool{nSPUID}</nSPUID>
+		<nColor>$pool{nColor}</nColor>
+		<nPrice>$pool{nPrice}</nPrice>
+		<nInventory>$pool{nInventory}</nInventory>
+            </detail>
+	</job>
+     </jobs>
+</root>

@@ -1,0 +1,6 @@
+---
+- include: install_mycat.yml
+
+- include: generate_mycat_conf.yml
+
+- include: run_mycat.yml

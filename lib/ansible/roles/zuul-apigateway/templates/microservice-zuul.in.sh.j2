@@ -1,0 +1,11 @@
+# Increase Java Heap as needed to support concurrent
+HEAP="-Xms10g -Xmx10g"
+
+#There are GC settings, you can adjust some to make micro services working better
+GC_ALGO="-XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:G1ReservePercent=20"
+
+# Save memory storge snapshot, the path is /opt/e-commerce/logs/order.oomdump
+DUMP="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/micro-services/logs/zuul/zuul.oomdump"
+
+# Location where order should write logs to.
+LOGS_DIR=/opt/micro-services/logs/zuul

@@ -1,0 +1,29 @@
+---
+
+- name: Install the search-service from open-estuary repo
+  yum:
+    name: "{{ search_pkg_name }}"
+    state: latest
+
+- name: Copy the search application.yml
+  template:
+    src: application.yml.j2
+    dest: "{{ search_config_dir }}/application.yml"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Copy the search e-commerce-search.in.sh
+  template:
+    src: e-commerce-search.in.sh.j2
+    dest: "{{ search_config_dir }}/e-commerce-search.in.sh"
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Start the search service
+  service: name={{ search_service_name }}  state=started enabled=yes daemon_reload=yes
+
+- name: Set Search CPU affinity 
+  shell: "ps -aux | grep e-commerce-search | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ search_cpus }}"
+  when: search_cpus is defined 
