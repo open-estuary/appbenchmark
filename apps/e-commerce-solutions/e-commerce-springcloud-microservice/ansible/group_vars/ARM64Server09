@@ -2,7 +2,7 @@
 
 mycat_1_cpus: "0-15"
 
-mycat_4_cpus: "16-30"
+mycat_2_cpus: "16-30"
 
 interrupt_cpus: 31-32
 
