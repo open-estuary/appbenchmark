@@ -1,0 +1,12 @@
+---
+
+- name: Run mycat on ARM64 server
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  shell: "{{ mycat_home }}/src/mycat/bin/mycat start & "
+
+- name: Set mycat CPU affinity
+  shell: "ps -aux | grep mycat | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ mycat_2_cpus }}"
+  when: mycat_2_cpus is defined
+
