@@ -34,4 +34,7 @@ solr_zk_host: "192.168.11.231:{{ zookeeper_client_port }},192.168.11.232:{{ zook
 #solr_zookeeper_hosts_solr_path: "solr"
 #solr_zk_host: "192.168.11.231:{{ zookeeper_client_port }}/{{ solr_zookeeper_hosts_solr_path }}"
 
+solr_tar_filename: "solr_ecommerce_mysql_data.tar.gz"
+solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.csv"
+solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 

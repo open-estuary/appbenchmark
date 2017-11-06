@@ -1,11 +1,20 @@
 ---
 - name: Load Solr Data 
-  hosts: 
+  hosts: JMeterClient 
   remote_user: estuaryapp
   become: yes
   become_method: sudo
+  vars:
+    solr_server: "192.168.11.219"
+    solr_port: 8983
+    solr_service_state: "stopped"
   roles:
     - estuaryrepo
     - { role: openjdk }
-    - { role: zookeeper }
+    - { role: solrcloud }
+    - { role: solr_benchmark_setup }
+    - { role: solr_benchmark_dataload }
+    - { role: jmeter }
+
+
 

@@ -12,5 +12,6 @@
 
 - name: SolrCloud | Service
   include: service.yml
+  when: solr_service_state == "started"
   tags:
     - service

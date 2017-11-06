@@ -7,11 +7,11 @@
 - name: Download Test Data 
   get_url:
      url: "{{ solr_data_url }}"
-     dest: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
+     dest: "{{ workspace }}/solr_benchmark/{{ solr_tar_filename }}"
 
 - name: Extract Test Data
   unarchive:
-      src: "{{ workspace }}/solr_benchmark/solr_ecommerce_data.tar.gz"
+      src: "{{ workspace }}/solr_benchmark/{{ solr_tar_filename }}"
       dest: "{{ workspace }}/solr_benchmark"
       remote_src: yes
   become: yes

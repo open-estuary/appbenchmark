@@ -37,7 +37,7 @@
   shell: /tmp/install_solr_service.sh /tmp/{{ solr_cloud_package }} -f -u {{ solr_user }} -s solr -n
 
 - name: Check if SolrCloud is runnning
-  shell: "ps -aux | grep solr | grep -v grep"
+  shell: "ps -aux | grep solr | grep start.jar | grep -v grep"
   changed_when: false
   register: solr_process_status
   failed_when: solr_process_status.rc >= 2
