@@ -1,5 +1,5 @@
 ---
-- hosts: etcd_servers
+- hosts: etcd_server
 
   roles:
   - role: etcd
