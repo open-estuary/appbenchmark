@@ -23,7 +23,7 @@
          login_password:
   roles:
     - estuaryrepo
-    - { role: mysql-ecommerce, when: mysql_instance is defined }
+    - { role: percona-server, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-01
   hosts: ARM64Server01
@@ -139,7 +139,7 @@
   roles:
     - estuaryrepo
     - { role: pcp }
-    - { role: mysql-ecommerce, when: mysql_instance is defined }
+    - { role: percona-server, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-09
   hosts: ARM64Server09
@@ -176,7 +176,7 @@
     - estuaryrepo
     - { role: lvs, when: lvs_cpus is defined }
     - { role: pcp }
-    - { role: mysql-ecommerce, when: mysql_instance is defined }
+    - { role: percona-server, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-11
   hosts: ARM64Server11
@@ -211,7 +211,7 @@
   roles:
     - estuaryrepo
     - { role: pcp }
-    - { role: mysql-ecommerce, when: mysql_instance is defined }
+    - { role: percona-server, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-12
   hosts: ARM64Server12
@@ -236,5 +236,5 @@
          login_password:
   roles:
     - estuaryrepo
-    - { role: mysql-ecommerce-data, when: mysql_instance is defined }
+    - { role: percona-server-data, when: mysql_instance is defined }
 
