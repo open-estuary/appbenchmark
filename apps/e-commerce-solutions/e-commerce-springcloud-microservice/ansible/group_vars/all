@@ -43,5 +43,5 @@ mount_paths:
   - src_device: "/dev/nvme0n1"
     path: "/opt"
     fstype: ext4
-    opts: "rw,noexec,nodev,noatime,nodiratime,nobarrier"
+    opts: "rw,nodev,noatime,nodiratime,nobarrier"
 

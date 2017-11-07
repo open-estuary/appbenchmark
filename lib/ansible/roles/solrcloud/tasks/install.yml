@@ -36,6 +36,15 @@
 - name: SolrCloud | Execute SolrCloud installation script
   shell: /tmp/install_solr_service.sh /tmp/{{ solr_cloud_package }} -f -u {{ solr_user }} -s solr -n
 
+- name: Ensure solr_user has the ownership of solr_home
+  file:
+    path: "{{ solr_home }}-{{ solr_cloud_version }}"
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
 - name: Check if SolrCloud is runnning
   shell: "ps -aux | grep solr | grep start.jar | grep -v grep"
   changed_when: false
