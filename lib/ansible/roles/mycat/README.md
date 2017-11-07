@@ -11,38 +11,52 @@ This ansible role is to setup mycat and to start mycat instances.
 --------------
 ### Expected to Be Configured
 
-* `twemproxy_cpus`: specify the CPUs used by twemproxy.
-* `twemproxy_IP`: specify the IP address of twemproxy server.
-* `twemproxy_redis_config`: specify the configuration relationships for twemproxy and redis. Each instance of twemproxy can bind multiple instances of redis.
-    * `twemproxy_cpu`: specify the current CPU of twemproxy.
-    * `redis_ip`: spcify the IP address of binded redis-server instance.
-    * `redis_port`: spcify the port of binded redis-server instance.
-* `mycat_home`:
-* `mycat_conf_dir`:
-* `wrapper_port`:
-* `mycat_serverport`:
-* `mycat_managerport`:
-* `user_name`:
-* `password`:
-* `mysql_host_M_IP`:
-* `mysql_host_M_Port`:
-* `host`:
+* `mycat_1_cpus`: specify the CPUs of mycat.
+* `mycat_2_cpus`: specify the CPUs of mycat. If there is only 1 mycat instance in enviroment, this parameter does not need to be configured.
+* `mycat_home`: the home directory of mycat.
+* `mycat_conf_dir`: the config directory of mycat.
+* `wrapper_port`:  specify the port of wrapper.
+* `mycat_serverport`: specify the server port of mycat.
+* `mycat_managerport`: specify the manager port of mycat.
+
+* `mysql_cfg`:  specify the configuration relationships for mycat and mysql. Each instance of mycat can bind multiple databases of mysql.
+    * `user_name`: spccify the user name of database.
+    * `password`: spccify the password of database.
+    * `mysql_host_M_IP`: spcify the IP address of master database.
+    * `mysql_host_M_Port`: spcify the port of master database.
+
+* `mysql_slave_hosts`: specify the configurations of slave hosts.
+    * `host`: specify name of slave host.
+    * `mysql_host_S_IP`: specify the IP address of slave host.
+    * `mysql_host_S_Port`: specify the port of slave host.
 
 ### Proxy configuration options
 
 ### Role Defaults
+* `mycat_home`: "~/mycat_home"
+* `mycat_conf_dir`: "~/mycat_home/src/mycat/conf"
+* `wrapper_port`: 1984
+* `mycat_serverport`: 8066
+* `mycat_managerport`: 9066
+* `user_name`: "root"
+* `password`: ""
 
 ## <a name="3">Example Playbook</a>
 ----------------
 
 ```
 ---
-- hosts: twemproxy_hosts 
+- hosts: mycat_hosts 
   remote_user: estuaryapp
   become: yes
   roles:
-    - twemproxy
-
+    - mycat,
+      mycat_home: "~/mycat_home",
+        mycat_conf_dir: "~/mycat_home/src/mycat/conf",
+        wrapper_port: 1984,
+        mycat_serverport: 8066,
+        mycat_managerport: 9066,
+        when: mycat_1_cpus is defined }
 ```    
 
 For more examples, please refer to [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
