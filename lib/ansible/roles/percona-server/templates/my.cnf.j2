@@ -33,7 +33,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 [mysqld_multi]
 mysqld = /usr/bin/mysqld_safe
 mysqladmin =/usr/bin/mysqladmin
-log ={{ mysql_log_dir }}/mysqld_multi.log
+#log ={{ mysql_log_dir }}/mysqld_multi.log
 
 {% for instance in mysql_instance %}
 

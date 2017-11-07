@@ -3,8 +3,16 @@
 - name: install mysql package
   yum: name={{ item }} state=present
   with_items:
-   - mysql-server
+   - Percona-Server-server-56-5.6.35
    - MySQL-python
+
+- name: stop master mysql
+  shell: "mysqld_multi --defaults-extra-file=/etc/my_master.cnf stop "
+  when: repl_name is not defined
+
+- name: stop slave mysql
+  shell: "mysqld_multi --defaults-extra-file=/etc/my_slave.cnf stop "
+  when: repl_name is defined
 
 - name: create data dir
   file: 
