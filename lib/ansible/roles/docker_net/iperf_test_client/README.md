@@ -18,7 +18,7 @@ This ansible role is to setup client container for iperf test in flannel or weav
 
 ### Role Defaults
 * `netarch`: flannel
-* `zuul_pkg_name`: openestuary/centos:dockernet_test
+* `image`: openestuary/centos:dockernet_test
 
 
 ## <a name="3">Example Playbook</a>
