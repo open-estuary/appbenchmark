@@ -15,6 +15,7 @@ This ansible role is to setup flannel network for docker.
 * `Arch`: specify the arch of server, just arm64 or amd64.
 * `Etcd_Server` : specify etcd server ip. 
 * `Netcard`: specify the netcard for flannel.
+* `Backend_Type`: specify the backend of flannel, vxlan or host-gw.
 * `FLANNEL_VER`: specify the version of flannel.
 
 
@@ -22,6 +23,7 @@ This ansible role is to setup flannel network for docker.
 * `Arch`: arm64.
 * `Etcd_Server` : 192.168.11.244.
 * `Netcard`: eth2.
+* `Backend_Type`: vxlan.
 * `FLANNEL_VER`: v0.9.0.
 
 ## <a name="3">Example Playbook</a>
