@@ -27,4 +27,13 @@ mysql_cfg:
     datahost_name: sam_server_2
     mysql_database: "e-commerce-cart"
 
+mysql_host_M_IP: "192.168.11.244"  #master IP address
+mysql_host_M_Port: "3306"
 
+mysql_slave_hosts:
+  - host: hostS1
+    mysql_host_S_IP: "192.168.11.244"
+    mysql_host_S_Port: "3307"
+  - host: "hostS2"
+    mysql_host_S_IP: "192.168.11.224"  #slave IP address
+    mysql_host_S_Port: "3307"
