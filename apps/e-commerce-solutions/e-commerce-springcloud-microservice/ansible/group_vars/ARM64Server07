@@ -11,3 +11,20 @@ zookeeper_my_id: 3
 search_cpus: "34-46"
 
 cart_cpus: "47-63"
+
+
+schemas: "e-commerce-order, e-commerce-cart"
+datanode_all: "dn1,dn2"
+
+mysql_cfg: 
+  - schema: "e-commerce-order"
+    datanode_name: dn1
+    datahost_name: sam_server_1
+    mysql_database: "e-commerce-order"
+
+  - schema: "e-commerce-cart"
+    datanode_name: dn2
+    datahost_name: sam_server_2
+    mysql_database: "e-commerce-cart"
+
+

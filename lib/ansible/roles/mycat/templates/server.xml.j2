@@ -23,7 +23,7 @@
 	 -->
 		<!--默认为type 0: DirectByteBufferPool | type 1 ByteBufferArena-->
 		<property name="processorBufferPoolType">0</property>
-                <property name="serverPort">{{ item.mycat_serverport }}</property> <property name="managerPort">{{ item.mycat_managerport }}</property>
+                <property name="serverPort">{{ mycat_serverport }}</property> <property name="managerPort">{{ mycat_managerport }}</property>
 		<!--默认是65535 64K 用于sql解析时最大文本长度 -->
 		<!--<property name="maxStringLiteralLength">65535</property>-->
 		<!--<property name="sequnceHandlerType">0</property>-->
@@ -78,20 +78,9 @@
 	</firewall>
 	-->
 	
-	<user name="root">
-		<property name="password"></property>
-		<property name="schemas">ec</property>
-		
-		<!-- 表级 DML 权限设置 -->
-		<!-- 		
-		<privileges check="false">
-			<schema name="TESTDB" dml="0110" >
-				<table name="tb01" dml="0000"></table>
-				<table name="tb02" dml="1111"></table>
-			</schema>
-		</privileges>		
-		 -->
+	<user name="{{ user_name }}">
+		<property name="password">{{ password }}</property>
+		<property name="schemas">{{ schemas}}</property>
 	</user>
-
 
 </mycat:server>
