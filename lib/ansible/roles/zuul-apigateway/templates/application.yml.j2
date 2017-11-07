@@ -5,6 +5,8 @@ spring:
     name: api-gateway-service
 
 zuul:
+  instance:
+    preferlpAddress: {{ zuul_prefer_ipaddress }}
   routes:
   {% for item in zuul_api_routes %}
   {{ item.route_name }}:
@@ -17,4 +19,5 @@ eureka:
     service-url:
       defaultZone: {{ eureka_url }} 
 
-
+logging:
+  file: {{ zuul_log_file }}

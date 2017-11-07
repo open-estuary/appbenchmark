@@ -6,10 +6,12 @@ spring:
 
 eureka:
   instance:
-    hostname: {{ eureka_server }}
+    referlpAddress: {{ eureka_prefer_ipaddress }}
   client: 
     registerWithEureka: {{ eureka_register_myself }}
     fetchRegistry: {{ eureka_register_fetch }}
     serviceUrl:
       defaultZone: {{ eureka_url }}
 
+logging:
+  file: {{ eureka_log_file }}

@@ -14,6 +14,9 @@ zuul_api_routes:
     route_path: "/search/**"
     route_serviceid: search-service
 
+zuul_log_file: "/opt/micro-services/logs/zuul" 
+zuul_prefer_ipaddress: true
+
 eureka_server: localhost
 eureka_port: 8761
 eureka_url: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"

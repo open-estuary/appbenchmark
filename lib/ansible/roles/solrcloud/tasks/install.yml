@@ -54,4 +54,10 @@
 - name: SolrCloud | Ensure Solr Service has stopped firstly
   shell: "{{ solr_home }}/bin/solr stop" 
   when: "solr_process_status.stdout.find('solr') != -1"
+  ignore_errors: True
 
+- name: SolrCloud | Stop Solr Service
+  service:
+    name: solr
+    state: stopped
+  ignore_errors: True

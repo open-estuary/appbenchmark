@@ -1,0 +1,14 @@
+server:
+  port: {{ zipkin_server_port }}
+spring:
+  application:
+    name: zipkin_server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: {{ eureka_url }} 
+
+logging:
+  file: {{ zipkin_log_file }}
+

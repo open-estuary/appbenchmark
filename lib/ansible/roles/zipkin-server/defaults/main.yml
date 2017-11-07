@@ -1,0 +1,13 @@
+---
+zipkin_port: 9411
+zipkin_pkg_name: micro-service-zipkin
+zipkin_service_name: microservice-zipkin
+zipkin_config_dir: "/etc/micro-services/zipkin"
+
+eureka_server: localhost
+eureka_port: 8761
+eureka_url: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
+
+zipkin_log_file: "/opt/micro-services/logs/zipkin-server"
+
+
