@@ -8,6 +8,15 @@
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
 
+- name: generate server.xml
+  template:
+    src: server.xml.j2
+    dest: "{{ mycat_conf_dir }}/server.xml"
+    mode: 0777
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+#  with_items: "{{ mycat_config }}"
+
 - name: generate schema.xml
   template:
     src: schema.xml.j2
@@ -15,7 +24,6 @@
     mode: 0777
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
-  with_items: "{{ mycat_config }}"
 
 - name: generate wrapper.conf
   template:
@@ -24,14 +32,6 @@
     mode: 0777
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
-  with_items: "{{ mycat_config }}"
+#  with_items: "{{ mycat_config }}"
 
-- name: generate server.xml
-  template:
-    src: server.xml.j2
-    dest: "{{ mycat_conf_dir }}/server.xml"
-    mode: 0777
-    owner: "{{ estuaryuser }}"
-    group: "{{ estuaryuser }}"
-  with_items: "{{ mycat_config }}"
 

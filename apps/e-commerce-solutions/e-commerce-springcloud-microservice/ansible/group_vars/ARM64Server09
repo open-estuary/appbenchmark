@@ -1,8 +1,8 @@
 ---
 
-mycat_3_cpus: "0-15"
+mycat_1_cpus: "0-15"
 
-mycat_4_cpus: "16-30"
+mycat_2_cpus: "16-30"
 
 interrupt_cpus: 31-32
 
@@ -79,3 +79,17 @@ twemproxy_redis_config:
     redis_ip: 192.168.11.250
     redis_port: 7043
 
+
+schemas: "e-commerce-order, e-commerce-cart"
+datanode_all: "dn1,dn2"
+
+mysql_cfg:
+  - schema: "e-commerce-order"
+    datanode_name: dn1
+    datahost_name: sam_server_1
+    mysql_database: "e-commerce-order"
+
+  - schema: "e-commerce-cart"
+    datanode_name: dn2
+    datahost_name: sam_server_2
+    mysql_database: "e-commerce-cart"

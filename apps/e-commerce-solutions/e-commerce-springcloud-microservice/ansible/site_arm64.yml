@@ -115,6 +115,15 @@
     - { role: search, when: search_cpus is defined}
     - { role: lvs, when: lvs_cpus is defined }
     - { role: pcp }
+    - { role: mycat, when: mycat_1_cpus is defined }
+    - { role: mycat, 
+        mycat_home: "~/mycat_home_1", 
+        mycat_conf_dir: "~/mycat_home_1/src/mycat/conf", 
+        wrapper_port: 1985, 
+        mycat_serverport: 8067, 
+        mycat_managerport: 9067, 
+        when: mycat_2_cpus is defined }
+
 
 - name: Install Modules on ARM64 Server-08
   hosts: ARM64Server08
@@ -151,6 +160,15 @@
     - { role: twemproxy, when: twemproxy_cpus is defined }
     - { role: solrcloud, when: solr_cpus is defined }
     - { role: pcp }
+    - { role: mycat, when: mycat_1_cpus is defined }
+    - { role: mycat, 
+        mycat_home: "~/mycat_home_1", 
+        mycat_conf_dir: "~/mycat_home_1/src/mycat/conf", 
+        wrapper_port: 1985, 
+        mycat_serverport: 8067, 
+        mycat_managerport: 9067, 
+        when: mycat_2_cpus is defined }
+
 
 - name: Install Modules on ARM64 Server-10
   hosts: ARM64Server10
