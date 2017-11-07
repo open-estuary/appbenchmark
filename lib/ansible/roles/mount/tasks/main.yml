@@ -1,0 +1,33 @@
+---
+
+- name: Check devices status
+  stat: 
+    path: "{{ item.src_device }}"
+  with_items: "{{ mount_paths }}"
+  register: devices_status
+
+- name: Unmount existing devices firstly
+  mount: 
+    src: "{{ item.item.src_device }}"
+    path: "{{ item.item.path }}"
+    state: unmounted
+  with_items: "{{ devices_status.results }}"
+  when: item.stat.exists
+
+- name: Create File System
+  filesystem: 
+    dev: "{{ item.item.src_device }}"
+    fstype: "{{ item.item.fstype }}"
+    force: yes
+  with_items: "{{ devices_status.results }}"
+  when: item.stat.exists
+
+- name: Mount devices to specified paths
+  mount: 
+    src: "{{ item.item.src_device }}"
+    path: "{{ item.item.path }}"
+    fstype: "{{ item.item.fstype }}"
+    opts: "{{ item.item.opts }}"
+    state: mounted
+  with_items: "{{ devices_status.results }}"
+  when: item.stat.exists

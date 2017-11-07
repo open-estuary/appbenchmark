@@ -1,0 +1,8 @@
+---
+
+mount_paths:
+  - src_device: "/dev/nvme0n1"
+    path: "/opt"
+    fstype: ext4
+    opts: "noatime"
+
