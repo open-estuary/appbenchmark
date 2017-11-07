@@ -32,3 +32,6 @@ For more examples, please refer to [flannel](https://github.com/open-estuary/app
 
 License
 -------
+
+Apache
+
