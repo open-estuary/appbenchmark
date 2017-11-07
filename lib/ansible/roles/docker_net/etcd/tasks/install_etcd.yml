@@ -9,10 +9,6 @@
 
 - name: transfer start_etcd.sh
   template: src=start_etcd.sh dest=/tmp/start_etcd.sh mode=0755
-  with_items:
-  - 192.168.1.234
-#  notify:
-#  - run start_etcd.sh
 
 - name: start etcd
   shell: ./start_etcd.sh

@@ -3,9 +3,6 @@
 
   roles:
   - role: etcd
- 
-
-- hosts: etcd_server 
   
   tasks:
   - name: copy flannel-config.json

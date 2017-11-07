@@ -1,2 +1,3 @@
-weave_url: "https://github.com/weaveworks/weave/blob/master/weave"
+#  curl -L git.io/weave -o weave
+weave_url: "git.io/weave"
 
