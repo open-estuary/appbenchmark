@@ -12,17 +12,3 @@ mycat_managerport: 9066
 user_name: "root"
 password: ""
 
-#mysql_schema: "e-commerce-order"
-#mysql_schema_2: "e-commerce-cart"
-#mysql_database: "e-commerce-order"
-#mysql_database_2: "e-commerce-cart"
-#datahost_name: "sam_server_1"
-mysql_host_M_IP: "192.168.11.244"  #master IP address
-mysql_host_M_Port: "3306"
-
-host: "hostS1"
-mysql_host_S_IP: "192.168.11.244"  #slave IP address
-mysql_host_S_Port: "3307"
-host: "hostS2"
-mysql_host_S_IP2: "192.168.11.224"  #slave IP address
-mysql_host_S_Port2: "3307"
