@@ -9,8 +9,8 @@ database_name: e-commerce-order
 redis_ip: 198.168.11.232
 redis_port: 22145
 
-search_prefer_ipaddress: true
-search_ignored_interfaces:
+order_prefer_ipaddress: true
+order_ignored_interfaces:
  - eth0
  - enp2s0f0
 

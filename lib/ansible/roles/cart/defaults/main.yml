@@ -9,8 +9,8 @@ database_name: e-commerce-cart
 redis_ip: 198.168.11.219
 redis_port: 22135
 
-search_prefer_ipaddress: true
-search_ignored_interfaces:
+cart_prefer_ipaddress: true
+cart_ignored_interfaces:
  - eth0
  - enp2s0f0
 
