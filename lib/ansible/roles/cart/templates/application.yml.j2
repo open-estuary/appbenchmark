@@ -25,6 +25,9 @@ spring:
 server:
   port: {{ cart_port }}
 eureka:
+  instance:
+    preferIpAddress: {{ search_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: http://{{ eureka_server }}:{{ eureka_port }}/eureka/
