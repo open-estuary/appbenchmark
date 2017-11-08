@@ -4,11 +4,16 @@ order_name: order-service
 order_port: 8000
 eureka_server: 192.168.11.233
 eureka_port: 8761
-mysql_ip: 192.168.11.244
-mysql_port: 3307
+mycat_ip: 192.168.11.228
 database_name: e-commerce-order
-redis_ip: 198.168.11.237
-redis_port: 7034
+redis_ip: 198.168.11.232
+redis_port: 22145
+
+search_prefer_ipaddress: true
+search_ignored_interfaces:
+ - eth0
+ - enp2s0f0
+
 
 order_pkg_name: micro-service-order
 order_config_dir: "/etc/e-commerce/order"
