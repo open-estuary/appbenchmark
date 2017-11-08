@@ -138,7 +138,7 @@
         repl_host: "%"
 
         mysql_instance:
-           - master_host: 192.168.1.234
+           - master_host: 192.168.11.244
              master_port: 3306
              master_login_name: root
              master_login_password:
@@ -184,7 +184,7 @@
         repl_host: "%"
 
         mysql_instance:
-           - master_host: 192.168.1.111
+           - master_host: 192.168.11.252
              master_port: 3306
              master_login_name: root
              master_login_password:
@@ -210,7 +210,7 @@
         repl_host: "%"
     
         mysql_instance:
-           - master_host: 192.168.1.111
+           - master_host: 192.168.11.252
              master_port: 3306
              master_login_name: root
              master_login_password:
@@ -220,7 +220,7 @@
              login_password:
              login_host: "{{ ansible_eth2['ipv4']['address'] }}"
 
-           - master_host: 192.168.1.234
+           - master_host: 192.168.11.244
              master_port: 3306
              master_login_name: root
              master_login_password:
