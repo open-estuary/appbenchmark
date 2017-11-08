@@ -18,7 +18,7 @@ spring:
   cloud:
     inetutils:
        ignored-interfaces:
-       {% for item in search_ignored_interfaces %}
+       {% for item in order_ignored_interfaces %}
          - {{ item }}
        {% endfor %}
 
@@ -26,7 +26,7 @@ server:
   port: {{ order_port }}
 eureka:
   instance:
-    preferIpAddress: {{ search_prefer_ipaddress }}
+    preferIpAddress: {{ order_prefer_ipaddress }}
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
