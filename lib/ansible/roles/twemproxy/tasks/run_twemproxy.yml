@@ -1,4 +1,11 @@
 ---
+
+- name: kill twemproxy on ARM64 Server
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  shell: ps -ef|grep twemproxy |grep -v grep|awk  '{print "kill -9 " $2}' |sh  &
+
 - name: Run twemproxy on ARM64 Server
   remote_user: estuaryapp
   become: yes
