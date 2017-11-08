@@ -1,98 +1,73 @@
 ---
 
-#- name: create database e-commerce-cart
-#  mysql_db:
-#     name: e-commerce-cart
-#     state: present
-#     login_host: "{{ item.login_host }}"
-#     login_user: "{{ item.login_name }}"
-#     login_password: "{{ item.login_password }}"
-#     login_port: "{{ item.port }}"
-#  with_items: "{{ mysql_instance }}"
-#
-#- name: create database e-commerce-order
-#  mysql_db:
-#     name: e-commerce-order
-#     state: present
-#     login_host: "{{ item.login_host }}"
-#     login_user: "{{ item.login_name }}"
-#     login_password: "{{ item.login_password }}"
-#     login_port: "{{ item.port }}"
-#  with_items: "{{ mysql_instance }}"
+- name: create database
+  mysql_db:
+     name: "{{ database }}"
+     state: present
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
 
-- name: import cart.sql to userinfo mysql
+- name: load cart table
   mysql_db:
      state: import
-     name: e-commerce-cart
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ user_sql_location }}"
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ cart }}"
+  when: database == "e-commerce-cart"
 
-- name: import order.sql to userinfo mysql
+- name: load order table
   mysql_db:
      state: import
-     name: e-commerce-order
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ user_sql_location }}"
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ order }}"
+  when: database == "e-commerce-order"
 
-- name: import cart.sql to sku mysql
+- name: load userinfo data
   mysql_db:
      state: import
-     name: e-commerce-cart
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ sku_sql_location }}" 
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userinfo }}"
 
-- name: import order.sql to sku mysql
+- name: load sku data
   mysql_db:
      state: import
-     name: e-commerce-order
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ sku_sql_location }}"
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ sku }}"
 
-- name: import cart.sql to userbank mysql
+- name: load userbank data
   mysql_db:
      state: import
-     name: e-commerce-cart
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ userbank_sql_location }}"
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userbank }}"
 
-- name: import order.sql to userbank mysql
+- name: load userdeliveryaddress data
   mysql_db:
      state: import
-     name: e-commerce-order
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ userbank_sql_location }}"
-  with_items: "{{ mysql_instance }}"
-
-- name: import order.sql to userdeliveryaddress mysql
-  mysql_db:
-     state: import
-     name: e-commerce-order
-     login_host: "{{ item.login_host }}"
-     login_user: "{{ item.login_name }}"
-     login_password: "{{ item.login_password }}"
-     login_port: "{{ item.port }}"
-     target: "{{ userdeliveryaddress_sql_location }}"
-  with_items: "{{ mysql_instance }}"
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userdeliveryaddress }}"
+  when: userdeliveryaddress is defined

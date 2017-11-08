@@ -3,7 +3,7 @@ spring:
     name: {{ order_name }}
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://{{ mysql_ip }}:{{ mysql_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://{{ mycat_ip }}:{{ mycat_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
     username: root
     password:
   redis:
@@ -15,13 +15,22 @@ spring:
       maxIdle: 100
       minIdle: 0
     timeout: 100
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in order_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %}
 
 server:
   port: {{ order_port }}
 eureka:
+  instance:
+    preferIpAddress: {{ order_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
-      defaultZone: http://{{ eureka_ip }}:{{ eureka_port }}/eureka/
+      defaultZone: http://{{ eureka_server }}:{{ eureka_port }}/eureka/
 management:
   security:
     enabled: false

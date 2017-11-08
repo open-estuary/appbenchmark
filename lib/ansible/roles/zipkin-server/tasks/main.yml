@@ -1,0 +1,35 @@
+---
+
+- name: Install the zipkin-apigateway from open-estuary repo
+  yum: 
+    name: "{{ zipkin_pkg_name }}"
+    state: latest
+
+- name: Create zipkin configure directory 
+  file: 
+    path: "{{ zipkin_config_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Copy the zipkin application.yml
+  template:
+    src: application.yml.j2
+    dest: "{{ zipkin_config_dir }}/application.yml"
+
+- name: Copy the zipkin microservice-zipkin.in.sh
+  template:
+    src: microservice-zipkin.in.sh.j2
+    dest: "{{ zipkin_config_dir }}/microservice-zipkin.in.sh"
+
+#- name: Copy the zipkin service file
+#  template:
+#    src: zipkin-apigateway.service.j2
+#    dest: /etc/systemd/system/{{ zipkin_service_name }}.service
+
+- name: Start the zipkin-server service
+  service: name={{ zipkin_service_name }}  state=restarted enabled=yes daemon_reload=yes
+
+- name: Set Zuul CPU affinity 
+  shell: "ps -aux | grep micro-service-zipkin | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ zipkin_cpus }}"
+  when: zipkin_cpus is defined 
+

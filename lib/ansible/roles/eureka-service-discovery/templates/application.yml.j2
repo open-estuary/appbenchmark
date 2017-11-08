@@ -3,13 +3,23 @@ server:
 spring:
   application:
     name: eureka-service-discovery
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in eureka_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %}
 
 eureka:
   instance:
-    hostname: {{ eureka_server }}
+    preferIpAddress: {{ eureka_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}.${server.port}
+    hostname: ${spring.cloud.client.ipAddress}
   client: 
     registerWithEureka: {{ eureka_register_myself }}
     fetchRegistry: {{ eureka_register_fetch }}
     serviceUrl:
       defaultZone: {{ eureka_url }}
 
+logging:
+  file: {{ eureka_log_file }}

@@ -8,4 +8,4 @@
   when: ansible_distribution == 'Ubuntu'
 
 - name: ensure docker is running
-  service: name=docker state=started
+  service: name=docker state=restarted

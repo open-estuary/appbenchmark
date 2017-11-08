@@ -33,7 +33,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 [mysqld_multi]
 mysqld = /usr/bin/mysqld_safe
 mysqladmin =/usr/bin/mysqladmin
-log ={{ mysql_log_dir }}/mysqld_multi.log
+#log ={{ mysql_log_dir }}/mysqld_multi.log
 
 {% for instance in mysql_instance %}
 
@@ -50,5 +50,6 @@ read_only = 0
 innodb_buffer_pool_size = 1024M
 innodb_lock_wait_timeout=500
 innodb_flush_log_at_trx_commit = 0
+wait_timeout=31536000
 
 {% endfor %}

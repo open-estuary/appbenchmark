@@ -2,7 +2,7 @@
 
 search_name: search-service
 search_port: 8002
-eureka_ip: 192.168.11.233
+eureka_server: 192.168.11.233
 eureka_port: 8761
 mysql_ip: 192.168.11.244
 mysql_port: 3307
@@ -11,6 +11,11 @@ redis_ip: 198.168.11.237
 redis_port: 7034
 solr_ip: 192.168.1.44
 solr_port: 8983
+
+search_prefer_ipaddress: true
+search_ignored_interfaces:
+ - eth0
+ - enp2s0f0
 
 search_pkg_name: micro-service-search
 search_config_dir: "/etc/e-commerce/search"

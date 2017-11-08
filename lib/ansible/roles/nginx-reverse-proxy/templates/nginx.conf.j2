@@ -42,7 +42,28 @@ http {
     #
     #gzip  on;
     #
-    include {{ nginx_conf_dir }}/conf.d/*.conf;
+    #
+    upstream {{ item.nginx_backend_name }} {
+        {% if item.nginx_balancer_config is defined %}
+        {{ item.nginx_balancer_config }};
+        {% endif %}
+        {% for backend in item.nginx_backends %}
+        server {{ backend }};
+        {% endfor %}
+    }
+
+    server {
+        listen {{ nginx_port }};
+        server_name {{ item.nginx_domains|join(' ') }};
+        error_log {{ nginx_error_logfile }} {{ nginx_log_level }};
+        location / {
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   Host      $http_host;
+            proxy_pass         http://{{ item.nginx_backend_name }};
+        }
+    }      
+
+    #include {{ nginx_conf_dir }}/conf.d/*.conf;
 }
 
 {% if nginx_daemon_mode == "off" %}

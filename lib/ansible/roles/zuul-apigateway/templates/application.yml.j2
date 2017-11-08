@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: api-gateway-service
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in zuul_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %}
 
 zuul:
   routes:
@@ -13,8 +19,12 @@ zuul:
   {% endfor %}     
 
 eureka:
+  instance:
+    preferIpAddress: {{ zuul_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: {{ eureka_url }} 
 
-
+logging:
+  file: {{ zuul_log_file }}
