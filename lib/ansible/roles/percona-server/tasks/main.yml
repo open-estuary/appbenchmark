@@ -6,23 +6,23 @@
    - Percona-Server-server-{{ version }}
    - MySQL-python
 
-#- name: check my_master.cnf exist
-#  stat: 
-#     path: "{{ master_cnf }}"
-#  register: checkMasterResult
-#
-#- name: check my_slave.cnf exist
-#  stat:
-#     path: "{{ slave_cnf }}"
-#  register: checkSlaveResult
-#
-#- name: stop mysql master server
-#  shell: "mysqld_multi --defaults-extra-file={{ master_cnf }} stop"
-#  when: checkMasterResult.stat.exists and repl_name is not defined
-#
-#- name: stop mysql slave server
-#  shell: "mysqld_multi --defaults-extra-file={{ slave_cnf }} stop"
-#  when: checkSlaveResult.stat.exists and repl_name is not defined
+- name: check my_master.cnf exist
+  stat: 
+     path: "{{ master_cnf }}"
+  register: checkMasterResult
+
+- name: check my_slave.cnf exist
+  stat:
+     path: "{{ slave_cnf }}"
+  register: checkSlaveResult
+
+- name: stop mysql master server
+  shell: "mysqld_multi --defaults-extra-file={{ master_cnf }} stop"
+  when: (mysql_master_install_inprogress is defined) and mysql_master_install_inprogress and checkMasterResult.stat.exists
+
+- name: stop mysql slave server
+  shell: "mysqld_multi --defaults-extra-file={{ slave_cnf }} stop"
+  when: (mysql_master_install_inprogress is not defined) and checkSlaveResult.stat.exists
 
 - name: create data dir
   file: 

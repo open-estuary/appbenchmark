@@ -45,3 +45,32 @@ mount_paths:
     fstype: ext4
     opts: "rw,nodev,noatime,nodiratime,nobarrier"
 
+eureka_ignored_interfaces:
+ - eth0
+ - eth1
+ - enp2s0f0
+
+zuul_ignored_interfaces:
+  - eth0
+  - enp2s0f0
+  - eth1
+
+search_ignored_interfaces:
+  - eth0
+  - enp2s0f0
+  - eth1
+
+zipkin_ignored_interfaces:
+  - eth0
+  - eth1
+  - enp2s0f0
+
+cart_ignored_interfaces:
+  - eth0
+  - eth1
+  - enp2s0f0
+
+order_ignored_interfaces:
+  - eth0
+  - eth1
+  - enp2s0f0
