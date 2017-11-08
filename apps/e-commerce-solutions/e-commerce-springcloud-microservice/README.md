@@ -44,17 +44,17 @@ E-Commerce MicroService REST API
 > Please use LVS Virtual IP address(default to `192.168.11.100`) and Port (default to `9000`) to access REST API
 
 Method | URI | Description | Parameters | Request JSON | Response JSON
---- | --- | ---| --- | --- | ---
-`GET` | */orders/* |get order |orderId|-| [OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`POST` | /orders/* |create order |-|[OrderRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) | [Status](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`DELETE`  | /orders/*  |delete order |userId,orderId |-|[Stauts](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`POST` | /orders/delivery*  |update order delivery |userId,orderId,deliveryStatus|- |[OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`POST` | /orders/payment*  |update order payment |userId,orderId,cardId,paymentPassword|- |[OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`GET`  | /carts/*  |get cart |userId,shoppingcartid |-|[CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`POST` | /carts/*  |create cart |-|[CartRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) | [CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`DELETE`  | /carts/*  |delete cart |userId |-|[Stauts](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`POST` | /carts/{type}*  |update cart |type |[CartRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) |[CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
-`GET`  | /search/* |search sku |query=*:*,page_size=10,page_num,sort|-|[Sku](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+--- | --- | ----| --- | --- | ---
+`GET` | /orders/ |get order |orderId|-| [OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`POST` | /orders/ |create order |-|[OrderRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) | [Status](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`DELETE`  | /orders/  |delete order |userId,orderId |-|[Stauts](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`POST` | /orders/delivery  |update order delivery |userId,orderId,deliveryStatus|- |[OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`POST` | /orders/payment  |update order payment |userId,orderId,cardId,paymentPassword|- |[OrderResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`GET`  | /carts/  |get cart |userId,shoppingcartid |-|[CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`POST` | /carts/  |create cart |-|[CartRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) | [CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`DELETE`  | /carts/  |delete cart |userId |-|[Stauts](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`POST` | /carts/{type}  |update cart |type |[CartRequest](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount) |[CartResponse](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
+`GET`  | /search/ |search sku |query,page_size,page_num,sort|-|[Sku](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)
 
 Eureka Service Example: 
 
