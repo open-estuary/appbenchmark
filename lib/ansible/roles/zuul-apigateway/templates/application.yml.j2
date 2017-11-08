@@ -3,7 +3,7 @@ server:
 spring:
   application:
     name: api-gateway-service
-   cloud:
+  cloud:
     inetutils:
        ignored-interfaces:
        {% for item in zuul_ignored_interfaces %}

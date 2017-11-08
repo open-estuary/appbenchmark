@@ -15,6 +15,7 @@
   become: yes
   become_method: sudo
   vars:
+     mysql_master_install_inprogress: true
      mysql_instance:
        - cpus: "0-30"
          port: 3306
@@ -122,6 +123,7 @@
         wrapper_port: 1985, 
         mycat_serverport: 8067, 
         mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
         when: mycat_2_cpus is defined }
 
 
@@ -167,6 +169,7 @@
         wrapper_port: 1985, 
         mycat_serverport: 8067, 
         mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
         when: mycat_2_cpus is defined }
 
 

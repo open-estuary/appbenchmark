@@ -19,11 +19,16 @@ This ansible role is to setup mycat and to start mycat instances.
 * `mycat_serverport`: specify the server port of mycat.
 * `mycat_managerport`: specify the manager port of mycat.
 
-* `mysql_cfg`:  specify the configuration relationships for mycat and mysql. Each instance of mycat can bind multiple databases of mysql.
-    * `user_name`: spccify the user name of database.
-    * `password`: spccify the password of database.
-    * `mysql_host_M_IP`: spcify the IP address of master database.
-    * `mysql_host_M_Port`: spcify the port of master database.
+* `user_name`: spccify the user name of database.
+* `password`: spccify the password of database.
+* `schema`: specify the schema of mysql.
+* `datanode_name`: specify the name of data node.
+* `datahost_name`: specify the name of data host.
+* `mysql_database`: specify the database name of mysql.
+* `ifkillmycatprocess`: specify if kill mycat processes before install.
+
+* `mysql_host_M_IP`: spcify the IP address of master database.
+* `mysql_host_M_Port`: spcify the port of master database.
 
 * `mysql_slave_hosts`: specify the configurations of slave hosts.
     * `host`: specify name of slave host.

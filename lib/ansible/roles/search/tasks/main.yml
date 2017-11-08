@@ -22,7 +22,7 @@
     group: "{{ estuaryuser }}"
 
 - name: Start the search service
-  service: name={{ search_service_name }}  state=started enabled=yes daemon_reload=yes
+  service: name={{ search_service_name }}  state=restarted enabled=yes daemon_reload=yes
 
 - name: Set Search CPU affinity 
   shell: "ps -aux | grep e-commerce-search | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ search_cpus }}"

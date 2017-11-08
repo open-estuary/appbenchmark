@@ -79,6 +79,8 @@ Example Playbook
     - ansible-nginx-reverse-proxy
 
 ```    
+### Others
+The simple performance status could be accessed via `http://<nginx_server>:8080/basic_status`. 
 
 License
 -------

@@ -80,19 +80,13 @@ twemproxy_redis_config:
     redis_port: 7043
 
 
-schemas: "e-commerce-order, e-commerce-cart"
-datanode_all: "dn1,dn2"
 
-mysql_cfg:
-  - schema: "e-commerce-order"
-    datanode_name: dn1
-    datahost_name: sam_server_1
-    mysql_database: "e-commerce-order"
-
-  - schema: "e-commerce-cart"
-    datanode_name: dn2
-    datahost_name: sam_server_2
-    mysql_database: "e-commerce-cart"
+#mycat
+schema: "e-commerce-cart"
+datanode_name: dn1
+datahost_name: sam_server_1
+mysql_database: "e-commerce-cart"
+ifkillmycatprocess: "true"
 
 mysql_host_M_IP: "192.168.11.252"  #master IP address
 mysql_host_M_Port: "3306"

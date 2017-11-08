@@ -2,20 +2,12 @@
 <!DOCTYPE mycat:schema SYSTEM "schema.dtd">
 <mycat:schema xmlns:mycat="http://io.mycat/">
 
-{% for mysql in mysql_cfg %}
-	<schema name="{{ mysql.schema }}" checkSQLschema="false" sqlMaxLimit="100">
-          <table name="r_ec_userinfo" primaryKey="nUserID" dataNode="{{ datanode_all }}" rule="mod-long-nUserID" />
-          <table name="r_ec_cartsku" primaryKey="nCartSKUID" dataNode="{{ datanode_all }}" rule="mod-long-nCartSKUID" />
-          <table name="r_ec_sku" primaryKey="nSKUID" dataNode="{{ datanode_all }}" rule="mod-long-nSKUID" />
+	<schema name="{{ schema }}" checkSQLschema="false" dataNode="{{datanode_name }}" sqlMaxLimit="100">
 	</schema>
-{% endfor %}
 
-{% for mysql in mysql_cfg %}
-	<dataNode name="{{ mysql.datanode_name }}" dataHost="{{ mysql.datahost_name }}" database="{{ mysql.mysql_database }}" />
-{% endfor %}
+	<dataNode name="{{ datanode_name }}" dataHost="{{ datahost_name }}" database="{{ mysql_database }}" />
 
-{% for mysql in mysql_cfg %}
-	<dataHost name="{{ mysql.datahost_name }}" maxCon="1000" minCon="10" balance="0"
+	<dataHost name="{{ datahost_name }}" maxCon="1000" minCon="10" balance="0"
 			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
 		<heartbeat>select user()</heartbeat>
 		<!-- can have multi write hosts -->
@@ -27,6 +19,5 @@
       {% endfor %}
                 </writeHost>
 	</dataHost>
-{% endfor %}
 
 </mycat:schema>
