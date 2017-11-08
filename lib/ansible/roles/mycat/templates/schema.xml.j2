@@ -3,10 +3,7 @@
 <mycat:schema xmlns:mycat="http://io.mycat/">
 
 {% for mysql in mysql_cfg %}
-	<schema name="{{ mysql.schema }}" checkSQLschema="false" sqlMaxLimit="100">
-          <table name="r_ec_userinfo" primaryKey="nUserID" dataNode="{{ datanode_all }}" rule="mod-long-nUserID" />
-          <table name="r_ec_cartsku" primaryKey="nCartSKUID" dataNode="{{ datanode_all }}" rule="mod-long-nCartSKUID" />
-          <table name="r_ec_sku" primaryKey="nSKUID" dataNode="{{ datanode_all }}" rule="mod-long-nSKUID" />
+	<schema name="{{ mysql.schema }}" checkSQLschema="false" dataNode="{{mysql.datanode_name }}" sqlMaxLimit="100">
 	</schema>
 {% endfor %}
 

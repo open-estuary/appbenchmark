@@ -16,6 +16,7 @@ mycat_port: 8067
 
 schemas: "e-commerce-order, e-commerce-cart"
 datanode_all: "dn1,dn2"
+ifkillmycatprocess: "true"
 
 mysql_cfg: 
   - schema: "e-commerce-order"
