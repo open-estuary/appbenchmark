@@ -1,6 +1,7 @@
 ---
 # defaults file for ansible-nginx-reverse-proxy
 nginx_port: 80
+nginx_status_listen_port: 8080
 nginx_worker_rlimit_nofile: 102400
 nginx_max_connections: 102400
 nginx_worker_process_num: 30
