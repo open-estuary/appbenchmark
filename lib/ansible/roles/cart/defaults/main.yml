@@ -4,11 +4,15 @@ cart_name: cart-service
 cart_port: 8001
 eureka_server: 192.168.11.233
 eureka_port: 8761
-mysql_ip: 192.168.11.244
-mysql_port: 3307
+mycat_ip: 192.168.11.219
 database_name: e-commerce-cart
-redis_ip: 198.168.11.237
-redis_port: 7034
+redis_ip: 198.168.11.219
+redis_port: 22135
+
+search_prefer_ipaddress: true
+search_ignored_interfaces:
+ - eth0
+ - enp2s0f0
 
 cart_pkg_name: micro-service-cart
 cart_config_dir: "/etc/e-commerce/cart"
