@@ -18,9 +18,10 @@
   template:
     src: nginx.conf.j2
     dest: "{{ nginx_conf_dir }}/nginx.conf"
+  with_items: "{{ nginx_reverse_proxy_proxies }}"
 
 - name: Start the nginx service
-  service: name=nginx state=started enabled=yes
+  service: name=nginx state=restarted enabled=yes
   tags: [service, nginx]
 
 - name: Set Ngnix CPU affinity 

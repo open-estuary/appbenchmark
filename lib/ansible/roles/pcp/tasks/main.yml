@@ -14,11 +14,11 @@
   when: pcp_web_vector | bool 
 
 - name: Start the PCP Daemon
-  service: name=pmcd  state=started enabled=yes daemon_reload=yes
+  service: name=pmcd  state=restarted enabled=yes daemon_reload=yes
   when: pcp_pmcd | bool
 
 - name: Start the PCP Webapi Daemon
-  service: name=pmwebd  state=started enabled=yes daemon_reload=yes
+  service: name=pmwebd  state=restarted enabled=yes daemon_reload=yes
   when: pcp_web_vector | bool
 
 - name: Set PCP CPU affinity 

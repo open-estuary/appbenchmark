@@ -22,7 +22,7 @@
     group: "{{ estuaryuser }}"
 
 - name: Start the order service
-  service: name={{ order_service_name }}  state=started enabled=yes daemon_reload=yes
+  service: name={{ order_service_name }}  state=restarted enabled=yes daemon_reload=yes
 
 - name: Set Order CPU affinity 
   shell: "ps -aux | grep e-commerce-order | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ order_cpus }}"
