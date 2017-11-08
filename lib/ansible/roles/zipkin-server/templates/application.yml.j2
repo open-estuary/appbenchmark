@@ -3,8 +3,17 @@ server:
 spring:
   application:
     name: zipkin_server
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in zipkin_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %} 
 
 eureka:
+  instance:
+    preferIpAddress: {{ zipkin_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: {{ eureka_url }} 

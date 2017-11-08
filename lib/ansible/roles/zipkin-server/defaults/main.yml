@@ -8,6 +8,11 @@ eureka_server: localhost
 eureka_port: 8761
 eureka_url: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
 
+zipkin_ignored_interfaces:
+  - eth0
+  - enp2s0f0
+
+zipkin_prefer_ipaddress: true
 zipkin_log_file: "/opt/micro-services/logs/zipkin-server"
 
 

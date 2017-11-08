@@ -21,7 +21,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://{{ eureka_ip }}:{{ eureka_port }}/eureka/
+      defaultZone: http://{{ eureka_server }}:{{ eureka_port }}/eureka/
 management:
   security:
     enabled: false

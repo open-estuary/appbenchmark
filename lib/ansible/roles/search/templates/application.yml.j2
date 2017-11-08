@@ -18,13 +18,23 @@ spring:
   data:
     solr:
       host: http://{{ solr_ip }}:{{ solr_port }}/solr/e-commerce
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in search_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %}
 
 server:
   port: {{ search_port }}
 eureka:
-  client:
+ instance:
+    preferIpAddress: {{ search_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+ client:
     service-url:
-      defaultZone: http://{{ eureka_ip }}:{{ eureka_port }}/eureka/
+      defaultZone: http://{{ eureka_server }}:{{ eureka_port }}/eureka/
+
 management:
   security:
     enabled: false

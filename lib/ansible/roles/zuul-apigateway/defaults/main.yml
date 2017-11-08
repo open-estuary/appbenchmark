@@ -16,6 +16,9 @@ zuul_api_routes:
 
 zuul_log_file: "/opt/micro-services/logs/zuul" 
 zuul_prefer_ipaddress: true
+zuul_ignored_interfaces: 
+  - eth0
+  - enp2s0f0
 
 eureka_server: localhost
 eureka_port: 8761
