@@ -123,6 +123,7 @@
         wrapper_port: 1985, 
         mycat_serverport: 8067, 
         mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
         when: mycat_2_cpus is defined }
 
 
@@ -168,6 +169,7 @@
         wrapper_port: 1985, 
         mycat_serverport: 8067, 
         mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
         when: mycat_2_cpus is defined }
 
 
