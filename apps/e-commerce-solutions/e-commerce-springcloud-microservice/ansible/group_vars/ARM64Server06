@@ -9,6 +9,8 @@ zookeeper_my_id: 2
 
 cart_cpus: "48-63"
 
+mycat_port: 8066
+
 twemproxy_IP: 192.168.11.232
 
 twemproxy_cpus: "44-47"
