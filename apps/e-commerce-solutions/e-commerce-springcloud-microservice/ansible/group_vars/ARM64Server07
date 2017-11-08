@@ -11,6 +11,7 @@ zookeeper_my_id: 3
 search_cpus: "34-46"
 
 cart_cpus: "47-63"
+mycat_port: "8067"  #microservice uses this parameter
 
 #mycat
 schema: "e-commerce-order"
