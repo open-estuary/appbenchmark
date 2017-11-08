@@ -36,7 +36,6 @@
      userinfo: r_ec_userinfo.sql
      sku: r_ec_sku.sql
      userbank: r_ec_userbankinfo.sql
-
   roles:
     - estuaryrepo
     - { role: percona-server-data }
