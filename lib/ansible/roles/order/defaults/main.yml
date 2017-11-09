@@ -6,7 +6,7 @@ eureka_server: 192.168.11.233
 eureka_port: 8761
 mycat_ip: 192.168.11.218
 database_name: e-commerce-order
-redis_ip: 198.168.11.232
+redis_ip: 192.168.11.232
 redis_port: 22145
 
 order_prefer_ipaddress: true
