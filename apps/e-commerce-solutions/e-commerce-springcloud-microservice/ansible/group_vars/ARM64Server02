@@ -2,8 +2,8 @@
 nginx_cpus: "0-30"
 interrupt_cpus: 31-32
 pcp_cpus: 33
-eureka_cpus: 34-57
-redis_cpus: "58-63"
+eureka_cpus: 34-49
+redis_cpus: "54-63"
 
 
 nginx_port: 9000
@@ -21,4 +21,56 @@ nginx_reverse_proxy_proxies:
       - localhost
 
 #nginx_balancer_config: ip-hash
+
+
+twemproxy_cpus: "50-53"
+
+twemproxy_redis_config:
+  - twemproxy_cpu: "50"
+    redis_ip: 192.168.11.237
+    redis_port: 7034
+
+  - twemproxy_cpu: "50"
+    redis_ip: 192.168.11.237
+    redis_port: 7035
+
+  - twemproxy_cpu: "50"
+    redis_ip: 192.168.11.250
+    redis_port: 7034
+
+  - twemproxy_cpu: "51"
+    redis_ip: 192.168.11.237
+    redis_port: 7036
+
+  - twemproxy_cpu: "51"
+    redis_ip: 192.168.11.237
+    redis_port: 7037
+
+  - twemproxy_cpu: "51"
+    redis_ip: 192.168.11.250
+    redis_port: 7043
+
+  - twemproxy_cpu: "52"
+    redis_ip: 192.168.11.237
+    redis_port: 7038
+
+  - twemproxy_cpu: "52"
+    redis_ip: 192.168.11.237
+    redis_port: 7039
+
+  - twemproxy_cpu: "52"
+    redis_ip: 192.168.11.250
+    redis_port: 7044
+
+  - twemproxy_cpu: "53"
+    redis_ip: 192.168.11.237
+    redis_port: 7040
+
+  - twemproxy_cpu: "53"
+    redis_ip: 192.168.11.237
+    redis_port: 7041
+
+  - twemproxy_cpu: "53"
+    redis_ip: 192.168.11.250
+    redis_port: 7045
 

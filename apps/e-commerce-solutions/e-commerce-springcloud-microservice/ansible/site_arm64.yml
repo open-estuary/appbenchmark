@@ -48,6 +48,7 @@
     - { role: lvs, when: lvs_cpus is defined }
     - { role: redis, when: redis_cpus is defined }
     - { role: eureka-service-discovery, when: eureka_cpus is defined }
+    - { role: twemproxy, when: twemproxy_cpus is defined }
     - { role: pcp }
 
 - name: Install Modules on ARM64 Server-03
