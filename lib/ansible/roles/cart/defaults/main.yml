@@ -6,7 +6,7 @@ eureka_server: 192.168.11.233
 eureka_port: 8761
 mycat_ip: 192.168.11.219
 database_name: e-commerce-cart
-redis_ip: 198.168.11.219
+redis_ip: 192.168.11.219
 redis_port: 22135
 
 cart_prefer_ipaddress: true
