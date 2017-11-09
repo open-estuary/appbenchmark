@@ -23,6 +23,7 @@ nginx_reverse_proxy_proxies:
 #nginx_balancer_config: ip-hash
 
 
+twemproxy_IP: 192.168.11.223
 twemproxy_cpus: "50-53"
 
 twemproxy_redis_config:
