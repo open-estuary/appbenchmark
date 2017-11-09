@@ -14,6 +14,9 @@ zuul_api_routes:
     route_path: "/search/**"
     route_serviceid: search-service
 
+zipkin_server: 192.168.11.225
+zipkin_port:
+
 zuul_log_file: "/opt/micro-services/logs/zuul" 
 zuul_prefer_ipaddress: true
 zuul_ignored_interfaces: 

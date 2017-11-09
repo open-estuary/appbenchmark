@@ -9,6 +9,8 @@ spring:
        {% for item in zuul_ignored_interfaces %}
          - {{ item }}
        {% endfor %}
+  zipkin:
+      base-url: http://{{ zipkin_server }}:{{ zipkin_port }}
 
 zuul:
   routes:
@@ -26,5 +28,5 @@ eureka:
     service-url:
       defaultZone: {{ eureka_url }} 
 
-logging:
-  file: {{ zuul_log_file }}
+#logging:
+#  file: {{ zuul_log_file }}

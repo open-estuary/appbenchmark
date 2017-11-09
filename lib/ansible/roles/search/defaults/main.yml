@@ -11,6 +11,8 @@ redis_ip: 192.168.11.232
 redis_port: 22146
 solr_ip: 192.168.11.232
 solr_port: 8983
+zipkin_server: 192.168.11.225
+zipkin_port:
 
 search_prefer_ipaddress: true
 search_ignored_interfaces:
