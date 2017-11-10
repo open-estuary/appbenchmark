@@ -45,16 +45,15 @@ E-Commerce MicroService REST API
 
 Method | URI  | Request JSON | Response JSON
 ---- | ------- | ------ | -----
-`GET` | /v1/orders//{orderid} |-| [OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`POST` | /v1/orders/ |create order |-|[OrderReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Status](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`DELETE`  | /v1/orders/  |delete order |userId,orderId |-|[Stauts](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`POST` | /v1/orders/delivery |update order delivery |userId,orderId,deliveryStatus|- |[OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`POST` | /v1/orders/payment  |update order payment |userId,orderId,cardId,paymentPassword|- |[OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`GET`  | /v1/carts/  |get cart |userId,shoppingcartid |-|[CartRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`POST` | /v1/carts/  |create cart |-|[CartReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Status](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`DELETE`  | /v1/carts/  |delete cart |userId |-|[Stauts](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`POST` | /v1/carts/{type}  |update cart |type |[CartReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) |[CartRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
-`GET`  | /v1/search/ |search sku |query,page_size,page_num,sort|-|[Sku](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`GET` | /v1/orders/{orderid} |-| [OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`POST` | /v1/orders/|-|[OrderReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Status](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`DELETE`  | /v1/orders?userId={userid}&orderId={orderid}|-|[Stauts](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`POST` | /v1/orders/delivery?userId={userid}&orderId={orderId}&deliveryStatus={deliverystatus}|- |[OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`GET`  | /v1/carts/{userid}/${shoppingcartid} |-|[CartRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`POST` | /v1/carts/ |-|[CartReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Status](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`DELETE`  | /v1/carts/{userid}/${shoppingcartid} |-|[Stauts](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`POST` | /v1/carts/{type} |[CartReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) |[CartRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
+`GET`  | /v1/search?query=*:*&page_size={page_size}&page_num={page_num}&sort={sort}|-|[Sku](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
 
 Eureka Service Example: 
 
