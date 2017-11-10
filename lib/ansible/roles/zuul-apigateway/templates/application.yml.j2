@@ -3,14 +3,14 @@ server:
 spring:
   application:
     name: api-gateway-service
+  zipkin:
+      base-url: http://{{ zipkin_server }}:{{ zipkin_port }}
   cloud:
     inetutils:
        ignored-interfaces:
        {% for item in zuul_ignored_interfaces %}
          - {{ item }}
        {% endfor %}
-  zipkin:
-      base-url: http://{{ zipkin_server }}:{{ zipkin_port }}
 
 zuul:
   routes:

@@ -41,7 +41,7 @@ Before executing test, it is necessary to import data as follows:
 ## <a name="4">REST API</a>
 E-Commerce MicroService REST API
 
-> Please use LVS Virtual IP address(default to `192.168.11.100`) and Port (default to `9000`) to access REST API
+> Please use LVS Virtual IP address(default to `192.168.12.100` defined in [ansible/group_vars/ARM64Server01](/apps/e-commerce-solutions/e-commerce-springcloud-microservice/ansible/group_vars/ARM64Server01)) and Port (default to `9000`) to access REST API
 
 Method | URI  | Request JSON | Response JSON
 ---- | ------- | ------ | -----
