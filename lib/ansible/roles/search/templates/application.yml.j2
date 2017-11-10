@@ -18,6 +18,8 @@ spring:
   data:
     solr:
       host: http://{{ solr_ip }}:{{ solr_port }}/solr/e-commerce
+  zipkin:
+      base-url: http://{{ zipkin_server }}:{{ zipkin_port }}
   cloud:
     inetutils:
        ignored-interfaces:
@@ -44,5 +46,5 @@ mybatis:
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.htsat.order.model
 
-logging:
-  file: /opt/e-commerce/logs/search.log
+#logging:
+#  file: /opt/e-commerce/logs/search.log
