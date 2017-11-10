@@ -5,13 +5,13 @@ zuul_service_name: microservice-zuul
 zuul_config_dir: "/etc/micro-services/api-gateway"
 zuul_api_routes:
   - route_name: api-cart
-    route_path: "/cart/**"
+    route_path: "/v1/cart/**"
     route_serviceid: cart-service
   - route_name: api-order
-    route_path: "/order/**"
+    route_path: "/v1/order/**"
     route_serviceid: order-service
   - route_name: api-search
-    route_path: "/search/**"
+    route_path: "/v1/search/**"
     route_serviceid: search-service
 
 zipkin_server: 192.168.11.225
