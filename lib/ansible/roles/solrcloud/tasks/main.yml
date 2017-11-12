@@ -1,0 +1,17 @@
+---
+
+- name: SolrCloud | Install
+  include: install.yml
+  tags:
+    - install
+
+- name: SolrCloud | Configure
+  include: config.yml
+  tags:
+    - configure
+
+- name: SolrCloud | Service
+  include: service.yml
+  when: solr_service_state == "restarted"
+  tags:
+    - service

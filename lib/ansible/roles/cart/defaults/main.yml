@@ -1,0 +1,25 @@
+---
+
+cart_name: cart-service
+cart_port: 8001
+eureka_server: 192.168.11.233
+eureka_port: 8761
+mycat_ip: 192.168.11.219
+database_name: e-commerce-cart
+redis_ip: 192.168.11.219
+redis_port: 22135
+zipkin_server: 192.168.11.225
+zipkin_port:  
+
+cart_prefer_ipaddress: true
+cart_ignored_interfaces:
+ - eth0
+ - enp2s0f0
+
+cart_pkg_name: micro-service-cart
+cart_config_dir: "/etc/e-commerce/cart"
+cart_service_name: e-commerce-cart.service
+
+heap_option: "-Xms512m -Xmx512m"
+gc_algo_option: "-XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:G1ReservePercent=20"
+dump_option: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/e-commerce/logs-oomdump/cart.oomdump"

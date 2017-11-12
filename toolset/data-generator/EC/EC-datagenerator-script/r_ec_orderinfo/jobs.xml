@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>11</num>
+            <table>r_ec_orderinfo</table>
+            <filename>r_ec_orderinfo.sql</filename>
+            <detail>
+		<sOrderID>$pool{sOrderID}</sOrderID>
+                <nUserID>$rule{nUserID}</nUserID>
+                <nTotalQuantity>$pool{nTotalQuantity}</nTotalQuantity>
+                <nTotalPrice>$pool{nTotalPrice}</nTotalPrice>
+		<cStatus>$pool{cStatus}</cStatus>
+		<sDate_created>$pool{sDatecreated}</sDate_created>
+		<sDate_Modified>$pool{sDateModified}</sDate_Modified>
+            </detail>
+        </job>
+    </jobs>
+</root>

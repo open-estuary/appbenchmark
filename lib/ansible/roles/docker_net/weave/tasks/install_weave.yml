@@ -1,0 +1,33 @@
+#install iperf
+- name: download weave
+  copy: 
+    src: weave
+    dest: /usr/local/bin/weave
+    mode: 0755
+
+- name: download weave image
+  copy:
+    src: weave.tar
+    dest: /tmp/weave.tar
+    mode: 0600
+
+- name: download weave
+  copy:
+    src: weaveexec.tar
+    dest: /tmp/weaveexec.tar
+    mode: 0600
+
+- name: download weave
+  copy:
+    src: weavedb.tar
+    dest: /tmp/weavedb.tar
+    mode: 0600  
+
+- name: load images
+  shell: docker load < /tmp/weave.tar && docker load < /tmp/weaveexec.tar && docker load < /tmp/weavedb.tar 
+
+- name: launch weave 
+  command: weave launch {{ main_server_ip }} 
+
+- name: setup weave env
+  command: weave env

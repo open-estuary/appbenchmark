@@ -1,0 +1,6 @@
+- name: run start_etcd.sh
+  shell: ./start_etcd.sh
+  async: 10
+  poll: 0
+  args:
+    chdir: /tmp/

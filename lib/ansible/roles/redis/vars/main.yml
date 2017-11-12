@@ -1,0 +1,4 @@
+root_dir: "appbenchmark"
+app_dir: "apps"
+app_name_dir: "e-commerce-solutions"
+app_test_tool_dir: "e-commerce-springcloud-microservice"

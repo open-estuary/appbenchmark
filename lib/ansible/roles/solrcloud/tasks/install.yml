@@ -1,0 +1,63 @@
+---
+# tasks file for solr_cloud
+# installation instructions taken from: https://cwiki.apache.org/confluence/display/solr/Taking+Solr+to+Production
+- name: SolrCloud | Ensure solr group
+  group:
+    name: "{{ solr_group }}"
+
+- name: SolrCloud | Ensure solr user
+  user:
+    name: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    createhome: no
+    state: present
+
+- name: SolrCloud | Ensure solr dirs exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+  with_items:
+    - "{{ solr_log_dir }}"
+
+- name: SolrCloud | Download SolrCloud binaries
+  get_url:
+    url: "{{ solr_cloud_url }}"
+    dest: /tmp/{{ solr_cloud_package }}
+
+- name: SolrCloud | Extract SolrCloud installation script in the current directory
+  shell: "tar xzf /tmp/{{ solr_cloud_package }} {{ solr_cloud_build_name }}/bin/install_solr_service.sh --strip-components=2"
+  args:
+    chdir: /tmp
+  tags:
+    - skip_ansible_lint
+
+- name: SolrCloud | Execute SolrCloud installation script
+  shell: /tmp/install_solr_service.sh /tmp/{{ solr_cloud_package }} -f -u {{ solr_user }} -s solr -n
+
+- name: Ensure solr_user has the ownership of solr_home
+  file:
+    path: "{{ solr_home }}-{{ solr_cloud_version }}"
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Check if SolrCloud is runnning
+  shell: "ps -aux | grep solr | grep start.jar | grep -v grep"
+  changed_when: false
+  register: solr_process_status
+  failed_when: solr_process_status.rc >= 2
+
+- name: SolrCloud | Ensure Solr Service has stopped firstly
+  shell: "{{ solr_home }}/bin/solr stop" 
+  when: "solr_process_status.stdout.find('solr') != -1"
+  ignore_errors: True
+
+- name: SolrCloud | Stop Solr Service
+  service:
+    name: solr
+    state: stopped
+  ignore_errors: True

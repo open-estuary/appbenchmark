@@ -1,0 +1,36 @@
+---
+- name: install twemproxy for redhat
+  yum: name=twemproxy state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+#- name: copy twemproxy configurations
+#  copy:
+#    src: ../files/
+#    dest: /etc
+#    mode: 0644
+#    owner: "{{ estuaryuser }}"
+#    group: "{{ estuaryuser }}"
+
+    
+- name: generate twemproxy configuration files
+  template:
+    src: twemproxy.j2
+    dest: /etc/twemproxy_{{ item }}.yml
+    mode: 0644
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+  with_sequence: start={{ twemproxy_cpus.split('-')[0] }} end={{ twemproxy_cpus.split('-')[-1] }}
+
+- name: echo redis info to twemproxy configurations
+  shell: echo "   - {{ item.redis_ip }}:{{ item.redis_port }}:1" >> /etc/twemproxy_{{ item.twemproxy_cpu }}.yml
+  with_items: "{{ twemproxy_redis_config }}"
+  
+
+- name: copy twemproxy shell
+  copy:
+    src: ../files/run_twemproxy.sh
+    dest: /usr/sbin/run_twemproxy.sh
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+

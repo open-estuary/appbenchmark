@@ -1,0 +1,14 @@
+---
+
+mycat_home: "~/mycat_home"
+mycat_conf_dir: "~/mycat_home/src/mycat/conf"
+
+wrapper_port: 1984
+
+mycat_serverport: 8066
+mycat_managerport: 9066
+
+#MySQL configurations
+user_name: "root"
+password: ""
+

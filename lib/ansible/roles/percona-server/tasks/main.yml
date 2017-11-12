@@ -1,0 +1,243 @@
+---
+
+- name: install mysql package
+  yum: name={{ item }} state=present
+  with_items:
+   - Percona-Server-server-{{ version }}
+   - MySQL-python
+
+- name: check my_master.cnf exist
+  stat: 
+     path: "{{ master_cnf }}"
+  register: checkMasterResult
+
+- name: check my_slave.cnf exist
+  stat:
+     path: "{{ slave_cnf }}"
+  register: checkSlaveResult
+
+- name: stop mysql master server
+  shell: "mysqld_multi --defaults-extra-file={{ master_cnf }} stop"
+  when: (mysql_master_install_inprogress is defined) and mysql_master_install_inprogress and checkMasterResult.stat.exists
+
+- name: stop mysql slave server
+  shell: "mysqld_multi --defaults-extra-file={{ slave_cnf }} stop"
+  when: (mysql_master_install_inprogress is not defined) and checkSlaveResult.stat.exists
+
+- name: create data dir
+  file: 
+     dest: "{{ mysql_data_dir }}/mysql{{ item.port }}/data"
+     state: directory
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+  with_items: "{{ mysql_instance }}"
+
+- name: create binlog dir
+  file: 
+     dest: "{{ mysql_data_dir }}/mysql{{ item.port }}/binlog"
+     state: directory
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+  with_items: "{{ mysql_instance }}"
+
+- name: create relay_log dir
+  file: 
+     dest: "{{ mysql_data_dir }}/mysql{{ item.port }}/relay_log"
+     state: directory
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+  with_items: "{{ mysql_instance }}"
+
+- name: create local dir
+  file:
+     dest: "{{ local_dir }}/mysql{{ item.port }}"
+     state: directory
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+  with_items: "{{ mysql_instance }}"
+
+- name: create mysql log dir
+  file:
+     dest: "{{ mysql_log_dir }}"
+     state: directory
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+
+- name: create mysql log
+  file:
+     dest: "{{ mysql_log_dir }}/mysqld_multi.log"
+     state: touch
+     mode: 0755
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+
+- name: copy master mysql configuration files
+  template:
+    src: my.cnf.j2
+    dest: "{{ master_cnf }}"
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: repl_name is not defined
+
+- name: copy slave mysql configuration files
+  template:
+    src: my.cnf.j2
+    dest: "{{ slave_cnf }}"
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: repl_name is defined
+  
+
+- name: modify permission
+  file: 
+     dest: "{{ mysql_data_dir }}"
+     state: directory
+     owner: "{{ mysqluser }}"
+     group: "{{ mysqluser }}"
+
+- name: initialize mysql
+  shell: "mysql_install_db --user={{ mysqluser }} --datadir={{ mysql_data_dir }}/mysql{{ item.port }}/data"
+  with_items: "{{ mysql_instance }}"
+
+- name: start master mysql
+  shell: "mysqld_multi --defaults-extra-file=/etc/my_master.cnf start "
+  when: repl_name is not defined
+
+- name: start slave mysql
+  shell: "mysqld_multi --defaults-extra-file=/etc/my_slave.cnf start "
+  when: repl_name is defined
+
+- name: set mysql cpu affinity
+  shell: "ps -aux | grep mysql | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ item.cpus }}"
+  with_items: "{{ mysql_instance }}"
+
+- name: master allow remote login
+  mysql_user:
+     login_host: "{{ item.login_host }}"
+     login_user: "{{ item.login_name }}"
+     login_password: "{{ item.login_password }}"
+     login_port: "{{ item.port }}"
+     name: "{{ item.login_name }}"
+     password: "{{ item.login_password }}"
+     host: "%"
+     priv: '*.*:ALL'
+     state: present
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is not defined
+
+- name: slave allow remote login
+  mysql_user:
+     login_host: "{{ item.login_host }}"
+     login_user: "{{ item.login_name }}"
+     login_password: "{{ item.login_password }}"
+     login_port: "{{ item.port }}"
+     name: "{{ item.login_name }}"
+     password: "{{ item.login_password }}"
+     host: "%"
+     priv: '*.*:ALL'
+     state: present
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: ensure no repl user exit
+  mysql_user:
+    login_host: "{{ item.master_host }}"
+    login_user: "{{ item.master_login_name }}"
+    login_password: "{{ item.master_login_password }}"
+    login_port: "{{ item.master_port }}"
+    name: "{{ repl_name }}"
+    state: absent
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: create user replication
+  mysql_user:
+     login_host: "{{ item.master_host }}"
+     login_user: "{{ item.master_login_name }}"
+     login_password: "{{ item.master_login_password }}"
+     login_port: "{{ item.master_port }}"
+     name: "{{ repl_name }}"
+     password: "{{repl_password}}"
+     host: "{{ repl_host }}"
+     priv: "*.*:REPLICATION SLAVE"
+     state: present
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: ensure anonymous users are not in the master database
+  mysql_user:
+     login_host: "{{ item.master_host }}"
+     login_user: "{{ item.master_login_name }}"
+     login_password: "{{ item.master_login_password }}"
+     login_port: "{{ item.master_port }}"
+     host_all: yes
+     name: ''
+     state: absent
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: ensure anonymous users are not in the slave database
+  mysql_user:
+     login_host: "{{ item.login_host }}"
+     login_user: "{{ item.login_name }}"
+     login_password: "{{ item.login_password }}"
+     login_port: "{{ item.port }}"
+     host_all: yes
+     name: ''
+     state: absent
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: get master replication status 
+  mysql_replication: 
+     login_host: "{{ item.master_host }}"
+     login_user: "{{ item.master_login_name }}"
+     login_password: "{{ item.master_login_password }}"
+     login_port: "{{ item.master_port }}"
+     mode: getmaster
+  register: repl_stat
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: stop slave in slave to change replication config
+  mysql_replication:
+    login_host: "{{ item.login_host }}"
+    login_user: "{{ item.login_name }}"
+    login_password: "{{ item.login_password }}"
+    login_port: "{{ item.port }}"
+    mode: stopslave
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: change the master in slave to start the replication mysql_replication
+  mysql_replication:
+     login_host: "{{ item.login_host }}"
+     login_user: "{{ item.login_name }}"
+     login_password: "{{ item.login_password }}"
+     login_port: "{{ item.port }}"
+     mode: changemaster
+     master_host: "{{ item.master_host }}"
+     master_port: "{{ item.master_port }}"
+     master_log_file: "{{ repl_stat.results[0].File }}"
+     master_log_pos: "{{ repl_stat.results[0].Position }}"
+     master_user: "{{ repl_name }}"
+     master_password: "{{ repl_password }}"
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined
+
+- name: start slave in slave to start the replication 
+  mysql_replication: 
+    login_host: "{{ item.login_host }}"
+    login_user: "{{ item.login_name }}"
+    login_password: "{{ item.login_password }}"
+    login_port: "{{ item.port }}"
+    mode: startslave
+  with_items: "{{ mysql_instance }}"
+  when: repl_name is defined

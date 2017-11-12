@@ -1,0 +1,246 @@
+---
+- name: Install Zookeeper Server Firstly
+  hosts: ARM64ZookeeperHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: zookeeper }
+
+- name: Install Mysql Master Server Firstly
+  hosts: ARM64MySQLMasterHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     mysql_master_install_inprogress: true
+     mysql_instance:
+       - cpus: "0-30"
+         port: 3306
+         login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+         login_name: root
+         login_password:
+  roles:
+    - estuaryrepo
+    - { role: percona-server, when: mysql_instance is defined }
+
+- name: Install Modules on ARM64 Server-01
+  hosts: ARM64Server01
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
+ 
+- name: Install Modules on ARM64 Server-02
+  hosts: ARM64Server02
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: redis, when: redis_cpus is defined }
+    - { role: eureka-service-discovery, when: eureka_cpus is defined }
+    - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on ARM64 Server-03
+  hosts: ARM64Server03
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on ARM64 Server-04
+  hosts: ARM64Server04
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: zuul-apigateway, when: zuul_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on ARM64 Server-05
+  hosts: ARM64Server05
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: solrcloud, when: solr_cpus is defined }
+    - { role: zuul-apigateway, when: zuul_cpus is defined}
+    - { role: pcp }
+
+- name: Install Modules on ARM64 Server-06
+  hosts: ARM64Server06
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
+    - { role: solrcloud, when: solr_cpus is defined }
+    - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on ARM64 Server-07
+  hosts: ARM64Server07
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
+    - { role: mycat, when: mycat_1_cpus is defined }
+    - { role: mycat, 
+        mycat_home: "~/mycat_home_1", 
+        mycat_conf_dir: "~/mycat_home_1/src/mycat/conf", 
+        wrapper_port: 1985, 
+        mycat_serverport: 8067, 
+        mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
+        when: mycat_2_cpus is defined }
+
+
+- name: Install Modules on ARM64 Server-08
+  hosts: ARM64Server08
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+
+        mysql_instance:
+           - master_host: 192.168.11.244
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3307
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+  roles:
+    - estuaryrepo
+    - { role: pcp }
+    - { role: percona-server, when: mysql_instance is defined }
+
+- name: Install Modules on ARM64 Server-09
+  hosts: ARM64Server09
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: solrcloud, when: solr_cpus is defined }
+    - { role: pcp }
+    - { role: mycat, when: mycat_1_cpus is defined }
+    - { role: mycat, 
+        mycat_home: "~/mycat_home_1", 
+        mycat_conf_dir: "~/mycat_home_1/src/mycat/conf", 
+        wrapper_port: 1985, 
+        mycat_serverport: 8067, 
+        mycat_managerport: 9067, 
+        ifkillmycatprocess: "false",
+        when: mycat_2_cpus is defined }
+
+
+- name: Install Modules on ARM64 Server-10
+  hosts: ARM64Server10
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+
+        mysql_instance:
+           - master_host: 192.168.11.252
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3308
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+  roles:
+    - estuaryrepo
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
+    - { role: percona-server, when: mysql_instance is defined }
+
+- name: Install Modules on ARM64 Server-11
+  hosts: ARM64Server11
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+        repl_name: repl
+        repl_password: repl
+        repl_host: "%"
+    
+        mysql_instance:
+           - master_host: 192.168.11.252
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "0-30"
+             port: 3308
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+
+           - master_host: 192.168.11.244
+             master_port: 3306
+             master_login_name: root
+             master_login_password:
+             cpus: "34-63"
+             port: 3307
+             login_name: root
+             login_password:
+             login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+  roles:
+    - estuaryrepo
+    - { role: pcp }
+    - { role: percona-server, when: mysql_instance is defined }
+
+- name: Install Modules on ARM64 Server-12
+  hosts: ARM64Server12
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - { role: pcp }
+

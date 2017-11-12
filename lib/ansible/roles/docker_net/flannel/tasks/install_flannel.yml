@@ -1,0 +1,15 @@
+- name: transfer setup_flannel.sh
+  template: src=setup_flannel.sh dest=/tmp/setup_flannel.sh mode=0755
+
+- name: setup flannel
+  shell: ./setup_flannel.sh
+  args:
+    chdir: /tmp/
+
+- name: start flannel
+  shell: (flanneld --etcd-endpoints=http://{{ Etcd_Server }}:2379 --iface={{ Netcard }} --etcd-prefix=/flannel/network &)
+  async: 10
+  poll: 0
+
+- name: config docker daemon
+  script: config_docker.sh

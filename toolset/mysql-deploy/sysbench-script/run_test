@@ -1,0 +1,8 @@
+numactl --physcpubind=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 --localalloc  sysbench --test=/home/wanglei/EC/oltp/sysbench/oltp_point_select.lua    --mysql-user=root --mysql-host=192.168.11.244,192.168.11.232 --threads=100  --mysql-db=TESTDB --mysql-port=8066 --report-interval=1 --max-time=60 run
+sleep 10
+numactl --physcpubind=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 --localalloc  sysbench --test=/home/wanglei/EC/oltp/sysbench/oltp_read_only.lua    --mysql-user=root --mysql-host=192.168.11.244,192.168.11.232 --threads=100  --mysql-db=TESTDB --mysql-port=8066 --report-interval=1 --max-time=60 run
+sleep 10
+
+numactl --physcpubind=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 --localalloc  sysbench --test=/home/wanglei/EC/oltp/sysbench/oltp_write_only.lua    --mysql-user=root --mysql-host=192.168.11.244,192.168.11.232 --threads=100  --mysql-db=TESTDB --mysql-port=8066 --report-interval=1 --max-time=60 run
+sleep 10
+numactl --physcpubind=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 --localalloc  sysbench --test=/home/wanglei/EC/oltp/sysbench/oltp_read_write.lua    --mysql-user=root --mysql-host=192.168.11.244,192.168.11.232 --threads=100  --mysql-db=TESTDB --mysql-port=8066 --report-interval=1 --max-time=60 run

@@ -1,0 +1,8 @@
+#install flume-ng
+- name: install flume-ng for redhat
+  yum: name=flume state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+- name: install flume-ng for ubuntu
+  apt: name=flume state=present
+  when: ansible_distribution == 'Ubuntu'

@@ -1,0 +1,6 @@
+---
+
+rpm_packages_list: ""
+deb_packages_list: ""
+packages_state: "present"
+

@@ -1,0 +1,15 @@
+---
+# This role installs and sets up Openjdk
+
+- name: Install Openjdk on CentOS
+  yum: name="java-{{ openjdk_version }}-openjdk" state=present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Openjdk-devel on CentOS
+  yum: name="java-{{ openjdk_version }}-openjdk-devel" state=present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Openjdk on Ubuntu
+  apt: name="openjdk-{{ openjdk_major_version }}-jdk" state=present  
+  when: ansible_os_family == "Debian"
+

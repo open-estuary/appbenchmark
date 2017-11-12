@@ -1,0 +1,29 @@
+---
+
+- name: Install PCP package
+  yum: 
+    name: pcp
+    state: present
+  when: pcp_pmcd | bool 
+
+ 
+- name: Install PCP-webapp-vector packages
+  yum: 
+    name: pcp-webapp-vector
+    state: present
+  when: pcp_web_vector | bool 
+
+- name: Start the PCP Daemon
+  service: name=pmcd  state=restarted enabled=yes daemon_reload=yes
+  when: pcp_pmcd | bool
+
+- name: Start the PCP Webapi Daemon
+  service: name=pmwebd  state=restarted enabled=yes daemon_reload=yes
+  when: pcp_web_vector | bool
+
+- name: Set PCP CPU affinity 
+  shell: "ps -aux | grep pmcd | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ pcp_cpus }}"
+  when: (pcp_cpus is defined) and (pcp_pmcd | bool)
+
+- name: Stop Firewalld Daemon
+  service: name=firewalld  state=stopped

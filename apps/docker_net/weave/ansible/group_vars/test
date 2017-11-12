@@ -1,0 +1,2 @@
+netarch: weave
+image: openestuary/centos:dockernet_test

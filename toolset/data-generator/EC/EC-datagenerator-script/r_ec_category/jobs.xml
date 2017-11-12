@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>5000</num>
+            <table>r_ec_category</table>
+            <filename>r_ec_category.sql</filename>
+            <detail>
+		<nLevel>$rule{nLevel,1}</nLevel>
+		<nParentCategoryID>$rule{nParentCategoryID,2}</nParentCategoryID>
+                <sCategoryName>$pool{sCategoryName}</sCategoryName>
+            </detail>
+        </job>
+    </jobs>
+</root>

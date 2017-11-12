@@ -1,0 +1,12 @@
+---
+
+version: 56-5.6.35
+
+mysqluser: mysql
+
+mysql_data_dir: /opt/mysql
+local_dir: /opt/mysql/local
+mysql_log_dir: /opt/mysql/log
+
+master_cnf: /etc/my_master.cnf
+slave_cnf: /etc/my_slave.cnf

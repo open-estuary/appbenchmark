@@ -32,6 +32,12 @@
   copy: src=index.php dest=/usr/share/nginx/html/index.php
 
 - name: Start the nginx service
-  service: name={{ nginx_service_name }} state=started enabled=yes
+  service: name={{ nginx_service_name }} state=restarted enabled=yes
   when: nginx_installation_type in nginx_installation_types_using_service and nginx_daemon_mode == "on"
   tags: [service, nginx]
+
+
+- name: Set Ngnix CPU affinity 
+  shell: "ps -aux | grep nginx | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ nginx_cpus }}"
+  when: nginx_cpus is defined 
+

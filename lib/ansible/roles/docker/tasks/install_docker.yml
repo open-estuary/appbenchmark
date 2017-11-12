@@ -1,0 +1,11 @@
+#install docker
+- name: install docker for redhat
+  yum: name=docker state=present disable_gpg_check=yes
+  when: ansible_os_family == 'RedHat'
+
+- name: install docker for ubuntu
+  apt: name=docker state=present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: ensure docker is running
+  service: name=docker state=restarted

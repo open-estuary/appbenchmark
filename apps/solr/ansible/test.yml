@@ -1,0 +1,23 @@
+---
+- name: Load Solr Test Data on D05 Servers
+  hosts: SolrServerD05
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+
+- name: Load Solr Test Data on X86 Servers
+  hosts: SolrServerX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+
+- name: Perform Solr Test on X86 Clients
+  hosts: SolrClientX86
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - solr_benchmark_test
+

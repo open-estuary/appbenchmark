@@ -1,0 +1,6 @@
+---
+- hosts: weave_servers
+
+  roles:
+  - role: docker
+  - role: weave

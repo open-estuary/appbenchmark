@@ -1,0 +1,30 @@
+---
+
+- name: Install the eureka-service discovery from open-estuary repo
+  yum: 
+    name: "{{ eureka_pkg_name }}"
+    state: latest
+
+- name: Create eureka configure directory 
+  file: 
+    path: "{{ eureka_config_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Copy the eureka configuration file
+  template:
+    src: application.yml.j2
+    dest: "{{ eureka_config_dir }}/application.yml"
+
+- name: Copy the microservice-eureka.in.sh
+  template:
+    src: microservice-eureka.in.sh.j2
+    dest: "{{ eureka_config_dir }}/microservice-eureka.in.sh"
+
+- name: Start the eureka-server service
+  service: name={{ eureka_service_name }}  state=restarted enabled=yes daemon_reload=yes
+
+- name: Set Eureka CPU affinity 
+  shell: "ps -aux | grep micro-service-eureka | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ eureka_cpus }}"
+  when: eureka_cpus is defined 
+

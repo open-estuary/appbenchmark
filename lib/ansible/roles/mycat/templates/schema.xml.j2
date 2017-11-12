@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://io.mycat/">
+
+	<schema name="{{ schema }}" checkSQLschema="false" dataNode="{{datanode_name }}" sqlMaxLimit="100">
+	</schema>
+
+	<dataNode name="{{ datanode_name }}" dataHost="{{ datahost_name }}" database="{{ mysql_database }}" />
+
+	<dataHost name="{{ datahost_name }}" maxCon="1000" minCon="10" balance="0"
+			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+		<heartbeat>select user()</heartbeat>
+		<!-- can have multi write hosts -->
+                <writeHost host="hostM1" url="{{ mysql_host_M_IP }}:{{ mysql_host_M_Port }}" user="root"
+                                   password="">
+                        <!-- can have multi read hosts -->
+      {% for slave_host in mysql_slave_hosts %}
+                        <readHost host="{{ slave_host.host }}" url="{{ slave_host.mysql_host_S_IP }}:{{ slave_host.mysql_host_S_Port }}" user="root" password="" />
+      {% endfor %}
+                </writeHost>
+	</dataHost>
+
+</mycat:schema>

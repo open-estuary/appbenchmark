@@ -1,0 +1,62 @@
+---
+- name: Load Solr Data 
+  hosts: JMeterClient 
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+    solr_server: "192.168.11.219"
+    solr_port: 8983
+    solr_service_state: "stopped"
+    pcp_pmcd: false
+    pcp_web_vector: true
+    jmeter_version: "3.2"
+  roles:
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: solrcloud }
+    - { role: solr_benchmark_setup }
+   - { role: solr_benchmark_dataload }
+    - { role: jmeter }
+    - { role: pcp }
+
+- name: Load Cart Data
+  hosts: ARM64MySQLCartDATA
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     database: e-commerce-cart
+     sql_location: /opt/data/
+     listen_port: 3306
+     login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+     login_name: root
+     login_password:
+     cart: cart.sql
+     userinfo: r_ec_userinfo.sql
+     sku: r_ec_sku.sql
+     userbank: r_ec_userbankinfo.sql
+  roles:
+    - estuaryrepo
+    - { role: percona-server-data }
+
+- name: Load Order Data
+  hosts: ARM64MySQLOrderDATA 
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars: 
+     database: e-commerce-order
+     sql_location: /opt/data/
+     listen_port: 3306
+     login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+     login_name: root
+     login_password:
+     order: order.sql
+     userinfo: r_ec_userinfo.sql
+     sku: r_ec_sku.sql
+     userbank: r_ec_userbankinfo.sql
+     userdeliveryaddress: r_ec_userdeliveryaddress.sql
+  roles:
+    - estuaryrepo
+    - { role: percona-server-data }

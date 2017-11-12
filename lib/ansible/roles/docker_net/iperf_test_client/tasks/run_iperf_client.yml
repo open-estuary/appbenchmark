@@ -1,0 +1,17 @@
+- name: transfer iperf_clientcon.sh
+  template:
+    src: iperf_clientcon.sh
+    dest: /tmp/iperf_clientcon.sh
+    mode: 0755
+
+- name: transfer iperf_client.sh
+  template:
+    src: iperf_client.sh
+    dest: /tmp/iperf_client.sh
+    mode: 0755
+
+- name: run iperf in container on client
+  shell: ./iperf_client.sh
+  args:
+    chdir: /tmp/
+

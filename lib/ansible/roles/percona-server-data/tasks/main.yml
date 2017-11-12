@@ -1,0 +1,73 @@
+---
+
+- name: create database
+  mysql_db:
+     name: "{{ database }}"
+     state: present
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+
+- name: load cart table
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ cart }}"
+  when: database == "e-commerce-cart"
+
+- name: load order table
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ order }}"
+  when: database == "e-commerce-order"
+
+- name: load userinfo data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userinfo }}"
+
+- name: load sku data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ sku }}"
+
+- name: load userbank data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userbank }}"
+
+- name: load userdeliveryaddress data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ userdeliveryaddress }}"
+  when: userdeliveryaddress is defined

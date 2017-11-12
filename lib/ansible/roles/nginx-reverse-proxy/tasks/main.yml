@@ -1,0 +1,30 @@
+---
+# tasks file for ansible-nginx-reverse-proxy
+
+- include: nginx-official-repo.yml
+  tags: [packages, nginx]
+  when: nginx_official_repo == True 
+
+- include: installation.packages.yml
+  tags: [packages, nginx]
+ 
+- include: deploy.yml
+  tags: deploy
+
+- name: Stop the nginx service firstly
+  service: name=nginx state=stopped
+
+- name: Copy the nginx configuration file
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_conf_dir }}/nginx.conf"
+  with_items: "{{ nginx_reverse_proxy_proxies }}"
+
+- name: Start the nginx service
+  service: name=nginx state=restarted enabled=yes
+  tags: [service, nginx]
+
+- name: Set Ngnix CPU affinity 
+  shell: "ps -aux | grep nginx | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ nginx_cpus }}"
+  when: nginx_cpus is defined 
+

@@ -1,0 +1,79 @@
+#{{ ansible_managed }}
+user              {{ nginx_user }}  {{ nginx_group }};
+worker_processes {{ nginx_worker_process_num }};
+
+{% if nginx_pid_file %}
+pid        {{ nginx_pid_file }};
+{% endif %}
+
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile }};
+
+include {{ nginx_conf_dir }}/modules-enabled/*.conf;
+
+error_log {{ nginx_error_logfile }} {{ nginx_log_level }}; 
+
+events {
+    worker_connections  {{ nginx_max_connections }};
+    multi_accept off;
+    use epoll;
+}
+
+{% if nginx_extra_root_params is defined and nginx_extra_root_params is iterable %}
+{% for line in nginx_extra_root_params %}
+{{ line }};
+{% endfor %}
+{% endif %}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+    #
+    #keepalive_timeout  65;
+    #
+    #gzip  on;
+    #
+    #
+    server {
+         listen {{ nginx_status_listen_port }};
+         location /basic_status {
+            stub_status;
+         }
+    }
+
+    upstream {{ item.nginx_backend_name }} {
+        {% if item.nginx_balancer_config is defined %}
+        {{ item.nginx_balancer_config }};
+        {% endif %}
+        {% for backend in item.nginx_backends %}
+        server {{ backend }};
+        {% endfor %}
+    }
+
+    server {
+        listen {{ nginx_port }};
+        #server_name {{ item.nginx_domains|join(' ') }};
+        error_log {{ nginx_error_logfile }} {{ nginx_log_level }};
+        location / {
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   Host      $http_host;
+            proxy_set_header   X-Forwarded-For $remote_addr;
+            proxy_pass         http://{{ item.nginx_backend_name }};
+        }
+    }      
+
+    #include {{ nginx_conf_dir }}/conf.d/*.conf;
+}
+
+{% if nginx_daemon_mode == "off" %}
+daemon off;
+{% endif %}

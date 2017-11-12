@@ -1,0 +1,110 @@
+---
+- name: Install Jmeter Test 
+  hosts: JMeterClient
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - openjdk
+    - jmeter
+
+- name: Install LVS on ARM64 server
+  hosts: LVSARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - lvs
+
+- name: Install Nginx on ARM64 server
+  hosts: NginxARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - nginx
+
+- name: Install Api-Gateway on ARM64 server
+  hosts: ApiGateWayARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - zuul
+
+- name: Install E-Commerce Order-MircoService on ARM64 server
+  hosts: OrderMircoServiceARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - e-commerce-order
+
+- name: Install E-Commerce Cart-MicroService on ARM64 server
+  hosts: CartMicroServiceARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - e-commerce-cart
+
+- name: Install E-Commerce Search-MicroService on ARM64 server
+  hosts: SearchMicroServiceARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryapp
+    - e-commerce-search
+
+- name: Install MyCat Proxy on ARM64 server
+  hosts: MyCatProxyARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - mycat
+
+- name: Install MySQL on ARM64 server
+  hosts: MySQLARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - mysql
+
+- name: Install Twemproxy on ARM64 server
+  hosts: TwemproxyARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - twemproxy
+
+
+- name: Install Redis on ARM64 server
+  hosts: RedisARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - redis
+
+- name: Install Solr on ARM64 server
+  hosts: SolrARM64
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - solr
+

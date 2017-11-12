@@ -1,0 +1,13 @@
+[weave_servers]
+192.168.11.232
+192.168.11.244
+
+[test_server]
+192.168.11.232
+
+[test_client]
+192.168.11.244
+
+[test:children]
+test_server
+test_client

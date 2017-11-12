@@ -1,0 +1,35 @@
+---
+
+- name: Install the zuul-apigateway from open-estuary repo
+  yum: 
+    name: "{{ zuul_pkg_name }}"
+    state: latest
+
+- name: Create zuul configure directory 
+  file: 
+    path: "{{ zuul_config_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Copy the zuul application.yml
+  template:
+    src: application.yml.j2
+    dest: "{{ zuul_config_dir }}/application.yml"
+
+- name: Copy the zuul microservice-zuul.in.sh
+  template:
+    src: microservice-zuul.in.sh.j2
+    dest: "{{ zuul_config_dir }}/microservice-zuul.in.sh"
+
+#- name: Copy the zuul service file
+#  template:
+#    src: zuul-apigateway.service.j2
+#    dest: /etc/systemd/system/{{ zuul_service_name }}.service
+
+- name: Start the zuul-server service
+  service: name={{ zuul_service_name }}  state=restarted enabled=yes daemon_reload=yes
+
+- name: Set Zuul CPU affinity 
+  shell: "ps -aux | grep micro-service-zuul | grep -v grep | awk '{print $2}' | xargs -L 1 taskset -pc {{ zuul_cpus }}"
+  when: zuul_cpus is defined 
+

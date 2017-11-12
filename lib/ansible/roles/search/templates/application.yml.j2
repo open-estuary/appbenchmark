@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: {{ search_name }}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://{{ mysql_ip }}:{{ mysql_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password:
+  redis:
+    host: {{ redis_ip }}
+    port: {{ redis_port }}
+    pool:
+      maxActive: -1
+      maxWait: -1
+      maxIdle: 100
+      minIdle: 0
+    timeout: 100
+  data:
+    solr:
+      host: http://{{ solr_ip }}:{{ solr_port }}/solr/e-commerce
+  zipkin:
+      base-url: http://{{ zipkin_server }}:{{ zipkin_port }}
+  cloud:
+    inetutils:
+       ignored-interfaces:
+       {% for item in search_ignored_interfaces %}
+         - {{ item }}
+       {% endfor %}
+
+server:
+  port: {{ search_port }}
+eureka:
+ instance:
+    preferIpAddress: {{ search_prefer_ipaddress }}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+ client:
+    service-url:
+      defaultZone: http://{{ eureka_server }}:{{ eureka_port }}/eureka/
+
+management:
+  security:
+    enabled: false
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.htsat.order.model
+
+#logging:
+#  file: /opt/e-commerce/logs/search.log

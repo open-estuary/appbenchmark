@@ -1,0 +1,19 @@
+#install etcd
+- name: transfer setup_etcd.sh
+  template: src=setup_etcd.sh dest=/tmp/setup_etcd.sh mode=0755
+
+- name: setup etcd
+  shell: ./setup_etcd.sh
+  args:
+    chdir: /tmp/
+
+- name: transfer start_etcd.sh
+  template: src=start_etcd.sh dest=/tmp/start_etcd.sh mode=0755
+
+- name: start etcd
+  shell: ./start_etcd.sh
+  async: 10
+  poll: 0
+  args:
+    chdir: /tmp/
+

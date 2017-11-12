@@ -1,0 +1,3 @@
+#  curl -L git.io/weave -o weave
+weave_url: "git.io/weave"
+

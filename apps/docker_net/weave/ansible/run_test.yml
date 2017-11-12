@@ -1,0 +1,14 @@
+---
+- hosts: test_server
+ 
+  roles: 
+  - role: iperf_test_server
+  - role: netperf_test_server
+  - role: qperf_test_server
+
+- hosts: test_client
+
+  roles:
+  - role: iperf_test_client
+  - role: netperf_test_client
+  - role: qperf_test_client

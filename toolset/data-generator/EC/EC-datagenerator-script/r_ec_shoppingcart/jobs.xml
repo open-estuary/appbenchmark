@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <jobs>
+        <job>
+            <id>1</id>
+            <num>10000</num>
+            <table>r_ec_shoppingcart</table>
+            <filename>r_ec_shoppingcart.sql</filename>
+            <detail>
+		<nUserID>$rule{nUserID,4}</nUserID>
+                <sUpdateTime>$pool{sUpdateTime}</sUpdateTime>
+                <nTotalQuantity>$pool{nTotalQuantity}</nTotalQuantity>
+                <nTotalPrice>$pool{nTotalPrice}</nTotalPrice>
+            </detail>
+	</job>
+     </jobs>
+</root>

@@ -1,0 +1,16 @@
+---
+
+- name: Install/Uninstall RPM Packages List
+  yum: 
+    name: "{{ rpm_packages_list }}"
+    state: "{{ packages_state }}"
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+
+- name: Install/Uninstall Deb Packages List
+  apt: 
+    name: "{{ deb_packages_list }}"
+    state: "{{ packages_state }}"
+  when: ansible_os_family == "Debian"
+
