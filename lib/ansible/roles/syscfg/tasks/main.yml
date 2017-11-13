@@ -1,0 +1,29 @@
+---
+- name: Copy sysctl configuration
+  copy:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Copy limit configuration
+  copy:
+    src: limits.conf
+    dest: /etc/security/limits.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Set file open number limit
+  shell: "ulimit -n {{ syscfg_max_opefile_num }}"
+  become: yes
+  become_user: root
+
+- name: Load sysctl configuration
+  shell: "sysctl -p"
+  become: yes
+  become_user: root
+  ignore_errors: True
+
+
