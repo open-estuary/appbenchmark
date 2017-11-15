@@ -1,24 +1,24 @@
 ---
-#- name: Load Solr Data 
-#  hosts: JMeterClient 
-#  remote_user: estuaryapp
-#  become: yes
-#  become_method: sudo
-#  vars:
-#    solr_server: "192.168.11.219"
-#    solr_port: 8983
-#    solr_service_state: "stopped"
-#    pcp_pmcd: false
-#    pcp_web_vector: true
-#    jmeter_version: "3.2"
-#  roles:
-#    - estuaryrepo
-#    - { role: openjdk }
-#    - { role: solrcloud }
-#    - { role: solr_benchmark_setup }
-#   - { role: solr_benchmark_dataload }
-#    - { role: jmeter }
-#    - { role: pcp }
+- name: Load Solr Data 
+  hosts: JMeterClient 
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+    solr_server: "192.168.11.219"
+    solr_port: 8983
+    solr_service_state: "stopped"
+    pcp_pmcd: false
+    pcp_web_vector: true
+    jmeter_version: "3.2"
+  roles:
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: solrcloud }
+    - { role: solr_benchmark_setup }
+   - { role: solr_benchmark_dataload }
+    - { role: jmeter }
+    - { role: pcp }
 
 - name: Load Cart Data
   hosts: ARM64MySQLCartDATA
