@@ -27,6 +27,11 @@
 
 - name: Perform E-commerce Benchmark Test
   shell: "{{ workspace }}/e_commerce_benchmark/e_commerce_benchmark_test.sh {{ e_commerce_api_server }} {{ e_commerce_api_port }} {{ e_commerce_users }} {{ e_commerce_test_time_insecs }} {{ e_commerce_order_create_percent }} {{ e_commerce_cart_percent }} {{ e_commerce_search_percent }} {{ e_commerce_order_del_percent  }} {{ e_commerce_query_file }} {{ e_commerce_jmeter_remote_hosts }} {{ e_commerce_log_dir }} " 
+  register: benchmark_report
+
+- name: Print Test Reports
+  debug:
+    var: benchmark_report.stdout_lines  
 
 - name: Check test report 
   shell: "( cd {{ e_commerce_log_dir }}; find . -type f)"
