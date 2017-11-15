@@ -1,0 +1,36 @@
+---
+# This role is to setup e_commerce_api test scripts
+
+- name: Create E-Commerce Benchmark Test Directory
+  file: 
+    path: "{{ workspace }}/e_commerce_benchmark/"
+    state: directory
+    mode: 0755
+    owner:  "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name : Download e_commerce_benchmark_test script
+  get_url:
+    url: "https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/e_commerce_benchmark/e_commerce_benchmark_test.sh"
+    dest: "{{ workspace }}/e_commerce_benchmark/"
+    mode: 0755
+    owner:  "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name : Download e_commerce_restapi Jmeter script
+  get_url:
+    url: "https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/e_commerce_benchmark/e_commerce_restapi_benchmark.jmx"
+    dest: "{{ workspace }}/e_commerce_benchmark/"
+    mode: 0755
+    owner:  "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
+- name: Perform E-commerce Benchmark Test
+  shell: "{{ workspace }}/e_commerce_benchmark/e_commerce_benchmark_test.sh {{ e_commerce_api_server }} {{ e_commerce_api_port }} {{ e_commerce_users }} {{ e_commerce_test_time_insecs }} {{ e_commerce_order_create_percent }} {{ e_commerce_cart_percent }} {{ e_commerce_search_percent }} {{ e_commerce_order_del_percent  }} {{ e_commerce_query_file }} {{ e_commerce_jmeter_remote_hosts }} {{ e_commerce_log_dir }} " 
+
+- name: Fetch test logs
+  fetch: 
+    src: "{{ e_commerce_log_dir }}"
+    dest: "{{ e_commerce_log_dir }}"
+    flat: yes
+
