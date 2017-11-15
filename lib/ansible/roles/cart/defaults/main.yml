@@ -7,8 +7,7 @@ eureka_port: 8761
 mycat_ip: 192.168.11.219
 database_name: e-commerce-cart
 redis_ip: 192.168.11.219
-redis_port: 22135
-zipkin_server: 192.168.11.225
+zipkin_server: 192.168.11.215
 zipkin_port:  
 
 cart_prefer_ipaddress: true

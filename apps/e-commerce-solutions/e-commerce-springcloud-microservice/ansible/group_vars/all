@@ -38,7 +38,7 @@ solr_tar_filename: "solr_ecommerce_mysql_data.tar.gz"
 solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.csv"
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 
-zipkin_server: 192.168.11.225
+zipkin_server: 192.168.11.215
 zipkin_port: 9411
 
 mount_paths:

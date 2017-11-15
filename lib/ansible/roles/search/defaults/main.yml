@@ -7,11 +7,11 @@ eureka_port: 8761
 mysql_ip: 192.168.11.244
 mysql_port: 3307
 database_name: e-commerce-search
-redis_ip: 192.168.11.232
+redis_ip: 192.168.11.223
 redis_port: 22146
-solr_ip: 192.168.11.232
+#solr_ip: 192.168.11.232
 solr_port: 8983
-zipkin_server: 192.168.11.225
+zipkin_server: 192.168.11.215
 zipkin_port:
 
 search_prefer_ipaddress: true
