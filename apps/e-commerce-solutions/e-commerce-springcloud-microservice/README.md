@@ -59,12 +59,11 @@ Eureka Service Example:
 
 <center><a href="https://github.com/open-estuary/packages/blob/master/solutions/e-commerce-springcloud-microservices/docs/e_commerce_eureka_example.png"><img src="https://github.com/open-estuary/packages/blob/master/solutions/e-commerce-springcloud-microservices/docs/e_commerce_eureka_example.png" border=0 width=1600></a></center>
 
-## <a name="4">Benchmark Test</a>
+## <a name="5">Benchmark Test</a>
+> As for how to provision test parameters, please refer to [E_Commerce Benchmark Test Role](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/ansible/roles/e_commerce_benchmark_test/defaults/main.yml).
+
+Now, execute `run_test.sh` to enjoy performance test.
  * `run_test.sh`
 
-### Test Topology
-
 ### Test Results
-                                           
-
-
+> Currently the test result is NOT released to public.                                            
