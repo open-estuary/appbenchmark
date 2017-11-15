@@ -2,6 +2,9 @@
 estuaryuser: estuaryapp
 workspace: /home/estuaryapp
 
+#This api server ip should the same as the LVS VIP defined in ansible/group_vars/ARM64Server01
+e_commerce_api_server: "192.168.12.100"
+
 eureka_server: "192.168.11.223"
 eureka_port: 8761
 
