@@ -5,7 +5,7 @@ estuaryuser: "estuaryapp"
 
 
 #Default to LVS Virtual IP and Port
-e_commerce_api_server: "192.168.12.10"
+e_commerce_api_server: "192.168.12.100"
 e_commerce_api_port: 9000
 
 #Define the number of users(or threads) for Jmeter
