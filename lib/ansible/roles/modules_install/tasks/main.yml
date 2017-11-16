@@ -14,3 +14,9 @@
     state: "{{ packages_state }}"
   when: ansible_os_family == "Debian"
 
+- name: Clear Yum Metadata
+  command: yum clean metadata
+  args:
+    warn: no
+  when: ansible_os_family == "RedHat" and repo_metadata_clean | bool
+

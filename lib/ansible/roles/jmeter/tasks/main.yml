@@ -48,7 +48,7 @@
   unarchive:
     src: "http://www.java2s.com/Code/JarDownload/java-json/java-json.jar.zip"
     dest: "/opt/jmeter/lib/"
-    remote_src: no    
+    remote_src: yes    
     mode: 0755
     owner: "{{ estuaryuser }}"
     group: "{{ estuaryuser }}"
