@@ -4,6 +4,7 @@
 * [Setup & Deployment](#3)
 * [REST API](#4)
 * [Benchmark Test](#5)
+* [Others](#6)
 
 ## <a name="1">Introduction</a>
 
@@ -67,3 +68,6 @@ Now, execute `run_test.sh` to enjoy performance test.
 
 ### Test Results
 > Currently the test result is NOT released to public.                                            
+
+## <a name="6">Others</a>
+ * Want to clear all packages after test? Just execute `remove.sh`
