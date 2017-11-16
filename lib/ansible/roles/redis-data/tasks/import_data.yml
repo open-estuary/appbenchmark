@@ -1,15 +1,15 @@
 ---
 
-#- name: load copy redis data
-#  copy:
-#    src: ../files/r_ec_sku.redis.tar.gz
-#    dest: /opt/
-#    mode: 0644
-#    owner: "{{ estuaryuser }}"
-#    group: "{{ estuaryuser }}"
+- name: load copy redis data
+  copy:
+    src: ../files/download_redis_data.sh
+    dest: /opt/
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
 
-#- name: untar redis data
-#  shell: tar -zxvf /opt/r_ec_sku.redis.tar.gz 
+- name: untar redis data
+  shell: /opt/download_redis_data.sh
 
 - name: load data to redis server
   shell: "cat /opt/r_ec_sku.redis.txt | redis-cli -h {{ item.IP_address }} -p {{ item.port }} --pipe"
