@@ -22,4 +22,13 @@ nginx_reverse_proxy_proxies:
     nginx_domains:
       - localhost
 
+redis_import_data:
+  - IP_address: 192.168.11.237
+    port: 7034
+  - IP_address: 192.168.11.237
+    port: 7035
+  - IP_address: 192.168.11.237
+    port: 7036
+  - IP_address: 192.168.11.237
+    port: 7037
 

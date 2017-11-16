@@ -75,3 +75,12 @@
   roles:
     - estuaryrepo
     - { role: percona-server-data }
+
+- name: load redis data
+  hosts: ARM64REDISSEARCHDATA
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - redis-data
+

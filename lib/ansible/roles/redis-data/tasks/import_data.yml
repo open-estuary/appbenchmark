@@ -1,0 +1,16 @@
+---
+
+#- name: load copy redis data
+#  copy:
+#    src: ../files/r_ec_sku.redis.tar.gz
+#    dest: /opt/
+#    mode: 0644
+#    owner: "{{ estuaryuser }}"
+#    group: "{{ estuaryuser }}"
+
+#- name: untar redis data
+#  shell: tar -zxvf /opt/r_ec_sku.redis.tar.gz 
+
+- name: load data to redis server
+  shell: "cat /opt/r_ec_sku.redis.txt | redis-cli -h {{ item.IP_address }} -p {{ item.port }} --pipe"
+  with_items: "{{ redis_import_data}}"
