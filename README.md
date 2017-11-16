@@ -52,15 +52,15 @@ Currently the following applications have been supported so far :
 - [Solr](https://github.com/open-estuary/appbenchmark/tree/master/apps/solr)
 - [Hadoop](https://github.com/open-estuary/appbenchmark/tree/master/apps/hadoop/hadoop_test1)
 - [Flume](https://github.com/open-estuary/appbenchmark/tree/master/apps/flume/flume-ng)
-- e-commerce-solutions
-  - [e-commerce-kubernetes](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-kubernetes)
-  - [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
+- ARM64 Based E-Commerce Application Solutions
+  - [E-Commerce-SpringCloud-Microservice Solution](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
+  - [E-Commerce-Kubernetes Solution](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-kubernetes)
 - Docker Networks
   - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
-  - [flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
-  - [weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
+  - [Flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
+  - [Weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
 
-## <a name="3">Ansible role</a>
+## <a name="3">Ansible Roles</a>
 Currently the following applications have been supported:
 
 |Application Name|Tool description|Role description|
@@ -92,8 +92,8 @@ Currently the following applications have been supported:
 |[cart](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/cart)|Cart is a MicroServices of E-Commerce.|This role installs and configures cart MicroServices.|
 |[search](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/search)|Search is a MicroServices of E-Commerce.|This role installs and configures search MicroServices.|
 |[order](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/order)|Order is a MicroServices of E-Commerce.|This role installs and configures order MicroServices.|
-|[zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)|Zuul-apigateway is a MicroServices of spring cloud.|This role installs and configures zuul-apigateway MicroServices.|
-|[eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)|Eureka-service-discovery  is a MicroServices of spring cloud.|This role installs and configures eureka-service-discovery MicroServices.|
+|[zuul-apigateway](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/zuul-apigateway)|Zuul is Spring Cloud API Gateway| Install zuul-apigateway MicroServices.|
+|[eureka-service-discovery](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/eureka-service-discovery)|Eureka is service discovery microservice of Spring Cloud|This role installs and configures eureka-service-discovery MicroServices.|
 ||||
 
 ## <a name="4">Others</a>
