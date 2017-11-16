@@ -51,6 +51,16 @@
      login_port: "{{ listen_port }}"
      target: "{{ sql_location }}{{ sku }}"
 
+- name: load sku displayprice data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ sku_supplement }}"
+
 - name: load userbank data
   mysql_db:
      state: import
