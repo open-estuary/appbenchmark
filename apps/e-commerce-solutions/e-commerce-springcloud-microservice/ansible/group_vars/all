@@ -5,6 +5,13 @@ workspace: /home/estuaryapp
 #This api server ip should the same as the LVS VIP defined in ansible/group_vars/ARM64Server01
 e_commerce_api_server: "192.168.12.100"
 
+#Jmeter client host has two IP, that is, one is for management, and another for service test
+#As for distributed Jmeter test, the jmeter_client_ip is where Jmeter client is running,
+#where the e_commerce_jmeter_remote_hosts is the list of Jmeter servers which generate test loads
+#and send test requests
+e_commerce_jmeter_remote_hosts: "192.168.12.11"
+jmeter_client_ip: "192.168.12.11"
+
 eureka_server: "192.168.11.223"
 eureka_port: 8761
 

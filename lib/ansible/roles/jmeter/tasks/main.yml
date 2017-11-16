@@ -54,5 +54,5 @@
     group: "{{ estuaryuser }}"
 
 - name: Start jmemter for distributed test 
-  shell: "/opt/jmeter/bin/jmeter-server -Djava.rmi.server.hostname={{inventory_hostname}} &"
+  shell: "/opt/jmeter/bin/jmeter-server -Djava.rmi.server.hostname={{ jmeter_client_ip }} &"
 
