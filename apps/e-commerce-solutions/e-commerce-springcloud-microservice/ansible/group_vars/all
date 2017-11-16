@@ -42,7 +42,7 @@ solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.cs
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 solr_cloud_mode: "true"
 
-zipkin_server: 192.168.11.225
+zipkin_server: 192.168.11.215
 zipkin_port: 9411
 
 mount_paths:

@@ -48,6 +48,7 @@
      cart: cart.sql
      userinfo: r_ec_userinfo.sql
      sku: r_ec_sku.sql
+     sku_supplement: r_ec_sku_supplement.sql
      userbank: r_ec_userbankinfo.sql
   roles:
     - estuaryrepo
@@ -68,6 +69,7 @@
      order: order.sql
      userinfo: r_ec_userinfo.sql
      sku: r_ec_sku.sql
+     sku_supplement: r_ec_sku_supplement.sql
      userbank: r_ec_userbankinfo.sql
      userdeliveryaddress: r_ec_userdeliveryaddress.sql
   roles:
