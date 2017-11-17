@@ -1,0 +1,57 @@
+---
+
+- name: Remove Cart Data
+  hosts: ARM64MySQLCartDATA
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     database: e-commerce-cart
+     sql_location: /opt/data/
+     listen_port: 3306
+     login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+     login_name: root
+     login_password:
+     remove_data: remove_data.sql
+  roles:
+    - { role: remove_data }
+
+- name: Remove Order Data
+  hosts: ARM64MySQLOrderDATA
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     database: e-commerce-order
+     sql_location: /opt/data/
+     listen_port: 3306
+     login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+     login_name: root
+     login_password:
+     remove_data: remove_data.sql
+  roles:
+    - { role: remove_data }
+
+- name: Install Modules on ARM64 Server-02
+  hosts: ARM64Server02
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: remove_data }
+
+- name: Install Modules on ARM64 Server-03
+  hosts: ARM64Server03
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: remove_data }
+
+- name: Install Modules on ARM64 Server-04
+  hosts: ARM64Server04
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: remove_data }
