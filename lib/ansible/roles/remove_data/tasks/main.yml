@@ -1,0 +1,69 @@
+---
+
+- name: cp download cart shell
+  copy:
+    src: ../files/download_remove_cart_sql.sh
+    dest: "{{ sql_location }}"
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: database is defined and database == "e-commerce-cart"
+
+- name: download remove cart sql
+  shell: /opt/data/download_remove_cart_sql.sh
+  when: database is defined and database == "e-commerce-cart"
+
+- name: cp download order shell
+  copy:
+    src: ../files/download_remove_order_sql.sh
+    dest: /opt/data/
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: database is defined and database == "e-commerce-order"
+
+- name: download remove order sql
+  shell: /opt/data/download_remove_order_sql.sh
+  when: database is defined and database == "e-commerce-order"
+
+- name: remove mysql cart data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ remove_data }}"
+  when: database is defined and database == "e-commerce-cart"
+
+- name: remove mysql order data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ remove_data }}"
+  when: database is defined and database == "e-commerce-order"
+
+- name: install virtualenv pip
+  yum: name={{ item }} state=present
+  with_items:
+   - python-pip 
+   - python-virtualenv
+  when: database is not defined
+
+- name: install redis python
+  pip:
+    name: redis
+  when: database is not defined
+
+- name: remove redis data
+  redis:
+    command: flush
+    flush_mode: all
+    login_port: "70{{ item }}"  
+  with_sequence: start={{ redis_cpus.split('-')[0] }} end={{ redis_cpus.split('-')[-1] }}
+  when: database is not defined
