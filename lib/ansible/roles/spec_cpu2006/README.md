@@ -5,59 +5,31 @@
 ## <a name="1">Introduction</a>
 --------------
 
-This ansible role is to setup Spring Cloud Zuul which plays the role of microservices gateway.
+This ansible role is to setup speccpu2006 which is a popular cpubenchmark tool.
 
 ## <a name="2">Role Variables</a>
 --------------
 
 ### Expected to Be Configured
 
-* `zuul_port`: specify the listening port of Zuul service
-* `zuul_pkg_name` : specify the RPM package name of Zuul 
-* `zuul_service_name`: specify the systemd service name of Zuul
-* `zuul_config_dir`: specify the directory name to store Zuul configuration file (that is `application.yml`)
-* `zuul_api_routes`:
-  * `route_name`: specify the name of route
-  * `route_path`: specify the http path whose requests will be mapped to the corresponding microservices
-  * `route_serviceid`: specify the service id of microservices
-* `eureka_server`: specify the server name which contain Spring Cloud Eureka server
-* `eureka_port`: specify the listening port of Spring Cloud Eureka server
+* `hosts`: specify the remote hosts you want to do cpu test.
 
-### Proxy configuration options
-
-### Role Defaults
-* `zuul_port`: 5555
-* `zuul_pkg_name`: micro-service-api
-* `zuul_service_name`: microservice-zuul
-* `zuul_config_dir`: "/etc/micro-services/api-gateway"
-* `zuul_api_routes`:
-  * `- route_name`: api-cart
-  *   route_path: "/cart/**"
-  *   route_serviceid: cart-service
-  * `- route_name`: api-order
-  *  route_path: "/order/**"
-  *  route_serviceid: order-service
-  * `- route_name`: api-search
-  *  route_path: "/search/**"
-  * route_serviceid: search-service
-* `eureka_server: localhost
-* `eureka_port`: 8761
-* `eureka_url`: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
+### group varibles
+* `estuaryuser`: estuaryapp
+* `workspace`: /home/estuaryapp
 
 ## <a name="3">Example Playbook</a>
 ----------------
 
 ```
----
-- hosts: zuul_hosts 
-  remote_user: estuaryapp
-  become: yes
+- name: Install Speccpu2006 on ARM64Server
+  hosts: CpuTestD05
   roles:
-    - zuul-apigateway
+    - spec_cpu2006
 
 ```    
 
-For more examples, please refer to [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
+For more examples, please refer to https://github.com/open-estuary/appbenchmark/tree/master/apps/cpu/spec_cpu2006
 
 License
 -------
