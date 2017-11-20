@@ -60,10 +60,10 @@
     name: redis
   when: database is not defined
 
-- name: remove redis data
-  redis:
-    command: flush
-    flush_mode: all
-    login_port: "70{{ item }}"  
-  with_sequence: start={{ redis_cpus.split('-')[0] }} end={{ redis_cpus.split('-')[-1] }}
-  when: database is not defined
+#- name: remove redis data
+#  redis:
+#    command: flush
+#    flush_mode: all
+#    login_port: "70{{ item }}"  
+#  with_sequence: start={{ redis_cpus.split('-')[0] }} end={{ redis_cpus.split('-')[-1] }}
+#  when: database is not defined
