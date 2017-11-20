@@ -4,7 +4,8 @@
 * [Setup & Deployment](#3)
 * [REST API](#4)
 * [Benchmark Test](#5)
-* [Others](#6)
+* [Examples](#6)
+* [Others](#7)
 
 ## <a name="1">Introduction</a>
 
@@ -71,5 +72,10 @@ Now, execute `run_test.sh` to enjoy performance test.
 ### Test Results
 > Currently the test result is NOT released to public.                                            
 
-## <a name="6">Others</a>
+## <a name="6">Examples</a>
+By default, it requires 12 Nodes to setup the whole system. But it is also feasible to setup the whole system as follows:
+
+* [Setup Mini System with 4 Nodes](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes)
+
+## <a name="7">Others</a>
  * Want to clear all packages after test? Just execute `remove.sh`
