@@ -5,6 +5,7 @@ pcp_cpus: 33
 eureka_cpus: 34-49
 redis_cpus: "54-63"
 
+remove_redis_num: "54-63"
 
 nginx_port: 9000
 nginx_install_epel_repo: True

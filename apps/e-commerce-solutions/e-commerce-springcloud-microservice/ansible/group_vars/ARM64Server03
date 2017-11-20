@@ -8,6 +8,8 @@ order_cpus: "48-63"
 mycat_port: 8067 
 redis_order_port: 22145
 
+remove_redis_num: "38-47"
+
 nginx_port: 9000
 nginx_install_epel_repo: True
 nginx_official_repo: False
