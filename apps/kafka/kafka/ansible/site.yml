@@ -1,0 +1,7 @@
+---
+- name: Install kafka on remote hosts
+  hosts: CpuTestD05
+  roles:
+    - estuaryrepo
+    - kafka
+
