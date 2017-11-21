@@ -7,8 +7,11 @@ redis_cpus: 6-8
 
 cart_cpus: 9-10
 search_cpus: 11-13
-mycat_cpus: 14-15
+mycat_port: 8066
+redis_order_port: 2217
+redis_cart_port: 2218
 
+mycat_cpus: 14-15
 
 #mycat
 schema: "e-commerce-cart"
