@@ -1,0 +1,84 @@
+---
+- name: Install Zookeeper Server Firstly
+  hosts: TestZookeeperHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - syscfg
+    - { role: openjdk }
+    - { role: zookeeper }
+
+- name: Install Mysql Master Server Firstly
+  hosts: TestMySQLMasterHost
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  vars:
+     mysql_master_install_inprogress: true
+     mysql_instance:
+       - cpus: "0-30"
+         port: 3306
+         login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+         login_name: root
+         login_password:
+  roles:
+    - estuaryrepo
+    - { role: percona-server, when: mysql_instance is defined }
+
+- name: Install Modules on Test Server-01
+  hosts: TestServer01
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - syscfg
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: pcp }
+ 
+- name: Install Modules on Test Server-02
+  hosts: TestServer02
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - syscfg
+    - { role: openjdk }
+    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+    - { role: lvs, when: lvs_cpus is defined }
+    - { role: redis, when: redis_cpus is defined }
+    - { role: eureka-service-discovery, when: eureka_cpus is defined }
+    - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on Test Server-03
+  hosts: TestServer03
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - syscfg
+    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
+
+- name: Install Modules on Test Server-04
+  hosts: TestServer04
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - estuaryrepo
+    - syscfg
+    - { role: openjdk, when: order_cpus is defined}
+    - { role: zuul-apigateway, when: zuul_cpus is defined}
+    - { role: order, when: order_cpus is defined}
+    - { role: redis, when: redis_cpus is defined }
+    - { role: pcp }
+
