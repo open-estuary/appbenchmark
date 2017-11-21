@@ -10,20 +10,20 @@
   when: database is defined and database == "e-commerce-cart"
 
 - name: download remove cart sql
-  shell: /opt/data/download_remove_cart_sql.sh
+  shell: "{{ sql_location }}download_remove_cart_sql.sh"
   when: database is defined and database == "e-commerce-cart"
 
 - name: cp download order shell
   copy:
     src: ../files/download_remove_order_sql.sh
-    dest: /opt/data/
+    dest: "{{ sql_location }}"
     mode: 0755
     owner: "{{ mysqluser }}"
     group: "{{ mysqluser }}"
   when: database is defined and database == "e-commerce-order"
 
 - name: download remove order sql
-  shell: /opt/data/download_remove_order_sql.sh
+  shell: "{{ sql_location }}download_remove_order_sql.sh"
   when: database is defined and database == "e-commerce-order"
 
 - name: remove mysql cart data
