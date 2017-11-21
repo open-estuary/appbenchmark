@@ -3,6 +3,8 @@
 
 [TestZookeeperHost]
 192.168.1.233
+192.168.1.218
+192.168.1.254
 
 [TestMySQLMasterHost]
 192.168.1.233

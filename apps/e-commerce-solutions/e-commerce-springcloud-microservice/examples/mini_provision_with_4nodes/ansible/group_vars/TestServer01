@@ -5,21 +5,21 @@ interrupt_cpus: 4
 pcp_cpus: 5
 eureka_cpus: 6
 
-twemproxy_cpus: 7-9
+twemproxy_cpus: 12-14
 twemproxy_IP: 192.168.1.190
 
 twemproxy_redis_config:
-  - twemproxy_cpu: "7"
+  - twemproxy_cpu: "12"
     redis_ip: 192.168.1.254
-    redis_port: 7006
+    redis_port: 7011
 
-  - twemproxy_cpu: "8"
+  - twemproxy_cpu: "13"
     redis_ip: 192.168.1.254
-    redis_port: 7007
+    redis_port: 7012
 
-  - twemproxy_cpu: "9"
+  - twemproxy_cpu: "14"
     redis_ip: 192.168.1.254
-    redis_port: 7008
+    redis_port: 7013
 
 
 mycat_cpus: 10-11

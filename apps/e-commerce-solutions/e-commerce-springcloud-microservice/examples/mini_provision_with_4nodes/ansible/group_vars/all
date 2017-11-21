@@ -28,16 +28,16 @@ zookeeper_hosts:
     data_port: 2888
     election_port: 3888
 
-solr_zookeeper_hosts: "192.168.1.233:{{ zookeeper_client_port }}"
+solr_zookeeper_hosts: "192.168.1.233:{{ zookeeper_client_port }},192.168.1.218:{{ zookeeper_client_port }},192.168.1.254:{{ zookeeper_client_port }}"
 solr_zookeeper_hosts_solr_path: "e-commerce"
-solr_zk_host: "192.168.1.233:{{ zookeeper_client_port }}"
+solr_zk_host: "192.168.1.233:{{ zookeeper_client_port }},192.168.1.218:{{ zookeeper_client_port }},192.168.1.254:{{ zookeeper_client_port }}"
 
 solr_tar_filename: "solr_ecommerce_mysql_data.tar.gz"
 solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.csv"
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 solr_cloud_mode: "true"
 
-zipkin_server: 192.168.11.218
+zipkin_server: 192.168.1.218
 zipkin_port: 9411
 
 mount_paths:
@@ -47,31 +47,19 @@ mount_paths:
     opts: "rw,nodev,noatime,nodiratime,nobarrier"
 
 eureka_ignored_interfaces:
- - eth0
- - eth1
  - enp2s0f0
 
 zuul_ignored_interfaces:
-  - eth0
   - enp2s0f0
-  - eth1
 
 search_ignored_interfaces:
-  - eth0
   - enp2s0f0
-  - eth1
 
 zipkin_ignored_interfaces:
-  - eth0
-  - eth1
   - enp2s0f0
 
 cart_ignored_interfaces:
-  - eth0
-  - eth1
   - enp2s0f0
 
 order_ignored_interfaces:
-  - eth0
-  - eth1
   - enp2s0f0
