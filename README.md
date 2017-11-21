@@ -9,14 +9,13 @@ It is to maintain application benchmark test scripts including:
 - Scripts which setup server and client 
 - Scripts which perform benchmark test  
 
-> Notes: 
->   Bebfore running Ansible, it is necessary to create new account on target servers. Then the later test could use this account to login in target servers without password.
->   As for how to create new accounts automatically, please refer to [createuser.sh](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/createuser.sh)
+>  Bebfore running Ansible, it is necessary to create new account on target servers. Then the later test could use this account to login in target servers without password.
+>  As for how to create new accounts automatically, please refer to [createuser.sh](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/createuser.sh)
 
->   It is required to write new benchmark scripts based on `ansible` framework. In addition, some existing old scripts might be changed to `ansible` framework in the future. As for test cases based on `ansible` framework, it might be necessary to change some configurations before setting up benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
+>  It is required to write new benchmark scripts based on `ansible` framework. In addition, some existing old scripts might be changed to `ansible` framework in the future. As for test cases based on `ansible` framework, it might be necessary to change some configurations before setting up benchmark test based on real test environment, such as: `ansible/hosts` which specifies test hosts,
 >   and `ansible/group_vars/*` which define variables for this test.
 > 
->   In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
+>  In addition, the `run_test.sh` might only provides some basic test guideline, and more tests are still required to 
 >   be performed manually.
 
 >   In addition, it could run test scripts which are based on `ansible` framework on any client server. Usually the client server uses `estuaryapp` or `root` account to login target test servers via ssh without password. Therefore it is required to create `estuaryapp` account firstly on target servers and copy the `id_rsa.pub` from client server to target server in order to login without password.
