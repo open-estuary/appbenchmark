@@ -1,5 +1,9 @@
 [Kafka_Hosts]
-192.168.1.42 ansible_sudo_pass='Lab12#$'
-192.168.1.43 ansible_sudo_pass='Lab12#$'
-192.168.1.44 ansible_sudo_pass='Lab12#$'
+192.168.1.42 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
+192.168.1.43 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
+192.168.1.44 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
+
+#192.168.1.42 ansible_become_pass='estuary1234'
+#192.168.1.43 ansible_become_pass='estuary1234'
+#192.168.1.44 ansible_become_pass='estuary1234'
 
