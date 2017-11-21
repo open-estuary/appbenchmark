@@ -6,5 +6,5 @@ kafka_user: kafka
 kafka_log_dir: /var/log/kafka
 kafka_upstart_conf: /etc/init/kafka.conf
 kafka_systemd_service: /etc/systemd/system/kafka.service
-kafka_auto_create_topics: "false"
+kafka_auto_create_topics: "yes"
 zookeeper_hosts: 192.168.1.42:2181,192.168.1.43:2181,192.168.1.44:2181
