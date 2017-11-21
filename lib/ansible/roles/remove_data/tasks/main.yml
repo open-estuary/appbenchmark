@@ -60,6 +60,7 @@
     name: redis
   when: database is not defined
 
+
 - name: remove redis data sequence
   redis:
     command: flush
@@ -75,3 +76,4 @@
     login_port: "70{{ item.num }}"
   with_items: "{{ remove_redis_num_nonsequence }}"
   when: database is not defined and remove_redis_num_nonsequence is defined
+

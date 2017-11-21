@@ -32,7 +32,7 @@
   roles:
     - { role: remove_data }
 
-- name: Install Modules on ARM64 Server-02
+- name: Remove Data on ARM64 Server-02
   hosts: ARM64Server02
   remote_user: estuaryapp
   become: yes
@@ -40,7 +40,7 @@
   roles:
     - { role: remove_data }
 
-- name: Install Modules on ARM64 Server-03
+- name: Remove Data on ARM64 Server-03
   hosts: ARM64Server03
   remote_user: estuaryapp
   become: yes
@@ -48,7 +48,7 @@
   roles:
     - { role: remove_data }
 
-- name: Install Modules on ARM64 Server-04
+- name: Remove Data on ARM64 Server-04
   hosts: ARM64Server04
   remote_user: estuaryapp
   become: yes
