@@ -3,13 +3,15 @@
 order_cpus: 0-3
 interrupt_cpus: 4
 pcp_cpus: 5
-redis_cpus: 6-8
+redis_cpus: 11-13
 
 cart_cpus: 9-10
-search_cpus: 11-13
+search_cpus: 6-8
 mycat_port: 8066
-redis_order_port: 2217
-redis_cart_port: 2218
+redis_order_port: 22112
+redis_cart_port: 22113
+redis_search_port: 22114
+solr_ip: 192.168.1.233
 
 mycat_cpus: 14-15
 
