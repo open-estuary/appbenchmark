@@ -33,12 +33,12 @@
   become: yes
   become_method: sudo
   roles:
-  #  - estuaryrepo
-  #  - { role: pcp }
-    #- { role: nginx-reverse-proxy, when: nginx_cpus is defined }
- #   - { role: eureka-service-discovery, when: eureka_cpus is defined }
- #   - { role: twemproxy, when: twemproxy_cpus is defined }
- #   - { role: mycat, when: mycat_cpus is defined }
+    - estuaryrepo
+    - { role: pcp }
+    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+    - { role: eureka-service-discovery, when: eureka_cpus is defined }
+    - { role: twemproxy, when: twemproxy_cpus is defined }
+    - { role: mycat, when: mycat_cpus is defined }
  
 - name: Install Modules on ARM64 Server-02
   hosts: TestServer02
@@ -46,8 +46,8 @@
   become: yes
   become_method: sudo
   roles:
- #   - estuaryrepo
- #   - { role: openjdk }
+    - estuaryrepo
+    - { role: openjdk }
     - { role: redis, when: redis_cpus is defined }
     - { role: pcp }
     - { role: order, when: order_cpus is defined}
