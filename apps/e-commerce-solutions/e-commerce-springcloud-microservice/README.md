@@ -46,7 +46,7 @@ E-Commerce MicroService REST API
 > Please use LVS Virtual IP address(default to `192.168.12.100` defined in [ansible/group_vars/ARM64Server01](/apps/e-commerce-solutions/e-commerce-springcloud-microservice/ansible/group_vars/ARM64Server01)) and Port (default to `9000`) to access REST API
 
 Method | URI  | Request JSON | Response JSON | Example
----- | ------- | ------ | -----
+---- | ------- | ------ | ------ | -----
 `GET` | /v1/order/${userid}/ |-| [OrderListRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Example](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
 `GET` | /v1/order/${userid}/${orderid} |-| [OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Example](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
 `POST` | /v1/order/|[OrderReq](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [OrderRes](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md) | [Example](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/RESTAPIJSON.md)
