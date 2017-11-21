@@ -1,0 +1,98 @@
+---
+- name: Mount Devices on ARM64 Server-01
+  hosts: ARM64Server01
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+ 
+- name: Mount Devices on ARM64 Server-02
+  hosts: ARM64Server02
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-03
+  hosts: ARM64Server03
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-04
+  hosts: ARM64Server04
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-05
+  hosts: ARM64Server05
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-06
+  hosts: ARM64Server06
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-07
+  hosts: ARM64Server07
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-08
+  hosts: ARM64Server08
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-09
+  hosts: ARM64Server09
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-10
+  hosts: ARM64Server10
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-11
+  hosts: ARM64Server11
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+- name: Mount Devices on ARM64 Server-12
+  hosts: ARM64Server12
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - mount
+
+

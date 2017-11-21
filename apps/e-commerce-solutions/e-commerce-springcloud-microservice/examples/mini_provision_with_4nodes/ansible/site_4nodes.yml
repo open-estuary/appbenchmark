@@ -5,10 +5,9 @@
   become: yes
   become_method: sudo
   roles:
-    - estuaryrepo
-    - syscfg
-    - { role: openjdk }
-    - { role: zookeeper }
+   # - estuaryrepo
+   # - { role: openjdk }
+   # - { role: zookeeper }
 
 - name: Install Mysql Master Server Firstly
   hosts: TestMySQLMasterHost
@@ -18,67 +17,63 @@
   vars:
      mysql_master_install_inprogress: true
      mysql_instance:
-       - cpus: "0-30"
+       - cpus: "6-8"
          port: 3306
-         login_host: "{{ ansible_eth2['ipv4']['address'] }}"
+         login_host: "{{ ansible_eth0['ipv4']['address'] }}"
          login_name: root
          login_password:
   roles:
-    - estuaryrepo
-    - { role: percona-server, when: mysql_instance is defined }
+  #  - estuaryrepo
+ #   - { role: percona-server }
+ #   - { role: percona-server, when: mysql_instance is defined }
 
-- name: Install Modules on Test Server-01
+- name: Install Modules on ARM64 Server-01
   hosts: TestServer01
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
-    - estuaryrepo
-    - syscfg
-    - { role: lvs, when: lvs_cpus is defined }
-    - { role: pcp }
+  #  - estuaryrepo
+  #  - { role: pcp }
+    #- { role: nginx-reverse-proxy, when: nginx_cpus is defined }
+ #   - { role: eureka-service-discovery, when: eureka_cpus is defined }
+ #   - { role: twemproxy, when: twemproxy_cpus is defined }
+ #   - { role: mycat, when: mycat_cpus is defined }
  
-- name: Install Modules on Test Server-02
+- name: Install Modules on ARM64 Server-02
   hosts: TestServer02
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
-    - estuaryrepo
-    - syscfg
-    - { role: openjdk }
-    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
-    - { role: lvs, when: lvs_cpus is defined }
+ #   - estuaryrepo
+ #   - { role: openjdk }
     - { role: redis, when: redis_cpus is defined }
-    - { role: eureka-service-discovery, when: eureka_cpus is defined }
-    - { role: twemproxy, when: twemproxy_cpus is defined }
     - { role: pcp }
+    - { role: order, when: order_cpus is defined}
+    - { role: cart, when: cart_cpus is defined}
+    - { role: search, when: search_cpus is defined}
+    - { role: mycat, when: mycat_cpus is defined }
 
-- name: Install Modules on Test Server-03
+- name: Install Modules on ARM64 Server-03
   hosts: TestServer03
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - syscfg
-    - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
-    - { role: openjdk, when: order_cpus is defined}
-    - { role: order, when: order_cpus is defined}
-    - { role: redis, when: redis_cpus is defined }
+    - { role: openjdk }
     - { role: pcp }
+    - { role: zipkin-server }
 
-- name: Install Modules on Test Server-04
+- name: Install Modules on ARM64 Server-04
   hosts: TestServer04
   remote_user: estuaryapp
   become: yes
   become_method: sudo
   roles:
     - estuaryrepo
-    - syscfg
-    - { role: openjdk, when: order_cpus is defined}
-    - { role: zuul-apigateway, when: zuul_cpus is defined}
-    - { role: order, when: order_cpus is defined}
-    - { role: redis, when: redis_cpus is defined }
+    - { role: openjdk }
     - { role: pcp }
-
+    - { role: solrcloud, when: solr_cpus is defined }
+    - { role: zuul-apigateway, when: zuul_cpus is defined}

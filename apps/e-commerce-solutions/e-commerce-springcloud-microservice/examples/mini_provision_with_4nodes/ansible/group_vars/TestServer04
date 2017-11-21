@@ -1,13 +1,8 @@
 ---
+solr_cpus: 0-3
+interrupt_cpus: 4
+pcp_cpus: 5
+mysql_cpus: 6-8
 
-pcp_web_cpus: "0-3"
+pcp_web_cpus: 9-10
 
-elstaic_cpus: "4-20"
-
-kibana_cpus: "21-24"
-
-zipkin_cpus: "25-42"
-
-influxdb_cpus: "43-59"
-
-interrupt_cpus: "60-63"
