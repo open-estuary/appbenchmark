@@ -1,0 +1,7 @@
+---
+
+- name: Create User on ARMServers
+  hosts: all
+  roles:
+    - createuser
+

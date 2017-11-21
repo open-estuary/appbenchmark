@@ -1,5 +1,31 @@
 ---
 
-interrupt_cpus: 31-32
+order_cpus: 0-3
+interrupt_cpus: 4
+pcp_cpus: 5
+redis_cpus: 11-13
 
-pcp_cpus: 33
+cart_cpus: 9-10
+search_cpus: 6-8
+mycat_port: 8066
+redis_order_port: 22112
+redis_cart_port: 22113
+redis_search_port: 22114
+solr_ip: 192.168.1.233
+
+mycat_cpus: 14-15
+
+#mycat
+schema: "e-commerce-cart"
+datanode_name: dn1
+datahost_name: sam_server_1
+mysql_database: "e-commerce-cart"
+ifkillmycatprocess: "true"
+
+mysql_host_M_IP: "192.168.1.233"  #master IP address
+mysql_host_M_Port: "3306"
+
+mysql_slave_hosts:
+  - host: hostS1
+    mysql_host_S_IP: "192.168.1.233"
+    mysql_host_S_Port: "3306"

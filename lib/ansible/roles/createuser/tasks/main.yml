@@ -1,0 +1,29 @@
+---
+
+- name: Create Remote Users Account
+  user: 
+    name: "{{ remote_account }}"
+    home: "/home/{{ remote_account }}"
+    shell: /bin/bash
+    groups: "{{ remote_group }}"
+    ssh_key_type: rsa
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    state: present
+
+- name: Copy Local Pub Key to Destination Node
+  copy:
+    src: "{{ local_id_rsa_pub_file }}"
+    dest: "/tmp/{{ remote_account }}_newadd_keys"
+    force: yes
+    follow: yes
+
+- name: Add Authroized Key 
+  shell: "cat /tmp/{{ remote_account }}_newadd_keys >> /home/{{ remote_account }}/.ssh/authorized_keys"
+
+- name: Make Sure authorized_keys exist
+  file:
+    path: "/home/{{ remote_account }}/.ssh/authorized_keys"
+    owner: "{{ remote_account }}"
+    mode: 0644
+

@@ -21,6 +21,9 @@ In addition, it uses many middlewares provided by Spring Cloud such as: 
 ## <a name="3">Setup & Deployment</a>
 > In order to deploy solution on specific server clusters, it is necessary to update `ansible/hosts` and `ansible/grouvars` accordingly. 
 
+> Bebfore running Ansible, it is necessary to create new account on target servers. Then the later test could use this account to login in target servers without password.
+> As for how to create new accounts automatically, please refer to [createuser.sh](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/createuser.sh)
+
 ### Mount Devices to Specified Path
 If it is necessary to mount new devices to specified target paths, please run `mount_devices.sh` accordingly.  
 In addition, it should specify the corresponding devices and target paths in [ansible/groupvars/all](https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/ansible/group_vars/all).

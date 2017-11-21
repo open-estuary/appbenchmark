@@ -1,5 +1,41 @@
 ---
 
-interrupt_cpus: 31-32
+nginx_cpus: 0-3
+interrupt_cpus: 4
+pcp_cpus: 5
+eureka_cpus: 6
 
-pcp_cpus: 33
+twemproxy_cpus: 12-14
+twemproxy_IP: 192.168.1.190
+
+twemproxy_redis_config:
+  - twemproxy_cpu: "12"
+    redis_ip: 192.168.1.254
+    redis_port: 7011
+
+  - twemproxy_cpu: "13"
+    redis_ip: 192.168.1.254
+    redis_port: 7012
+
+  - twemproxy_cpu: "14"
+    redis_ip: 192.168.1.254
+    redis_port: 7013
+
+
+mycat_cpus: 10-11
+
+#mycat
+schema: "e-commerce-order"
+datanode_name: dn1
+datahost_name: sam_server_1
+mysql_database: "e-commerce-order"
+ifkillmycatprocess: "true"
+
+mysql_host_M_IP: "192.168.1.218"  #master IP address
+mysql_host_M_Port: "3306"
+
+mysql_slave_hosts:
+  - host: hostS1
+    mysql_host_S_IP: "192.168.1.218"
+    mysql_host_S_Port: "3306"
+
