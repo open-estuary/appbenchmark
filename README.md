@@ -6,7 +6,7 @@
 # Estuary Application Benchmark Test 
 ## <a name="1">Introduction</a>
 It is to maintain application benchmark test scripts including:
-- Scripts which setup server and client 
+- Scripts which setup benchmark test server and client 
 - Scripts which perform benchmark test  
 
 >  Bebfore running Ansible, it is necessary to create new account on target servers. Then the later test could use this account to login in target servers without password.
