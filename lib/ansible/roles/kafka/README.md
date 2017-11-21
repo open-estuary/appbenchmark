@@ -1,21 +1,66 @@
-#Kafka
-Installs [kafka](https://kafka.apache.org/)
+* [Introduction](#1)
+* [Role Variables](#2)
+* [Example Playbook](#3)
 
-##Requirements
-- kafka_hosts - comma separated list of host:port pairs in the cluster, defaults to 'ansible_fqdn:9092' for a single node
-- zookeeper_hosts - comma separated list of host:port pairs.
+## <a name="1">Introduction</a>
+--------------
 
-##Optional
-- kafka_listen_address - defines a specifc address for kafka to listen on, by defaults listens on all interfaces
-- kafka_id - Id to be used if one can't or shouldn't be derived from kafka_hosts. This will happen if kafka_hosts doesn't contain the fqdn but an alias
-- monasca_log_level - Log level to be used for Kafka logs. Defaults to WARN
-- monasca_wait_for_period - The time in seconds for how long to wait for Kafka's port to be available after starting it. Default is 30 seconds.
-- run_mode - One of Deploy, Stop, Install, Start, or Use. The default is Deploy which will do Install, Configure, then Start.
+This ansible role is to setup Spring Cloud Zuul which plays the role of microservices gateway.
 
-##License
+## <a name="2">Role Variables</a>
+--------------
+
+### Expected to Be Configured
+
+* `zuul_port`: specify the listening port of Zuul service
+* `zuul_pkg_name` : specify the RPM package name of Zuul 
+* `zuul_service_name`: specify the systemd service name of Zuul
+* `zuul_config_dir`: specify the directory name to store Zuul configuration file (that is `application.yml`)
+* `zuul_api_routes`:
+  * `route_name`: specify the name of route
+  * `route_path`: specify the http path whose requests will be mapped to the corresponding microservices
+  * `route_serviceid`: specify the service id of microservices
+* `eureka_server`: specify the server name which contain Spring Cloud Eureka server
+* `eureka_port`: specify the listening port of Spring Cloud Eureka server
+
+### Proxy configuration options
+
+### Role Defaults
+* `zuul_port`: 5555
+* `zuul_pkg_name`: micro-service-api
+* `zuul_service_name`: microservice-zuul
+* `zuul_config_dir`: "/etc/micro-services/api-gateway"
+* `zuul_api_routes`:
+  * `- route_name`: api-cart
+  *   route_path: "/cart/**"
+  *   route_serviceid: cart-service
+  * `- route_name`: api-order
+  *  route_path: "/order/**"
+  *  route_serviceid: order-service
+  * `- route_name`: api-search
+  *  route_path: "/search/**"
+  * route_serviceid: search-service
+* `eureka_server: localhost
+* `eureka_port`: 8761
+* `eureka_url`: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
+
+## <a name="3">Example Playbook</a>
+----------------
+
+```
+---
+- hosts: zuul_hosts 
+  remote_user: estuaryapp
+  become: yes
+  roles:
+    - zuul-apigateway
+
+```    
+
+For more examples, please refer to [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
+
+License
+-------
+
 Apache
 
-##Author Information
-Tim Kuhlman
-
-Monasca Team email monasca@lists.launchpad.net
