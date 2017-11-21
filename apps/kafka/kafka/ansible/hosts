@@ -1,9 +1,7 @@
-[Kafka_Hosts]
+[Kafka_X86_Hosts]
 192.168.1.42 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
 192.168.1.43 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
 192.168.1.44 ansible_ssh_user=root ansible_ssh_pass="estuary1234"
 
-#192.168.1.42 ansible_become_pass='estuary1234'
-#192.168.1.43 ansible_become_pass='estuary1234'
-#192.168.1.44 ansible_become_pass='estuary1234'
-
+[Kafka_D05_Hosts]
+192.168.1.175 ansible_ssh_user=root ansible_ssh_pass="root"
