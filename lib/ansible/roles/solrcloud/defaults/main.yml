@@ -26,6 +26,7 @@ solr_host: "{{ inventory_hostname }}"
 solr_cpus: "0-31"
 
 # JVM
+solr_stack_size: 128m
 solr_gc_tune: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/solr/server/logs/solr.oomdump \
         -XX:G1ReservePercent=20 -XX:ConcGCThreads=32 -XX:ParallelGCThreads=32  \
         -XX:+PerfDisableSharedMem -XX:+UseLargePages -XX:+AggressiveOpts \
