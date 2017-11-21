@@ -5,9 +5,9 @@
   become: yes
   become_method: sudo
   roles:
-   # - estuaryrepo
-   # - { role: openjdk }
-   # - { role: zookeeper }
+    - estuaryrepo
+    - { role: openjdk }
+    - { role: zookeeper }
 
 - name: Install Mysql Master Server Firstly
   hosts: TestMySQLMasterHost
@@ -23,9 +23,9 @@
          login_name: root
          login_password:
   roles:
-  #  - estuaryrepo
- #   - { role: percona-server }
- #   - { role: percona-server, when: mysql_instance is defined }
+    - estuaryrepo
+    - { role: percona-server }
+    - { role: percona-server, when: mysql_instance is defined }
 
 - name: Install Modules on ARM64 Server-01
   hosts: TestServer01
