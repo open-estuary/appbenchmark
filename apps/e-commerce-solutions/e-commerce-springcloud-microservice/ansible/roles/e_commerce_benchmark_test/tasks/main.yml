@@ -39,7 +39,7 @@
 
 - name: Fetch test logs
   fetch: 
-    src: "{{ e_commerce_log_dir }}/{{ item }}"
+    src: "{{ e_commerce_log_dir }}{{ item }}"
     dest: "{{ e_commerce_log_dir }}/{{ item }}"
   with_items: files_to_copy.stdout_lines
 
