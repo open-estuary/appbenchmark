@@ -35,6 +35,7 @@
   roles:
     - estuaryrepo
     - { role: pcp }
+    - { role: openjdk }
     - { role: nginx-reverse-proxy, when: nginx_cpus is defined }
     - { role: eureka-service-discovery, when: eureka_cpus is defined }
     - { role: twemproxy, when: twemproxy_cpus is defined }
