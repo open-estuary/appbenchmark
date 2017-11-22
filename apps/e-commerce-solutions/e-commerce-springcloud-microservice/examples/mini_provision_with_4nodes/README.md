@@ -10,8 +10,10 @@
 <center><a href="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/estuary_e_commerce_micro_service_mini_provisioning.png"><img src="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/estuary_e_commerce_micro_service_mini_provisioning.png" border=0 width=1600></a></center>
 
 ## <a name="2">Deploy Plan for 4 nodes</a>
-<center><a href="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-machine-configurations.png"><img src="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-machine-configurations.png" border=0 width=1600></a></center>
+* `Node Configurations`:
+<center><a href="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-machine-configurations.PNG"><img src="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-machine-configurations.PNG" border=0 width=1600></a></center>
 
+* `Data Relationship Configurations`:
 <center><a href="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-data-relationship-configurations.PNG"><img src="https://github.com/open-estuary/appbenchmark/blob/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice/examples/mini_provision_with_4nodes/mini-provision-data-relationship-configurations.PNG" border=0 width=1600></a></center>
 
 ## <a name="3">Setup & Deployment</a>
