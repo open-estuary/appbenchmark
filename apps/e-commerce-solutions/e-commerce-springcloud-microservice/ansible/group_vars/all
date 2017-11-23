@@ -49,7 +49,20 @@ solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.cs
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 solr_cloud_mode: "true"
 
-zipkin_server: 192.168.11.215
+#Define Heap Size for Order/Search/Cart micro service heap size
+heap_option: "-Xms10g -Xmx10g"
+gc_algo_option: "-XX:G1ReservePercent=20 -XX:ConcGCThreads=32 -XX:ParallelGCThreads=32 \
+        -XX:+PerfDisableSharedMem -XX:+UseLargePages -XX:+AggressiveOpts \
+        -XX:+ParallelRefProcEnabled -XX:InitiatingHeapOccupancyPercent=75 \
+        -XX:-OmitStackTraceInFastThrow \
+        -XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:+UnlockExperimentalVMOptions -XX:G1HeapRegionSize=32M"
+
+zuul_heap_option: "{{ heap_option }}"
+zuul_gc_algo_option: "{{ gc_algo_option }}"
+eureka_heap_option: "{{ heap_option }}"
+eureka_gc_algo_option: "{{ gc_algo_option }}"
+
+zipkin_server: 192.168.1.180
 zipkin_port: 9411
 
 mount_paths:
