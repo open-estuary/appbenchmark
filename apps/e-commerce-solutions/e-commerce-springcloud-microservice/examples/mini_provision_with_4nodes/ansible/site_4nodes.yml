@@ -66,6 +66,7 @@
     - { role: openjdk }
     - { role: pcp }
     - { role: zipkin-server }
+    - { role: zuul-apigateway, when: zuul_cpus is defined}
 
 - name: Install Modules on ARM64 Server-04
   hosts: TestServer04
@@ -77,4 +78,4 @@
     - { role: openjdk }
     - { role: pcp }
     - { role: solrcloud, when: solr_cpus is defined }
-    - { role: zuul-apigateway, when: zuul_cpus is defined}
+
