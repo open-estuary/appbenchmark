@@ -1,0 +1,12 @@
+---
+- name: Install kafka on remote X86 hosts
+  hosts: Kafka_X86_Hosts
+  roles:
+    - kafka
+
+
+- name: Install kafka on remote D05 hosts
+  hosts: Kafka_D05_Hosts
+  roles:
+    - estuaryrepo
+    - kafka

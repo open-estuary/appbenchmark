@@ -5,6 +5,20 @@ interrupt_cpus: 4
 pcp_cpus: 5
 eureka_cpus: 6
 
+nginx_port: 9000
+nginx_install_epel_repo: True
+nginx_official_repo: False
+nginx_installation_types_using_service: ["packages", "configuration-only"]
+nginx_is_el: "{{ ansible_distribution in ['RedHat', 'CentOS'] }}"
+nginx_reverse_proxy_proxies:
+  - nginx_config_name: e-commerce-proxy
+    nginx_backend_name: e-commerce-apigateway
+    nginx_backends:
+      - 192.168.1.218:8765
+    nginx_domains:
+      - localhost
+
+
 twemproxy_cpus: 12-14
 twemproxy_IP: 192.168.1.190
 
