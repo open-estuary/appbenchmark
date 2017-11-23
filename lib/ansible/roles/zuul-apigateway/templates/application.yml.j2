@@ -13,12 +13,28 @@ spring:
        {% endfor %}
 
 zuul:
+  ribbon-isolation-strategy: {{ zuul_ribbon_isolation_strategy }}
+  semaphore:
+    max-semaphores: {{ zuul_max_semaphores }}
+
   routes:
   {% for item in zuul_api_routes %}
   {{ item.route_name }}:
       path: {{ item.route_path }}
       serviceId: {{ item.route_serviceid }}
   {% endfor %}     
+
+
+services:
+  {% for item in zuul_api_routes %}
+  {{ item.route_serviceid }}:
+      ribbon:
+        ConnectionTimeout: {{ zuul_ribbon_connection_timeout }}
+        ReadTimeout: {{ zuul_ribbon_read_timeout }}
+        MaxAutoRetries: {{ zuul_ribbon_max_retry }}
+        MaxHttpConnectionsPerHost: {{ zuul_ribbon_max_connection_per_host }}
+        MaxTotalHttpConnections: {{ zuul_ribbon_max_total_connection }}
+  {% endfor %}
 
 eureka:
   instance:
