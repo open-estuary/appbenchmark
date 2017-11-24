@@ -1,11 +1,6 @@
 spring:
   application:
     name: {{ search_name }}
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://{{ mysql_ip }}:{{ mysql_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password:
   redis:
     host: {{ redis_ip }}
     port: {{ redis_search_port }}
@@ -40,8 +35,3 @@ eureka:
 management:
   security:
     enabled: false
-
-mybatis:
-  config-location: classpath:mybatis-config.xml
-  mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.htsat.order.model
