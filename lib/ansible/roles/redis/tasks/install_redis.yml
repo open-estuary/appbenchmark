@@ -3,6 +3,14 @@
   yum: name=redis state=present disable_gpg_check=yes
   when: ansible_os_family == 'RedHat'
 
+- name: create redis conf directory
+  file:
+    path: /usr/local/redis/config
+    state: directory
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
 - name: copy redis server configurations
   vars:
    # start_cpu_number: redis_cpus.split('-')[0]
