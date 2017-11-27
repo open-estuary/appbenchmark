@@ -1,0 +1,22 @@
+---
+- name: Write config file for api-server
+  template: src=apiserver.j2 dest=/etc/kubernetes/apiserver
+
+- name: Write config file for controller-manater
+  template: src=controller-manater.j2 dest=/etc/kubernetes/controller-manater
+
+- name: Write config file for scheduler
+  template: src=scheduler.j2 dest=/etc/kubernetes/scheduler.j2
+
+- name: Enable apiserver
+  service: name=kube-apiserver enabled=yes state=started
+
+- name: Enable controller-manater
+  service: name=kube-controller-manager enabled=yes state=started
+
+- name: Enable scheduler
+  service: name=kube-scheduler enabled=yes state=started
+
+- name: Expose firewalld port for kube-apiserver
+  firewalld: port-8080/tcmp permanent=false stated=enabled
+  when: installed_firewalld.rc == 0
