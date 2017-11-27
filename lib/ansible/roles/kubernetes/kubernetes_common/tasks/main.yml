@@ -1,0 +1,17 @@
+---
+- name: Install kubernetes by yum
+  yum: pkg=kubernetes state=latest
+  
+- name: Judge whether firewalld installed
+  command: "rpm -q firewalld"
+  register: installed_firewalld
+  failed_when: "'package firewalld is not installed' not in installed_firewalld.stdout and installed_firewalld.rc != 0"
+  changed_when: false
+
+- name: Find ip addresses
+  set_fact:
+    master_ip: "{{hostvars[groups['masters'][0]]['ansible_default_ipv4']['address']}}"
+    etcd_ip: "{{hostvars[groups['etcd'][0]]['ansible_default_ipv4']['address']}}"
+
+- name: Write common config file
+  template: src=config.j2 dest=/etc/kubernetes/config

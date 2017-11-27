@@ -1,0 +1,16 @@
+---
+- name: Write config file for kubelet
+  template: src=kubelet.j2 dest=/etc/kubernetes/kubelet
+
+- name: Write config file for kubeproxy
+  template: src=proxy.j2 dest=/etc/kubernetes/proxy
+
+- name: Enbale kubelet
+  service: name=kubelet enabled=yes state=started
+
+- name: Enable proxy
+  service: name=kube-proxy enabled=yes state=started
+
+- name: Disable firewalld
+  service: name=firewalld enabled=yes state=stopped
+  when: installed_firewalld.rc == 0
