@@ -120,7 +120,7 @@
 
 - name: master allow remote login
   mysql_user:
-     login_host: "{{ item.login_host }}"
+     login_host: 127.0.0.1
      login_user: "{{ item.login_name }}"
      login_password: "{{ item.login_password }}"
      login_port: "{{ item.port }}"

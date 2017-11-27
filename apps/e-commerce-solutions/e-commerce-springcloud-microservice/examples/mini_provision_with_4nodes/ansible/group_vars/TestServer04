@@ -1,0 +1,8 @@
+---
+solr_cpus: 0-3
+interrupt_cpus: 4
+pcp_cpus: 5
+mysql_cpus: 6-8
+
+pcp_web_cpus: 9-10
+

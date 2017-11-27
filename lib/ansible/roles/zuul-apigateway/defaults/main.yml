@@ -3,6 +3,14 @@ zuul_port: 5555
 zuul_pkg_name: micro-service-api
 zuul_service_name: microservice-zuul
 zuul_config_dir: "/etc/micro-services/api-gateway"
+zuul_ribbon_isolation_strategy: SEMAPHORE
+zuul_max_semaphores: 10000
+zuul_ribbon_connection_timeout: 100000
+zuul_ribbon_read_timeout: 100000
+zuul_ribbon_max_retry: 1
+zuul_ribbon_max_connection_per_host: 5000
+zuul_ribbon_max_total_connection: 10000
+
 zuul_api_routes:
   - route_name: api-cart
     route_path: "/v1/cart/**"
@@ -16,6 +24,14 @@ zuul_api_routes:
 
 zipkin_server: 192.168.11.225
 zipkin_port:
+
+zuul_dump: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/micro-services/logs/zuul/zuul.oomdump"
+zuul_heap_option: "-Xms2g -Xmx2g"
+zuul_gc_algo_option: "-XX:G1ReservePercent=20 -XX:ConcGCThreads=32 -XX:ParallelGCThreads=32 \
+        -XX:+PerfDisableSharedMem -XX:+UseLargePages -XX:+AggressiveOpts \
+        -XX:+ParallelRefProcEnabled -XX:InitiatingHeapOccupancyPercent=75 \
+        -XX:-OmitStackTraceInFastThrow  \
+        -XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:+UnlockExperimentalVMOptions -XX:G1HeapRegionSize=32M"
 
 zuul_log_file: "/opt/micro-services/logs/zuul" 
 zuul_prefer_ipaddress: true

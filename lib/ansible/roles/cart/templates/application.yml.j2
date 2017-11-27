@@ -8,7 +8,7 @@ spring:
     password:
   redis:
     host: {{ redis_ip }}
-    port: {{ redis_port }}
+    port: {{ redis_cart_port }}
     pool:
       maxActive: -1
       maxWait: -1
@@ -41,6 +41,3 @@ mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.htsat.cart.model
-
-#logging:
-#  file: /opt/e-commerce/logs/cart.log

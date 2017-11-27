@@ -1,0 +1,30 @@
+---
+
+workspace: "/home/estuaryapp/"
+estuaryuser: "estuaryapp"
+
+
+#Default to LVS Virtual IP and Port
+e_commerce_api_server: "192.168.12.100"
+e_commerce_api_port: 9000
+
+#Define the number of users(or threads) for Jmeter
+e_commerce_users: 100
+
+#Define Test duration time in seconds
+e_commerce_test_time_insecs: 500
+
+#Define the percent of users for specific API service (such as order create/update, cart create/update, order delete, and search)
+e_commerce_order_create_percent: 30
+e_commerce_cart_percent: 30 
+e_commerce_search_percent: 30 
+e_commerce_order_del_percent: 10 
+
+#Define the query file 
+e_commerce_query_file: "/home/estuaryapp/solr_benchmark/solr_query"
+
+#Since Jmeter support distributed tests, this define the jmeter servers which perform real tests
+e_commerce_jmeter_remote_hosts: "192.168.12.11"
+
+e_commerce_log_dir: "/estuarytest/e_commerce_testresults/"
+

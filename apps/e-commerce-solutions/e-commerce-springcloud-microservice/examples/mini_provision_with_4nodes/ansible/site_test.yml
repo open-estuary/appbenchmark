@@ -1,0 +1,11 @@
+---
+- name: Perform REST API Benchmark Test
+  hosts: JMeterClient
+  remote_user: estuaryapp
+  become: yes
+  become_method: sudo
+  roles:
+    - e_commerce_benchmark_test
+ 
+
+

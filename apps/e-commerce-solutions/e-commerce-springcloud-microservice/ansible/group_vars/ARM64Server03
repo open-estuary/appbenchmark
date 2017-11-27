@@ -6,6 +6,9 @@ pcp_cpus: 33
 redis_cpus: "34-47"
 order_cpus: "48-63"
 mycat_port: 8067 
+redis_order_port: 22145
+
+remove_redis_num: "38-47"
 
 nginx_port: 9000
 nginx_install_epel_repo: True
@@ -21,4 +24,13 @@ nginx_reverse_proxy_proxies:
     nginx_domains:
       - localhost
 
+redis_import_data:
+  - IP_address: 192.168.11.237
+    port: 7034
+  - IP_address: 192.168.11.237
+    port: 7035
+  - IP_address: 192.168.11.237
+    port: 7036
+  - IP_address: 192.168.11.237
+    port: 7037
 

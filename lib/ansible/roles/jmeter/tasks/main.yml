@@ -44,6 +44,15 @@
   shell: "{{ workspace }}/jmeter_install.sh {{ workspace }} {{ jmeter_version }}" 
   when: ansible_os_family == "Debian" or ansible_architecture == "x86_64"
 
+- name: Install java json lib
+  unarchive:
+    src: "http://www.java2s.com/Code/JarDownload/java-json/java-json.jar.zip"
+    dest: "/opt/jmeter/lib/"
+    remote_src: yes    
+    mode: 0755
+    owner: "{{ estuaryuser }}"
+    group: "{{ estuaryuser }}"
+
 - name: Start jmemter for distributed test 
-  shell: "/opt/jmeter/bin/jmeter-server -Djava.rmi.server.hostname={{inventory_hostname}} &"
+  shell: "/opt/jmeter/bin/jmeter-server -Djava.rmi.server.hostname={{ jmeter_client_ip }} &"
 

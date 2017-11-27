@@ -21,6 +21,12 @@
   with_items:
     - "{{ solr_log_dir }}"
 
+- name: SolrCloud | Remove Old Solr
+  yum: 
+    name: solr
+    state: absent
+  when: ansible_os_family == 'RedHat'
+
 - name: SolrCloud | Download SolrCloud binaries
   get_url:
     url: "{{ solr_cloud_url }}"

@@ -1,5 +1,31 @@
 ---
 
+- name: cp download cart shell
+  copy:
+    src: ../files/download_cart_sql.sh
+    dest: "{{ sql_location }}"
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: database is defined and database == "e-commerce-cart"
+
+- name: download remove cart sql
+  shell: "{{ sql_location }}download_cart_sql.sh"
+  when: database is defined and database == "e-commerce-cart"
+
+- name: cp download order shell
+  copy:
+    src: ../files/download_order_sql.sh
+    dest: "{{ sql_location }}"
+    mode: 0755
+    owner: "{{ mysqluser }}"
+    group: "{{ mysqluser }}"
+  when: database is defined and database == "e-commerce-order"
+
+- name: download remove order sql
+  shell: "{{ sql_location }}download_order_sql.sh"
+  when: database is defined and database == "e-commerce-order"
+
 - name: create database
   mysql_db:
      name: "{{ database }}"
@@ -50,6 +76,16 @@
      login_password: "{{ login_password }}"
      login_port: "{{ listen_port }}"
      target: "{{ sql_location }}{{ sku }}"
+
+- name: load sku displayprice data
+  mysql_db:
+     state: import
+     name: "{{ database }}"
+     login_host: "{{ login_host }}"
+     login_user: "{{ login_name }}"
+     login_password: "{{ login_password }}"
+     login_port: "{{ listen_port }}"
+     target: "{{ sql_location }}{{ sku_supplement }}"
 
 - name: load userbank data
   mysql_db:

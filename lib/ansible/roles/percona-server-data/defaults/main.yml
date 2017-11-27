@@ -6,6 +6,8 @@ user_sql_location: /opt/data/r_ec_userinfo.sql
 
 sku_sql_location: /opt/data/r_ec_sku.sql
 
+sku_supplement_sql_location: /opt/data/r_ec_sku_supplement.sql
+
 userbank_sql_location: /opt/data/r_ec_userbankinfo.sql
 
 userdeliveryaddress_sql_location: /opt/data/r_ec_userdeliveryaddress.sql

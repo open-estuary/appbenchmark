@@ -7,9 +7,8 @@ eureka_port: 8761
 mycat_ip: 192.168.11.218
 database_name: e-commerce-order
 redis_ip: 192.168.11.232
-redis_port: 22145
-zipkin_server: 192.168.11.225
-zipkin_port:
+zipkin_server: 192.168.11.215
+zipkin_port: 9411
 
 order_prefer_ipaddress: true
 order_ignored_interfaces:

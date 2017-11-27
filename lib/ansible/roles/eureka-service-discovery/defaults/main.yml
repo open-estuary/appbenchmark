@@ -14,3 +14,12 @@ eureka_ignored_interfaces:
   - enp2s0f0
 eureka_register_myself: false
 eureka_register_fetch: false
+
+eureka_heap_option: "-Xms2g -Xmx2g"
+eureka_gc_algo_option: "-XX:G1ReservePercent=20 -XX:ConcGCThreads=32 -XX:ParallelGCThreads=32  \
+        -XX:+PerfDisableSharedMem -XX:+UseLargePages -XX:+AggressiveOpts \
+        -XX:+ParallelRefProcEnabled -XX:InitiatingHeapOccupancyPercent=75 \
+        -XX:-OmitStackTraceInFastThrow  \
+        -XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:+UnlockExperimentalVMOptions -XX:G1HeapRegionSize=32M"
+
+eureka_dump: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/micro-services/logs/eureka/eureka.oomdump"

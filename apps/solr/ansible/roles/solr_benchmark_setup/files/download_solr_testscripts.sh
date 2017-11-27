@@ -14,9 +14,13 @@ wget -O solr_create_fields.sh https://raw.githubusercontent.com/open-estuary/pac
 wget -O solr_post_data.sh https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/solr_benchmark/solr_post_data.sh
 wget -O solr_query https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/solr_benchmark/solr_query
 
+wget -O e_commerce_benchmark_test.sh https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/e_commerce_benchmark/e_commerce_benchmark_test.sh
+wget -O e_commerce_restapi_benchmark.jmx https://raw.githubusercontent.com/open-estuary/packages/master/solutions/e-commerce-springcloud-microservices/scripts/e_commerce_benchmark/e_commerce_restapi_benchmark.jmx
+
 sudo chmod 755 solr_benchmark_test.sh
 sudo chmod 755 solr_create_fields.sh
 sudo chmod 755 solr_post_data.sh
+sudo chmod 755 e_commerce_benchmark_test.sh
 
 popd > /dev/null
 

@@ -6,7 +6,25 @@ pcp_cpus: 33
 redis_cpus: "34-45"
 order_cpus: "46-62"
 mycat_port: 8066
+redis_order_port: 22146
+
+remove_redis_num_nonsequence: 
+  - num: 35
+  - num: 36
+  - num: 37
+  - num: 38
+  - num: 39
+  - num: 40
+  - num: 41
+  - num: 42
+  - num: 44
+  - num: 45
 
 zuul_port: 8765
 
+redis_import_data:
+  - IP_address: 192.168.11.250
+    port: 7034
+  - IP_address: 192.168.11.250
+    port: 7043
 

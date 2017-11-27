@@ -2,6 +2,16 @@
 estuaryuser: estuaryapp
 workspace: /home/estuaryapp
 
+#This api server ip should the same as the LVS VIP defined in ansible/group_vars/ARM64Server01
+e_commerce_api_server: "192.168.12.100"
+
+#Jmeter client host has two IP, that is, one is for management, and another for service test
+#As for distributed Jmeter test, the jmeter_client_ip is where Jmeter client is running,
+#where the e_commerce_jmeter_remote_hosts is the list of Jmeter servers which generate test loads
+#and send test requests
+e_commerce_jmeter_remote_hosts: "192.168.12.11"
+jmeter_client_ip: "192.168.12.11"
+
 eureka_server: "192.168.11.223"
 eureka_port: 8761
 
@@ -37,8 +47,22 @@ solr_zk_host: "192.168.11.231:{{ zookeeper_client_port }},192.168.11.232:{{ zook
 solr_tar_filename: "solr_ecommerce_mysql_data.tar.gz"
 solr_data_file: "{{ workspace }}/solr_benchmark/solr_ecommerce_data/solr_data.csv"
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
+solr_cloud_mode: "true"
 
-zipkin_server: 192.168.11.225
+#Define Heap Size for Order/Search/Cart micro service heap size
+heap_option: "-Xms10g -Xmx10g"
+gc_algo_option: "-XX:G1ReservePercent=20 -XX:ConcGCThreads=32 -XX:ParallelGCThreads=32 \
+        -XX:+PerfDisableSharedMem -XX:+UseLargePages -XX:+AggressiveOpts \
+        -XX:+ParallelRefProcEnabled -XX:InitiatingHeapOccupancyPercent=75 \
+        -XX:-OmitStackTraceInFastThrow \
+        -XX:+UseG1GC -XX:MaxGCPauseMillis=250 -XX:+UnlockExperimentalVMOptions -XX:G1HeapRegionSize=32M"
+
+zuul_heap_option: "{{ heap_option }}"
+zuul_gc_algo_option: "{{ gc_algo_option }}"
+eureka_heap_option: "{{ heap_option }}"
+eureka_gc_algo_option: "{{ gc_algo_option }}"
+
+zipkin_server: 192.168.1.180
 zipkin_port: 9411
 
 mount_paths:

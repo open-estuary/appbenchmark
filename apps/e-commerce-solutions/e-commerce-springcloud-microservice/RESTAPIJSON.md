@@ -174,7 +174,9 @@
 
 {
     "userId": ,
-    "status": 
+    "status": ,
+    "info": ,
+    "error": 
 }
 
 ## <a name="6">Sku</a>

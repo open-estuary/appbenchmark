@@ -1,0 +1,5 @@
+---
+local_id_rsa_pub_file: "/root/.ssh/id_rsa.pub"
+remote_account: "estuaryapp"
+remote_group: "estuaryapp"
+
