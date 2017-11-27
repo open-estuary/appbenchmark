@@ -5,7 +5,9 @@ interrupt_cpus: "31-32"
 pcp_cpus: 33
 redis_cpus: "34-45"
 order_cpus: "46-62"
+mycat_order_ip: 192.168.11.218
 mycat_port: 8066
+redis_order_ip: 192.168.11.232
 redis_order_port: 22146
 
 remove_redis_num_nonsequence: 
