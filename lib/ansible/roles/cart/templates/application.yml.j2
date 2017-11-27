@@ -3,11 +3,11 @@ spring:
     name: {{ cart_name }}
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://{{ mycat_ip }}:{{ mycat_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://{{ mycat_cart_ip }}:{{ mycat_port }}/{{ database_name }}?useUnicode=true&characterEncoding=utf-8
     username: root
     password:
   redis:
-    host: {{ redis_ip }}
+    host: {{ redis_cart_ip }}
     port: {{ redis_cart_port }}
     pool:
       maxActive: -1

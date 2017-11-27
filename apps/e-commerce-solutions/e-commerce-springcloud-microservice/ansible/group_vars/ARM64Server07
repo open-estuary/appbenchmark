@@ -11,10 +11,14 @@ zookeeper_my_id: 3
 search_cpus: "34-46"
 
 cart_cpus: "47-63"
+
+mycat_cart_ip: 192.168.11.219
 mycat_port: "8067"  #microservice uses this parameter
 
+redis_cart_ip: 192.168.11.219
 redis_cart_port: 22136
 
+redis_search_ip: 192.168.11.223
 redis_search_port: 22151
 
 solr_ip: 192.168.11.231
