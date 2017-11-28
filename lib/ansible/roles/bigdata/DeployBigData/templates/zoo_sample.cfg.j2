@@ -30,9 +30,6 @@ clientPort={{ZK_clientPort}}
 
 
 {% for server in ZK_serverlist.split(',') %}
-#  {%- set url_host = server.split(':')[0] -%}
-#  {%- if url_host == ansible_fqdn or url_host in ansible_all_ipv4_addresses -%}
 server.{{loop.index}}={{server}}
-#  {% endif %}
 {% endfor %}
 

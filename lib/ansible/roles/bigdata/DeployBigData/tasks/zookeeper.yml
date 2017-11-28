@@ -8,8 +8,8 @@
 
 - name: create zoo.cfg configure file for zookeeper
   template: src=zoo_sample.cfg.j2 dest={{zookeeper_conf_dir}}/zoo.cfg owner={{zookeeper_user}} group={{zookeeper_group}} mode=640 
-  notify:
-    - restart zookeeper
+#  notify:
+#    - restart zookeeper
 
 - name: create datadir
   file: path={{ZK_dataDir}} state=directory owner={{zookeeper_user}} group={{zookeeper_group}} mode=640 
