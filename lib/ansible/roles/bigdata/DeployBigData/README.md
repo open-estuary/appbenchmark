@@ -5,59 +5,59 @@
 ## <a name="1">Introduction</a>
 --------------
 
-This ansible role is to setup Spring Cloud Zuul which plays the role of microservices gateway.
+This ansible role is to Deploy BigData to remote machines.
 
 ## <a name="2">Role Variables</a>
 --------------
 
 ### Expected to Be Configured
 
-* `zuul_port`: specify the listening port of Zuul service
-* `zuul_pkg_name` : specify the RPM package name of Zuul 
-* `zuul_service_name`: specify the systemd service name of Zuul
-* `zuul_config_dir`: specify the directory name to store Zuul configuration file (that is `application.yml`)
-* `zuul_api_routes`:
-  * `route_name`: specify the name of route
-  * `route_path`: specify the http path whose requests will be mapped to the corresponding microservices
-  * `route_serviceid`: specify the service id of microservices
-* `eureka_server`: specify the server name which contain Spring Cloud Eureka server
-* `eureka_port`: specify the listening port of Spring Cloud Eureka server
+* `ZK_serverlist`: specify the zookeeper host list in the way: hostname1:port1-1:port1-2,hostname2:port2-1:port2-2...
+* `spark_driver_memory` : specify the application driver used memory
+* `master_machine`: dictionary structure, you should list the machine master of hadoop and spark
+* `slaves_machine`: dictionary structure, you should list the machine slaves of hadoop and spark
 
 ### Proxy configuration options
 
 ### Role Defaults
-* `zuul_port`: 5555
-* `zuul_pkg_name`: micro-service-api
-* `zuul_service_name`: microservice-zuul
-* `zuul_config_dir`: "/etc/micro-services/api-gateway"
-* `zuul_api_routes`:
-  * `- route_name`: api-cart
-  *   route_path: "/cart/**"
-  *   route_serviceid: cart-service
-  * `- route_name`: api-order
-  *  route_path: "/order/**"
-  *  route_serviceid: order-service
-  * `- route_name`: api-search
-  *  route_path: "/search/**"
-  * route_serviceid: search-service
-* `eureka_server: localhost
-* `eureka_port`: 8761
-* `eureka_url`: "http://{{ eureka_server }}:{{ eureka_port }}/eureka/"
+* `ZK_clientPort`: 2181
+* `ZK_dataLogDir`: /var/zookeeperTest/datalogdir
+* `ZK_dataDir`: /var/zookeeperTest/datadir
+* `ZK_tickTime`: 2000
+* `ZK_initLimit`: 4
+* `ZK_syncLimit`: 2
+* `apache_mirror`: "http://mirrors.tuna.tsinghua.edu.cn/apache"
+* `scala_download_mirror`: "https://downloads.lightbend.com/scala"
+* `java_download_mirror`: "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf"
+* `hadoop_tmp_dir`: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/tmp"
+* `dfs_namenode_name_dir`: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/dfs/name"
+* `dfs_datanode_data_dir`: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/dfs/data"
+
 
 ## <a name="3">Example Playbook</a>
 ----------------
 
 ```
 ---
-- hosts: zuul_hosts 
-  remote_user: estuaryapp
-  become: yes
+
+- name: install bigdata on remote x86 machines
+  hosts: Install_BigDataMachines_X86
+  gather_facts: yes
   roles:
-    - zuul-apigateway
+    - DeployBigData
+
+- name: install bigdata on remote hosts
+  hosts: Install_BigDataMachines_Arm64
+  gather_facts: yes
+  roles:
+    - estuaryrepo
+    - DeployBigData
 
 ```    
 
-For more examples, please refer to [e-commerce-springcloud-microservice](https://github.com/open-estuary/appbenchmark/tree/master/apps/e-commerce-solutions/e-commerce-springcloud-microservice)
+## <a name="4">Additional specification</a>
+* you may need to change the hadoop mirror site, for the site is invalidate usually
+* bigdata need to deploy kafka, it's in site "https://github.com/open-estuary/appbenchmark/tree/master/apps/kafka/kafka", please refer this page to deploy kafka
 
 License
 -------
