@@ -1,0 +1,10 @@
+---
+
+- name: start hadoop dfs service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/start-dfs.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+
+- name: start hadoop yarn service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/start-yarn.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+

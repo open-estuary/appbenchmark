@@ -1,0 +1,38 @@
+# The number of milliseconds of each tick
+tickTime={{ZK_tickTime}}
+# The number of ticks that the initial 
+# synchronization phase can take
+initLimit={{ZK_initLimit}}
+# The number of ticks that can pass between 
+# sending a request and getting an acknowledgement
+syncLimit={{ZK_syncLimit}}
+# the directory where the snapshot is stored.
+# do not use /tmp for storage, /tmp here is just 
+# example sakes.
+dataDir={{ZK_dataDir}}
+dataLogDir={{ZK_dataLogDir}}
+# the port at which the clients will connect
+clientPort={{ZK_clientPort}}
+# the maximum number of client connections.
+# increase this if you need to handle more clients
+#maxClientCnxns=60
+#
+# Be sure to read the maintenance section of the 
+# administrator guide before turning on autopurge.
+#
+# http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+#
+# The number of snapshots to retain in dataDir
+#autopurge.snapRetainCount=3
+# Purge task interval in hours
+# Set to "0" to disable auto purge feature
+#autopurge.purgeInterval=1
+
+
+{% for server in ZK_serverlist.split(',') %}
+#  {%- set url_host = server.split(':')[0] -%}
+#  {%- if url_host == ansible_fqdn or url_host in ansible_all_ipv4_addresses -%}
+server.{{loop.index}}={{server}}
+#  {% endif %}
+{% endfor %}
+

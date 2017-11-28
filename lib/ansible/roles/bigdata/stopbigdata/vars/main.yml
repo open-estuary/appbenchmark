@@ -1,0 +1,5 @@
+---
+
+master_machine:
+  hadoop: 192.168.1.42
+  spark: 192.168.1.42

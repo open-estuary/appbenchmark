@@ -1,0 +1,25 @@
+---
+
+- name: setup hadoop group
+  group: name={{hadoop_group}} system=yes
+
+- name: setup hadoop user
+  user: name={{hadoop_user}} system=yes group={{hadoop_group}}
+
+
+- name: setup spark group
+  group: name={{spark_group}} system=yes
+
+- name: setup spark user
+  user: name={{spark_user}} system=yes group={{spark_group}}
+
+
+- name: setup zookeeper group
+  group: name={{zookeeper_group}} system=yes
+
+- name: setup zookeeper user
+  user: name={{zookeeper_user}} system=yes group={{zookeeper_group}}
+
+
+- name: create deploy main directory
+  file: dest={{SOFTWARE_INSTALL_PATH}} state=directory owner=root group=root mode=777

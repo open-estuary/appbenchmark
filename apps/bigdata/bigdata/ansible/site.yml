@@ -1,0 +1,16 @@
+---
+
+- name: install bigdata on remote x86 machines
+  hosts: Install_BigDataMachines_X86
+  gather_facts: yes
+  roles:
+    - DeployBigData
+
+
+- name: install bigdata on remote hosts
+  hosts: Install_BigDataMachines_Arm64
+  gather_facts: yes 
+  roles:
+    - estuaryrepo
+    - DeployBigData
+

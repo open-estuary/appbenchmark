@@ -1,0 +1,11 @@
+---
+
+#- include_tasks: prework.yml
+
+- include_tasks: start_hadoop.yml
+
+- include_tasks: start_spark.yml
+
+- include_tasks: start_zookeeper.yml
+
+#- include_tasks: start_kafka.yml

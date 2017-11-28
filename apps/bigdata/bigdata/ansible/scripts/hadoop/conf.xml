@@ -1,0 +1,87 @@
+<configurations>
+	<component>
+	  <xml>core</xml>
+	  <configuration-definitions>
+	    <configuration-definition>
+	        <name>fs.defaultFS</name>
+	        <value>hdfs://centos:9000/</value> 
+	    </configuration-definition>
+	  </configuration-definitions>	  
+	</component>
+	
+	<component>
+	  <xml>HDFS</xml>
+	  <configuration-definitions>
+	    <configuration-definition>
+	        <name>dfs.namenode.secondary.http-address</name>
+                <value>centos:9001</value>
+            </configuration-definition>
+	    <configuration-definition>
+	        <name>dfs.replication</name>
+	        <value>3</value>
+	    </configuration-definition>
+	  </configuration-definitions>
+	</component>
+	
+	<component>
+	  <xml>yarn</xml>
+	  <configuration-definitions>
+	    <configuration-definition>
+                <name>yarn.nodemanager.aux-services</name>
+                <value>mapreduce_shuffle</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+                <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.resourcemanager.address</name>
+                <value>centos:8032</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.resourcemanager.scheduler.address</name>
+                <value>centos:8030</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.resourcemanager.resource-tracker.address</name>
+                <value>centos:8035</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.resourcemanager.admin.address</name>
+                <value>centos:8033</value>
+            </configuration-definition>
+	    <configuration-definition>
+	        <name>yarn.resourcemanager.webapp.address</name>
+                <value>centos:8088</value>
+            </configuration-definition>		
+	    <configuration-definition>
+	        <name>yarn.scheduler.minimum-allocation-mb</name>
+                <value>1024</value>
+            </configuration-definition>
+	    <configuration-definition>
+                <name>yarn.scheduler.maximum-allocation-mb</name>
+                <value>4096</value>
+            </configuration-definition>
+	    <configuration-definition>
+	        <name>yarn.nodemanager.resource.memory-mb</name>
+	        <value>32768</value>
+            </configuration-definition>
+	    <configuration-definition>
+	        <name>yarn.nodemanager.resource.cpu-vcores</name>
+                <value>16</value>
+            </configuration-definition>
+	  </configuration-definitions>	  
+	</component>
+	
+	<component>
+	  <xml>mapreduce</xml>
+	  <configuration-definitions>	    
+	    <configuration-definition>
+	        <name>mapreduce.framework.name</name>
+                <value>yarn</value>
+            </configuration-definition>
+	  </configuration-definitions>	  
+	</component>
+	
+	
+</configurations>

@@ -1,0 +1,44 @@
+---
+
+
+#user: BigData
+##passwd: BigData
+workspace: /home/BigDataTest
+tmpworkspace: /tmp
+SOFTWARE_INSTALL_PATH: /home/BigDataTest
+
+##### Version definition
+SCALA_VERSION: 2.11.11
+scala_tarball_location: "{{ tmpworkspace }}"
+scala_tarball_name: "scala-{{SCALA_VERSION}}.tgz"
+
+HADOOP_VERSION: 2.7.4
+
+HADOOP_BIG_VERSION: 2.7
+SPARK_VERSION: 2.2.0
+
+JAVA_VERSION: 1.8.0_151
+JAVA_DOWNLOAD_VERSION: 8u151
+java_x64_tarball_name: "jdk-{{JAVA_DOWNLOAD_VERSION}}-linux-x64.tar.gz"
+java_arm64_tarball_name: "jdk-{{JAVA_DOWNLOAD_VERSION}}-linux-arm64-vfp-hflt.tar.gz"
+java_tarball_location: "{{tmpworkspace}}"
+ZOOKEEPER_VERSION: 3.4.10
+### software install path in remote machine
+
+
+zookeeper_tarball_name: "zookeeper-{{ZOOKEEPER_VERSION}}.tar.gz"
+zookeeper_tarball_location: "{{tmpworkspace}}"
+zookeeper_conf_dir: "{{SOFTWARE_INSTALL_PATH}}/zookeeper-{{ZOOKEEPER_VERSION}}/conf"
+
+ZK_serverlist: 192.168.1.42:2888:3888,192.168.1.43:2888:3888,192.168.1.44:2888:3888
+
+#spark-env.sh config here
+spark_driver_memory: 2G
+
+master_machine:
+  hadoop: 192.168.1.42
+  spark: 192.168.1.42
+
+slaves_machine:
+  hadoop: 192.168.1.43,192.168.1.44
+  spark: 192.168.1.43,192.168.1.44

@@ -1,0 +1,24 @@
+---
+- name: download maven tools
+  get_url: dest={{tmpworkspace}}/{{maven_tarball_name}} url="{{apache_mirror_site}}/maven/maven-{{maven_bigversion}}/{{maven_version}}/binaries/{{maven_tarball_name}}" force=no
+
+- name: decompress maven tarball
+  unarchive: src={{ tmpworkspace }}/{{maven_tarball_name}} dest={{maven_install_location}} copy=no owner=root group=root mode=755
+
+- name: export maven home directory environment
+  lineinfile: dest=/etc/profile regexp="^export M2_HOME" line="export M2_HOME={{maven_install_location}}/apache-maven-{{maven_version}}"
+
+- name: export maven bin directory environment
+  lineinfile: dest=/etc/profile regexp="^export PATH=${M2_HOME}/bin" line="export PATH=${M2_HOME}/bin:$PATH"
+
+- name: source profile
+  shell: source /etc/profile executable=/bin/bash
+
+
+#- name: get maven version after install
+##  shell: mvn -v executable=/bin/bash
+##  register: result
+#
+##- name: verify if maven deploy successful 
+##  debug: var= result verbosity=0
+#

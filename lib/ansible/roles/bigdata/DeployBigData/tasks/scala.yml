@@ -1,0 +1,30 @@
+---
+
+#- name: copy common script
+#  copy: src=../../../scripts/common/BigDataConfig dest={{tmpworkspace}} owner=dingwei mode=777
+
+#- name: download scala
+#  shell: wget -P {{tmpworkspace}} https://downloads.lightbend.com/scala/{{ SCALA_VERSION }}/scala-{{ SCALA_VERSION }}.tgz
+- name: Fetch scala binary package  
+  get_url: dest="{{scala_tarball_location}}/{{scala_tarball_name}}" url="{{scala_download_mirror}}/{{SCALA_VERSION}}/{{scala_tarball_name}}" force=no
+
+- name: unarchive the gz packet
+  unarchive: src={{ tmpworkspace }}/{{scala_tarball_name}} dest={{ SOFTWARE_INSTALL_PATH }} copy=no owner=root group=root mode=755
+
+#- name: copy script to remote machine
+#  copy: src={{ item }} dest={{tmpworkspace}} owner=dingwei mode=777
+#  with_items:
+#    - export_scala_env.sh
+
+- name: export scala home environment
+  lineinfile: dest=~/.bash_profile regexp="^export SCALA_HOME" line="export SCALA_HOME={{SOFTWARE_INSTALL_PATH}}/scala-{{SCALA_VERSION}}"
+
+- name: export scala bin path
+  lineinfile: dest=~/.bash_profile regexp="^export PATH=\${SCALA_HOME}/bin" line="export PATH=${SCALA_HOME}/bin/:$PATH"
+
+- name: source bash_profile
+  shell: source ~/.bash_profile executable=/bin/bash
+
+#- name: clear tmp resource
+#  file: dest={{scala_tarball_location}}/{{scala_tarball_name}} state=absent
+

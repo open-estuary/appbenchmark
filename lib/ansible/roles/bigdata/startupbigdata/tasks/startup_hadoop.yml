@@ -1,0 +1,19 @@
+---
+
+- name: format hdfs file system on namenode
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} echo -e "Y" | {{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/bin/hadoop namenode -format'
+#  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} echo "i love you" > test'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+
+- name: format hdfs file on datanode
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} rm -rf {{hadoop_tmp_dir}}/* {{dfs_namenode_name_dir}}/* {{dfs_datanode_data_dir}}/*'
+  when: master_machine.hadoop not in ansible_all_ipv4_addresses
+
+- name: startup hadoop dfs service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/start-dfs.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+
+- name: startup hadoop yarn service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/start-yarn.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+
