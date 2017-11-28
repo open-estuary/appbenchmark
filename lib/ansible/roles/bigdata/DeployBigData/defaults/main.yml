@@ -23,8 +23,8 @@ dfs_datanode_data_dir: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/dfs/
 
 ### Zookeeper define here
 ZK_clientPort: 2181
-ZK_dataLogDir: /tmp/zookeeperTest/datalogdir
-ZK_dataDir: /tmp/zookeeperTest/datadir
+ZK_dataLogDir: /var/zookeeperTest/datalogdir
+ZK_dataDir: /var/zookeeperTest/datadir
 ZK_tickTime: 2000
 ZK_initLimit: 5
 ZK_syncLimit: 2
