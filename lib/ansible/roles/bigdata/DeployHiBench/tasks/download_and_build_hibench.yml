@@ -1,0 +1,19 @@
+- name: git clone from intel-hadoop/HiBench repository
+  git: repo=https://github.com/intel-hadoop/HiBench.git clone=yes  dest=/home/Hibench-Test
+
+- name: build hibench all
+  shell: 'chdir=/home/Hibench-Test  mvn -Dspark={{spark_default_version}} -Dscala={{scala_default_version}} clean package executable=/bin/bash'
+  when: hibench_build_option == "all"
+
+- name: build hibench for hadoop benchmarks only
+  shell: 'chdir=/home/Hibench-Test mvn -Phadoopbench -Dspark={{spark_default_version}} -Dscala={{scala_default_version}} clean package executable=/bin/bash'
+  when: hibench_build_option == "hadoop_only"
+
+- name: build hibench for spark benchmarks only
+  shell: 'chdir=/home/Hibench-Test mvn -Psparkbench -Dmodules -PstructuredStreaming -Dspark={{spark_default_version}} -Dscala={{scala_default_version}} clean package executable=/bin/bash'
+  when: hibench_build_option == "spark_only"
+
+- name: build hibench for both hadoop and spark benchmarks
+  shell: 'chdir=/home/Hibench-Test mvn -Phadoopbench -Psparkbench -Dmodules -PstructuredStreaming -Dspark={{spark_default_version}} -Dscala={{scala_default_version}} clean package executable=/bin/bash'
+  when: hibench_build_option == "hadoop_and_spark"
+

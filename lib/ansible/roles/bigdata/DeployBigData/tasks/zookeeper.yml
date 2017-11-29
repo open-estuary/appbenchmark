@@ -1,0 +1,30 @@
+---
+
+- name: Fetch zookeeper binary package
+  get_url: dest="{{zookeeper_tarball_location}}/{{zookeeper_tarball_name}}" url="{{apache_mirror}}/zookeeper/zookeeper-{{ZOOKEEPER_VERSION}}/{{zookeeper_tarball_name}}" force=no
+
+- name: unarchive the gz packet
+  unarchive: src={{ zookeeper_tarball_location }}/{{ zookeeper_tarball_name }} dest={{ SOFTWARE_INSTALL_PATH }} copy=no owner={{zookeeper_user}} group={{zookeeper_group}} mode=755
+
+- name: create zoo.cfg configure file for zookeeper
+  template: src=zoo_sample.cfg.j2 dest={{zookeeper_conf_dir}}/zoo.cfg owner={{zookeeper_user}} group={{zookeeper_group}} mode=640 
+#  notify:
+#    - restart zookeeper
+
+- name: create datadir
+  file: path={{ZK_dataDir}} state=directory owner={{zookeeper_user}} group={{zookeeper_group}} mode=640 
+
+- name: create myid file
+  template: dest="{{ZK_dataDir}}/myid" owner={{zookeeper_user}} group={{zookeeper_group}} mode=640 src=myid.j2
+
+- name: create datalogdir
+  file: path={{ZK_dataLogDir}} state=directory owner={{zookeeper_user}} group={{zookeeper_group}} mode=640
+
+- name: export zookeeper home directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export ZOOKEEPER_HOME" line="export ZOOKEEPER_HOME={{SOFTWARE_INSTALL_PATH}}/zookeeper-{{ZOOKEEPER_VERSION}}"
+
+#- name: rm gz packet
+#  file: dest={{ zookeeper_tarball_location }}/{{ zookeeper_tarball_name }} state=absent
+
+- name: source bash_profile
+  shell: source ~/.bash_profile executable=/bin/bash

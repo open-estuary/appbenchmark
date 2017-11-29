@@ -1,0 +1,5 @@
+---
+
+- include_tasks: maven_install.yml
+
+- include_tasks: download_and_build_hibench.yml

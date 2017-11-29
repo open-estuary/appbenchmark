@@ -1,0 +1,12 @@
+---
+- name: stop bigdata services
+  hosts: BigDataMachines 
+  gather_facts: yes
+  vars: 
+    tmpworkspace: /tmp
+    workspace: /home/BigData
+  vars_files:
+    - ./roles/DeployBigData/defaults/main.yml
+    - ./roles/DeployBigData/vars/main.yml
+  roles:
+    - stopbigdata

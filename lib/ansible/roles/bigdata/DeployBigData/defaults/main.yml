@@ -1,0 +1,44 @@
+---
+##apache mirror http address
+apache_mirror: http://mirrors.tuna.tsinghua.edu.cn/apache
+scala_download_mirror: https://downloads.lightbend.com/scala
+java_download_mirror: http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf
+### hadoop define here
+hadoop_tmp_dir: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/tmp"
+dfs_namenode_name_dir: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/dfs/name"
+dfs_datanode_data_dir: "{{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/dfs/data"
+
+
+### spark define here
+
+
+
+### java define here
+
+
+
+### scala define here
+
+
+
+### Zookeeper define here
+ZK_clientPort: 2181
+ZK_dataLogDir: /var/zookeeperTest/datalogdir
+ZK_dataDir: /var/zookeeperTest/datadir
+ZK_tickTime: 2000
+ZK_initLimit: 5
+ZK_syncLimit: 2
+
+zookeeper_tarball_name: "zookeeper-{{ZOOKEEPER_VERSION}}.tar.gz"
+zookeeper_tarball_location: "{{tmpworkspace}}"
+zookeeper_conf_dir: "{{SOFTWARE_INSTALL_PATH}}/zookeeper-{{ZOOKEEPER_VERSION}}/conf"
+
+hadoop_group: hadoop
+hadoop_user: hadoop
+
+spark_group: spark
+spark_user: spark
+
+zookeeper_group: zookeeper
+zookeeper_user: zookeeper
+

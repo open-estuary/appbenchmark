@@ -1,0 +1,58 @@
+---
+
+#- name: copy files to destination host
+#  copy: src={{ item }} dest={{tmpworkspace}} owner=dingwei mode=777
+#  with_items:
+#    - export_java_env.sh
+#    - java_arm64_install.sh
+#    - java_x64_install.sh
+
+#  shell: uname -m executable=/bin/bash
+#  shell: uname -m
+#  register: cputype
+#- name: print cputype
+#  debug: var=cputype
+- name: down java for arm64
+  get_url: dest="{{java_tarball_location}}/{{java_arm64_tarball_name}}" url="{{java_download_mirror}}/{{java_arm64_tarball_name}}" force=no headers="Cookie:oraclelicense=accept-securebackup-cookie" validate_certs=no
+  when: ansible_architecture == "aarch64"
+- name: down java for x64
+  get_url: dest="{{java_tarball_location}}/{{java_x64_tarball_name}}" url="{{java_download_mirror}}/{{java_x64_tarball_name}}" force=no  headers="Cookie:oraclelicense=accept-securebackup-cookie" validate_certs=no 
+  when: ansible_architecture == "x86_64"
+
+- name: unarchive the x64 gz packet
+  unarchive: src={{ tmpworkspace }}/{{java_x64_tarball_name}} dest={{ SOFTWARE_INSTALL_PATH }} copy=no owner=root group=root mode=755
+  when: ansible_architecture == "x86_64"
+
+- name: unarchive the arm64 gz packet
+  unarchive: src={{ tmpworkspace }}/{{java_arm64_tarball_name}} dest={{ SOFTWARE_INSTALL_PATH }} copy=no owner=root group=root mode=755
+  when: ansible_architecture == "aarch64"
+
+- name: export java home environment
+  lineinfile: dest=~/.bash_profile regexp="^export JAVA_HOME" line="export JAVA_HOME={{SOFTWARE_INSTALL_PATH}}/jdk{{JAVA_VERSION}}"
+
+- name: export java bin path
+  lineinfile: dest=~/.bash_profile regexp="^export PATH=\${JAVA_HOME}/bin" line="export PATH=${JAVA_HOME}/bin/:$PATH"
+
+- name: export java classpath
+  lineinfile: dest=~/.bash_profile regexp="^export CLASSPATH" line="export CLASSPATH=.:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar"
+
+- name: source bash_profile
+  shell: source ~/.bash_profile executable=/bin/bash
+
+#- name: get java version after install
+#  shell: java -version executable=/bin/bash
+#  register: result
+
+#- name: verify if java deploy successful 
+#  debug: var=result verbosity=0
+
+
+#- name: clear tmp resource
+#  file: dest={{java_tarball_location}}/{{java_x64_tarball_name}} state=absent
+#  when: ansible_architecture == "x86_64"
+
+#- name: clear tmp resource
+#  file: dest={{java_tarball_location}}/{{java_arm64_tarball_name}} state=absent
+#  when: ansible_architecture == "aarch64"
+#
+

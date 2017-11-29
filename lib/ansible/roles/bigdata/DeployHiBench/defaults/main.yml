@@ -1,0 +1,17 @@
+---
+apache_mirror_site: http://mirrors.tuna.tsinghua.edu.cn/apache
+maven_bigversion: 3
+maven_version: "{{maven_bigversion}}.3.9"
+maven_tarball_name: "apache-maven-{{maven_version}}-bin.tar.gz"
+maven_install_location: /opt
+
+#### hibench compile option: 'all' for all modules to be compiled.
+####                         'hadoop_only' for build hadoop benchmarks only
+####                         'spark_only'  for build spark benchmarks only
+####                         'hadoop_and_spark' for build both hadoop and spark benchmarks
+####
+hibench_build_option: spark_only
+scala_default_version: 2.11
+#### for spark_default_version, you can chose '1.6' '2.0' '2.1' '2.2' options, default is '2.2'
+spark_default_version: 2.2
+

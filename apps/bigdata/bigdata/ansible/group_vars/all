@@ -1,0 +1,6 @@
+---
+
+user: BigData 
+passwd: BigData
+workspace: /home/BigData
+tmpworkspace: /tmp

@@ -1,0 +1,14 @@
+---
+
+- name: startup bigdata services
+  hosts: BigDataMachines
+  gather_facts: true
+  vars:
+    tmpworkspace: /tmp
+    workspace: /home/BigData
+  vars_files: 
+    - ./roles/DeployBigData/defaults/main.yml
+    - ./roles/DeployBigData/vars/main.yml
+  roles:
+    - startupbigdata
+

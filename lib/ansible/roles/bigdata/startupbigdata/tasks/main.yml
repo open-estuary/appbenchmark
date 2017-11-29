@@ -1,0 +1,9 @@
+---
+
+- include_tasks: startup_hadoop.yml
+
+- include_tasks: startup_spark.yml
+
+- include_tasks: startup_zookeeper.yml
+
+#- include_tasks: startup_kafka.yml

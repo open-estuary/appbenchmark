@@ -1,0 +1,10 @@
+---
+
+- name: yml stop hadoop dfs service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/stop-dfs.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+
+- name: yml stop hadoop yarn service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}} sbin/stop-yarn.sh'
+  when: master_machine.hadoop in ansible_all_ipv4_addresses
+

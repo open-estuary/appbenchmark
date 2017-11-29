@@ -1,0 +1,12 @@
+---
+
+- name: save echo path res
+  shell: echo $PATH
+  register: result
+
+- name: print path result
+  debug: var=result verbosity=0
+
+- name: start zookeeper service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/zookeeper-{{ZOOKEEPER_VERSION}} bin/zkServer.sh start'
+

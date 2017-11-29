@@ -1,0 +1,16 @@
+---
+
+-  include_tasks: pre-work.yml
+
+-  include_tasks: java.yml
+
+-  include_tasks: scala.yml
+
+-  include_tasks: hadoop.yml
+
+-  include_tasks: spark.yml
+
+-  include_tasks: zookeeper.yml
+
+#- name: start deploy kafka
+#  include_tasks: kafka.yml

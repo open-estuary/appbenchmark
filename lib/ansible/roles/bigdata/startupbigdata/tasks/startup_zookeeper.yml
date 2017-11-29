@@ -1,0 +1,5 @@
+---
+
+- name: startup zookeeper service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/zookeeper-{{ZOOKEEPER_VERSION}} bin/zkServer.sh start'
+

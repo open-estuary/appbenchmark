@@ -1,0 +1,6 @@
+---
+
+- name: start spark service
+  shell: 'chdir={{SOFTWARE_INSTALL_PATH}}/spark-{{SPARK_VERSION}}-bin-hadoop{{HADOOP_BIG_VERSION}} sbin/start-all.sh'
+  when: master_machine.spark in ansible_all_ipv4_addresses
+

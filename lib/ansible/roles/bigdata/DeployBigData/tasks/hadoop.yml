@@ -1,0 +1,21 @@
+---
+- name: copy and decompress files to destination host
+  unarchive: src=hadoop-{{HADOOP_VERSION}}.tar.gz dest={{SOFTWARE_INSTALL_PATH}} owner={{hadoop_user}} group={{hadoop_group}}  mode=755
+
+- name: config hadoop slave file
+  template: src=slaves_hadoop.j2 dest={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}/etc/hadoop/slaves owner={{hadoop_user}} group={{hadoop_group}} mode=644
+
+- name: export hadoop home directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export HADOOP_HOME" line="export HADOOP_HOME={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}"
+
+- name: export hadoop conf directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export HADOOP_CONF_DIR" line="export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop"
+
+- name: export hadoop yarn home directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export YARN_HOME" line="export YARN_HOME={{SOFTWARE_INSTALL_PATH}}/hadoop-{{HADOOP_VERSION}}"
+- name: export hadoop yarn conf directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export YARN_CONF_DIR" line="export YARN_CONF_DIR=$YARN_HOME/etc/hadoop"
+
+- name: source bash_profile
+  shell: source ~/.bash_profile executable=/bin/bash
+ 

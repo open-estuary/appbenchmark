@@ -1,0 +1,9 @@
+---
+
+- include_tasks: stop_hadoop.yml
+
+- include_tasks: stop_spark.yml
+
+- include_tasks: stop_zookeeper.yml
+
+#- include_tasks: stop_kafka.yml

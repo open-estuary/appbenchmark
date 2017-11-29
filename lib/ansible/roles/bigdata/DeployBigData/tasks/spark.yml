@@ -1,0 +1,16 @@
+---
+- name: copy and decompress files to destination host
+  unarchive: src=spark-{{SPARK_VERSION}}-bin-hadoop{{HADOOP_BIG_VERSION}}.tar.gz dest={{SOFTWARE_INSTALL_PATH}} owner={{spark_user}} group={{spark_group}} mode=755
+
+- name: export spark home directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export SPARK_HOME" line="export SPARK_HOME={{SOFTWARE_INSTALL_PATH}}/spark-{{SPARK_VERSION}}-bin-hadoop{{HADOOP_BIG_VERSION}}"
+
+- name: export spark conf directory environment
+  lineinfile: dest=~/.bash_profile regexp="^export SPARK_CONF_DIR" line="export SPARK_CONF_DIR=$SPARK_HOME/conf"
+
+- name: config spark slave file
+  template: src=slaves_spark.j2 dest={{SOFTWARE_INSTALL_PATH}}/spark-{{SPARK_VERSION}}-bin-hadoop{{HADOOP_BIG_VERSION}}/conf/slaves owner={{spark_user}} group={{spark_group}} mode=644
+
+- name: config spark-env.sh file
+  template: src=spark-env.sh.j2 dest={{SOFTWARE_INSTALL_PATH}}/spark-{{SPARK_VERSION}}-bin-hadoop{{HADOOP_BIG_VERSION}}/conf/spark-env.sh owner={{spark_user}} group={{spark_group}} mode=755
+

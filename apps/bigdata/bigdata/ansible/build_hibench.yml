@@ -1,0 +1,7 @@
+---
+- name: build hibench on remote machine
+  hosts: Build_Hibench
+  gather_facts: no
+  roles:
+    - DeployHiBench
+
