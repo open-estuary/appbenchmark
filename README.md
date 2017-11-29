@@ -56,8 +56,8 @@ Currently the following applications have been supported so far :
 - Docker Networks
   - [Calico](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/calico)
   - [Flannel](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/flannel)
-  - [Weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
-
+  - [Weave](https://github.com/open-estuary/appbenchmark/tree/master/apps/docker_net/weave)
+- [BigData](https://github.com/open-estuary/appbenchmark/tree/master/apps/bigdata)
 ## <a name="3">Ansible Roles</a>
 
 > Usually the Ansible role need to be configured and could be reused for difference application benchmark tests (or ansible playbook).
@@ -99,6 +99,7 @@ Currently the following applications ansible roles have been supported:
 |[createuser](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/createuser)|Create new user account role|
 |[mount](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/mount)|Mount new devices role|
 |[syscfg](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/syscfg)|Provision Kernel Parameters role|
+|[bigdata](https://github.com/open-estuary/appbenchmark/tree/master/lib/ansible/roles/bigdata)|Bigdata Install Test role|
 ||||
 
 ## <a name="4">Others</a>
