@@ -1,7 +1,7 @@
 ---
 # This role is to setup solr test scripts
 - name: Create Solr E-Commerce Collections and Fields
-  shell: "{{ workspace }}/solr_benchmark/solr_create_fields.sh {{ solr_server }} {{ solr_port }} {{ estuaryuser }} 1" 
+  shell: "{{ workspace }}/solr_benchmark/solr_create_fields.sh {{ solr_server }} {{ solr_port }} {{ estuaryuser }} 1 {{ solr_num_shard }}" 
   when: (solr_cloud_mode is defined) and (solr_cloud_mode == "true")
 
 - name: Create Solr E-Commerce Core and Fields

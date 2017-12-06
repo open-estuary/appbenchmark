@@ -17,6 +17,7 @@ eureka_port: 8761
 
 solr_user: "{{ estuaryuser }}"
 solr_group: "{{ estuaryuser }}"
+solr_num_shard: 1
 
 zookeeper_user: "{{ estuaryuser }}"
 zookeeper_group: "{{ estuaryuser }}"

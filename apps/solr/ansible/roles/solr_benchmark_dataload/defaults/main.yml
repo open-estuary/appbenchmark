@@ -7,4 +7,5 @@ solr_port: 8983
 solr_tar_filename: "solr_ecommerce_data.tar.gz"
 solr_data_url: "ftp://repoftp:repopushez7411@117.78.41.188/releases/3.0/otherfiles/{{ solr_tar_filename }}"
 solr_cloud_mode: false
+solr_num_shard: 3
 
