@@ -1,0 +1,33 @@
+---
+- hosts: test_server
+ 
+  roles: 
+  - role: iperf_test_server
+  - role: netperf_test_server
+  - role: qperf_test_server
+  
+#  tasks:
+#  - name: get iperf_server ip
+#    shell: docker exec flannel_iperf_servercon ip addr | grep inet | grep eth0 |awk '{print $2}'|awk -F '/' '{print $1}'
+#    register: iperf_server_ip
+#    ignore_errors: True
+
+ # - name: define iperf ip variable
+ #   set_fact: 
+ #     iperf_servercon_ip: "{{ iperf_server_ip }}"
+ 
+ # - name: get netperf_server ip
+ #   shell: docker exec flannel_netperf_servercon ip addr | grep inet | grep eth0 |awk '{print $2}'|awk -F '/' '{print $1}'
+ #   register: netperf_server_ip
+ #   ignore_errors: True
+
+ # - name : define netperf ip variable
+ #   set_fact: 
+ #     netperf_servercon_ip: "{{ netperf_server_ip }}"
+
+- hosts: test_client
+
+  roles:
+  - role: iperf_test_client
+  - role: netperf_test_client
+  - role: qperf_test_client

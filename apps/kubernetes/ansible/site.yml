@@ -1,0 +1,19 @@
+---
+#- hosts: etcd_server
+#  roles:
+#  - role: etcd
+
+- hosts:
+  - kubernetes_minion
+  - kubernetes_master
+  roles:
+  - docker
+  - kubernetes_common
+
+- hosts: kubernetes_master
+  roles:
+  - role: kubernetes_master
+
+- hosts: kubernetes_minion
+  roles:
+  - role: kubernetes_minion

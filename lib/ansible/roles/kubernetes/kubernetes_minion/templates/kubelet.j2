@@ -1,6 +1,6 @@
 ###
 # kubernetes kubelet (minion) config
-
+KUBELET_API_SERVER="--api_servers=http://{{master_ip_address}}:8080"
 # The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
 KUBELET_ADDRESS="--address=0.0.0.0"
 
@@ -8,7 +8,7 @@ KUBELET_ADDRESS="--address=0.0.0.0"
 # KUBELET_PORT="--port=10250"
 
 # You may leave this blank to use the actual hostname
-KUBELET_HOSTNAME="--hostname-override={{ansible_hostname}}"
+KUBELET_HOSTNAME="--hostname-override={{ansible_default_ipv4.address}}"
 
 # Add your own!
 KUBELET_ARGS="--cgroup-driver=systemd"

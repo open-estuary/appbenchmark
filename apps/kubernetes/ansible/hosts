@@ -1,0 +1,9 @@
+[etcd_server]
+192.168.1.86
+
+[kubernetes_master]
+192.168.1.86
+
+[kubernetes_minion]
+192.168.1.115
+192.168.1.171
