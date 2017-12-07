@@ -1,0 +1,9 @@
+---
+- task: Install GlusterFS Server
+  yum: name=glusterfs-server state=present
+
+- task: Install GlusterFS Client
+  yum: name=glusterfs-client state=present
+
+- task: Enable GlusterFS
+  service: name=glusterd state=started enabled=yes
