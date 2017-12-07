@@ -1,0 +1,22 @@
+---
+- hosts: etcd_server
+
+  roles:
+  - role: etcd
+  
+  tasks:
+  - name: copy flannel-config.json
+    template: src=flannel-config.json dest=/tmp/flannel-config.json 
+
+  - name: set flannel-config.json
+    shell: etcdctl --endpoints=http://{{ etcd_ip }}:2379 set /flannel/network/config < flannel-config.json
+    args:
+      chdir: /tmp/
+  
+
+- hosts: flannel_servers
+
+  roles:
+  - role: docker
+  - role: flannel
+

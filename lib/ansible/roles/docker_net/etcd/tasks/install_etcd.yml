@@ -7,13 +7,17 @@
   args:
     chdir: /tmp/
 
-- name: transfer start_etcd.sh
-  template: src=start_etcd.sh dest=/tmp/start_etcd.sh mode=0755
+- name: transfer etcd.service
+  template: src=etcd.service dest=/lib/systemd/system/etcd.service mode=0644
+
+- name: make etcd config dir
+  file: path=/etc/etcd mode=0644 state=directory
+- name: make etcd work dir
+  file: path=/var/lib/etcd mode=0644 state=directory
+
+- name: transfer etcd config
+  template: src=etcd.conf dest=/etc/etcd/etcd.conf mode=0644
 
 - name: start etcd
-  shell: ./start_etcd.sh
-  async: 10
-  poll: 0
-  args:
-    chdir: /tmp/
+  service: name=etcd enabled=yes
 
