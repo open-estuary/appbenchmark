@@ -1,7 +1,7 @@
 ---
-#- hosts: etcd_server
-#  roles:
-#  - role: etcd
+- hosts: etcd_server
+  roles:
+  - role: etcd
 
 - hosts:
   - kubernetes_minion

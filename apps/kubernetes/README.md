@@ -4,11 +4,8 @@
 
 # Network Benchmark Test 
 ## <a name="1">Introduction</a>
-flannel is a virtual network that gives a subnet to each host for use with container runtimes.
-Platforms like Google's Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. 
-The advantage of this model is that it reduces the complexity of doing port mapping.
+Kubernetes is an open source system for managing containerized applications across multiple hosts, providing basic mechanisms for deployment, maintenance, and scaling of applications.
 
-This is a test about flannel network, with 3 tools: iperf, netperf and qperf.
 
 ## <a name="2">Benchmark Test</a>
 ### Test Topology
@@ -18,10 +15,5 @@ This is a test about flannel network, with 3 tools: iperf, netperf and qperf.
 ### Setup
 - `./setup.sh` to setup kubernetes in servers.
 
-### Test 
-
-### Test Results
-- Get test result from test_client /tmp/dockernet_test directory.
-                                           
 ## <a name="3">Others</a>
 
