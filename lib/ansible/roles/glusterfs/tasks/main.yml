@@ -1,9 +1,23 @@
 ---
-- task: Install GlusterFS Server
+- name: Transfer GlusterFS repo
+  template: src=gluster.repo dest=/etc/yum.repos.d/gluster.repo
+
+- name: Install GlusterFS Server
   yum: name=glusterfs-server state=present
 
-- task: Install GlusterFS Client
+- name: Install GlusterFS Client
   yum: name=glusterfs-client state=present
 
-- task: Enable GlusterFS
+- name: Enable GlusterFS
   service: name=glusterd state=started enabled=yes
+
+- name: Peer Probe
+  shell: |
+    servers="{{serverlist}}"
+    for i in ${servers}; do
+      gluster peer probe ${i};
+    done
+  args:
+    executable: /bin/bash
+  vars:
+    serverlist: "{{groups['glusterfs']|map('extract',hostvars,['ansible_default_ipv4','address'])|join(' ')}}"
