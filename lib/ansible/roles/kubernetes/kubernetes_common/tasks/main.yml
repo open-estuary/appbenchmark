@@ -1,6 +1,6 @@
 ---
-- name: Install kubernetes by yum
-  yum: pkg=kubernetes state=latest
+#- name: Install kubernetes by yum
+#  yum: pkg=kubernetes state=latest
   
 - name: Judge whether firewalld installed
   command: "rpm -q firewalld"
@@ -10,8 +10,11 @@
 
 - name: Find ip addresses
   set_fact:
-    master_ip: "{{hostvars[groups['masters'][0]]['ansible_default_ipv4']['address']}}"
-    etcd_ip: "{{hostvars[groups['etcd'][0]]['ansible_default_ipv4']['address']}}"
+    master_ip_address: "{{hostvars[groups['kubernetes_master'][0]]['ansible_default_ipv4']['address']}}"
+    etcd_ip_address: "{{hostvars[groups['etcd_server'][0]]['ansible_default_ipv4']['address']}}"
+
+- name: Make kubernetes config dir
+  file: path=/etc/kubernetes state=directory mode=0644
 
 - name: Write common config file
   template: src=config.j2 dest=/etc/kubernetes/config

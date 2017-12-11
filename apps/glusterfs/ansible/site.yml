@@ -1,0 +1,6 @@
+---
+- hosts: glusterfs
+  roles:
+  - role: glusterfs
+
+
